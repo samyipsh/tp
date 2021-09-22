@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### John Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelyip.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelyip.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
@@ -31,16 +31,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelyip.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Samuel Yip
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelyip.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### James Doe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelyip.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
