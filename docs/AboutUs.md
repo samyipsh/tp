@@ -31,9 +31,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jerome Wong Jia Jin
 
-<img src="images/samuelyip.png" width="200px">
+<img src="images/jeromewjj.png" width="200px">
 
-[[github](http://github.com/jeromewojj)] [[portfolio](team/jeromewong.md)]
+[[github](http://github.com/jeromewjj)] [[portfolio](team/jeromewong.md)]
 
 * Role: Developer
 * Responsibilities: Data
