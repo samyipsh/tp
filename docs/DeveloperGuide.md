@@ -256,14 +256,18 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
+* NUS CS Undergraduates
+* wants to maintain connections for purpose of networking
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
+* prefer lightweight app (concise targeted features over excessive features)
+* prefer local apps to cloud-based online apps
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: manage potential network opportunities for a NUS CS student
 
 
 ### User stories
