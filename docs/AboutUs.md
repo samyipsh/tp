@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Winston Cahya
 
-<img src="images/samuelyip.png" width="200px">
+<img src="images/commanderw324.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/commanderw324)]
+[[portfolio](team/winstonc.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI & Model
