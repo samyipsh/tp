@@ -42,11 +42,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/samuelyip.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/samyipsh)]
+[[portfolio](team/samuelyip.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Dev Ops + Storage
 
 ### James Doe
 
