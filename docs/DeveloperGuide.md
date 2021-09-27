@@ -283,16 +283,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `NetworkUS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 Add a person**
+
+**MSS**
+
+1.  User requests to add persons
+2.  NetworkUS adds the person
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given name and details are duplicated.
+
+    * 1a1. NetworkUS shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC02 Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  NetworkUS shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  NetworkUS deletes the person
 
     Use case ends.
 
@@ -304,11 +323,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NetworkUS shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC03 Find a person**
+
+**MSS**
+
+1.  User requests to search a person
+2.  NetworkUS shows a list of persons that match the search
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no match and the list is empty.
+
+  Use case ends.
+
+**Use case: UC04 Edit a person's information**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to edit a specific person's information in the list
+4.  NetworkUS edit the person's information
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+    
+
+**Use case: UC05 View list of contact**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  NetworkUS shows a list of persons
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
