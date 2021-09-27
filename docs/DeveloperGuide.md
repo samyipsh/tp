@@ -166,36 +166,134 @@ This section describes some noteworthy details on how certain features are imple
 ### Product scope
 
 **Target user profile**:
-
+* NUS CS Undergraduates
+* wants to maintain connections for purpose of networking
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
+* prefer lightweight app (concise targeted features over excessive features)
+* prefer local apps to cloud-based online apps
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: manage potential network opportunities for a NUS CS student
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the network list | sort persons by name           | locate a person easily                                                 |
+
+| Priority | As a …​                                 | I want to …​                                      | So that I can…​                                                     |
+| -------- | ------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add new contacts                                     |                                                                        |
+| `* * *`  | user                                       | delete my existing contacts                          | remove contacts that I no longer need                                  |
+| `* * *`  | user                                       | find a person by name                                | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | see all the contacts I have                          |                                                                        |
+| `* *`    | longstanding user                          | update details of previously added contacts          | keep them up-to-date                                                   |
+| `* *`    | user                                       | add their LinkedIn username                          | keep their LinkedIn information                                        |
+| `* *`    | user                                       | add their GitHub username                            | keep their GitHub information                                          |
+| `* *`    | new user                                   | see some mock contacts                               | test the commands                                                      |
+| `* *`    | new user                                   | be able to clear all mock contacts                   | start creating a fresh contact list                                    |
+| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                |
+| `* *`    | user                                       | categorize my contacts based on their specialization | find people with a particular area of expertise                        |
+| `* *`    | user                                       | find a person by specialization                      | find a person of a particular area of expertise                        |
+| `*`      | user                                       | see the number of friends I have                     | gain a sense of confidence                                             |
+| `*`      | user with many persons in the address book | sort persons by name                                 | locate a person easily                                                 |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the NetworkUs app and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: help**
+(For all use cases below, the **System** is the `NetworkUS` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 Add a person**
+
+**MSS**
+
+1.  User requests to add persons
+2.  NetworkUS adds the person
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given name and details are duplicated.
+
+    * 1a1. NetworkUS shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC02 Delete a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  NetworkUS deletes the person
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. NetworkUS shows an error message.
+
+**Use case: UC03 Find a person**
+
+**MSS**
+
+1.  User requests to search a person
+2.  NetworkUS shows a list of persons that match the search
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There is no match and the list is empty.
+
+  Use case ends.
+
+**Use case: UC04 Edit a person's information**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to edit a specific person's information in the list
+4.  NetworkUS edit the person's information
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+    
+
+**Use case: UC05 View list of contact**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  NetworkUS shows a list of persons
+
+    Use case ends.
+
+**Use case: UC06 help**
 
 **MSS**
 
@@ -205,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
     Use case ends.
 
-**Use case: clear**
+**Use case: UC07 clear**
 
 **MSS**
 
@@ -214,31 +312,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  user says yes to the confirmation
 4.  NetworkUs deletes all the user's contacts
 
-    Use case ends.
-
 **Extensions**
 
 * 2a. The list is empty.
    NetworkUs replies that it is empty
-  Use case ends.
-
+  Use case ends.                            
 * 3a. The user says no during the confirmation
    
   NetworkUs aborts deletion
-
-**Use case: exit**
-
+                            
+**Use case: UC08 exit**
+                            
 **MSS**
 1. User is finished with tasks and requests to exit application
 2. NetworkUs close after several seconds
    
    Use case ends.
-
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Novices should not have big problems when they first use the product.
+5. Late users should be able to work efficiently.
+6. UI should focus more on displaying data to user rather than provide means of interactions to user.
 
 *{More to be added}*
 
@@ -246,6 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Late user**: User who have used the product for more than a month
 
 --------------------------------------------------------------------------------------------------------------------
 

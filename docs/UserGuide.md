@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+NetworkUs is a **desktop app for organizing contacts, with features that assists in project management, project collaboration, and internship searches**.</br> The app is optimized for the *Command Line Interface (CLI) to allow swift access for keyboard users. The app is also complemented with  *Graphical User Interface (GUI)* to display the program. 
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your NetworkUs app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -77,19 +77,19 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAILS] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Johnny Sim p/91234567`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal g/lovelyprisoner`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the contact list and the total number of contacts.
 
 Format: `list`
 
@@ -97,40 +97,38 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAILS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will not be removed i.e adding of tags is cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+    specifying any tags after it. The same applies for description `d/`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Finding persons: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names contain any of the given keywords from the list of contacts.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The command is not case-sensitive, `find john` will match `JoHn`
+* Currently only the name is searched.
+* Will also search tags. (to be added)
+* Persons whose names match at least one keyword will be returned.
+  `find john smith` will return `John Fletcher` and `Smith George`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find John` will return `john`, `John Doe` and `Aaron john`
+* `find jonas aaron silva` will return `jonas`, `Aaron john` and `Ann Silva`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the NetworkUs contacts.
 
 Format: `delete INDEX`
 
@@ -139,12 +137,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the contact list.
 
 Format: `clear`
 
@@ -154,16 +152,26 @@ Exits the program.
 
 Format: `exit`
 
+### Importing new file : `import`
+
+Changes the source file of contact list to be the one specified
+
+Format: `import PATH`
+
+* Uses the file specified in the PATH argument.
+* 
+* The index **must be a positive integer** 1, 2, 3, …​
+
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Contact list data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Contacts data are saved as a JSON file `[JAR file location]/data/networkus.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NetworkUs will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
