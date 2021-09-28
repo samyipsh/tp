@@ -1,9 +1,13 @@
-# User Guide
 
-NetworkUs is a **desktop app for organizing contacts, with features that assists in project management, project collaboration, and internship searches**.</br> The app is optimized for the *Command Line Interface (CLI) to allow swift access for keyboard users. The app is also complemented with  *Graphical User Interface (GUI)* to display the program. 
+---
+layout: page
+title: User Guide
+---
+
+NetworkUs is a **desktop app for organizing contacts, with features that assists in project management, project collaboration, and internship searches**. The app is optimized for the *Command Line Interface (CLI) to allow swift access for keyboard users. The app is also complemented with  *Graphical User Interface (GUI)* to display the program. 
 
 * Table of Contents
-
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,19 +153,10 @@ Exits the program.
 
 Format: `exit`
 
-### Importing new file : `import`
-
-Changes the source file of contact list to be the one specified
-
-Format: `import PATH`
-
-* Uses the file specified in the PATH argument.
-* 
-* The index **must be a positive integer** 1, 2, 3, …​
-
 ### Saving the data
 
 Contact list data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 
 ### Editing the data file
 
@@ -171,9 +166,6 @@ Contacts data are saved as a JSON file `[JAR file location]/data/networkus.json`
 If your changes to the data file makes its format invalid, NetworkUs will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
