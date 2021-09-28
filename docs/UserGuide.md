@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: User Guide
@@ -76,7 +75,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the list of contacts.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAILS] [t/TAG]…​`
 
@@ -96,7 +95,7 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the list of contact.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAILS] [t/TAG]…​`
 
@@ -117,7 +116,7 @@ Finds persons whose names contain any of the given keywords from the list of con
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The command is not case-sensitive, `find john` will match `JoHn`
+* The command is not case-sensitive, `find john` will match `John`
 * Currently only the name is searched.
 * Will also search tags. (to be added)
 * Persons whose names match at least one keyword will be returned.
@@ -180,10 +179,10 @@ If your changes to the data file makes its format invalid, NetworkUs will discar
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [l/LINKEDIN] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [l/LINKEDIN] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
