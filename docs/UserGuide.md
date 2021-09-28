@@ -1,9 +1,13 @@
-# User Guide
+
+---
+layout: page
+title: User Guide
+---
 
 NetworkUs is a **desktop app for organizing contacts, with features that assists in project management, project collaboration, and internship searches**.</br> The app is optimized for the *Command Line Interface (CLI) to allow swift access for keyboard users. The app is also complemented with  *Graphical User Interface (GUI)* to display the program. 
 
 * Table of Contents
-
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
