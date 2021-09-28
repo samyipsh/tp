@@ -319,8 +319,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-   NetworkUs replies that it is empty
-  Use case ends.                            
+  
+  Use case ends.         
+  
 * 3a. The user says no during the confirmation
    
   NetworkUs aborts deletion
@@ -332,6 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. NetworkUs close after several seconds
    
    Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
