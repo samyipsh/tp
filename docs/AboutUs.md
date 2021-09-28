@@ -40,10 +40,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Samuel Yip
 
-<img src="images/samuelyip.png" width="200px">
+<img src="images/samyipsh.png" width="200px">
 
 [[github](https://github.com/samyipsh)]
-[[portfolio](team/samuelyip.md)]
+[[portfolio](team/samyipsh.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Storage
