@@ -11,8 +11,8 @@ import seedu.address.commons.core.LogsCenter;
 
 //@author samyipsh
 /**
- * Represents a Person's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Represents a Person's github username in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidGithub(String)}
  */
 public class Github {
     private static final Logger logger = LogsCenter.getLogger(Github.class);
