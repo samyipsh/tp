@@ -36,6 +36,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setAddress(person.getAddress());
+//        descriptor.setGithub(person.getGithub());
         descriptor.setTags(person.getTags());
     }
 
@@ -70,6 +72,14 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(new Address(address));
         return this;
     }
+
+//    /**
+//     * Sets the {@code Github} of the {@code EditPersonDescriptor} that we are building.
+//     */
+//    public EditPersonDescriptorBuilder withGithub(String github) {
+//        descriptor.setAddress(new Github(github));
+//        return this;
+//    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}

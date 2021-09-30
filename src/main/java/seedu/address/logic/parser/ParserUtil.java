@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -27,7 +28,7 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index  parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
@@ -93,6 +94,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String githubUsername} into an {@code Github}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Github} is invalid.
+     */
+    public static Github parseGithub(String githubUname) throws ParseException {
+        requireNonNull(githubUname);
+        String trimmedGithubUname = githubUname.trim();
+        if (!Github.isValidGithub(trimmedGithubUname)) {
+            throw new ParseException(Github.MESSAGE_CONSTRAINTS);
+        }
+        return new Github(trimmedGithubUname);
     }
 
     /**
