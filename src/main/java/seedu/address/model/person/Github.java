@@ -1,7 +1,13 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static java.util.logging.Level.INFO;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 //@author samyipsh
 /**
@@ -9,6 +15,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Github {
+    private static final Logger logger = LogsCenter.getLogger(Github.class);
 
     public static final String MESSAGE_CONSTRAINTS =
             "Github username should only contain alphanumeric characters and hyphens"
@@ -23,7 +30,8 @@ public class Github {
      * Github username cannot begin or end with a hyphen.
      * Maximum is 39 characters.
      */
-    public static final String VALIDATION_REGEX = "/^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$/i";
+    public static final String VALIDATION_REGEX =
+            "(?i)^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
 
     public final String githubUsername;
 
