@@ -19,14 +19,30 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final LinkedIn linkedin;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+
     /**
      * Every field must be present and not null.
      */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LinkedIn linkedin) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.linkedin = linkedin;
+    }
+
+    /**
+     * Constructor if linkedin is not specified, will create empty string for the URL
+     */
+
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -34,6 +50,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.linkedin = new LinkedIn("");
     }
 
     public Name getName() {
@@ -60,6 +77,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public LinkedIn getLinkedin() {
+        return this.linkedin;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -92,7 +112,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags()) && otherPerson.getLinkedin().equals(getLinkedin());
     }
 
     @Override
@@ -110,7 +130,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; LinkedIn: ")
+                .append(getLinkedin());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
