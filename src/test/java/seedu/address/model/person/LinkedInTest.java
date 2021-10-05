@@ -32,8 +32,6 @@ public class LinkedInTest {
 
 
         // valid LinkedIn
-        System.out.println(LinkedIn.isValidLinkedIn("https://linkedin.com/in/wiliam-ferraciolli-a9a29795"));
-
         assertTrue(LinkedIn.isValidLinkedIn("https://ca.linkedin.com/in/winston-cahya/")); // period in local part
         assertTrue(LinkedIn.isValidLinkedIn("https://www.linkedin.com/in/winston")); // '+' symbol in local part
         assertTrue(LinkedIn.isValidLinkedIn("https://linkedin.com/in/winston-cahya/"));

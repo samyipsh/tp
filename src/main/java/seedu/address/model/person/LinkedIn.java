@@ -27,7 +27,7 @@ public class LinkedIn {
      * Returns if a given string is a valid linkedin
      */
     public static boolean isValidLinkedIn(String test) {
-        return test.equals("") || test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

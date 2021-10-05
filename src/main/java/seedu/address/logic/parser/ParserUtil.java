@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.LinkedIn;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -94,6 +95,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String githubUsername} into an {@code Github}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Github} is invalid.
+     */
+    public static Github parseGithub(String githubUname) throws ParseException {
+        requireNonNull(githubUname);
+        String trimmedGithubUname = githubUname.trim();
+        if (!Github.isValidGithub(trimmedGithubUname)) {
+            throw new ParseException(Github.MESSAGE_CONSTRAINTS);
+        }
+        return new Github(trimmedGithubUname);
     }
 
     /**

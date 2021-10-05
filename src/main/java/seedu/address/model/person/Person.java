@@ -23,13 +23,14 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Github github;
     private final Set<Tag> tags = new HashSet<>();
 
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LinkedIn linkedin) {
+    public Person(Name name, Phone phone, Email email, Address address, Github github, LinkedIn linkedin, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -37,6 +38,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.linkedin = linkedin;
+        this.github = github;
     }
 
     /**
@@ -50,6 +52,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.github = new Github("");
         this.linkedin = new LinkedIn("");
     }
 
@@ -67,6 +70,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Github getGithub() {
+        return github;
     }
 
     /**
@@ -112,13 +119,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags()) && otherPerson.getLinkedin().equals(getLinkedin());
+                && otherPerson.getLinkedin().equals(getLinkedin())
+                && otherPerson.getGithub().equals(getGithub())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, github, tags);
     }
 
     @Override
@@ -132,7 +141,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; LinkedIn: ")
-                .append(getLinkedin());
+                .append(getLinkedin())
+                .append("; Github: ")
+                .append(getGithub());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

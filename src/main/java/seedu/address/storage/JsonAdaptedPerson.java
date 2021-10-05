@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.LinkedIn;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String github;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String linkedin;
 
@@ -37,20 +39,19 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("linkedin") String linkedin) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address
+            , @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("linkedin") String linkedin, @JsonProperty("github") String github) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.github = github;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (linkedin == null) {
-            this.linkedin = "";
-        } else {
-            this.linkedin = linkedin;
-        }
+        this.linkedin = linkedin;
+
 
     }
 
@@ -63,6 +64,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         linkedin = source.getLinkedin().value;
+        github = source.getGithub().githubUsername;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -111,12 +113,26 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (github == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Github.class.getSimpleName()));
+        }
+        if (!Github.isValidGithub(github)) {
+            throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
+        }
+        final Github modelGithub = new Github(github);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        if(linkedin == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LinkedIn.class.getSimpleName()));
+        }
         if (!LinkedIn.isValidLinkedIn(linkedin)) {
             throw new IllegalValueException(LinkedIn.MESSAGE_CONSTRAINTS);
         }
         final LinkedIn modelLinkedIn = new LinkedIn(linkedin);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLinkedIn);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGithub, modelLinkedIn, modelTags);
+
     }
 
 }
