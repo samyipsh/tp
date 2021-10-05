@@ -13,6 +13,7 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
+    private static final Phone EMPTY_PHONE = new Phone();
     public final String value;
 
     /**
@@ -24,6 +25,17 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
+    }
+
+    /**
+     * Constructs an Empty Phone.
+     */
+    private Phone() {
+        value = "-";
+    }
+
+    public static Phone getEmptyPhone() {
+        return EMPTY_PHONE;
     }
 
     /**
