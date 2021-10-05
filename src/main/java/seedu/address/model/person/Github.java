@@ -1,13 +1,9 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static java.util.logging.Level.INFO;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import seedu.address.commons.core.LogsCenter;
 
 //@author samyipsh
 /**
@@ -15,14 +11,12 @@ import seedu.address.commons.core.LogsCenter;
  * Guarantees: immutable; is valid as declared in {@link #isValidGithub(String)}
  */
 public class Github {
-    private static final Logger logger = LogsCenter.getLogger(Github.class);
 
     public static final String MESSAGE_CONSTRAINTS =
             "Github username should only contain alphanumeric characters and hyphens"
                     + ", it cannot have multiple consecutive hyphens"
                     + ", cannot start or end with a hyphen"
                     + ", and has maximum 39 char";
-            ;
     /* reused from https://github.com/shinnn/github-username-regex
      *
      * Github username may only contain alphanumeric characters or hyphens.
