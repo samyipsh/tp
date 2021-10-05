@@ -81,6 +81,7 @@ class JsonAdaptedPerson {
         }
 
         final Phone modelPhone;
+
         if (phone.equals("-")) {
             modelPhone = Phone.getEmptyPhone();
         } else {
@@ -95,6 +96,7 @@ class JsonAdaptedPerson {
         }
 
         final Email modelEmail;
+
         if (email.equals("-")) {
             modelEmail = Email.getEmptyEmail();
         } else {
