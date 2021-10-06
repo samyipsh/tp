@@ -31,6 +31,8 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
+    private static final Email EMPTY_EMAIL = new Email();
+
     public final String value;
 
     /**
@@ -42,6 +44,22 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
+    }
+
+    /**
+     * Constructs an Empty Email.
+     */
+    private Email() {
+        value = "-";
+    }
+
+    /**
+     * Get an Empty Email.
+     *
+     * @return EMPTY_EMAIL.
+     */
+    public static Email getEmptyEmail() {
+        return EMPTY_EMAIL;
     }
 
     /**

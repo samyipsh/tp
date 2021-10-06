@@ -19,9 +19,9 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final LinkedIn linkedin;
 
     // Data fields
-    private final Address address;
     private final Github github;
     private final Detail detail;
     private final Set<Tag> tags = new HashSet<>();
@@ -29,12 +29,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Github github, Detail detail, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, github, tags);
+    public Person(Name name, Phone phone, Email email, Github github,
+                  LinkedIn linkedin, Detail detail, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.linkedin = linkedin;
         this.github = github;
         this.detail = detail;
         this.tags.addAll(tags);
@@ -52,12 +53,12 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
     public Github getGithub() {
         return github;
+    }
+
+    public LinkedIn getLinkedin() {
+        return this.linkedin;
     }
 
     public Detail getDetail() {
@@ -103,7 +104,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getLinkedin().equals(getLinkedin())
                 && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getDetail().equals(getDetail())
                 && otherPerson.getTags().equals(getTags());
@@ -112,7 +113,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, github, detail, tags);
+        return Objects.hash(name, phone, email, github, linkedin, detail, tags);
     }
 
     @Override
@@ -123,8 +124,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
+                .append("; LinkedIn: ")
+                .append(getLinkedin())
                 .append("; Github: ")
                 .append(getGithub())
                 .append("; Detail: ")

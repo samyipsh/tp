@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -61,25 +61,15 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
+
+        if (phone.equals("-")) {
+            return Phone.getEmptyPhone();
+        }
+
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**
@@ -91,6 +81,11 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
+
+        if (email.equals("-")) {
+            return Email.getEmptyEmail();
+        }
+
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -106,10 +101,28 @@ public class ParserUtil {
     public static Github parseGithub(String githubUname) throws ParseException {
         requireNonNull(githubUname);
         String trimmedGithubUname = githubUname.trim();
+        if (githubUname.equals("-")) {
+            return Github.getEmptyGithub();
+        }
         if (!Github.isValidGithub(trimmedGithubUname)) {
             throw new ParseException(Github.MESSAGE_CONSTRAINTS);
         }
         return new Github(trimmedGithubUname);
+    }
+
+    /**
+     * Parses the URL string into LinkedIn instance
+     */
+    public static LinkedIn parseLinkedIn(String linkedinUrl) throws ParseException {
+        requireNonNull(linkedinUrl);
+        String trimmedLinkedInUrl = linkedinUrl.trim();
+        if (linkedinUrl.equals("-")) {
+            return LinkedIn.getEmptyLinkedin();
+        }
+        if (!LinkedIn.isValidLinkedIn(trimmedLinkedInUrl)) {
+            throw new ParseException(LinkedIn.MESSAGE_CONSTRAINTS);
+        }
+        return new LinkedIn(trimmedLinkedInUrl);
     }
 
     /**

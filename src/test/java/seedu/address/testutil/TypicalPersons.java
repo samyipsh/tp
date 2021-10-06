@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DETAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DETAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINKEDIN_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -28,37 +28,49 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withGithub("aliceio").withDetail("Y1 CS").withTags("friends").build();
+            .withEmail("alice@example.com")
+            .withPhone("94351253")
+            .withGithub("aliceio")
+            .withLinkedIn("https://www.linkedin.com/in/alice/")
+            .withDetail("Y1 CS")
+            .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com").withPhone("98765432")
-            .withGithub("bensonio").withDetail("Y2 CS").withTags("owesMoney", "friends").build();
+            .withEmail("johnd@example.com").withPhone("98765432")
+            .withGithub("bensonio").withLinkedIn("https://www.linkedin.com/in/benson/")
+            .withDetail("Y2 CS").withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withGithub("carlio").build();
+            .withEmail("heinz@example.com")
+            .withGithub("carlio").withLinkedIn("https://www.linkedin.com/in/carljkurtz/").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street")
-            .withGithub("danielio").withTags("friends").build();
+            .withEmail("cornelia@example.com").withGithub("danielio")
+            .withLinkedIn("https://www.linkedin.com/in/danya/").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withGithub("elleio").build();
+            .withEmail("werner@example.com").withLinkedIn("https://www.linkedin.com/in/elle/")
+            .withGithub("elleio").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").withGithub("fionaio").build();
+            .withEmail("lydia@example.com").withGithub("fionaio")
+            .withLinkedIn("https://www.linkedin.com/in/fiona/").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withGithub("georgeio").build();
+            .withEmail("anna@example.com").withGithub("georgeio")
+            .withLinkedIn("https://www.linkedin.com/in/georges/").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").withGithub("hoonio").build();
+            .withEmail("stefan@example.com").withGithub("hoonio")
+            .withLinkedIn("https://www.linkedin.com/in/hoonmei/").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").withGithub("idaio").build();
+            .withEmail("hans@example.com").withGithub("idaio")
+            .withLinkedIn("https://www.linkedin.com/in/idaho/").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withDetail(VALID_DETAIL_AMY)
-            .withGithub(VALID_GITHUB_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withGithub(VALID_GITHUB_AMY)
+            .withLinkedIn(VALID_LINKEDIN_AMY).withDetail(VALID_DETAIL_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withDetail(VALID_DETAIL_BOB)
-            .withGithub(VALID_GITHUB_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+            .withEmail(VALID_EMAIL_BOB).withGithub(VALID_GITHUB_BOB)
+            .withLinkedIn(VALID_LINKEDIN_BOB).withDetail(VALID_DETAIL_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
