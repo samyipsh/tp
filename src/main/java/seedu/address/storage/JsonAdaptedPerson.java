@@ -119,6 +119,9 @@ class JsonAdaptedPerson {
         }
         final Github modelGithub = new Github(github);
 
+        if (detail == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Detail.class.getSimpleName()));
+        }
         final Detail modelDetail = new Detail(detail);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

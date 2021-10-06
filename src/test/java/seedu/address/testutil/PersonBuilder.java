@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
@@ -22,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GITHUB = "amyio";
+    public static final String DEFAULT_DETAIL = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Github github;
+    private Detail detail;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         github = new Github(DEFAULT_GITHUB);
+        detail = new Detail(DEFAULT_DETAIL);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         github = personToCopy.getGithub();
+        detail = personToCopy.getDetail();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -102,8 +107,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Detail} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDetail(String detail) {
+        this.detail = new Detail(detail);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, github, tags);
+        return new Person(name, phone, email, address, github, detail, tags);
     }
 
 }

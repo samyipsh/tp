@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
@@ -37,8 +38,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setAddress(person.getAddress());
         descriptor.setGithub(person.getGithub());
+        descriptor.setDetail(person.getDetail());
         descriptor.setTags(person.getTags());
     }
 
@@ -79,6 +80,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withGithub(String github) {
         descriptor.setGithub(new Github(github));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Detail} of the {@Code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDetail(String detail) {
+        descriptor.setDetail(new Detail(detail));
         return this;
     }
 
