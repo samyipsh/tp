@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -26,20 +28,30 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+    private final String github;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String linkedin;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+             @JsonProperty("email") String email, @JsonProperty("github") String github,
+                             @JsonProperty("linkedin") String linkedin,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.github = github;
+        this.linkedin = linkedin;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+
+
+
     }
 
     /**
@@ -49,6 +61,8 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        linkedin = source.getLinkedin().value;
+        github = source.getGithub().githubUsername;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -103,10 +117,37 @@ class JsonAdaptedPerson {
             modelEmail = new Email(email);
         }
 
+        if (github == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Github.class.getSimpleName()));
+        }
+        if (!Github.isValidGithub(github) && !github.equals("-")) {
+            throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
+        }
+        final Github modelGithub;
+        if (github.equals("-")) {
+            modelGithub = Github.getEmptyGithub();
+        } else {
+            modelGithub = new Github(github);;
+        }
 
+        if (linkedin == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LinkedIn.class.getSimpleName()));
+        }
+        if (!LinkedIn.isValidLinkedIn(linkedin) && !linkedin.equals("-")) {
+            throw new IllegalValueException(LinkedIn.MESSAGE_CONSTRAINTS);
+        }
+        final LinkedIn modelLinkedIn;
+        if (linkedin.equals("-")) {
+            modelLinkedIn = LinkedIn.getEmptyLinkedin();
+        } else {
+            modelLinkedIn = new LinkedIn(linkedin);
+        }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelGithub, modelLinkedIn, modelTags);
+
     }
 
 }

@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -19,6 +21,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -38,6 +42,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_GITHUB + "GITHUB] "
+            + "[" + PREFIX_LINKEDIN + "LINKEDIN] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -93,9 +99,15 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        LinkedIn updatedLinkedIn = editPersonDescriptor.getLinkedIn()
+                .orElse(personToEdit.getLinkedin());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags);
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedGithub,
+                updatedLinkedIn, updatedTags);
+
     }
 
     @Override
@@ -124,7 +136,9 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Github github;
         private Set<Tag> tags;
+        private LinkedIn linkedin;
 
         public EditPersonDescriptor() {}
 
@@ -136,14 +150,16 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setGithub(toCopy.github);
             setTags(toCopy.tags);
+            setLinkedIn(toCopy.linkedin);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, github, linkedin, tags);
         }
 
         public void setName(Name name) {
@@ -170,6 +186,23 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+
+
+        public void setLinkedIn(LinkedIn linkedin) {
+            this.linkedin = linkedin;
+        }
+
+        public Optional<LinkedIn> getLinkedIn() {
+            return Optional.ofNullable(linkedin);
+        }
+
+        public void setGithub(Github github) {
+            this.github = github;
+        }
+
+        public Optional<Github> getGithub() {
+            return Optional.ofNullable(github);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -206,6 +239,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getGithub().equals(e.getGithub())
+                    && getLinkedIn().equals(e.getLinkedIn())
                     && getTags().equals(e.getTags());
         }
     }

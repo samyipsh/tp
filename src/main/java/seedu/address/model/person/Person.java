@@ -19,20 +19,27 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final LinkedIn linkedin;
 
     // Data fields
+    private final Github github;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Github github,
+                  LinkedIn linkedin, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
+        this.linkedin = linkedin;
+        this.github = github;
     }
+
+
 
     public Name getName() {
         return name;
@@ -47,6 +54,13 @@ public class Person {
     }
 
 
+    public Github getGithub() {
+        return github;
+    }
+
+    public LinkedIn getLinkedin() {
+        return this.linkedin;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -86,13 +100,15 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getLinkedin().equals(getLinkedin())
+                && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, github, linkedin, tags);
     }
 
     @Override
@@ -102,7 +118,11 @@ public class Person {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail());
+                .append(getEmail())
+                .append("; LinkedIn: ")
+                .append(getLinkedin())
+                .append("; Github: ")
+                .append(getGithub());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
