@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -136,5 +137,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses the URL string into LinkedIn instance
+     */
+
+    public static LinkedIn parseLinkedIn(String linkedinUrl) throws ParseException {
+        requireNonNull(linkedinUrl);
+        String trimmedLinkedInUrl = linkedinUrl.trim();
+        if (trimmedLinkedInUrl.equals("")) {
+            return new LinkedIn(trimmedLinkedInUrl);
+        }
+        if (!LinkedIn.isValidLinkedIn(trimmedLinkedInUrl)) {
+            throw new ParseException(LinkedIn.MESSAGE_CONSTRAINTS);
+        }
+        return new LinkedIn(trimmedLinkedInUrl);
     }
 }

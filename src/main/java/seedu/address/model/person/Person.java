@@ -19,23 +19,42 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final LinkedIn linkedin;
 
     // Data fields
     private final Address address;
     private final Github github;
     private final Set<Tag> tags = new HashSet<>();
 
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Github github, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, github, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Github github,
+                  LinkedIn linkedin, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.github = github;
         this.tags.addAll(tags);
+        this.linkedin = linkedin;
+        this.github = github;
+    }
+
+    /**
+     * Constructor if linkedin is not specified, will create empty string for the URL
+     */
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.github = new Github("");
+        this.linkedin = new LinkedIn("");
     }
 
     public Name getName() {
@@ -66,6 +85,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public LinkedIn getLinkedin() {
+        return this.linkedin;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -98,6 +120,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getLinkedin().equals(getLinkedin())
                 && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -118,6 +141,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; LinkedIn: ")
+                .append(getLinkedin())
                 .append("; Github: ")
                 .append(getGithub());
 

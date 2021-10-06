@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,15 +32,17 @@ class JsonAdaptedPerson {
     private final String address;
     private final String github;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String linkedin;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("github") String github,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+             @JsonProperty("email") String email, @JsonProperty("address") String address,
+             @JsonProperty("github") String github, @JsonProperty("linkedin") String linkedin,
+             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,6 +51,9 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.linkedin = linkedin;
+
+
     }
 
     /**
@@ -58,6 +64,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        linkedin = source.getLinkedin().value;
         github = source.getGithub().githubUsername;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -116,7 +123,18 @@ class JsonAdaptedPerson {
         final Github modelGithub = new Github(github);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGithub, modelTags);
+
+        if (linkedin == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LinkedIn.class.getSimpleName()));
+        }
+        if (!LinkedIn.isValidLinkedIn(linkedin)) {
+            throw new IllegalValueException(LinkedIn.MESSAGE_CONSTRAINTS);
+        }
+        final LinkedIn modelLinkedIn = new LinkedIn(linkedin);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGithub, modelLinkedIn, modelTags);
+
     }
 
 }

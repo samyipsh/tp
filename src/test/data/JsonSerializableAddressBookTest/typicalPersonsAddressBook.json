@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "github" : "aliceio",
+    "linkedin" : "https://www.linkedin.com/in/alice/",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,20 +14,23 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "github" : "bensonio",
+    "linkedin": "https://www.linkedin.com/in/benson/",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "github" : "carlio",
-    "tagged" : [ ]
-  }, {
+    "name": "Carl Kurz",
+    "phone": "95352563",
+    "email": "heinz@example.com",
+    "address": "wall street",
+    "github": "carlio",
+    "linkedin": "https://www.linkedin.com/in/carljkurtz/",
+    "tagged": []
+    }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "github" : "danielio",
+    "linkedin":  "https://www.linkedin.com/in/danya/",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "github" : "elleio",
+    "linkedin":  "https://www.linkedin.com/in/elle/",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "github" : "fionaio",
+    "linkedin": "https://www.linkedin.com/in/fiona/",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +54,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "github" : "georgeio",
+    "linkedin":  "https://www.linkedin.com/in/georges/",
     "tagged" : [ ]
   } ]
 }

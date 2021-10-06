@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -22,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GITHUB = "amyio";
+    public static final String DEFAULT_LINKEDIN = "https://www.linkedin.com/in/amybee/";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Github github;
+    private LinkedIn linkedin;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         github = new Github(DEFAULT_GITHUB);
+        linkedin = new LinkedIn(DEFAULT_LINKEDIN);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         github = personToCopy.getGithub();
+        linkedin = personToCopy.getLinkedin();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -87,6 +92,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLinkedIn(String linkedin) {
+        this.linkedin = new LinkedIn(linkedin);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -103,7 +116,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, github, tags);
+        return new Person(name, phone, email, address, github, linkedin, tags);
     }
 
 }
