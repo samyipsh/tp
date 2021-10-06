@@ -27,6 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_GITHUB + "GITHUB "
+            + PREFIX_LINKEDIN + "LINKEDIN"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "

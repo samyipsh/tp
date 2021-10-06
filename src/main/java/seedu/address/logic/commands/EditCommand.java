@@ -3,10 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
-
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -25,13 +23,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-
-import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-//import seedu.address.model.person.Github;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -111,10 +107,12 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        LinkedIn updatedLinkedIn = editPersonDescriptor.getLinkedIn().orElse(personToEdit.getLinkedin());
+        LinkedIn updatedLinkedIn = editPersonDescriptor.getLinkedIn()
+                .orElse(personToEdit.getLinkedin());
 
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGithub, updatedLinkedIn, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGithub,
+                updatedLinkedIn, updatedTags);
 
     }
 
