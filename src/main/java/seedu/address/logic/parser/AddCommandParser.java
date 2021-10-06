@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINKEDIN;
@@ -14,7 +13,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.LinkedIn;
@@ -27,7 +25,7 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-    private static final String EMPTY_STRING = "";
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -35,23 +33,19 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_GITHUB, PREFIX_LINKEDIN, PREFIX_TAG);
+                        PREFIX_GITHUB, PREFIX_LINKEDIN, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_GITHUB, PREFIX_LINKEDIN)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
+        checkAllPrefixes(argMultimap);
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Github github = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse("-"));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse("-"));
+        Github github = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElse("-"));
+        LinkedIn linkedin = ParserUtil.parseLinkedIn(argMultimap.getValue(PREFIX_LINKEDIN).orElse("-"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        LinkedIn linkedin = ParserUtil.parseLinkedIn(argMultimap.getValue(PREFIX_LINKEDIN).get());
 
-        Person person = new Person(name, phone, email, address, github, linkedin, tagList);
+
+        Person person = new Person(name, phone, email, github, linkedin, tagList);
 
         return new AddCommand(person);
     }
@@ -62,6 +56,22 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Checks whether the required Prefixed is present.
+     * @param argumentMultimap the Prefix available
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private static void checkAllPrefixes(ArgumentMultimap argumentMultimap) throws ParseException {
+        boolean isPhonePresent = arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_PHONE);
+        boolean isEmailPresent = arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_EMAIL);
+        boolean isNeededPrefixesPresent = (isPhonePresent || isEmailPresent);
+
+
+        if (!isNeededPrefixesPresent || !argumentMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
     }
 
 }

@@ -27,6 +27,7 @@ public class Github {
     public static final String VALIDATION_REGEX =
             "(?i)^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
 
+    private static final Github EMPTY_GITHUB = new Github();
     public final String githubUsername;
 
     /**
@@ -38,6 +39,22 @@ public class Github {
         requireNonNull(githubUsername);
         checkArgument(isValidGithub(githubUsername), MESSAGE_CONSTRAINTS);
         this.githubUsername = githubUsername;
+    }
+
+    /**
+     * Constructs an Empty Github.
+     */
+    private Github() {
+        githubUsername = "-";
+    }
+
+    /**
+     * Get an Empty Github.
+     *
+     * @return EMPTY_GITHUB.
+     */
+    public static Github getEmptyGithub() {
+        return EMPTY_GITHUB;
     }
 
     /**
