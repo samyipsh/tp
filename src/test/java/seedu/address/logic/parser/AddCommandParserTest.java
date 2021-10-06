@@ -26,6 +26,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINKEDIN_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -88,7 +89,7 @@ public class AddCommandParserTest {
 
         // multiple detail - last detail accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + GITHUB_DESC_BOB
-                + DETAIL_DESC_AMY + DETAIL_DESC_BOB + TAG_DESC_FRIEND,
+                + LINKEDIN_DESC_BOB + DETAIL_DESC_AMY + DETAIL_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
@@ -109,10 +110,11 @@ public class AddCommandParserTest {
         // no detail
         Person expectedNoDetailPerson = new PersonBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withGithub(VALID_GITHUB_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
 
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + GITHUB_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedNoDetailPerson));
+                + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedNoDetailPerson));
     }
 
     @Test
