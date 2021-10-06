@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String github;
+    private final String detail;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,13 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("github") String github,
+            @JsonProperty("github") String github, @JsonProperty("detail") String detail,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.github = github;
+        this.detail = detail;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +62,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         github = source.getGithub().githubUsername;
+        detail = source.getDetail().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,8 +119,10 @@ class JsonAdaptedPerson {
         }
         final Github modelGithub = new Github(github);
 
+        final Detail modelDetail = new Detail(detail);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGithub, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGithub, modelDetail, modelTags);
     }
 
 }

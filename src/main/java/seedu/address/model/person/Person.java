@@ -23,18 +23,20 @@ public class Person {
     // Data fields
     private final Address address;
     private final Github github;
+    private final Detail detail;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Github github, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Github github, Detail detail, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, github, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.github = github;
+        this.detail = detail;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +58,10 @@ public class Person {
 
     public Github getGithub() {
         return github;
+    }
+
+    public Detail getDetail() {
+        return detail;
     }
 
     /**
@@ -99,13 +105,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGithub().equals(getGithub())
+                && otherPerson.getDetail().equals(getDetail())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, github, tags);
+        return Objects.hash(name, phone, email, address, github, detail, tags);
     }
 
     @Override
@@ -119,7 +126,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Github: ")
-                .append(getGithub());
+                .append(getGithub())
+                .append("; Detail: ")
+                .append(getDetail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

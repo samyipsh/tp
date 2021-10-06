@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -21,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
@@ -45,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GITHUB + "GITHUB] "
+            + "[" + PREFIX_DETAIL + "DETAIL]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -102,9 +105,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
+        Detail updatedDetail = editPersonDescriptor.getDetail().orElse(personToEdit.getDetail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGithub, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGithub, updatedDetail,
+                updatedTags);
     }
 
     @Override
@@ -135,6 +140,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Github github;
+        private Detail detail;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -149,6 +155,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setGithub(toCopy.github);
+            setDetail(toCopy.detail);
             setTags(toCopy.tags);
         }
 
@@ -156,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, github, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, github, detail, tags);
         }
 
         public void setName(Name name) {
@@ -199,6 +206,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(github);
         }
 
+        public void setDetail(Detail detail) {
+            this.detail = detail;
+        }
+
+        public Optional<Detail> getDetail() {
+            return Optional.ofNullable(detail);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -236,6 +251,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getGithub().equals(e.getGithub())
+                    && getDetail().equals(e.getDetail())
                     && getTags().equals(e.getTags());
         }
     }

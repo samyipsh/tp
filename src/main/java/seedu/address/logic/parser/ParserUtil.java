@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
@@ -109,6 +110,14 @@ public class ParserUtil {
             throw new ParseException(Github.MESSAGE_CONSTRAINTS);
         }
         return new Github(trimmedGithubUname);
+    }
+
+    /**
+     * Parses a {@code String detail} into an {@code Detail}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Detail parseDetail(String detail) {
+        return new Detail(detail.trim());
     }
 
     /**
