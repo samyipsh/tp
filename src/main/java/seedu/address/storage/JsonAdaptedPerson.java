@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.LinkedIn;
@@ -29,16 +30,18 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String github;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String linkedin;
+    private final String detail;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-             @JsonProperty("email") String email, @JsonProperty("github") String github,
+                             @JsonProperty("email") String email, @JsonProperty("github") String github,
                              @JsonProperty("linkedin") String linkedin,
+                             @JsonProperty("detail") String detail,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
         this.name = name;
@@ -46,12 +49,10 @@ class JsonAdaptedPerson {
         this.email = email;
         this.github = github;
         this.linkedin = linkedin;
+        this.detail = detail;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-
-
-
     }
 
     /**
@@ -61,8 +62,9 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        linkedin = source.getLinkedin().value;
         github = source.getGithub().githubUsername;
+        linkedin = source.getLinkedin().value;
+        detail = source.getDetail().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -144,10 +146,14 @@ class JsonAdaptedPerson {
             modelLinkedIn = new LinkedIn(linkedin);
         }
 
+        if (detail == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Detail.class.getSimpleName()));
+        }
+        final Detail modelDetail = new Detail(detail);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelGithub, modelLinkedIn, modelTags);
-
+        return new Person(modelName, modelPhone, modelEmail, modelGithub, modelLinkedIn, modelDetail, modelTags);
     }
 
 }

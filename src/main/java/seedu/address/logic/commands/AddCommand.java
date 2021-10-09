@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINKEDIN;
@@ -26,6 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GITHUB + "GITHUB "
             + PREFIX_LINKEDIN + "LINKEDIN"
+            + "[" + PREFIX_DETAIL + "DETAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -33,6 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GITHUB + "samyipsh "
             + PREFIX_LINKEDIN + "https://www.linkedin.com/in/sam/"
+            + PREFIX_DETAIL + "Year 1 CS Student "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

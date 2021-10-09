@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.DETAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DETAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
@@ -21,8 +23,13 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINKEDIN_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -52,48 +59,62 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB
+                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + DETAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB
+                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + DETAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB
+                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + DETAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB
+                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + DETAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB
+                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + DETAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple github - last github accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + GITHUB_DESC_AMY + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB
+                + GITHUB_DESC_AMY + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + DETAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // multiple detail - last detail accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + GITHUB_DESC_BOB
+                + LINKEDIN_DESC_BOB + DETAIL_DESC_AMY + DETAIL_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB
+                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + DETAIL_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Person expectedZeroTagPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + LINKEDIN_DESC_AMY, new AddCommand(expectedPerson));
+                + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + DETAIL_DESC_AMY, new AddCommand(expectedZeroTagPerson));
+
+        // no detail
+        Person expectedNoDetailPerson = new PersonBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+                .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedNoDetailPerson));
     }
 
     @Test
@@ -127,11 +148,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
                 + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
-
         // invalid github
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + INVALID_GITHUB_DESC + LINKEDIN_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Github.MESSAGE_CONSTRAINTS);
+
         //invalid linkedin
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + GITHUB_DESC_BOB + INVALID_LINKEDIN_DESC

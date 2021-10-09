@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DETAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DETAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
@@ -30,11 +32,12 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withGithub("aliceio")
             .withLinkedIn("https://www.linkedin.com/in/alice/")
+            .withDetail("Y1 CS")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withGithub("bensonio").withLinkedIn("https://www.linkedin.com/in/benson/")
-            .withTags("owesMoney", "friends").build();
+            .withDetail("Y2 CS").withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com")
             .withGithub("carlio").withLinkedIn("https://www.linkedin.com/in/carljkurtz/").build();
@@ -62,10 +65,12 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withGithub(VALID_GITHUB_AMY)
-            .withLinkedIn(VALID_LINKEDIN_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withLinkedIn(VALID_LINKEDIN_AMY).withDetail(VALID_DETAIL_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withGithub(VALID_GITHUB_BOB)
-            .withLinkedIn(VALID_LINKEDIN_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withLinkedIn(VALID_LINKEDIN_BOB).withDetail(VALID_DETAIL_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

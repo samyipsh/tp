@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.LinkedIn;
@@ -22,12 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_GITHUB = "amyio";
     public static final String DEFAULT_LINKEDIN = "https://www.linkedin.com/in/amybee/";
+    public static final String DEFAULT_DETAIL = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Github github;
     private LinkedIn linkedin;
+    private Detail detail;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         github = new Github(DEFAULT_GITHUB);
         linkedin = new LinkedIn(DEFAULT_LINKEDIN);
+        detail = new Detail(DEFAULT_DETAIL);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         github = personToCopy.getGithub();
         linkedin = personToCopy.getLinkedin();
+        detail = personToCopy.getDetail();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -69,7 +74,6 @@ public class PersonBuilder {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
-
 
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
@@ -103,8 +107,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Detail} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDetail(String detail) {
+        this.detail = new Detail(detail);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, github, linkedin, tags);
+        return new Person(name, phone, email, github, linkedin, detail, tags);
     }
 
 }

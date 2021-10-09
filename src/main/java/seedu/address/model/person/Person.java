@@ -23,23 +23,23 @@ public class Person {
 
     // Data fields
     private final Github github;
+    private final Detail detail;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Github github,
-                  LinkedIn linkedin, Set<Tag> tags) {
+                  LinkedIn linkedin, Detail detail, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.tags.addAll(tags);
         this.linkedin = linkedin;
         this.github = github;
+        this.detail = detail;
+        this.tags.addAll(tags);
     }
-
-
 
     public Name getName() {
         return name;
@@ -53,7 +53,6 @@ public class Person {
         return email;
     }
 
-
     public Github getGithub() {
         return github;
     }
@@ -61,6 +60,11 @@ public class Person {
     public LinkedIn getLinkedin() {
         return this.linkedin;
     }
+
+    public Detail getDetail() {
+        return detail;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -102,13 +106,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getLinkedin().equals(getLinkedin())
                 && otherPerson.getGithub().equals(getGithub())
+                && otherPerson.getDetail().equals(getDetail())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, github, linkedin, tags);
+        return Objects.hash(name, phone, email, github, linkedin, detail, tags);
     }
 
     @Override
@@ -122,7 +127,9 @@ public class Person {
                 .append("; LinkedIn: ")
                 .append(getLinkedin())
                 .append("; Github: ")
-                .append(getGithub());
+                .append(getGithub())
+                .append("; Detail: ")
+                .append(getDetail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

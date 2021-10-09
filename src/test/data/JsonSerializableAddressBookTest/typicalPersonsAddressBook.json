@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "github" : "aliceio",
     "linkedin" : "https://www.linkedin.com/in/alice/",
+    "detail" : "Y1 CS",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +14,7 @@
     "email" : "johnd@example.com",
     "github" : "bensonio",
     "linkedin": "https://www.linkedin.com/in/benson/",
+    "detail" : "Y2 CS",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name": "Carl Kurz",
@@ -20,6 +22,7 @@
     "email": "heinz@example.com",
     "github": "carlio",
     "linkedin": "https://www.linkedin.com/in/carljkurtz/",
+    "detail" : "",
     "tagged": []
     }, {
     "name" : "Daniel Meier",
@@ -27,6 +30,7 @@
     "email" : "cornelia@example.com",
     "github" : "danielio",
     "linkedin":  "https://www.linkedin.com/in/danya/",
+    "detail" : "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "email" : "werner@example.com",
     "github" : "elleio",
     "linkedin":  "https://www.linkedin.com/in/elle/",
+    "detail" : "",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "email" : "lydia@example.com",
     "github" : "fionaio",
     "linkedin": "https://www.linkedin.com/in/fiona/",
+    "detail" : "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +54,7 @@
     "email" : "anna@example.com",
     "github" : "georgeio",
     "linkedin":  "https://www.linkedin.com/in/georges/",
+    "detail" : "",
     "tagged" : [ ]
   } ]
 }
