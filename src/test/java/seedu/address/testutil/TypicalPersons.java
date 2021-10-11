@@ -62,6 +62,10 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withGithub("idaio")
             .withLinkedIn("https://www.linkedin.com/in/idaho/").build();
 
+    // Contact with emptyfield
+    public static final Person JOHN = new PersonBuilder().withName("John Lim").withPhone("92020124")
+            .withEmptyEmail().withEmptyGithub().withEmptyLinkedin().build();
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withGithub(VALID_GITHUB_AMY)
