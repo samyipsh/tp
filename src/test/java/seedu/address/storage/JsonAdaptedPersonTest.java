@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.JOHN;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,15 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
+    private static final String NON_EMPTY_VALID_NAME = JOHN.getName().toString();
+    private static final String NON_EMPTY_VALID_PHONE = JOHN.getPhone().toString();
+    private static final String EMPTY_EMAIL = JOHN.getEmail().toString();
+    private static final String EMPTY_GITHUB = JOHN.getGithub().toString();
+    private static final String EMPTY_LINKEDIN = JOHN.getLinkedin().toString();
+    private static final String EMPTY_DETAIL = JOHN.getDetail().toString();
+    private static final List<JsonAdaptedTag> EMPTY_TAGS = JOHN.getTags().stream()
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -148,6 +158,14 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_GITHUB, VALID_LINKEDIN, VALID_DETAIL, VALID_TAGS);
         assertEquals(BENSON, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_validEmptyFieldPersonDetails_returnsPerson() throws Exception {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(NON_EMPTY_VALID_NAME, NON_EMPTY_VALID_PHONE, EMPTY_EMAIL,
+                        EMPTY_GITHUB, EMPTY_LINKEDIN, EMPTY_DETAIL, EMPTY_TAGS);
+        assertEquals(JOHN, person.toModelType());
     }
 
 }

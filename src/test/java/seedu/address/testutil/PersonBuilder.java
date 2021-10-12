@@ -115,6 +115,46 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Build person with empty phone.
+     *
+     * @return PersonBuilder with empty phone.
+     */
+    public PersonBuilder withEmptyPhone() {
+        this.phone = Phone.getEmptyPhone();
+        return this;
+    }
+
+    /**
+     * Build person with empty email.
+     *
+     * @return PersonBuilder with empty email.
+     */
+    public PersonBuilder withEmptyEmail() {
+        this.email = Email.getEmptyEmail();
+        return this;
+    }
+
+    /**
+     * Build person with empty Github.
+     *
+     * @return PersonBuilder with empty Github.
+     */
+    public PersonBuilder withEmptyGithub() {
+        this.github = Github.getEmptyGithub();
+        return this;
+    }
+
+    /**
+     * Build person with empty LinkedIn.
+     *
+     * @return PersonBuilder with empty LinkedIn.
+     */
+    public PersonBuilder withEmptyLinkedin() {
+        this.linkedin = LinkedIn.getEmptyLinkedin();
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, github, linkedin, detail, tags);
     }
