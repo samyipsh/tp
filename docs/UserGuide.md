@@ -112,19 +112,19 @@ Examples:
 
 ### Finding persons: `find`
 
-Finds persons whose names contain any of the given keywords from the list of contacts.
+Finds persons whose names or tags contain any of the given keywords from the list of contacts.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The command is not case-sensitive, `find john` will match `John`
-* Currently only the name is searched.
-* Will also search tags. (to be added)
-* Persons whose names match at least one keyword will be returned.
+* Currently, only the name and their tags are searched.
+* Persons whose names or tags match at least one keyword will be returned.
   `find john smith` will return `John Fletcher` and `Smith George`
 
 Examples:
 * `find John` will return `john`, `John Doe` and `Aaron john`
 * `find jonas aaron silva` will return `jonas`, `Aaron john` and `Ann Silva`
+* `find friends` will return anyone whose names or tags have the word `friends` in them
 
 ### Deleting a person : `delete`
 
