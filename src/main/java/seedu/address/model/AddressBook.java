@@ -95,6 +95,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// util methods
 
+    /**
+     * Returns the size of the address book.
+     */
+    public int size() {
+        return persons.length();
+    }
+
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
