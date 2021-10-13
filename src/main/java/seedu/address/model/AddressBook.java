@@ -15,6 +15,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private static int size = 0;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -69,9 +70,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
+     * Increase size of address book
      */
     public void addPerson(Person p) {
         persons.add(p);
+        size += 1;
     }
 
     /**
@@ -87,14 +90,22 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
+     * Has side effect of reducing size of {@code AddressBook} by 1
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        size--;
     }
 
     //// util methods
 
+    /**
+     * Returns the size of the address book.
+     */
+    public static int size() {
+        return AddressBook.size;
+    }
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
