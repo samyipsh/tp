@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-NetworkUs is a **desktop app for organizing contacts, with features that assists in project management, project collaboration, and internship searches**. The app is optimized for the *Command Line Interface (CLI) to allow swift access for keyboard users. The app is also complemented with  *Graphical User Interface (GUI)* to display the program. 
+NetworkUs is a **desktop app for organizing contacts, with features that assists in project management, project collaboration, and internship searches**. The app is optimized for the *Command Line Interface* (CLI) to allow swift access for keyboard users. The app is also complemented with  *Graphical User Interface* (GUI) to display the program. 
 
 * Table of Contents
 {:toc}
@@ -16,7 +16,7 @@ NetworkUs is a **desktop app for organizing contacts, with features that assists
 
 1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your NetworkUs app.
+1. Copy the file to the folder you want to use as the _home folder_ for your NetworkUS app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -62,6 +62,8 @@ NetworkUs is a **desktop app for organizing contacts, with features that assists
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* The detail field will be truncated if the content is too long to fit in the window.
+
 </div>
 
 ### Viewing help : `help`
@@ -77,7 +79,7 @@ Format: `help`
 
 Adds a person to the list of contacts.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAILS] [t/TAG]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -97,7 +99,7 @@ Format: `list`
 
 Edits an existing person in the list of contact.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAILS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -128,7 +130,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the NetworkUs contacts.
+Deletes the specified person from the NetworkUS contacts.
 
 Format: `delete INDEX`
 
@@ -162,7 +164,7 @@ Contact list data are saved in the hard disk automatically after any command tha
 Contacts data are saved as a JSON file `[JAR file location]/data/networkus.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, NetworkUs will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NetworkUS will discard all data and start with an empty data file at the next run.
 </div>
 
 
@@ -179,10 +181,10 @@ If your changes to the data file makes its format invalid, NetworkUs will discar
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
