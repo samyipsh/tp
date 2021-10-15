@@ -53,11 +53,11 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        linkedin.setText(person.getLinkedin().value);
-        github.setText(person.getGithub().githubUsername);
-        detail.setText(person.getDetail().value);
+        phone.setText("Phone: " + person.getPhone().value);
+        email.setText("Email: " + person.getEmail().value);
+        linkedin.setText("LinkedIn: " + person.getLinkedin().value);
+        github.setText("Github: " + person.getGithub().githubUsername);
+        detail.setText("Details: " + person.getDetail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
