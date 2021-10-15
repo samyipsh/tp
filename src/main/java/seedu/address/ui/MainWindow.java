@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ReadOnlyAddressBook;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -49,6 +50,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -115,8 +117,8 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        ReadOnlyAddressBook addressBook = logic.getAddressBook();
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath(), addressBook);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -177,6 +179,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            //Update status Bar
+            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath(),
+                    logic.getAddressBook());
+            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

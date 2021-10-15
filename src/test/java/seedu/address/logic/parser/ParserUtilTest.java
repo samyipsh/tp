@@ -14,8 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Detail;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -23,16 +25,24 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_GITHUB = "sam--yipsh";
+    private static final String INVALID_LINKEDIN = "google.com/hello";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_GITHUB = "rachwalk";
+    private static final String VALID_LINKEDIN = "https://www.linkedin.com/in/rachelwalker/";
+    private static final String VALID_DETAIL = "OMG!! RACHEL IS CRAZY!!!";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+
+    private static final String EMPTY_PHONE = "-";
+    private static final String EMPTY_EMAIL = "-";
+    private static final String EMPTY_GITHUB = "-";
+    private static final String EMPTY_LINKEDIN = "-";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -79,6 +89,7 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
+
     @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
@@ -103,27 +114,11 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parsePhone_validEmptyValue_returnsEmptyPhone() throws Exception {
+        Phone emptyPhone = Phone.getEmptyPhone();
+        assertEquals(emptyPhone, ParserUtil.parsePhone(EMPTY_PHONE));
     }
 
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
@@ -147,6 +142,84 @@ public class ParserUtilTest {
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
+
+    @Test
+    public void parseEmail_validEmptyValue_returnsEmptyEmail() throws Exception {
+        Email emptyEmail = Email.getEmptyEmail();
+        assertEquals(emptyEmail, ParserUtil.parseEmail(EMPTY_EMAIL));
+    }
+
+    @Test
+    public void parseGithub_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGithub((String) null));
+    }
+
+    @Test
+    public void parseGithub_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGithub(INVALID_GITHUB));
+    }
+
+    @Test
+    public void parseGithub_validValueWithoutWhitespace_returnsGithub() throws Exception {
+        Github expectedGithub = new Github(VALID_GITHUB);
+        assertEquals(expectedGithub, ParserUtil.parseGithub(VALID_GITHUB));
+    }
+
+    @Test
+    public void parseGithub_validValueWithWhitespace_returnsTrimmedGithub() throws Exception {
+        String githubWithWhitespace = WHITESPACE + VALID_GITHUB + WHITESPACE;
+        Github expectedGithub = new Github(VALID_GITHUB);
+        assertEquals(expectedGithub, ParserUtil.parseGithub(githubWithWhitespace));
+    }
+
+    @Test
+    public void parseGithub_validEmptyValue_returnsEmptyGithub() throws Exception {
+        Github emptyGithub = Github.getEmptyGithub();
+        assertEquals(emptyGithub, ParserUtil.parseGithub(EMPTY_GITHUB));
+    }
+
+    @Test
+    public void parseLinkedIn_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinkedIn((String) null));
+    }
+
+    @Test
+    public void parseLinkedIn_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinkedIn(INVALID_LINKEDIN));
+    }
+
+    @Test
+    public void parseLinkedIn_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        LinkedIn expectedLinkedIn = new LinkedIn(VALID_LINKEDIN);
+        assertEquals(expectedLinkedIn, ParserUtil.parseLinkedIn(VALID_LINKEDIN));
+    }
+
+    @Test
+    public void parseLinkedIn_validValueWithWhitespace_returnsTrimmedLinkedIn() throws Exception {
+        String linkedInWithWhitespace = WHITESPACE + VALID_LINKEDIN + WHITESPACE;
+        LinkedIn expectedLinkedIn = new LinkedIn(VALID_LINKEDIN);
+        assertEquals(expectedLinkedIn, ParserUtil.parseLinkedIn(linkedInWithWhitespace));
+    }
+
+    @Test
+    public void parseLinkedIn_validEmptyValue_returnsEmptyLinkedIn() throws Exception {
+        LinkedIn emptyLinkedIn = LinkedIn.getEmptyLinkedin();
+        assertEquals(emptyLinkedIn, ParserUtil.parseLinkedIn(EMPTY_LINKEDIN));
+    }
+
+    @Test
+    public void parseDetail_validValueWithoutWhitespace_returnsDetail() throws Exception {
+        Detail expectedDetail = new Detail(VALID_DETAIL);
+        assertEquals(expectedDetail, ParserUtil.parseDetail(VALID_DETAIL));
+    }
+
+    @Test
+    public void parseDetail_validValueWithWhitespace_returnsTrimmedDetail() throws Exception {
+        String detailWithWhitespace = WHITESPACE + VALID_DETAIL + WHITESPACE;
+        Detail expectedDetail = new Detail(VALID_DETAIL);
+        assertEquals(expectedDetail, ParserUtil.parseDetail(detailWithWhitespace));
+    }
+
 
     @Test
     public void parseTag_null_throwsNullPointerException() {
