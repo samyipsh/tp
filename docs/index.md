@@ -1,6 +1,6 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: NetworkUS
 ---
 
 [![CI Status](https://github.com/AY2122S1-CS2103T-T10-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2122S1-CS2103T-T10-3/tp/actions)
@@ -8,10 +8,10 @@ title: AddressBook Level-3
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+NetworkUs is an address book application that helps **Computer Science students** maintain a list of contacts of people they meet in school. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using NetworkUS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing NetworkUS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
