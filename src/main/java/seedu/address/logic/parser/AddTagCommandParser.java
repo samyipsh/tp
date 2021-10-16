@@ -26,10 +26,16 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
 
         try {
             String[] arguments = trimmedArgs.split("\\s+", 2);
+
+            if (arguments.length < 2) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+            }
+
             index = ParserUtil.parseIndex(arguments[0]);
             tag = ParserUtil.parseTag(arguments[1]);
+
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage());
         }
 
         return new AddTagCommand(index, tag);

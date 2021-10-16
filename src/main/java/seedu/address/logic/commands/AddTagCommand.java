@@ -63,6 +63,24 @@ public class AddTagCommand extends Command {
         return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, taggedPerson));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddTagCommand)) {
+            return false;
+        }
+
+        // state check
+        AddTagCommand atc = (AddTagCommand) other;
+        return targetIndex.equals(atc.targetIndex)
+                && tagToAdd.equals(atc.tagToAdd);
+    }
+
     private Person addTag(Person personToTag) {
         Name name = personToTag.getName();
         Phone phone = personToTag.getPhone();
