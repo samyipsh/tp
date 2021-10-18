@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GITHUB + "samyipsh "
-            + PREFIX_LINKEDIN + "https://www.linkedin.com/in/sam/"
+            + PREFIX_LINKEDIN + "https://www.linkedin.com/in/sam/ "
             + PREFIX_DETAIL + "Year 1 CS Student "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
