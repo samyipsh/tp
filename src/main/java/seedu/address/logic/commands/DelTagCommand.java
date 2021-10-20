@@ -20,6 +20,9 @@ import java.util.Set;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+/**
+ * Delete a tag to a person in the address book.
+ */
 public class DelTagCommand extends Command {
 
     public static final String COMMAND_WORD = "deltag";
@@ -35,6 +38,10 @@ public class DelTagCommand extends Command {
     private final Index index;
     private final Tag tagToDelete;
 
+    /**
+     * Creates a DelTagCommand to delete the specified {@code Tag} to the person
+     * at {@code Index}
+     */
     public DelTagCommand(Index index, Tag tagToDelete) {
         requireNonNull(index);
         requireNonNull(tagToDelete);

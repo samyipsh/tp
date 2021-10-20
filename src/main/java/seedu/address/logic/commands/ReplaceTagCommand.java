@@ -19,6 +19,9 @@ import java.util.Set;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+/**
+ * Replace specified tag with a new tag for all contacts in NetworkUS.
+ */
 public class ReplaceTagCommand extends Command {
 
     public static final String COMMAND_WORD = "replacetag";
@@ -34,6 +37,13 @@ public class ReplaceTagCommand extends Command {
     private final Tag tagToAdd;
     private final TagsPresentPredicate predicate;
 
+    /**
+     * Create a ReplaceTagCommand to replace specified tag.
+     *
+     * @param tagToDelete Tag to be replaced for all contacts.
+     * @param tagToAdd Tag to be added as replacement.
+     * @param predicate Predicate to check whether person contain the specified tag.
+     */
     public ReplaceTagCommand(Tag tagToDelete, Tag tagToAdd, TagsPresentPredicate predicate) {
         requireNonNull(tagToDelete);
         requireNonNull(tagToAdd);
@@ -83,6 +93,23 @@ public class ReplaceTagCommand extends Command {
         updatedTags.remove(tagToDelete);
         updatedTags.add(tagToAdd);
         return new Person(name, phone, email, github, linkedIn, detail, updatedTags);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ReplaceTagCommand)) {
+            return false;
+        }
+
+        return tagToDelete.equals(((ReplaceTagCommand) other).tagToDelete)
+                && tagToAdd.equals(((ReplaceTagCommand) other).tagToAdd)
+                && predicate.equals(((ReplaceTagCommand) other).predicate);
     }
 
 }

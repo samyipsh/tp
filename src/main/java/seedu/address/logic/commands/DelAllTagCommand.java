@@ -19,6 +19,9 @@ import java.util.Set;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+/**
+ * Delete specified tag from all contacts in NetworkUS.
+ */
 public class DelAllTagCommand extends Command {
 
     public static final String COMMAND_WORD = "delalltag";
@@ -33,6 +36,12 @@ public class DelAllTagCommand extends Command {
     private final Tag tagToDelete;
     private final TagsPresentPredicate predicate;
 
+    /**
+     * Create a DelAllTagCommand to delete specified tag from all contacts.
+     *
+     * @param tagToDelete Tag to be deleted from all contacts.
+     * @param predicate Predicate to check whether person contain the specified tag.
+     */
     public DelAllTagCommand(Tag tagToDelete, TagsPresentPredicate predicate) {
         requireNonNull(tagToDelete);
 
@@ -80,5 +89,21 @@ public class DelAllTagCommand extends Command {
         updatedTags.remove(tagToDelete);
         return new Person(name, phone, email, github, linkedIn, detail, updatedTags);
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DelAllTagCommand)) {
+            return false;
+        }
+
+        return tagToDelete.equals(((DelAllTagCommand) other).tagToDelete)
+                && predicate.equals(((DelAllTagCommand) other).predicate);
     }
 }
