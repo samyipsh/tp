@@ -68,6 +68,7 @@ public class AddTagCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, taggedPerson);
+        showPersonAtIndex(expectedModel, indexLastPerson);
 
         String expectedMessage = AddTagCommand.MESSAGE_TAG_PERSON_SUCCESS;
 
