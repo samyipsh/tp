@@ -30,7 +30,7 @@ public class ReplaceTagCommandParser implements Parser<ReplaceTagCommand> {
         TagsPresentPredicate predicate;
 
         try {
-            String[] arguments = trimmedArgs.split("\\s");
+            String[] arguments = trimmedArgs.split("\\s+");
 
             if (arguments.length < 2) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
