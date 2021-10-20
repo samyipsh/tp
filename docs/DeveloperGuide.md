@@ -152,6 +152,25 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Replace Tag feature
+
+#### Implementation
+
+The replace tag mechanism is facilitated by `TagPresentPredicate` which implements `Predicate<Person>` and is created
+when arguments is pass to `ReplaceTagCommandParser`. <br>
+`TagPresentPredicate` checks whether person has `Tag` to be replaced and is used to filter the list of `person` in `Model`.
+From the filtered list of `person`, each `person` is replaced with a new `person` with the new replaced `tag`
+
+#### Design consideration
+
+How the specified tag is filtered:
+* Alternative 1 (Current choice): Using `TagPresentPredicate` to filter the list of `person`
+    * Pros: Easy to implement 
+    * Cons: Inefficient (need to search through the list of `person`)
+    
+* Alternative 2 : Unique Tag list
+    * Pros: Easier to search for the specified tag
+    * Cons: Required change of implementation of `Tag` which could affect the rest of the command
 
 --------------------------------------------------------------------------------------------------------------------
 
