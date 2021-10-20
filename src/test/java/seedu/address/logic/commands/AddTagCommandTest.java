@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +29,8 @@ import seedu.address.testutil.PersonBuilder;
 public class AddTagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Tag tag = new Tag("tag");
+    private final Predicate<Person> predicateNoPersons = unused -> false;
+
 
     @Test
     public void execute_unfilteredList_success() {
@@ -86,7 +89,7 @@ public class AddTagCommandTest {
         AddTagCommand addTagCommand = new AddTagCommand(invalidIndex, tag);
 
         assertCommandFailure(addTagCommand, model,
-                String.format(AddTagCommand.MESSAGE_INVALID_INDEX_DISPLAYED, modelSize + 1, modelSize));
+                String.format(AddTagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize + 1, modelSize));
     }
 
     @Test
@@ -102,7 +105,23 @@ public class AddTagCommandTest {
         AddTagCommand addTagCommand = new AddTagCommand(invalidIndex, tag);
 
         assertCommandFailure(addTagCommand, model,
-                String.format(AddTagCommand.MESSAGE_INVALID_INDEX_DISPLAYED, 2, 1));
+                String.format(AddTagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 2, 1));
+    }
+
+    @Test
+    public void execute_emptyList_failure() {
+        model.updateFilteredPersonList(predicateNoPersons);
+        Index outOfBoundIndex = INDEX_FIRST_PERSON;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+
+        List<Index> invalidIndex = new ArrayList<>();
+        invalidIndex.add(outOfBoundIndex);
+
+        AddTagCommand addTagCommand = new AddTagCommand(invalidIndex, tag);
+
+        assertCommandFailure(addTagCommand, model,
+                AddTagCommand.MESSAGE_NO_DISPLAYED_PERSONS);
     }
 
     @Test

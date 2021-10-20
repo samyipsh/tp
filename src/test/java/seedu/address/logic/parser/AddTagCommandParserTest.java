@@ -37,6 +37,10 @@ public class AddTagCommandParserTest {
         assertParseFailure(parser, "0 " + VALID_TAG_HUSBAND,
                 String.format(AddTagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, AddTagCommand.MESSAGE_PARAMS));
 
+        // signed-integer index
+        assertParseFailure(parser, "+1 " + VALID_TAG_HUSBAND,
+                String.format(AddTagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, AddTagCommand.MESSAGE_PARAMS));
+
         // non-numeric index
         assertParseFailure(parser, "abc " + VALID_TAG_HUSBAND,
                 String.format(AddTagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, AddTagCommand.MESSAGE_PARAMS));

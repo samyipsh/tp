@@ -152,6 +152,25 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find tag feature
+
+#### Implementation
+
+The find tag mechanism is facilitated by `NameAndTagsContainKeywordsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
+It implements the following operation:
+* `NameAndTagsContainKeywordsPredicate#test(Person person)` - tests whether the input `Person` object has a name or tag which matches any of the keywords.
+
+The predicate is then used by `Model#updateFilteredPersonList(Predicate<Person>)`  to change the _filtered_ list in the `Model` component exposed as and observed by the UI component as an unmodifiable `ObservableList<Person>` to display to the user.
+
+#### Design considerations:
+
+How find matches tags and keywords:
+* Alternative 1 (Current choice): Word match
+    * Pros: Easy to implement and fast performance
+    * Cons: Less flexibility for valid user inputs
+* Alternative 2 : Substring match
+    * Pros: More flexibility for valid user inputs
+    * Cons: May have performance issues for speed
 
 --------------------------------------------------------------------------------------------------------------------
 
