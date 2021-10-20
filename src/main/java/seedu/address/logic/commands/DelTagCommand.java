@@ -22,7 +22,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class DelTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "delTag";
+    public static final String COMMAND_WORD = "deltag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the tag of the person identified "
             + "by the index number used in the displayed person list. \n"

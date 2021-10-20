@@ -21,7 +21,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class DelAllTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "delAllTag";
+    public static final String COMMAND_WORD = "delalltag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the specified tag from all contacts "
             + "Parameter: TAG \n"
