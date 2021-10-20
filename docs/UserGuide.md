@@ -68,11 +68,13 @@ NetworkUs is a **desktop app for organizing contacts, with features that assists
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Provides functionality to access the help page in the browser.
+
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `help` <br/>
+Keyboard shortcut: `f1` then `enter`
 
 
 ### Adding a person: `add`
