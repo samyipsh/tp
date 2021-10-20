@@ -1,16 +1,10 @@
 package seedu.address.ui;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.UserBrowser;
@@ -97,6 +91,6 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private void openInBrowser() {
-        UserBrowser.openURL(USERGUIDE_URL);
+        UserBrowser.openUrl(USERGUIDE_URL);
     }
 }

@@ -1,6 +1,6 @@
 package seedu.address.commons.core;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,13 +12,13 @@ public class UserBrowser {
     /**
      * Open URL inside User's Desktop Browser.
      * No validity checks
-     * @param URL
+     * @param url
      */
-    public static void openURL(String URL) {
-        logger.info("Opening URL in user browser: " + URL + "...");
+    public static void openUrl(String url) {
+        logger.info("Opening URL in user browser: " + url + "...");
         try {
             Desktop desktop = Desktop.getDesktop();
-            desktop.browse(new URI(URL));
+            desktop.browse(new URI(url));
         } catch (URISyntaxException | IOException e) {
             logger.severe("Unable to open URL in user browser" + e.getMessage());
             e.printStackTrace();
