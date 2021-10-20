@@ -44,7 +44,6 @@ public class AddTagCommand extends Command {
     public AddTagCommand(List<Index> targetIndexes, Tag tagToAdd) {
         requireNonNull(targetIndexes);
         requireNonNull(tagToAdd);
-        
         this.targetIndexes = targetIndexes;
         this.tagToAdd = tagToAdd;
     }
