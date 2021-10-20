@@ -26,6 +26,7 @@ public class DelTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the tag of the person identified "
             + "by the index number used in the displayed person list. \n"
+            + "Parameter: INDEX TAG \n"
             + "Example: " + COMMAND_WORD + " 1 " + "friend";
 
     public static final String MESSAGE_DELETE_TAG_PERSON_SUCCESS = "Deleted $s Tag from $s";
