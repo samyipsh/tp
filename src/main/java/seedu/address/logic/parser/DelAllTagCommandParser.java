@@ -1,18 +1,18 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Arrays;
+
 import seedu.address.logic.commands.DelAllTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
 
-import java.util.Arrays;
-
 /**
  * Parses input arguments and creates a new DelAllTagCommand object
  */
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 public class DelAllTagCommandParser implements Parser<DelAllTagCommand> {
 
     /**

@@ -1,5 +1,12 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Detail;
@@ -12,13 +19,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
 /**
  * Replace specified tag with a new tag for all contacts in NetworkUS.
  */
@@ -26,11 +26,13 @@ public class ReplaceTagCommand extends Command {
 
     public static final String COMMAND_WORD = "replacetag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Replace the current tag to specified tag from all contacts "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Replace the current tag to specified tag from all contacts "
             + "Parameter: TAG(to be replaced) TAG(new Tag)\n"
             + "Example: " + COMMAND_WORD + " friend" + " enemy";
 
-    public static final String MESSAGE_REPLACE_ALL_TAG_SUCCESS = "This tag has been replaced from %s to %s for all contacts";
+    public static final String MESSAGE_REPLACE_ALL_TAG_SUCCESS = "This tag has been replaced "
+            + "from %s to %s for all contacts";
     public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist: %s";
 
     private final Tag tagToDelete;
@@ -65,7 +67,7 @@ public class ReplaceTagCommand extends Command {
             throw new CommandException(String.format(MESSAGE_TAG_NOT_EXIST, tagToDelete));
         }
 
-        for(int i = 0; i < numPerson; i++) {
+        for (int i = 0; i < numPerson; i++) {
             Person personToReplaceTag = filteredList.get(0);
             Set<Tag> existingTags = personToReplaceTag.getTags();
             if (!existingTags.contains(tagToDelete)) {

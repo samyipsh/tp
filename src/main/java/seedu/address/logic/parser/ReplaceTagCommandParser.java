@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Arrays;
+
 import seedu.address.logic.commands.ReplaceTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
-
-import java.util.Arrays;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new ReplaceTag object
@@ -33,7 +33,8 @@ public class ReplaceTagCommandParser implements Parser<ReplaceTagCommand> {
             String[] arguments = trimmedArgs.split("\\s");
 
             if (arguments.length < 2) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReplaceTagCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ReplaceTagCommand.MESSAGE_USAGE));
             }
 
             tagToDelete = ParserUtil.parseTag(arguments[0]);
@@ -45,6 +46,6 @@ public class ReplaceTagCommandParser implements Parser<ReplaceTagCommand> {
             throw new ParseException(pe.getMessage());
         }
 
-        return new ReplaceTagCommand(tagToDelete,tagToAdd, predicate);
+        return new ReplaceTagCommand(tagToDelete, tagToAdd, predicate);
     }
 }

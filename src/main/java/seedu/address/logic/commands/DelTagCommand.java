@@ -1,6 +1,11 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
+import static java.util.Objects.requireNonNull;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -13,13 +18,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
 /**
  * Delete a tag to a person in the address book.
  */
@@ -27,48 +25,42 @@ public class DelTagCommand extends Command {
 
     public static final String COMMAND_WORD = "deltag";
 
+    public static final String MESSAGE_PARAMS = "Parameters: INDEXES (must be non-zero unsigned integers) "
+            + "[Tag]\n"
+            + "Example: " + COMMAND_WORD + " 1 2 programmer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the tag of the person identified "
             + "by the index number used in the displayed person list. \n"
             + "Parameter: INDEX TAG \n"
             + "Example: " + COMMAND_WORD + " 1 " + "friend";
 
-    public static final String MESSAGE_DELETE_TAG_PERSON_SUCCESS = "Deleted $s Tag from $s";
-    public static final String MESSAGE_TAG_NOT_EXIST = "This person do not have the tag: $s";
+    public static final String MESSAGE_DELETE_TAG_PERSON_SUCCESS = "Deleted %s Tag";
+    public static final String MESSAGE_NO_DISPLAYED_PERSONS = "No persons displayed to tag.";
+    public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "%1$d is an out-of-bounds index.\n"
+            + "Indexes up to %2$d are valid.";
 
-    private final Index index;
+    private final List<Index> targetIndexes;
     private final Tag tagToDelete;
 
     /**
      * Creates a DelTagCommand to delete the specified {@code Tag} to the person
      * at {@code Index}
      */
-    public DelTagCommand(Index index, Tag tagToDelete) {
-        requireNonNull(index);
+    public DelTagCommand(List<Index> targetIndexes, Tag tagToDelete) {
+        requireNonNull(targetIndexes);
         requireNonNull(tagToDelete);
 
-        this.index = index;
+        this.targetIndexes = targetIndexes;
         this.tagToDelete = tagToDelete;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+        deleteTagPerson(model);
 
-        Person personToDeleteTag = lastShownList.get(index.getZeroBased());
-        Set<Tag> existingTags = personToDeleteTag.getTags();
-        if (!existingTags.contains(tagToDelete)) {
-            throw new CommandException(String.format(MESSAGE_TAG_NOT_EXIST, tagToDelete));
-        }
-        Person deleteTagPerson = delTag(personToDeleteTag);
+        return new CommandResult(String.format(MESSAGE_DELETE_TAG_PERSON_SUCCESS, tagToDelete));
 
-        model.setPerson(personToDeleteTag, deleteTagPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_TAG_PERSON_SUCCESS, deleteTagPerson));
     }
 
     private Person delTag(Person personToDeleteTag) {
@@ -86,6 +78,28 @@ public class DelTagCommand extends Command {
 
     }
 
+    private void deleteTagPerson(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_NO_DISPLAYED_PERSONS);
+        }
+
+        for (Index index: targetIndexes) {
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(String.format(MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED,
+                        index.getOneBased(), lastShownList.size()));
+            }
+
+            Person personToTag = lastShownList.get(index.getZeroBased());
+            Person taggedPerson = delTag(personToTag);
+
+            model.setPerson(personToTag, taggedPerson);
+        }
+
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -98,7 +112,7 @@ public class DelTagCommand extends Command {
             return false;
         }
 
-        return index.equals(((DelTagCommand) other).index)
+        return targetIndexes.equals(((DelTagCommand) other).targetIndexes)
                 && tagToDelete.equals(((DelTagCommand) other).tagToDelete);
     }
 }

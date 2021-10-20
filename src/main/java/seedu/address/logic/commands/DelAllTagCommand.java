@@ -1,5 +1,12 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Detail;
@@ -11,13 +18,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Delete specified tag from all contacts in NetworkUS.
@@ -61,7 +61,7 @@ public class DelAllTagCommand extends Command {
             throw new CommandException(String.format(MESSAGE_TAG_NOT_EXIST, tagToDelete));
         }
 
-        for(int i = 0; i < numPerson; i++) {
+        for (int i = 0; i < numPerson; i++) {
             Person personToDeleteTag = filteredList.get(0);
             Set<Tag> existingTags = personToDeleteTag.getTags();
             if (!existingTags.contains(tagToDelete)) {
