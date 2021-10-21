@@ -6,13 +6,14 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DelTagCommand;
 import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.List;
 
 class DelTagCommandParserTest {
     private DelTagCommandParser parser = new DelTagCommandParser();
@@ -67,5 +68,5 @@ class DelTagCommandParserTest {
         assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelTagCommand.MESSAGE_USAGE));
     }
-    
+
 }
