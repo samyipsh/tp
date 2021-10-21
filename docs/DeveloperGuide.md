@@ -229,26 +229,24 @@ How the specified tag is filtered:
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                                 | I want to …​                                      | So that I can…​                                                     |
+| Priority | As a …                                 | I want to …​                                      | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add new contacts                                     |                                                                        |
 | `* * *`  | user                                       | delete my existing contacts                          | remove contacts that I no longer need                                  |
-| `* * *`  | user                                       | find a person by name                                | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by name                                | locate contacts without having to go through the entire list |
+| `* * *`  | user                                       | find people by a tag / group name                                | locate contacts by the category indicated by the tag without having to go through the entire list |
 | `* * *`  | user                                       | see all the contacts I have                          |                                                                        |
 | `* *`    | longstanding user                          | update details of previously added contacts          | keep them up-to-date                                                   |
-| `* *`    | user                                       | add their LinkedIn username                          | keep their LinkedIn information                                        |
-| `* *`    | user                                       | add their GitHub username                            | keep their GitHub information                                          |
+| `* *`    | user                                       | add their LinkedIn username                          | professionally network with them through their LinkedIn                                       |
+| `* *`    | user                                       | add their GitHub username                            | view their github projects and see which areas they are experienced in                                        |
 | `* *`    | new user                                   | see some mock contacts                               | test the commands                                                      |
 | `* *`    | new user                                   | be able to clear all mock contacts                   | start creating a fresh contact list                                    |
-| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                |
 | `* *`    | user                                       | categorize my contacts based on their specialization | find people with a particular area of expertise                        |
 | `* *`    | user                                       | find a person by specialization                      | find a person of a particular area of expertise                        |
 | `*`      | user                                       | see the number of friends I have                     | gain a sense of confidence                                             |
 | `*`      | user with many persons in the contact list | sort persons by name                                 | locate a person easily                                                 |
 
-
-*{More to be added}*
 
 ### Use cases
 
@@ -268,9 +266,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 1a. The given name and details are duplicated.
-
-    * 1a1. NetworkUS shows an error message.
-
+    * 1a1. NetworkUS shows an error message. 
+      
       Use case resumes at step 1.
 
 
@@ -278,7 +275,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
+1.  User requests to display list of persons
 2.  NetworkUS shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  NetworkUS deletes the person
@@ -286,8 +283,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 3.
+
 
 **Use case: UC03 Find a person**
 
@@ -322,7 +321,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. NetworkUS shows an error message.
 
       Use case resumes at step 2.
@@ -332,35 +330,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list of contacts
-2.  NetworkUS shows a list of persons
+1.  User requests to view the list of contacts
+2.  NetworkUS shows the list of persons
 
     Use case ends.
+
+**Extensions**
+
+* 2a. User has no stored contacts
+  
+  Use case ends.
 
 **Use case: UC06 help**
 
 **MSS**
 
 1.  User requests to show help
-2.  NetworkUs shows list of commands
-3.  user types a new command based on the command list shown
+2.  NetworkUs directs user to user guide
+3.  User follows directions and views user guide
    
     Use case ends.
 
+**Extensions**
+
+* 2a. User decides not to view user guide
+  
+  Use case ends.
+  
 **Use case: UC07 clear**
 
 **MSS**
 
 1.  User requests to clear contacts list
 2.  NetworkUs sends confirmation to user
-3.  user says yes to the confirmation
+3.  User says yes to the confirmation
 4.  NetworkUs deletes all the user's contacts
 
-**Extensions**
+    Use case ends.
 
-* 2a. The list is empty.
-  
-  Use case ends.         
+
+**Extensions**
   
 * 3a. The user says no during the confirmation
    
@@ -382,8 +391,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. Novices should not have big problems when they first use the product.
 5. Late users should be able to work efficiently.
 6. UI should focus more on displaying data to user rather than provide means of interactions to user.
-
-*{More to be added}*
 
 ### Glossary
 
