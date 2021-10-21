@@ -161,6 +161,12 @@ Examples:
 * `list` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
 * `find John` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
 
+### Showing tags : `showtags`
+
+Shows all tags that are used in NetworkUS contacts.
+
+Format: `showtags`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
@@ -207,4 +213,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Showtag** | `showtags`
 **Help** | `help`
