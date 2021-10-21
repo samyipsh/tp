@@ -144,6 +144,23 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Tagging persons : `addtag`
+
+Tags the specified persons from the NetworkUS contacts with the specified tag.
+
+Format: `addtag INDEXES TAG`
+
+* Tags the persons at the specified `INDEXES`.
+* The index refers to the index number shown in the displayed person list.
+* The indexes **must be unsigned integers** 1, 2, 3, …​
+* Tags must be alphanumeric without spaces.
+* Will tag persons upto an out-of-bounds index or all indexes.
+* Will not add duplicate tags to persons.
+
+Examples:
+* `list` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
+* `find John` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
@@ -184,6 +201,7 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
+**Addtag** | `addtag INDEXES TAG` <br> e.g., `addtag 1 2 programmer`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
