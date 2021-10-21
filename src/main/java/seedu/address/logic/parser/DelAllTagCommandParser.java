@@ -29,13 +29,15 @@ public class DelAllTagCommandParser implements Parser<DelAllTagCommand> {
         TagsPresentPredicate predicate;
 
         try {
-            if (trimmedArgs.isEmpty()) {
+            String[] arguments = trimmedArgs.split("\\s+");
+
+            if (arguments.length < 1) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelAllTagCommand.MESSAGE_USAGE));
             }
 
-            tag = ParserUtil.parseTag(trimmedArgs);
-            predicate = new TagsPresentPredicate(Arrays.asList(trimmedArgs));
+            tag = ParserUtil.parseTag(arguments[0]);
+            predicate = new TagsPresentPredicate(Arrays.asList(arguments[0]));
 
         } catch (ParseException pe) {
             throw new ParseException(pe.getMessage());
