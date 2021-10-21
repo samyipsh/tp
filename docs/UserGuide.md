@@ -142,6 +142,49 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Delete tag from persons: `deltag`
+
+Delete the specified tag from the specified person from the NetworkUS contacts.
+
+Format: `deltag INDEXES TAG`
+
+* Delete tag from the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be unsigned integer** 1, 2, 3, …​
+* Tags must be alphanumeric without spaces.
+* Will delete tag from persons upto an out-of-bounds index or all indexes.
+
+Example:
+* `list` followed by `deltag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
+* `find John` followed by `deltag 1 2 friend` deletes friend tag the 1st and 2nd persons in the results of the `find` command.
+
+### Delete tag from all entries: `delalltag`
+
+Delete the specified tag from all contacts in NetworkUS.
+
+Format: `delalltag TAG`
+
+* Delete specified `TAG` from all contacts.
+* Tags must be alphanumeric without spaces.
+
+Example:
+* `list` followed by `delalltag CS2040` deletes CS2040 tag from all contact list.
+    
+
+### Replace tag from all entries: `replacetag`
+
+Replace the specified tag from all contacts in NetworkUS with a new tag.
+
+Format: `replacetag TAG1 TAG2`
+
+* Replace `TAG1` wiTh `TAG2` for all contacts.
+* `TAG1` is the tag to be replaced.
+* `TAG2` is the new tag to replace `TAG1`.
+* Tags must be alphanumeric without spaces.
+
+Example:
+* `list` followed by `replace CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
@@ -184,7 +227,10 @@ Action | Format, Examples
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete tag** | `deltag INDEXES TAG`<br> e.g., `deltag 1 2 friend`
+**Delete all tag** | `delalltag TAG`<br> e.g., `delalltag friend`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
