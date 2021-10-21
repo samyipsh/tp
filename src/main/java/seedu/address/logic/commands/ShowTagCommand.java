@@ -23,7 +23,10 @@ public class ShowTagCommand extends Command {
         ObservableSet<Tag> tags = model.getUniqueTagList();
 
         String tagsAsString = tags.stream()
-                .reduce("", (acc, tag) -> tag.toString() + " " + acc, (acc, tagString) -> tagString + " " + acc);
+                .map(tag -> tag.toString())
+                .sorted()
+                .reduce("", (acc, tag) -> acc + " " + tag)
+                .trim();
 
         return new CommandResult(MESSAGE_SUCCESS + "\n" + tagsAsString);
     }
