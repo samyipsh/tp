@@ -144,6 +144,20 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Tagging displayed persons : `addalltag`
+
+Deletes the specified person from the NetworkUS contacts.
+
+Format: `addalltag TAG`
+
+* Tags all displayed persons with the specified `TAG`.
+* Will not add duplicate tags and will run successfully even if all displayed persons already have the tag.
+* The tag **must be alphanumeric without whitespaces** e.g. programmer, CS2103T
+
+Examples:
+* `list` followed by `addalltag programmer` tags all persons in the contact list with the tag `programmer`.
+* `find Alex` followed by `addalltag CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
@@ -184,6 +198,7 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
+**AddAllTag** | `addalltag TAG` <br> e.g., `addalltag programmer`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
