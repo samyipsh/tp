@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DelAllTagCommand;
 import seedu.address.logic.commands.DelTagCommand;
@@ -31,6 +32,7 @@ import seedu.address.logic.commands.ReplaceTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -82,6 +84,17 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameAndTagsContainKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_addTag() throws Exception {
+        List<Index> firstIndex = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        String validTagName = "programmer";
+        Tag tag = ParserUtil.parseTag(validTagName);
+        AddTagCommand command = (AddTagCommand) parser.parseCommand(
+                AddTagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_SECOND_PERSON.getOneBased() + " " + validTagName);
+        assertEquals(new AddTagCommand(firstIndex, tag), command);
     }
 
     @Test

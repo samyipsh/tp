@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-NetworkUs is a **desktop app for organizing contacts, with features that assists in project management, project collaboration, and internship searches**. The app is optimized for the *Command Line Interface* (CLI) to allow swift access for keyboard users. The app is also complemented with  *Graphical User Interface* (GUI) to display the program. 
+NetworkUs is a desktop app for organizing contacts. Its features assists in group management, allowing for quick searches of contacts with desired trailts (i.e specialization) and hence project group formation. It is catered for Computer Science Students. The app is optimized for the Command Line Interface (CLI) to allow swift access for keyboard users. The app is also complemented with Graphical User Interface (GUI) to display the program.
 
 * Table of Contents
 {:toc}
@@ -68,11 +68,13 @@ NetworkUs is a **desktop app for organizing contacts, with features that assists
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Provides functionality to access the help page in the browser.
+
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `help` <br/>
+Keyboard shortcut: `f1` then `enter`
 
 
 ### Adding a person: `add`
@@ -141,6 +143,23 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Tagging persons : `addtag`
+
+Tags the specified persons from the NetworkUS contacts with the specified tag.
+
+Format: `addtag INDEXES TAG`
+
+* Tags the persons at the specified `INDEXES`.
+* The index refers to the index number shown in the displayed person list.
+* The indexes **must be unsigned integers** 1, 2, 3, …​
+* Tags must be alphanumeric without spaces.
+* Will tag persons upto an out-of-bounds index or all indexes.
+* Will not add duplicate tags to persons.
+
+Examples:
+* `list` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
+* `find John` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
 
 ### Delete tag from persons: `deltag`
 
@@ -225,6 +244,7 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
+**Addtag** | `addtag INDEXES TAG` <br> e.g., `addtag 1 2 programmer`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Delete tag** | `deltag INDEXES TAG`<br> e.g., `deltag 1 2 friend`
