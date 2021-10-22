@@ -31,7 +31,7 @@ public class DelAllTagCommandParser implements Parser<DelAllTagCommand> {
         try {
             String[] arguments = trimmedArgs.split("\\s+");
 
-            if (arguments.length < 1) {
+            if (arguments.length < 1 || trimmedArgs.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelAllTagCommand.MESSAGE_USAGE));
             }
