@@ -12,11 +12,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddTagCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.model.tag.Tag;
 
-public class AddTagCommandParserTest {
-    private AddTagCommandParser parser = new AddTagCommandParser();
+public class TagCommandParserTest {
+    private TagCommandParser parser = new TagCommandParser();
     private List<Index> firstIndex = new ArrayList<>();
 
     @Test
@@ -24,26 +24,26 @@ public class AddTagCommandParserTest {
         firstIndex.add(INDEX_FIRST_PERSON);
 
         assertParseSuccess(parser, "1 " + VALID_TAG_HUSBAND,
-                new AddTagCommand(firstIndex, new Tag(VALID_TAG_HUSBAND)));
+                new TagCommand(firstIndex, new Tag(VALID_TAG_HUSBAND)));
     }
 
     @Test
     public void parse_invalidIndex_failure() {
         // negative index
         assertParseFailure(parser, "-1 " + VALID_TAG_HUSBAND,
-                String.format(AddTagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, AddTagCommand.MESSAGE_PARAMS));
+                String.format(TagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, TagCommand.MESSAGE_PARAMS));
 
         // zero index
         assertParseFailure(parser, "0 " + VALID_TAG_HUSBAND,
-                String.format(AddTagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, AddTagCommand.MESSAGE_PARAMS));
+                String.format(TagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, TagCommand.MESSAGE_PARAMS));
 
         // signed-integer index
         assertParseFailure(parser, "+1 " + VALID_TAG_HUSBAND,
-                String.format(AddTagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, AddTagCommand.MESSAGE_PARAMS));
+                String.format(TagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, TagCommand.MESSAGE_PARAMS));
 
         // non-numeric index
         assertParseFailure(parser, "abc " + VALID_TAG_HUSBAND,
-                String.format(AddTagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, AddTagCommand.MESSAGE_PARAMS));
+                String.format(TagCommandParser.MESSAGE_INVALID_INDEX_AT, 1, TagCommand.MESSAGE_PARAMS));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class AddTagCommandParserTest {
 
         // not single word, first word treated as an Index
         assertParseFailure(parser, "1 " + "good guy",
-                String.format(AddTagCommandParser.MESSAGE_INVALID_INDEX_AT, 2, AddTagCommand.MESSAGE_PARAMS));
+                String.format(TagCommandParser.MESSAGE_INVALID_INDEX_AT, 2, TagCommand.MESSAGE_PARAMS));
     }
 
     @Test
@@ -62,11 +62,11 @@ public class AddTagCommandParserTest {
 
         // Not enough arguments
         assertParseFailure(parser, "only",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
 
         // No arguments
         assertParseFailure(parser, "",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
     }
 
 }

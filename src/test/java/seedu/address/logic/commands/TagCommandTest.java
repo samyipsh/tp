@@ -26,7 +26,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddTagCommandTest {
+public class TagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Tag tag = new Tag("tag");
     private final Predicate<Person> predicateNoPersons = unused -> false;
@@ -43,14 +43,14 @@ public class AddTagCommandTest {
         PersonBuilder personInList = new PersonBuilder(thirdPerson);
         Person taggedPerson = personInList.withTags(VALID_TAG_HUSBAND).build();
 
-        AddTagCommand addTagCommand = new AddTagCommand(thirdIndex, tagToAdd);
+        TagCommand tagCommand = new TagCommand(thirdIndex, tagToAdd);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(thirdPerson, taggedPerson);
 
-        String expectedMessage = AddTagCommand.MESSAGE_TAG_PERSON_SUCCESS;
+        String expectedMessage = TagCommand.MESSAGE_TAG_PERSON_SUCCESS;
 
-        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -67,15 +67,15 @@ public class AddTagCommandTest {
         PersonBuilder personInList = new PersonBuilder(firstPerson);
         Person taggedPerson = personInList.withTags(VALID_TAG_HUSBAND).build();
 
-        AddTagCommand addTagCommand = new AddTagCommand(firstIndex, tagToAdd);
+        TagCommand tagCommand = new TagCommand(firstIndex, tagToAdd);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, taggedPerson);
         showPersonAtIndex(expectedModel, indexLastPerson);
 
-        String expectedMessage = AddTagCommand.MESSAGE_TAG_PERSON_SUCCESS;
+        String expectedMessage = TagCommand.MESSAGE_TAG_PERSON_SUCCESS;
 
-        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -86,10 +86,10 @@ public class AddTagCommandTest {
         List<Index> invalidIndex = new ArrayList<>();
         invalidIndex.add(outOfBoundIndex);
 
-        AddTagCommand addTagCommand = new AddTagCommand(invalidIndex, tag);
+        TagCommand tagCommand = new TagCommand(invalidIndex, tag);
 
-        assertCommandFailure(addTagCommand, model,
-                String.format(AddTagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize + 1, modelSize));
+        assertCommandFailure(tagCommand, model,
+                String.format(TagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize + 1, modelSize));
     }
 
     @Test
@@ -102,10 +102,10 @@ public class AddTagCommandTest {
         List<Index> invalidIndex = new ArrayList<>();
         invalidIndex.add(outOfBoundIndex);
 
-        AddTagCommand addTagCommand = new AddTagCommand(invalidIndex, tag);
+        TagCommand tagCommand = new TagCommand(invalidIndex, tag);
 
-        assertCommandFailure(addTagCommand, model,
-                String.format(AddTagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 2, 1));
+        assertCommandFailure(tagCommand, model,
+                String.format(TagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 2, 1));
     }
 
     @Test
@@ -118,10 +118,10 @@ public class AddTagCommandTest {
         List<Index> invalidIndex = new ArrayList<>();
         invalidIndex.add(outOfBoundIndex);
 
-        AddTagCommand addTagCommand = new AddTagCommand(invalidIndex, tag);
+        TagCommand tagCommand = new TagCommand(invalidIndex, tag);
 
-        assertCommandFailure(addTagCommand, model,
-                AddTagCommand.MESSAGE_NO_DISPLAYED_PERSONS);
+        assertCommandFailure(tagCommand, model,
+                TagCommand.MESSAGE_NO_DISPLAYED_PERSONS);
     }
 
     @Test
@@ -132,10 +132,10 @@ public class AddTagCommandTest {
         firstIndex.add(INDEX_FIRST_PERSON);
         secondIndex.add(INDEX_SECOND_PERSON);
 
-        final AddTagCommand standardCommand = new AddTagCommand(firstIndex, tag);
+        final TagCommand standardCommand = new TagCommand(firstIndex, tag);
 
         // same values -> returns true
-        AddTagCommand commandWithSameValues = new AddTagCommand(firstIndex, tag);
+        TagCommand commandWithSameValues = new TagCommand(firstIndex, tag);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -148,9 +148,9 @@ public class AddTagCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AddTagCommand(secondIndex, tag)));
+        assertFalse(standardCommand.equals(new TagCommand(secondIndex, tag)));
 
         // different tags -> returns false
-        assertFalse(standardCommand.equals(new AddTagCommand(firstIndex, new Tag("gat"))));
+        assertFalse(standardCommand.equals(new TagCommand(firstIndex, new Tag("gat"))));
     }
 }

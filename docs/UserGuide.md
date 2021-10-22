@@ -148,7 +148,7 @@ Examples:
 
 Tags the specified persons from the NetworkUS contacts with the specified tag.
 
-Format: `addtag INDEXES TAG`
+Format: `tag INDEXES TAG`
 
 * Tags the persons at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
@@ -158,8 +158,8 @@ Format: `addtag INDEXES TAG`
 * Will not add duplicate tags to persons.
 
 Examples:
-* `list` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
-* `find John` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
+* `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
+* `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
 
 ### Delete tag from persons: `deltag`
 
@@ -244,7 +244,6 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
-**Addtag** | `addtag INDEXES TAG` <br> e.g., `addtag 1 2 programmer`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Delete tag** | `deltag INDEXES TAG`<br> e.g., `deltag 1 2 friend`
@@ -254,3 +253,4 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
+**Tag** | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
