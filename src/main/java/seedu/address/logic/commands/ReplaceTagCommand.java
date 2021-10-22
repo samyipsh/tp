@@ -67,9 +67,8 @@ public class ReplaceTagCommand extends Command {
         for (int i = 0; i < numPerson; i++) {
             Person personToReplaceTag = filteredList.get(0);
             Set<Tag> existingTags = personToReplaceTag.getTags();
-            if (!existingTags.contains(tagToDelete)) {
-                throw new CommandException(String.format(MESSAGE_TAG_NOT_EXIST, tagToDelete));
-            }
+            assert (existingTags.contains(tagToDelete));
+
             Person replaceTagPerson = replaceTag(personToReplaceTag);
 
             model.setPerson(personToReplaceTag, replaceTagPerson);
