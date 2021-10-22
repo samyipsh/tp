@@ -115,6 +115,50 @@ public class AddCommandParserTest {
 
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedNoDetailPerson));
+
+        // only name
+        Person onlyNamePerson = new PersonBuilder().withName(VALID_NAME_AMY).withEmptyPhone()
+                .withEmptyEmail().withEmptyGithub().withEmptyLinkedin().build();
+
+        assertParseSuccess(parser, NAME_DESC_AMY, new AddCommand(onlyNamePerson));
+
+        // no phone
+        Person expectedNoPhonePerson = new PersonBuilder().withName(VALID_NAME_AMY)
+                .withEmptyPhone().withEmail(VALID_EMAIL_AMY)
+                .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY
+                + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedNoPhonePerson));
+
+        // no email
+        Person expectedNoEmailPerson = new PersonBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmptyEmail()
+                .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
+                + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedNoEmailPerson));
+
+        // no github
+        Person expectedNoGithubPerson = new PersonBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+                .withEmptyGithub().withLinkedIn(VALID_LINKEDIN_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + LINKEDIN_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedNoGithubPerson));
+
+
+        // no linkedin
+        Person expectedNoLinkedinPerson = new PersonBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+                .withGithub(VALID_GITHUB_AMY).withEmptyLinkedin()
+                .withTags(VALID_TAG_FRIEND).build();
+
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + GITHUB_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedNoLinkedinPerson));
+
     }
 
     @Test
@@ -123,10 +167,6 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix and email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB,
                 expectedMessage);
 
         // all prefixes missing
