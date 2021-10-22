@@ -21,13 +21,10 @@ public class TagsPresentPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         Set<Tag> tagSet = person.getTags();
-
         StringJoiner sj = new StringJoiner(" ", "", "");
-
         for (Tag elem : tagSet) {
             sj.add(elem.tagName);
         }
-
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(sj.toString(), keyword));
     }

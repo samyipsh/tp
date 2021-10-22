@@ -19,14 +19,14 @@ import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Delete specified tag from all contacts in NetworkUS.
+ * Deletes specified tag from all contacts in NetworkUS.
  */
 public class DelAllTagCommand extends Command {
 
     public static final String COMMAND_WORD = "delalltag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the specified tag from all displayed contacts "
-            + "Parameter: TAG \n"
+            + "Parameter: TAG\n"
             + "Example: " + COMMAND_WORD + "friend";
 
     public static final String MESSAGE_DELETE_ALL_TAG_SUCCESS = "This tag has been deleted for all "
@@ -37,13 +37,14 @@ public class DelAllTagCommand extends Command {
     private final TagsPresentPredicate predicate;
 
     /**
-     * Create a DelAllTagCommand to delete specified tag from all contacts.
+     * Creates a DelAllTagCommand to delete the specified {@code Tag} from all contacts.
      *
      * @param tagToDelete Tag to be deleted from all contacts.
      * @param predicate Predicate to check whether person contain the specified tag.
      */
     public DelAllTagCommand(Tag tagToDelete, TagsPresentPredicate predicate) {
         requireNonNull(tagToDelete);
+        requireNonNull(predicate);
 
         this.tagToDelete = tagToDelete;
         this.predicate = predicate;
@@ -62,9 +63,8 @@ public class DelAllTagCommand extends Command {
         for (int i = 0; i < numPerson; i++) {
             Person personToDeleteTag = filteredList.get(0);
             Set<Tag> existingTags = personToDeleteTag.getTags();
-            if (!existingTags.contains(tagToDelete)) {
-                throw new CommandException(String.format(MESSAGE_TAG_NOT_EXIST, tagToDelete));
-            }
+            assert (existingTags.contains(tagToDelete));
+
             Person deleteTagPerson = delTag(personToDeleteTag);
 
             model.setPerson(personToDeleteTag, deleteTagPerson);

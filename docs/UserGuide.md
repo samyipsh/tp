@@ -167,7 +167,7 @@ Delete the specified tag from the specified person from the NetworkUS contacts.
 
 Format: `deltag INDEXES TAG`
 
-* Delete tag from the person at the specified `INDEX`.
+* Deletes the tag from the person at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be unsigned integer** 1, 2, 3, …​
 * Tags must be alphanumeric without spaces.
@@ -179,11 +179,11 @@ Example:
 
 ### Delete tag from all entries: `delalltag`
 
-Delete the specified tag from all contacts in NetworkUS.
+Deletes the specified tag from all displayed contacts in NetworkUS.
 
 Format: `delalltag TAG`
 
-* Delete specified `TAG` from all contacts.
+* Deletes specified `TAG` from all displayed contacts.
 * Tags must be alphanumeric without spaces.
 
 Example:
@@ -192,17 +192,17 @@ Example:
 
 ### Replace tag from all entries: `replacetag`
 
-Replace the specified tag from all contacts in NetworkUS with a new tag.
+Replaces the specified tag from all displayed contacts in NetworkUS with a new tag.
 
 Format: `replacetag TAG1 TAG2`
 
-* Replace `TAG1` wiTh `TAG2` for all contacts.
+* Replaces `TAG1` with `TAG2` for all contacts.
 * `TAG1` is the tag to be replaced.
 * `TAG2` is the new tag to replace `TAG1`.
 * Tags must be alphanumeric without spaces.
 
 Example:
-* `list` followed by `replace CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
+* `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
 
 ### Clearing all entries : `clear`
 
