@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -26,11 +25,12 @@ public class DelAllTagCommand extends Command {
 
     public static final String COMMAND_WORD = "delalltag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the specified tag from all contacts "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the specified tag from all displayed contacts "
             + "Parameter: TAG \n"
             + "Example: " + COMMAND_WORD + "friend";
 
-    public static final String MESSAGE_DELETE_ALL_TAG_SUCCESS = "This tag has been deleted for all contacts: %s";
+    public static final String MESSAGE_DELETE_ALL_TAG_SUCCESS = "This tag has been deleted for all "
+            + "displayed contacts: %s";
     public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist: %s";
 
     private final Tag tagToDelete;
@@ -52,12 +52,10 @@ public class DelAllTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        List<Person> filteredList = model.getFilteredPersonList();
+        List<Person> filteredList = model.getFilteredPersonList().filtered(predicate);
         int numPerson = filteredList.size();
 
         if (filteredList.size() == 0) {
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             throw new CommandException(String.format(MESSAGE_TAG_NOT_EXIST, tagToDelete));
         }
 
@@ -72,7 +70,6 @@ public class DelAllTagCommand extends Command {
             model.setPerson(personToDeleteTag, deleteTagPerson);
         }
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_ALL_TAG_SUCCESS, tagToDelete));
     }
 

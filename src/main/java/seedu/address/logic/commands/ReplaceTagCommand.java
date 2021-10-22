@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -27,12 +26,12 @@ public class ReplaceTagCommand extends Command {
     public static final String COMMAND_WORD = "replacetag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Replace the current tag to specified tag from all contacts "
+            + ": Replace the current tag to specified tag from all displayed contacts "
             + "Parameter: TAG(to be replaced) TAG(new Tag)\n"
             + "Example: " + COMMAND_WORD + " friend" + " enemy";
 
     public static final String MESSAGE_REPLACE_ALL_TAG_SUCCESS = "This tag has been replaced "
-            + "from %s to %s for all contacts";
+            + "from %s to %s for all displayed contacts";
     public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist: %s";
 
     private final Tag tagToDelete;
@@ -58,12 +57,10 @@ public class ReplaceTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        List<Person> filteredList = model.getFilteredPersonList();
+        List<Person> filteredList = model.getFilteredPersonList().filtered(predicate);
         int numPerson = filteredList.size();
 
         if (filteredList.size() == 0) {
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             throw new CommandException(String.format(MESSAGE_TAG_NOT_EXIST, tagToDelete));
         }
 
@@ -78,7 +75,6 @@ public class ReplaceTagCommand extends Command {
             model.setPerson(personToReplaceTag, replaceTagPerson);
         }
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_REPLACE_ALL_TAG_SUCCESS, tagToDelete, tagToAdd));
     }
 
