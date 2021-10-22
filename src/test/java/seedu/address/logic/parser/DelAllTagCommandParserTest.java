@@ -35,7 +35,7 @@ class DelAllTagCommandParserTest {
     }
 
     @Test
-    public void parse_invalidYag_throwsParseException() {
+    public void parse_invalidTag_throwsParseException() {
         // non-alphanumeric
         assertParseFailure(parser, "C$2100", Tag.MESSAGE_CONSTRAINTS);
     }
