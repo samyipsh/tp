@@ -22,7 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-class AddAllTagCommandTest {
+class TagAllCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Tag tag = new Tag("tag");
     private final Predicate<Person> predicateNoPersons = unused -> false;
@@ -39,33 +39,33 @@ class AddAllTagCommandTest {
         PersonBuilder personInList = new PersonBuilder(firstPerson);
         Person taggedPerson = personInList.withTags(VALID_TAG_HUSBAND).build();
 
-        AddAllTagCommand addAllTagCommand = new AddAllTagCommand(tagToAdd);
+        TagAllCommand tagAllCommand = new TagAllCommand(tagToAdd);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, taggedPerson);
         showPersonAtIndex(expectedModel, indexLastPerson);
 
-        String expectedMessage = AddAllTagCommand.MESSAGE_SUCCESS;
+        String expectedMessage = TagAllCommand.MESSAGE_SUCCESS;
 
-        assertCommandSuccess(addAllTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(tagAllCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_emptyList_failure() {
         model.updateFilteredPersonList(predicateNoPersons);
 
-        AddAllTagCommand addAllTagCommand = new AddAllTagCommand(tag);
+        TagAllCommand tagAllCommand = new TagAllCommand(tag);
 
-        assertCommandFailure(addAllTagCommand, model,
-                AddAllTagCommand.MESSAGE_NO_PERSONS_TO_TAG);
+        assertCommandFailure(tagAllCommand, model,
+                TagAllCommand.MESSAGE_NO_PERSONS_TO_TAG);
     }
 
     @Test
     public void equals() {
-        final AddAllTagCommand standardCommand = new AddAllTagCommand(tag);
+        final TagAllCommand standardCommand = new TagAllCommand(tag);
 
         // same values -> returns true
-        AddAllTagCommand commandWithSameValues = new AddAllTagCommand(tag);
+        TagAllCommand commandWithSameValues = new TagAllCommand(tag);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -78,6 +78,6 @@ class AddAllTagCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different tags -> returns false
-        assertFalse(standardCommand.equals(new AddAllTagCommand(new Tag("gat"))));
+        assertFalse(standardCommand.equals(new TagAllCommand(new Tag("gat"))));
     }
 }

@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddAllTagCommand;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTagCommand;
@@ -31,6 +30,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ReplaceTagCommand;
+import seedu.address.logic.commands.TagAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -145,9 +145,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addAllTag() throws Exception {
-        AddAllTagCommand command = (AddAllTagCommand) parser.parseCommand(
-                AddAllTagCommand.COMMAND_WORD + " " + VALID_TAG_HUSBAND);
-        assertEquals(new AddAllTagCommand(ParserUtil.parseTag(VALID_TAG_HUSBAND)), command);
+        TagAllCommand command = (TagAllCommand) parser.parseCommand(
+                TagAllCommand.COMMAND_WORD + " " + VALID_TAG_HUSBAND);
+        assertEquals(new TagAllCommand(ParserUtil.parseTag(VALID_TAG_HUSBAND)), command);
     }
 
     @Test

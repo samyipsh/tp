@@ -17,9 +17,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-public class AddAllTagCommand extends Command {
+public class TagAllCommand extends Command {
 
-    public static final String COMMAND_WORD = "addalltag";
+    public static final String COMMAND_WORD = "tagall";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": tags all displayed persons with the specified tag.\n"
             + "Parameters: [Tag] (must be alphanumeric without whitespaces)\n"
@@ -31,9 +31,9 @@ public class AddAllTagCommand extends Command {
     private final Tag tagToAdd;
 
     /**
-     * Creates an AddAllTagCommand to add the specified {@code Tag} to all displayed persons
+     * Creates a TagAllCommand to add the specified {@code Tag} to all displayed persons
      */
-    public AddAllTagCommand(Tag tagToAdd) {
+    public TagAllCommand(Tag tagToAdd) {
         requireNonNull(tagToAdd);
         this.tagToAdd = tagToAdd;
     }
@@ -55,13 +55,13 @@ public class AddAllTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddAllTagCommand)) {
+        if (!(other instanceof TagAllCommand)) {
             return false;
         }
 
         // state check
-        AddAllTagCommand a = (AddAllTagCommand) other;
-        return tagToAdd.equals(a.tagToAdd);
+        TagAllCommand t = (TagAllCommand) other;
+        return tagToAdd.equals(t.tagToAdd);
     }
 
     private void tagDisplayedPersons(Model model) throws CommandException {
