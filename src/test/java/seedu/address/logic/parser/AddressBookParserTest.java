@@ -6,15 +6,20 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DelAllTagCommand;
+import seedu.address.logic.commands.DelTagCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -22,9 +27,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ReplaceTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TagsPresentPredicate;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -74,6 +82,39 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameAndTagsContainKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_delTag() throws Exception {
+        List<Index> firstIndex = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        String validTagName = "programmer";
+        Tag tag = ParserUtil.parseTag(validTagName);
+        DelTagCommand command = (DelTagCommand) parser.parseCommand(
+                DelTagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_SECOND_PERSON.getOneBased() + " " + validTagName);
+        assertEquals(new DelTagCommand(firstIndex, tag), command);
+    }
+
+    @Test
+    public void parseCommand_delAllTag() throws Exception {
+        String validTagName = "programmer";
+        Tag tag = ParserUtil.parseTag(validTagName);
+        TagsPresentPredicate predicate = new TagsPresentPredicate(Collections.singletonList(validTagName));
+        DelAllTagCommand command = (DelAllTagCommand) parser.parseCommand(
+                DelAllTagCommand.COMMAND_WORD + " " + validTagName);
+        assertEquals(new DelAllTagCommand(tag, predicate), command);
+    }
+
+    @Test
+    public void parseCommand_replaceTag() throws Exception {
+        String validDeleteTagName = "noob";
+        String validAddTagName = "programmer";
+        Tag deleteTag = ParserUtil.parseTag(validDeleteTagName);
+        Tag addTag = ParserUtil.parseTag(validAddTagName);
+        TagsPresentPredicate predicate = new TagsPresentPredicate(Collections.singletonList(validDeleteTagName));
+        ReplaceTagCommand command = (ReplaceTagCommand) parser.parseCommand(
+                ReplaceTagCommand.COMMAND_WORD + " " + validDeleteTagName + " " + validAddTagName);
+        assertEquals(new ReplaceTagCommand(deleteTag, addTag, predicate), command);
     }
 
     @Test
