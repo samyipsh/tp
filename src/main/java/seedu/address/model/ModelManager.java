@@ -95,6 +95,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonExcludingIndex(Person person, int index) {
+        requireNonNull(person);
+        requireNonNull(index);
+
+        return addressBook.hasPersonExcludingIndex(person, index);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

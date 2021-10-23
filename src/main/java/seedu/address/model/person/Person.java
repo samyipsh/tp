@@ -74,7 +74,8 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name and at least one
+     * unique field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -82,8 +83,19 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        if (otherPerson == null) {
+            return false;
+        }
+
+        if (!hasSameName(otherPerson)) {
+            return false;
+        }
+
+        if (hasEmptyUniqueFields() && otherPerson.hasEmptyUniqueFields()) {
+            return true;
+        }
+
+        return hasSameUniqueField(otherPerson);
     }
 
     /**
@@ -137,6 +149,53 @@ public class Person {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    private boolean hasSameName(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (otherPerson == null) {
+            return false;
+        }
+
+        return otherPerson.getName().isSameName(getName());
+    }
+
+    /**
+     * Returns true if both Person objects have at least one
+     * field unique to people that are the same.
+     *
+     * @param otherPerson Person object to compare to.
+     * @return Whether the two Person objects have a similar unique field.
+     */
+    private boolean hasSameUniqueField(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (otherPerson == null) {
+            return false;
+        }
+
+        return otherPerson.getEmail().isSameEmail(getEmail())
+                || otherPerson.getGithub().isSameGithub(getGithub())
+                || otherPerson.getLinkedin().isSameLinkedIn(getLinkedin())
+                || otherPerson.getPhone().isSamePhone(getPhone());
+    }
+
+    /**
+     * Returns whether this Person object has only
+     * empty unique fields.
+     *
+     * @return whether this Person object has only empty unique fields.
+     */
+    private boolean hasEmptyUniqueFields() {
+        return getEmail().isEmpty()
+                && getGithub().isEmpty()
+                && getLinkedin().isEmpty()
+                && getPhone().isEmpty();
     }
 
 }
