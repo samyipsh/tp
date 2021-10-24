@@ -66,12 +66,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     private static void checkAllPrefixes(ArgumentMultimap argumentMultimap) throws ParseException {
-        boolean isPhonePresent = arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_PHONE);
-        boolean isEmailPresent = arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_EMAIL);
-        boolean isNeededPrefixesPresent = (isPhonePresent || isEmailPresent);
+        boolean isNamePresent = arePrefixesPresent(argumentMultimap, PREFIX_NAME);
 
-
-        if (!isNeededPrefixesPresent || !argumentMultimap.getPreamble().isEmpty()) {
+        if (!isNamePresent || !argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
     }
