@@ -87,6 +87,82 @@ public class PersonTest {
     }
 
     @Test
+    public void hasSameNameTest() {
+        // null person -> return false
+        assertFalse(ALICE.hasSameName(null));
+
+        // same person -> return true
+        assertTrue(ALICE.hasSameName(ALICE));
+
+        // same name -> return true
+        Person editedAlice = new PersonBuilder(ALICE).withEmptyEmail().withEmptyGithub()
+                .withEmptyLinkedin().withEmptyPhone().build();
+        assertTrue(ALICE.hasSameName(editedAlice));
+    }
+
+    @Test
+    public void hasSameUniqueFieldTest() {
+        // null person -> return false
+        assertFalse(ALICE.hasSameUniqueField(null));
+
+        // same person -> return true
+        assertTrue(ALICE.hasSameUniqueField(ALICE));
+
+        // person with no similar unique field -> return false
+        Person editedAlice = new PersonBuilder(ALICE).withEmptyEmail().withEmptyGithub()
+                .withEmptyLinkedin().withEmptyPhone().build();
+        assertFalse(ALICE.hasSameUniqueField(editedAlice));
+
+        // person with similar phone -> return true
+        editedAlice = new PersonBuilder(ALICE).withEmptyEmail().withEmptyGithub()
+                .withEmptyLinkedin().build();
+        assertTrue(ALICE.hasSameUniqueField(editedAlice));
+
+        // person with similar linkedin -> return true
+        editedAlice = new PersonBuilder(ALICE).withEmptyEmail().withEmptyGithub()
+                .withEmptyPhone().build();
+        assertTrue(ALICE.hasSameUniqueField(editedAlice));
+
+        // person with similar github -> return true
+        editedAlice = new PersonBuilder(ALICE).withEmptyEmail()
+                .withEmptyLinkedin().withEmptyPhone().build();
+        assertTrue(ALICE.hasSameUniqueField(editedAlice));
+
+        // person with similar email -> return true
+        editedAlice = new PersonBuilder(ALICE).withEmptyGithub()
+                .withEmptyLinkedin().withEmptyPhone().build();
+        assertTrue(ALICE.hasSameUniqueField(editedAlice));
+    }
+
+    @Test
+    public void hasEmptyUniqueFieldsTest() {
+        // all fields empty -> returns true
+        Person editedAlice = new PersonBuilder(ALICE).withEmptyEmail().withEmptyGithub()
+                .withEmptyLinkedin().withEmptyPhone().build();
+        assertTrue(editedAlice.hasEmptyUniqueFields());
+
+        // all fields empty except phone -> returns false
+        editedAlice = new PersonBuilder(ALICE).withEmptyEmail().withEmptyGithub()
+                .withEmptyLinkedin().build();
+        assertFalse(editedAlice.hasEmptyUniqueFields());
+
+        // all fields empty except linkedin -> returns false
+        editedAlice = new PersonBuilder(ALICE).withEmptyEmail().withEmptyGithub()
+                .withEmptyPhone().build();
+        assertFalse(editedAlice.hasEmptyUniqueFields());
+
+        // all fields empty except github -> returns false
+        editedAlice = new PersonBuilder(ALICE).withEmptyEmail()
+                .withEmptyLinkedin().withEmptyPhone().build();
+        assertFalse(editedAlice.hasEmptyUniqueFields());
+
+        // all fields empty except email -> returns false
+        editedAlice = new PersonBuilder(ALICE).withEmptyGithub()
+                .withEmptyLinkedin().withEmptyPhone().build();
+        assertFalse(editedAlice.hasEmptyUniqueFields());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();

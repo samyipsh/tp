@@ -99,6 +99,59 @@ public class Person {
     }
 
     /**
+     * Returns true if both persons names are similar.
+     *
+     * @param otherPerson Person object to compare to.
+     * @return Whether the two Person objects have a similar Name object.
+     */
+    public boolean hasSameName(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (otherPerson == null) {
+            return false;
+        }
+
+        return otherPerson.getName().isSameName(getName());
+    }
+
+    /**
+     * Returns true if both Person objects have at least one
+     * field unique to people that are the same.
+     *
+     * @param otherPerson Person object to compare to.
+     * @return Whether the two Person objects have a similar unique field.
+     */
+    public boolean hasSameUniqueField(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        if (otherPerson == null) {
+            return false;
+        }
+
+        return otherPerson.getEmail().isSameEmail(getEmail())
+                || otherPerson.getGithub().isSameGithub(getGithub())
+                || otherPerson.getLinkedin().isSameLinkedIn(getLinkedin())
+                || otherPerson.getPhone().isSamePhone(getPhone());
+    }
+
+    /**
+     * Returns whether this Person object has only
+     * empty unique fields.
+     *
+     * @return whether this Person object has only empty unique fields.
+     */
+    public boolean hasEmptyUniqueFields() {
+        return getEmail().isEmpty()
+                && getGithub().isEmpty()
+                && getLinkedin().isEmpty()
+                && getPhone().isEmpty();
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -151,51 +204,5 @@ public class Person {
         return builder.toString();
     }
 
-    private boolean hasSameName(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        if (otherPerson == null) {
-            return false;
-        }
-
-        return otherPerson.getName().isSameName(getName());
-    }
-
-    /**
-     * Returns true if both Person objects have at least one
-     * field unique to people that are the same.
-     *
-     * @param otherPerson Person object to compare to.
-     * @return Whether the two Person objects have a similar unique field.
-     */
-    private boolean hasSameUniqueField(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        if (otherPerson == null) {
-            return false;
-        }
-
-        return otherPerson.getEmail().isSameEmail(getEmail())
-                || otherPerson.getGithub().isSameGithub(getGithub())
-                || otherPerson.getLinkedin().isSameLinkedIn(getLinkedin())
-                || otherPerson.getPhone().isSamePhone(getPhone());
-    }
-
-    /**
-     * Returns whether this Person object has only
-     * empty unique fields.
-     *
-     * @return whether this Person object has only empty unique fields.
-     */
-    private boolean hasEmptyUniqueFields() {
-        return getEmail().isEmpty()
-                && getGithub().isEmpty()
-                && getLinkedin().isEmpty()
-                && getPhone().isEmpty();
-    }
 
 }
