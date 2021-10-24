@@ -25,7 +25,7 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
     public static final String MESSAGE_PARAMS = "Parameters: INDEXES (must be non-zero unsigned integers) "
-            + "[Tag]\n"
+            + "TAG\n"
             + "Example: " + COMMAND_WORD + " 1 2 programmer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the persons identified "
             + "by the index numbers used in the displayed person list. "
