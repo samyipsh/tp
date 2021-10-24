@@ -21,15 +21,15 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-class ShowTagCommandTest {
+class ShowTagsCommandTest {
 
     @Test
     void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
-        String expectedMessage = ShowTagCommand.MESSAGE_SUCCESS + "\n";
+        String expectedMessage = ShowTagsCommand.MESSAGE_SUCCESS + "\n";
 
-        assertCommandSuccess(new ShowTagCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ShowTagsCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -43,10 +43,10 @@ class ShowTagCommandTest {
         Model model = new ModelManager(addressBook, userPrefs);
         Model expectedModel = new ModelManager(addressBook, userPrefs);
 
-        String expectedMessage = ShowTagCommand.MESSAGE_SUCCESS + "\n"
+        String expectedMessage = ShowTagsCommand.MESSAGE_SUCCESS + "\n"
                 + new Tag(VALID_TAG_FRIEND);
 
-        assertCommandSuccess(new ShowTagCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ShowTagsCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -63,10 +63,10 @@ class ShowTagCommandTest {
         Model model = new ModelManager(addressBook, userPrefs);
         Model expectedModel = new ModelManager(addressBook, userPrefs);
 
-        String expectedMessage = ShowTagCommand.MESSAGE_SUCCESS + "\n"
+        String expectedMessage = ShowTagsCommand.MESSAGE_SUCCESS + "\n"
                 + new Tag(VALID_TAG_FRIEND);
 
-        assertCommandSuccess(new ShowTagCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ShowTagsCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -87,12 +87,12 @@ class ShowTagCommandTest {
         Model model = new ModelManager(addressBook, userPrefs);
         Model expectedModel = new ModelManager(addressBook, userPrefs);
 
-        String expectedMessage = ShowTagCommand.MESSAGE_SUCCESS + "\n"
+        String expectedMessage = ShowTagsCommand.MESSAGE_SUCCESS + "\n"
                 + new Tag(VALID_TAG_FRIEND) + " "
                 + new Tag(VALID_TAG_HUSBAND) + " "
                 + new Tag(VALID_TAG_WIFE);
 
-        assertCommandSuccess(new ShowTagCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ShowTagsCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -116,11 +116,11 @@ class ShowTagCommandTest {
         model.updateFilteredPersonList(person -> person.getName().equals(VALID_NAME_AMY));
         expectedModel.updateFilteredPersonList(person -> person.getName().equals(VALID_NAME_AMY));
 
-        String expectedMessage = ShowTagCommand.MESSAGE_SUCCESS + "\n"
+        String expectedMessage = ShowTagsCommand.MESSAGE_SUCCESS + "\n"
                 + new Tag(VALID_TAG_FRIEND) + " "
                 + new Tag(VALID_TAG_HUSBAND) + " "
                 + new Tag(VALID_TAG_WIFE);
 
-        assertCommandSuccess(new ShowTagCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ShowTagsCommand(), model, expectedMessage, expectedModel);
     }
 }

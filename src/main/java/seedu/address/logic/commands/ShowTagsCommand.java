@@ -10,7 +10,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Shows all tags that is in the address book.
  */
-public class ShowTagCommand extends Command {
+public class ShowTagsCommand extends Command {
 
     public static final String COMMAND_WORD = "showtags";
 

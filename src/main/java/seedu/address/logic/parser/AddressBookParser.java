@@ -16,7 +16,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ShowTagCommand;
+import seedu.address.logic.commands.ShowTagsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -73,8 +73,8 @@ public class AddressBookParser {
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
 
-        case ShowTagCommand.COMMAND_WORD:
-            return new ShowTagCommand();
+        case ShowTagsCommand.COMMAND_WORD:
+            return new ShowTagsCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
