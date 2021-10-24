@@ -27,7 +27,7 @@ public class UntagAllCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the specified tag from all displayed contacts "
             + "Parameter: TAG\n"
-            + "Example: " + COMMAND_WORD + "friend";
+            + "Example: " + COMMAND_WORD + " friend";
 
     public static final String MESSAGE_UNTAG_ALL_SUCCESS = "This tag has been deleted for all "
             + "displayed contacts: %s";
