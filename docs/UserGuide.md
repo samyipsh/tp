@@ -146,7 +146,7 @@ Examples:
 
 ### Tagging displayed persons : `tagall`
 
-Deletes the specified person from the NetworkUS contacts.
+Tags all displayed persons in the NetworkUS contacts with the specified tag.
 
 Format: `tagall TAG`
 
