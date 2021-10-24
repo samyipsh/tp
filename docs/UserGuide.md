@@ -144,7 +144,21 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Tagging persons : `addtag`
+### Tagging displayed persons : `tagall`
+
+Tags all displayed persons in the NetworkUS contacts with the specified tag.
+
+Format: `tagall TAG`
+
+* Tags all displayed persons with the specified `TAG`.
+* Will not add duplicate tags and will run successfully even if all displayed persons already have the tag.
+* The tag **must be alphanumeric without whitespaces** e.g. programmer, CS2103T
+
+Examples:
+* `list` followed by `tagall programmer` tags all persons in the contact list with the tag `programmer`.
+* `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
+
+### Tagging persons : `tag`
 
 Tags the specified persons from the NetworkUS contacts with the specified tag.
 
@@ -204,6 +218,12 @@ Format: `replacetag TAG1 TAG2`
 Example:
 * `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
 
+### Showing tags : `showtags`
+
+Shows all tags that are used in NetworkUS contacts.
+
+Format: `showtags`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
@@ -250,7 +270,10 @@ Action | Format, Examples
 **Delete all tag** | `delalltag TAG`<br> e.g., `delalltag friend`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**List** | `list`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
+**Show tags** | `showtags`
 **Tag** | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
+**Tag all** | `tagall TAG` <br> e.g., `tagall programmer`
+
