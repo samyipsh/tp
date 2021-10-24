@@ -144,6 +144,20 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Tagging displayed persons : `tagall`
+
+Tags all displayed persons in the NetworkUS contacts with the specified tag.
+
+Format: `tagall TAG`
+
+* Tags all displayed persons with the specified `TAG`.
+* Will not add duplicate tags and will run successfully even if all displayed persons already have the tag.
+* The tag **must be alphanumeric without whitespaces** e.g. programmer, CS2103T
+
+Examples:
+* `list` followed by `tagall programmer` tags all persons in the contact list with the tag `programmer`.
+* `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
+
 ### Tagging persons : `addtag`
 
 Tags the specified persons from the NetworkUS contacts with the specified tag.
@@ -254,3 +268,4 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
+**Tag all** | `tagall TAG` <br> e.g., `tagall programmer`
