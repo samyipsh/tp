@@ -22,7 +22,7 @@ public class TagAllCommand extends Command {
     public static final String COMMAND_WORD = "tagall";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": tags all displayed persons with the specified tag.\n"
-            + "Parameters: [Tag] (must be alphanumeric without whitespaces)\n"
+            + "Parameters: TAG (must be alphanumeric without whitespaces)\n"
             + "Example: " + COMMAND_WORD + " programmer";
 
     public static final String MESSAGE_SUCCESS = "All displayed persons tagged.";
