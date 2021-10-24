@@ -19,17 +19,17 @@ import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Deletes specified tag from all contacts in NetworkUS.
+ * Deletes specified tag from all displayed contacts in NetworkUS.
  */
-public class DelAllTagCommand extends Command {
+public class UntagAllCommand extends Command {
 
-    public static final String COMMAND_WORD = "delalltag";
+    public static final String COMMAND_WORD = "untagall";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the specified tag from all displayed contacts "
             + "Parameter: TAG\n"
             + "Example: " + COMMAND_WORD + "friend";
 
-    public static final String MESSAGE_DELETE_ALL_TAG_SUCCESS = "This tag has been deleted for all "
+    public static final String MESSAGE_UNTAG_ALL_SUCCESS = "This tag has been deleted for all "
             + "displayed contacts: %s";
     public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist: %s";
 
@@ -37,12 +37,12 @@ public class DelAllTagCommand extends Command {
     private final TagsPresentPredicate predicate;
 
     /**
-     * Creates a DelAllTagCommand to delete the specified {@code Tag} from all contacts.
+     * Creates a UntagAllCommand to delete the specified {@code Tag} from all displayed contacts.
      *
-     * @param tagToDelete Tag to be deleted from all contacts.
+     * @param tagToDelete Tag to be deleted from all displayed contacts.
      * @param predicate Predicate to check whether person contain the specified tag.
      */
-    public DelAllTagCommand(Tag tagToDelete, TagsPresentPredicate predicate) {
+    public UntagAllCommand(Tag tagToDelete, TagsPresentPredicate predicate) {
         requireNonNull(tagToDelete);
         requireNonNull(predicate);
 
@@ -61,26 +61,26 @@ public class DelAllTagCommand extends Command {
         }
 
         for (int i = 0; i < numPerson; i++) {
-            Person personToDeleteTag = filteredList.get(0);
-            Set<Tag> existingTags = personToDeleteTag.getTags();
+            Person personToUntag = filteredList.get(0);
+            Set<Tag> existingTags = personToUntag.getTags();
             assert (existingTags.contains(tagToDelete));
 
-            Person deleteTagPerson = delTag(personToDeleteTag);
+            Person untaggedPerson = untag(personToUntag);
 
-            model.setPerson(personToDeleteTag, deleteTagPerson);
+            model.setPerson(personToUntag, untaggedPerson);
         }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_ALL_TAG_SUCCESS, tagToDelete));
+        return new CommandResult(String.format(MESSAGE_UNTAG_ALL_SUCCESS, tagToDelete));
     }
 
-    private Person delTag(Person personToDeleteTag) {
-        Name name = personToDeleteTag.getName();
-        Phone phone = personToDeleteTag.getPhone();
-        Email email = personToDeleteTag.getEmail();
-        Github github = personToDeleteTag.getGithub();
-        LinkedIn linkedIn = personToDeleteTag.getLinkedin();
-        Detail detail = personToDeleteTag.getDetail();
-        Set<Tag> existingTags = personToDeleteTag.getTags();
+    private Person untag(Person personToUntag) {
+        Name name = personToUntag.getName();
+        Phone phone = personToUntag.getPhone();
+        Email email = personToUntag.getEmail();
+        Github github = personToUntag.getGithub();
+        LinkedIn linkedIn = personToUntag.getLinkedin();
+        Detail detail = personToUntag.getDetail();
+        Set<Tag> existingTags = personToUntag.getTags();
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(existingTags);
         updatedTags.remove(tagToDelete);
@@ -96,11 +96,11 @@ public class DelAllTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DelAllTagCommand)) {
+        if (!(other instanceof UntagAllCommand)) {
             return false;
         }
 
-        return tagToDelete.equals(((DelAllTagCommand) other).tagToDelete)
-                && predicate.equals(((DelAllTagCommand) other).predicate);
+        return tagToDelete.equals(((UntagAllCommand) other).tagToDelete)
+                && predicate.equals(((UntagAllCommand) other).predicate);
     }
 }

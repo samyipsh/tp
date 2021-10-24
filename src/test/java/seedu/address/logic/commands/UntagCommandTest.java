@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.logic.commands.DelTagCommand.MESSAGE_DELETE_TAG_PERSON_SUCCESS;
+import static seedu.address.logic.commands.UntagCommand.MESSAGE_UNTAG_PERSON_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -25,7 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-class DelTagCommandTest {
+class UntagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Tag tag = new Tag("tag");
     private final Predicate<Person> predicateNoPersons = unused -> false;
@@ -33,25 +33,25 @@ class DelTagCommandTest {
 
     @Test
     void execute_unfilteredList_success() {
-        Tag tagToDelete = new Tag("friends");
+        Tag untag = new Tag("friends");
         List<Index> secondIndex = new ArrayList<>();
         secondIndex.add(INDEX_SECOND_PERSON);
 
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
-        Person deletedTagPerson = new PersonBuilder().withName("Benson Meier")
+        Person untaggedPerson = new PersonBuilder().withName("Benson Meier")
                 .withEmail("johnd@example.com").withPhone("98765432")
                 .withGithub("bensonio").withLinkedIn("https://www.linkedin.com/in/benson/")
                 .withDetail("Y2 CS").withTags("owesMoney").build();
 
-        DelTagCommand delTagCommand = new DelTagCommand(secondIndex, tagToDelete);
+        UntagCommand untagCommand = new UntagCommand(secondIndex, untag);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(secondPerson, deletedTagPerson);
+        expectedModel.setPerson(secondPerson, untaggedPerson);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TAG_PERSON_SUCCESS, tagToDelete);
+        String expectedMessage = String.format(MESSAGE_UNTAG_PERSON_SUCCESS, untag);
 
-        assertCommandSuccess(delTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(untagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -59,26 +59,26 @@ class DelTagCommandTest {
         Index indexSecondPerson = Index.fromOneBased(2);
         showPersonAtIndex(model, indexSecondPerson);
 
-        Tag tagToDelete = new Tag("owesMoney");
+        Tag untag = new Tag("owesMoney");
         List<Index> firstIndex = new ArrayList<>();
         firstIndex.add(INDEX_FIRST_PERSON);
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        Person deletedTagPerson = new PersonBuilder().withName("Benson Meier")
+        Person untaggedPerson = new PersonBuilder().withName("Benson Meier")
                 .withEmail("johnd@example.com").withPhone("98765432")
                 .withGithub("bensonio").withLinkedIn("https://www.linkedin.com/in/benson/")
                 .withDetail("Y2 CS").withTags("friends").build();
 
-        DelTagCommand delTagCommand = new DelTagCommand(firstIndex, tagToDelete);
+        UntagCommand untagCommand = new UntagCommand(firstIndex, untag);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, deletedTagPerson);
+        expectedModel.setPerson(firstPerson, untaggedPerson);
         showPersonAtIndex(expectedModel, indexSecondPerson);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TAG_PERSON_SUCCESS, tagToDelete);
+        String expectedMessage = String.format(MESSAGE_UNTAG_PERSON_SUCCESS, untag);
 
-        assertCommandSuccess(delTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(untagCommand, model, expectedMessage, expectedModel);
 
     }
 
@@ -90,10 +90,10 @@ class DelTagCommandTest {
         List<Index> invalidIndex = new ArrayList<>();
         invalidIndex.add(outOfBoundIndex);
 
-        DelTagCommand addTagCommand = new DelTagCommand(invalidIndex, tag);
+        UntagCommand untagCommand = new UntagCommand(invalidIndex, tag);
 
-        assertCommandFailure(addTagCommand, model,
-                String.format(DelTagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize + 1, modelSize));
+        assertCommandFailure(untagCommand, model,
+                String.format(UntagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize + 1, modelSize));
     }
 
     @Test
@@ -106,10 +106,10 @@ class DelTagCommandTest {
         List<Index> invalidIndex = new ArrayList<>();
         invalidIndex.add(outOfBoundIndex);
 
-        DelTagCommand addTagCommand = new DelTagCommand(invalidIndex, tag);
+        UntagCommand untagCommand = new UntagCommand(invalidIndex, tag);
 
-        assertCommandFailure(addTagCommand, model,
-                String.format(DelTagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 2, 1));
+        assertCommandFailure(untagCommand, model,
+                String.format(UntagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 2, 1));
     }
 
     @Test
@@ -122,10 +122,10 @@ class DelTagCommandTest {
         List<Index> invalidIndex = new ArrayList<>();
         invalidIndex.add(outOfBoundIndex);
 
-        DelTagCommand addTagCommand = new DelTagCommand(invalidIndex, tag);
+        UntagCommand untagCommand = new UntagCommand(invalidIndex, tag);
 
-        assertCommandFailure(addTagCommand, model,
-                DelTagCommand.MESSAGE_NO_DISPLAYED_PERSONS);
+        assertCommandFailure(untagCommand, model,
+                UntagCommand.MESSAGE_NO_DISPLAYED_PERSONS);
     }
 
     @Test
@@ -136,10 +136,10 @@ class DelTagCommandTest {
         firstIndex.add(INDEX_FIRST_PERSON);
         secondIndex.add(INDEX_SECOND_PERSON);
 
-        final DelTagCommand standardCommand = new DelTagCommand(firstIndex, tag);
+        final UntagCommand standardCommand = new UntagCommand(firstIndex, tag);
 
         // same values -> returns true
-        DelTagCommand commandWithSameValues = new DelTagCommand(firstIndex, tag);
+        UntagCommand commandWithSameValues = new UntagCommand(firstIndex, tag);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -152,10 +152,10 @@ class DelTagCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new DelTagCommand(secondIndex, tag)));
+        assertFalse(standardCommand.equals(new UntagCommand(secondIndex, tag)));
 
         // different tags -> returns false
-        assertFalse(standardCommand.equals(new DelTagCommand(firstIndex, new Tag("gat"))));
+        assertFalse(standardCommand.equals(new UntagCommand(firstIndex, new Tag("gat"))));
     }
 
 }
