@@ -96,6 +96,7 @@ public class UniquePersonList implements Iterable<Person> {
 
         internalList.setAll(persons);
     }
+
     /**
      * Returns length of the {@code UniquePersonList}.
      */

@@ -218,6 +218,12 @@ Format: `replacetag TAG1 TAG2`
 Example:
 * `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
 
+### Showing tags : `showtags`
+
+Shows all tags that are used in NetworkUS contacts.
+
+Format: `showtags`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
@@ -258,14 +264,15 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
-**Addtag** | `addtag INDEXES TAG` <br> e.g., `addtag 1 2 programmer`
+**Add tag** | `addtag INDEXES TAG` <br> e.g., `addtag 1 2 programmer`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Delete tag** | `deltag INDEXES TAG`<br> e.g., `deltag 1 2 friend`
 **Delete all tag** | `delalltag TAG`<br> e.g., `delalltag friend`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**List** | `list`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
+**Show tags** | `showtags`
 **Tag all** | `tagall TAG` <br> e.g., `tagall programmer`
