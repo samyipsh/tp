@@ -26,10 +26,10 @@ public class UntagCommand extends Command {
     public static final String COMMAND_WORD = "untag";
 
     public static final String MESSAGE_PARAMS = "Parameters: INDEXES (must be non-zero unsigned integers) "
-            + "Tag\n"
+            + "TAG\n"
             + "Example: " + COMMAND_WORD + " 1 2 programmer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the tag of the person identified "
-            + "by the index number used in the displayed person list. \n"
+            + "by the index numbers used in the displayed person list. \n"
             + "Parameter: INDEX TAG \n"
             + "Example: " + COMMAND_WORD + " 1 " + "friend";
 
