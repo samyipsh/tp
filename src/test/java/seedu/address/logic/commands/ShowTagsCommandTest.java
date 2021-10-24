@@ -33,6 +33,23 @@ class ShowTagsCommandTest {
     }
 
     @Test
+    void execute_noTags_success() {
+        final Person amy = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY).build();
+
+        final Person bob = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
+
+        AddressBook addressBook = new AddressBookBuilder().withPerson(amy).withPerson(bob).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        Model model = new ModelManager(addressBook, userPrefs);
+        Model expectedModel = new ModelManager(addressBook, userPrefs);
+
+        String expectedMessage = ShowTagsCommand.MESSAGE_SUCCESS + "\n";
+
+        assertCommandSuccess(new ShowTagsCommand(), model, expectedMessage, expectedModel);
+    }
+
+    @Test
     void execute_noDuplicateTags_success() {
         Person person = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
