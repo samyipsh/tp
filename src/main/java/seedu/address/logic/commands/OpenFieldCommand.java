@@ -40,7 +40,7 @@ public class OpenFieldCommand extends Command {
         requireNonNull(field);
 
         this.targetIndexes = targetIndexes;
-        this.field = field;
+        this.field = field.trim().toLowerCase();
     }
 
     @Override
@@ -102,6 +102,7 @@ public class OpenFieldCommand extends Command {
             openUrl(linkedIn.getUrl());
             return;
 
+        //throw exception if supported fields are not present
         default:
             throw new CommandException(String.format(MESSAGE_UNSUPPORTED_FIELD, field));
 
