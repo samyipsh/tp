@@ -5,11 +5,11 @@ import static seedu.address.commons.core.UserBrowser.openUrl;
 
 import java.util.List;
 
-import seedu.address.commons.core.UserBrowser;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Github;
+import seedu.address.model.person.LinkedIn;
 import seedu.address.model.person.Person;
 
 public class OpenFieldCommand extends Command {
@@ -26,7 +26,8 @@ public class OpenFieldCommand extends Command {
     public static final String MESSAGE_UNSUPPORTED_FIELD = "%s is an unsupported field.\n"
             + "Supported fields: Github, LinkedIn";
 
-    public static final String MESSAGE_OPEN_FIELD_SUCCESS = "%s field opened of selected persons opened in browser";
+    public static final String MESSAGE_OPEN_FIELD_SUCCESS = "%s field of selected persons opened in browser"
+            + " (if field present and valid)";
 
     private final String field;
     private final List<Index> targetIndexes;
@@ -51,6 +52,75 @@ public class OpenFieldCommand extends Command {
         return new CommandResult(String.format(MESSAGE_OPEN_FIELD_SUCCESS, field));
     }
 
+    /**
+     * Open fields of specified persons as determined by OpenFieldCommand object
+     * @param model
+     * @throws CommandException
+     */
+    public void openFields(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+        int listSize = lastShownList.size();
+
+        requireNonEmptyList(listSize);
+
+        for (Index index: targetIndexes) {
+            requireIndexWithinListBounds(index, listSize);
+
+            Person person = lastShownList.get(index.getZeroBased());
+            openField(person);
+        }
+    }
+
+    /**
+     * Opens the specified field of a Person.
+     * Only accepts valid fields of OpenField class.
+     *
+     * @param person Person object whose field is to be opened in the browser
+     * @throws CommandException
+     */
+    private void openField(Person person) throws CommandException {
+        switch (field) {
+
+        case "github":
+            Github github = person.getGithub();
+
+            if (github.isEmptyGithub()) {
+                return;
+            }
+
+            openUrl(github.getUrl());
+            return;
+
+        case "linkedin":
+            LinkedIn linkedIn = person.getLinkedin();
+
+            if (linkedIn.isEmptyLinkedIn()) {
+                return;
+            }
+
+            openUrl(linkedIn.getUrl());
+            return;
+
+        default:
+            throw new CommandException(String.format(MESSAGE_UNSUPPORTED_FIELD, field));
+
+        }
+    }
+
+    private void requireIndexWithinListBounds(Index index, int listSize) throws CommandException {
+        if (index.getZeroBased() >= listSize) {
+            throw new CommandException(String.format(MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED,
+                    index.getOneBased(), listSize));
+        }
+    }
+
+    private void requireNonEmptyList(int listSize) throws CommandException {
+        if (listSize == 0) {
+            throw new CommandException(MESSAGE_NO_DISPLAYED_PERSONS);
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -67,45 +137,6 @@ public class OpenFieldCommand extends Command {
         OpenFieldCommand otherCommand = (OpenFieldCommand) other;
         return otherCommand.targetIndexes.equals(targetIndexes)
                 && otherCommand.field.equals(field);
-    }
-
-    public void openFields(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        if (lastShownList.size() == 0) {
-            throw new CommandException(MESSAGE_NO_DISPLAYED_PERSONS);
-        }
-
-        for (Index index: targetIndexes) {
-            if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(String.format(MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED,
-                        index.getOneBased(), lastShownList.size()));
-            }
-
-            Person person = lastShownList.get(index.getZeroBased());
-            openField(person);
-        }
-    }
-
-    public void openField(Person person) throws CommandException {
-        String url;
-
-        switch (field) {
-
-        case "github":
-            url = person.getGithub().getUrl();
-            break;
-
-        case "linkedin":
-            url = person.getLinkedin().getUrl();
-            break;
-
-        default:
-            throw new CommandException(String.format(MESSAGE_UNSUPPORTED_FIELD, field));
-        }
-
-        openUrl(url);
     }
 }
 
