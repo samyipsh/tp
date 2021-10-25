@@ -19,7 +19,7 @@ import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Replace specified tag with a new tag for all contacts in NetworkUS.
+ * Replaces specified tag with a new tag for all contacts in NetworkUS.
  */
 public class ReplaceTagCommand extends Command {
 
@@ -39,9 +39,9 @@ public class ReplaceTagCommand extends Command {
     private final TagsPresentPredicate predicate;
 
     /**
-     * Create a ReplaceTagCommand to replace specified tag.
+     * Creates a ReplaceTagCommand to replace specified tag.
      *
-     * @param tagToDelete Tag to be replaced for all contacts.
+     * @param tagToDelete Tag to be replaced for all displayed contacts.
      * @param tagToAdd Tag to be added as replacement.
      * @param predicate Predicate to check whether person contain the specified tag.
      */

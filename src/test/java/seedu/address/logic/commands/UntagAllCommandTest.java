@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.DelAllTagCommand.MESSAGE_DELETE_ALL_TAG_SUCCESS;
-import static seedu.address.logic.commands.DelAllTagCommand.MESSAGE_TAG_NOT_EXIST;
+import static seedu.address.logic.commands.UntagAllCommand.MESSAGE_TAG_NOT_EXIST;
+import static seedu.address.logic.commands.UntagAllCommand.MESSAGE_UNTAG_ALL_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -24,7 +24,7 @@ import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
-class DelAllTagCommandTest {
+class UntagAllCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -36,32 +36,32 @@ class DelAllTagCommandTest {
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         Person forthPerson = model.getFilteredPersonList().get(Index.fromOneBased(4).getZeroBased());
 
-        Person firstDeletedTagPerson = new PersonBuilder().withName("Alice Pauline")
+        Person firstUntaggedPerson = new PersonBuilder().withName("Alice Pauline")
                 .withEmail("alice@example.com")
                 .withPhone("94351253")
                 .withGithub("aliceio")
                 .withLinkedIn("https://www.linkedin.com/in/alice/")
                 .withDetail("Y1 CS").build();
 
-        Person secondDeletedTagPerson = new PersonBuilder().withName("Benson Meier")
+        Person secondUntaggedPerson = new PersonBuilder().withName("Benson Meier")
                 .withEmail("johnd@example.com").withPhone("98765432")
                 .withGithub("bensonio").withLinkedIn("https://www.linkedin.com/in/benson/")
                 .withDetail("Y2 CS").withTags("owesMoney").build();
 
-        Person forthDeletedTagPerson = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
+        Person forthUntaggedPerson = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
                 .withEmail("cornelia@example.com").withGithub("danielio")
                 .withLinkedIn("https://www.linkedin.com/in/danya/").build();
 
-        DelAllTagCommand delAllTagCommand = new DelAllTagCommand(friendTag, friendTagPredicate);
+        UntagAllCommand untagAllCommand = new UntagAllCommand(friendTag, friendTagPredicate);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, firstDeletedTagPerson);
-        expectedModel.setPerson(secondPerson, secondDeletedTagPerson);
-        expectedModel.setPerson(forthPerson, forthDeletedTagPerson);
+        expectedModel.setPerson(firstPerson, firstUntaggedPerson);
+        expectedModel.setPerson(secondPerson, secondUntaggedPerson);
+        expectedModel.setPerson(forthPerson, forthUntaggedPerson);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_ALL_TAG_SUCCESS, friendTag);
+        String expectedMessage = String.format(MESSAGE_UNTAG_ALL_SUCCESS, friendTag);
 
-        assertCommandSuccess(delAllTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(untagAllCommand, model, expectedMessage, expectedModel);
 
     }
 
@@ -70,9 +70,9 @@ class DelAllTagCommandTest {
         Tag enemyTag = new Tag("enemy");
         TagsPresentPredicate friendTagPredicate = new TagsPresentPredicate(Arrays.asList("enemy"));
 
-        DelAllTagCommand delAllTagCommand = new DelAllTagCommand(enemyTag, friendTagPredicate);
+        UntagAllCommand untagAllCommand = new UntagAllCommand(enemyTag, friendTagPredicate);
 
-        assertCommandFailure(delAllTagCommand, model,
+        assertCommandFailure(untagAllCommand, model,
                 String.format(MESSAGE_TAG_NOT_EXIST, enemyTag));
     }
 
@@ -84,10 +84,10 @@ class DelAllTagCommandTest {
         TagsPresentPredicate friendTagPredicate = new TagsPresentPredicate(Arrays.asList("friend"));
         TagsPresentPredicate enemyTagPredicate = new TagsPresentPredicate(Arrays.asList("enemy"));
 
-        final DelAllTagCommand standardCommand = new DelAllTagCommand(friendTag, friendTagPredicate);
+        final UntagAllCommand standardCommand = new UntagAllCommand(friendTag, friendTagPredicate);
 
         // same values -> returns true
-        DelAllTagCommand standardCommandCopy = new DelAllTagCommand(friendTag, friendTagPredicate);
+        UntagAllCommand standardCommandCopy = new UntagAllCommand(friendTag, friendTagPredicate);
         assertTrue(standardCommand.equals(standardCommandCopy));
 
         // same object -> returns true
@@ -100,7 +100,7 @@ class DelAllTagCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different tags -> returns false
-        DelAllTagCommand differentTagCommand = new DelAllTagCommand(enemyTag, enemyTagPredicate);
+        UntagAllCommand differentTagCommand = new UntagAllCommand(enemyTag, enemyTagPredicate);
         assertFalse(standardCommand.equals(differentTagCommand));
 
     }

@@ -20,8 +20,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DelAllTagCommand;
-import seedu.address.logic.commands.DelTagCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -32,6 +30,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ReplaceTagCommand;
 import seedu.address.logic.commands.ShowTagsCommand;
 import seedu.address.logic.commands.TagAllCommand;
+import seedu.address.logic.commands.UntagAllCommand;
+import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -100,24 +100,24 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delTag() throws Exception {
+    public void parseCommand_untag() throws Exception {
         List<Index> firstIndex = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
         String validTagName = "programmer";
         Tag tag = ParserUtil.parseTag(validTagName);
-        DelTagCommand command = (DelTagCommand) parser.parseCommand(
-                DelTagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+        UntagCommand command = (UntagCommand) parser.parseCommand(
+                UntagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
                         + " " + INDEX_SECOND_PERSON.getOneBased() + " " + validTagName);
-        assertEquals(new DelTagCommand(firstIndex, tag), command);
+        assertEquals(new UntagCommand(firstIndex, tag), command);
     }
 
     @Test
-    public void parseCommand_delAllTag() throws Exception {
+    public void parseCommand_untagAll() throws Exception {
         String validTagName = "programmer";
         Tag tag = ParserUtil.parseTag(validTagName);
         TagsPresentPredicate predicate = new TagsPresentPredicate(Collections.singletonList(validTagName));
-        DelAllTagCommand command = (DelAllTagCommand) parser.parseCommand(
-                DelAllTagCommand.COMMAND_WORD + " " + validTagName);
-        assertEquals(new DelAllTagCommand(tag, predicate), command);
+        UntagAllCommand command = (UntagAllCommand) parser.parseCommand(
+                UntagAllCommand.COMMAND_WORD + " " + validTagName);
+        assertEquals(new UntagAllCommand(tag, predicate), command);
     }
 
     @Test

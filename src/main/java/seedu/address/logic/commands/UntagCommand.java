@@ -19,21 +19,21 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Delete a tag to a person in the address book.
+ * Untags a tag from a person in the NetworkUS.
  */
-public class DelTagCommand extends Command {
+public class UntagCommand extends Command {
 
-    public static final String COMMAND_WORD = "deltag";
+    public static final String COMMAND_WORD = "untag";
 
     public static final String MESSAGE_PARAMS = "Parameters: INDEXES (must be non-zero unsigned integers) "
-            + "[Tag]\n"
+            + "TAG\n"
             + "Example: " + COMMAND_WORD + " 1 2 programmer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the tag of the person identified "
-            + "by the index number used in the displayed person list. \n"
-            + "Parameter: INDEX TAG \n"
+            + "by the index numbers used in the displayed person list. \n"
+            + "Parameter: INDEXES TAG \n"
             + "Example: " + COMMAND_WORD + " 1 " + "friend";
 
-    public static final String MESSAGE_DELETE_TAG_PERSON_SUCCESS = "Deleted %s Tag";
+    public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Deleted %s Tag";
     public static final String MESSAGE_NO_DISPLAYED_PERSONS = "No persons displayed to tag.";
     public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "%1$d is an out-of-bounds index.\n"
             + "Indexes up to %2$d are valid.";
@@ -42,10 +42,10 @@ public class DelTagCommand extends Command {
     private final Tag tagToDelete;
 
     /**
-     * Creates a DelTagCommand to delete the specified {@code Tag} to the person
+     * Creates an UntagCommand to delete the specified {@code Tag} from the person
      * at {@code Index}
      */
-    public DelTagCommand(List<Index> targetIndexes, Tag tagToDelete) {
+    public UntagCommand(List<Index> targetIndexes, Tag tagToDelete) {
         requireNonNull(targetIndexes);
         requireNonNull(tagToDelete);
 
@@ -57,13 +57,13 @@ public class DelTagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        deleteTagPerson(model);
+        untagPerson(model);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TAG_PERSON_SUCCESS, tagToDelete));
+        return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS, tagToDelete));
 
     }
 
-    private Person delTag(Person personToDeleteTag) {
+    private Person untag(Person personToDeleteTag) {
         Name name = personToDeleteTag.getName();
         Phone phone = personToDeleteTag.getPhone();
         Email email = personToDeleteTag.getEmail();
@@ -78,7 +78,7 @@ public class DelTagCommand extends Command {
 
     }
 
-    private void deleteTagPerson(Model model) throws CommandException {
+    private void untagPerson(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -93,7 +93,7 @@ public class DelTagCommand extends Command {
             }
 
             Person personToTag = lastShownList.get(index.getZeroBased());
-            Person taggedPerson = delTag(personToTag);
+            Person taggedPerson = untag(personToTag);
 
             model.setPerson(personToTag, taggedPerson);
         }
@@ -108,11 +108,11 @@ public class DelTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DelTagCommand)) {
+        if (!(other instanceof UntagCommand)) {
             return false;
         }
 
-        return targetIndexes.equals(((DelTagCommand) other).targetIndexes)
-                && tagToDelete.equals(((DelTagCommand) other).tagToDelete);
+        return targetIndexes.equals(((UntagCommand) other).targetIndexes)
+                && tagToDelete.equals(((UntagCommand) other).tagToDelete);
     }
 }
