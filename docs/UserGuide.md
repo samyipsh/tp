@@ -158,11 +158,11 @@ Examples:
 * `list` followed by `tagall programmer` tags all persons in the contact list with the tag `programmer`.
 * `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
 
-### Tagging persons : `addtag`
+### Tagging persons : `tag`
 
 Tags the specified persons from the NetworkUS contacts with the specified tag.
 
-Format: `addtag INDEXES TAG`
+Format: `tag INDEXES TAG`
 
 * Tags the persons at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
@@ -172,8 +172,8 @@ Format: `addtag INDEXES TAG`
 * Will not add duplicate tags to persons.
 
 Examples:
-* `list` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
-* `find John` followed by `addtag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
+* `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
+* `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
 
 ### Untag from persons: `untag`
 
@@ -264,7 +264,6 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
-**Add tag** | `addtag INDEXES TAG` <br> e.g., `addtag 1 2 programmer`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
@@ -273,6 +272,8 @@ Action | Format, Examples
 **List** | `list`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
 **Show tags** | `showtags`
+**Tag** | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
 **Tag all** | `tagall TAG` <br> e.g., `tagall programmer`
 **Untag** | `untag INDEXES TAG`<br> e.g., `untag 1 2 friend`
 **Untag all** | `untagall TAG`<br> e.g., `untagall friend`
+

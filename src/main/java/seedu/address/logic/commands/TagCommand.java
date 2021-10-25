@@ -21,11 +21,11 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a tag to a person in the address book.
  */
-public class AddTagCommand extends Command {
+public class TagCommand extends Command {
 
-    public static final String COMMAND_WORD = "addtag";
+    public static final String COMMAND_WORD = "tag";
     public static final String MESSAGE_PARAMS = "Parameters: INDEXES (must be non-zero unsigned integers) "
-            + "[Tag]\n"
+            + "TAG\n"
             + "Example: " + COMMAND_WORD + " 1 2 programmer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the persons identified "
             + "by the index numbers used in the displayed person list. "
@@ -38,10 +38,10 @@ public class AddTagCommand extends Command {
     private final Tag tagToAdd;
 
     /**
-     * Creates an AddTagCommand to add the specified {@code Tag} to the person
+     * Creates a TagCommand to add the specified {@code Tag} to the person
      * at {@code Index}.
      */
-    public AddTagCommand(List<Index> targetIndexes, Tag tagToAdd) {
+    public TagCommand(List<Index> targetIndexes, Tag tagToAdd) {
         requireNonNull(targetIndexes);
         requireNonNull(tagToAdd);
         this.targetIndexes = targetIndexes;
@@ -65,14 +65,14 @@ public class AddTagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddTagCommand)) {
+        if (!(other instanceof TagCommand)) {
             return false;
         }
 
         // state check
-        AddTagCommand atc = (AddTagCommand) other;
-        return targetIndexes.equals(atc.targetIndexes)
-                && tagToAdd.equals(atc.tagToAdd);
+        TagCommand t = (TagCommand) other;
+        return targetIndexes.equals(t.targetIndexes)
+                && tagToAdd.equals(t.tagToAdd);
     }
 
     private Person addTag(Person personToTag) {

@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -30,6 +29,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ReplaceTagCommand;
 import seedu.address.logic.commands.ShowTagsCommand;
 import seedu.address.logic.commands.TagAllCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagAllCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -93,10 +93,10 @@ public class AddressBookParserTest {
         List<Index> firstIndex = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
         String validTagName = "programmer";
         Tag tag = ParserUtil.parseTag(validTagName);
-        AddTagCommand command = (AddTagCommand) parser.parseCommand(
-                AddTagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+        TagCommand command = (TagCommand) parser.parseCommand(
+                TagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
                         + " " + INDEX_SECOND_PERSON.getOneBased() + " " + validTagName);
-        assertEquals(new AddTagCommand(firstIndex, tag), command);
+        assertEquals(new TagCommand(firstIndex, tag), command);
     }
 
     @Test
