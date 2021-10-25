@@ -47,6 +47,10 @@ public class LinkedIn {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getUrl() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return value;
