@@ -9,12 +9,12 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DelAllTagCommand;
+import seedu.address.logic.commands.UntagAllCommand;
 import seedu.address.model.person.TagsPresentPredicate;
 import seedu.address.model.tag.Tag;
 
-class DelAllTagCommandParserTest {
-    private DelAllTagCommandParser parser = new DelAllTagCommandParser();
+class UntagAllCommandParserTest {
+    private UntagAllCommandParser parser = new UntagAllCommandParser();
 
     @Test
     void parse_validArgs_success() {
@@ -22,16 +22,16 @@ class DelAllTagCommandParserTest {
         TagsPresentPredicate validPredicate = new TagsPresentPredicate(Arrays.asList(VALID_TAG_HUSBAND));
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, VALID_TAG_HUSBAND, new DelAllTagCommand(validTag, validPredicate));
+        assertParseSuccess(parser, VALID_TAG_HUSBAND, new UntagAllCommand(validTag, validPredicate));
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "  \n" + VALID_TAG_HUSBAND, new DelAllTagCommand(validTag, validPredicate));
+        assertParseSuccess(parser, "  \n" + VALID_TAG_HUSBAND, new UntagAllCommand(validTag, validPredicate));
     }
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelAllTagCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UntagAllCommand.MESSAGE_USAGE));
     }
 
     @Test
