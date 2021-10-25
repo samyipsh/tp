@@ -195,6 +195,27 @@ How the specified tag is filtered:
     * Cons: Required change of implementation of `Tag` which could affect the rest of the command
 
 
+### Open Field feature
+
+#### Implementation
+
+The Open Field mechanism is facilitated by `openUrl` helper function which calls the desired generated url from the persons' field details (Github / LinkedIn). It is created when arguments are pass to `OpenFieldCommandParser`. <br>
+`OpenFieldCommand` checks whether the field parsed in is valid. If valid, it checks if the field of the user is not empty. If not empty, it then opens the desired user profile in the user's browser.
+
+#### Design consideration
+
+How the URL is opened:
+* Alternative 1 (Current choice): Using `java.awt.Desktop.browse(URI)` to open it in the user's browser
+    * Pros: Easy to implement
+    * Pros: User default browser carries extensive tools for continuing his search from the desired page
+    * Cons: Directs traffic away from desktop application
+    * Cons: User might dislike NetworkUS application intruding into their browser application
+
+* Alternative 2 : Using JavaFX to open it as another popup / inbuilt pane
+    * Pros: Allows for same interface of desktop application and similar stylings
+    * Cons: Required `javafx-web` which increases Jar space by nearly 7 folds
+    * Cons: Slower loading time
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

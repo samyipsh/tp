@@ -130,6 +130,21 @@ Examples:
 * `find jonas aaron silva` will return `jonas`, `Aaron john` and `Ann Silva`
 * `find friends` will return anyone whose names or tags have the word `friends` in them
 
+### Opening a field of a person : `open`
+
+Opens the LinkedIn/Github page from details of field specified of a particular person from the NetworkUS contacts.
+
+Format: `open INDEXES FIELD`
+
+* Deletes the person at the specified `INDEX`.
+* The index contained in indexes refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The Field must be "github" or "linkedin"
+
+Examples:
+* `list` followed by `open 2 3 4 github` opens the github page of the 2nd, 3rd, and 4th person of the contact list.
+* `find Betsy` followed by `open 1 linkedin` opens the github page of the 1st person in the results of the `find` command
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the NetworkUS contacts.
