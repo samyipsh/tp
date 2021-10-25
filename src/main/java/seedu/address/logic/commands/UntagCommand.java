@@ -19,7 +19,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Deletes a tag to a person in the address book.
+ * Untags a tag from a person in the NetworkUS.
  */
 public class UntagCommand extends Command {
 
@@ -30,7 +30,7 @@ public class UntagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 2 programmer";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete the tag of the person identified "
             + "by the index numbers used in the displayed person list. \n"
-            + "Parameter: INDEX TAG \n"
+            + "Parameter: INDEXES TAG \n"
             + "Example: " + COMMAND_WORD + " 1 " + "friend";
 
     public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Deleted %s Tag";
@@ -42,7 +42,7 @@ public class UntagCommand extends Command {
     private final Tag tagToDelete;
 
     /**
-     * Creates an UntagCommand to delete the specified {@code Tag} to the person
+     * Creates an UntagCommand to delete the specified {@code Tag} from the person
      * at {@code Index}
      */
     public UntagCommand(List<Index> targetIndexes, Tag tagToDelete) {
