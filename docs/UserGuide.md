@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-NetworkUs is a **desktop app for organizing contacts, with features that assists in project management, project collaboration, and internship searches**. The app is optimized for the *Command Line Interface* (CLI) to allow swift access for keyboard users. The app is also complemented with  *Graphical User Interface* (GUI) to display the program. 
+NetworkUs is a desktop app for organizing contacts. Its features assists in group management, allowing for quick searches of contacts with desired trailts (i.e specialization) and hence project group formation. It is catered for Computer Science Students. The app is optimized for the Command Line Interface (CLI) to allow swift access for keyboard users. The app is also complemented with Graphical User Interface (GUI) to display the program.
 
 * Table of Contents
 {:toc}
@@ -68,11 +68,13 @@ NetworkUs is a **desktop app for organizing contacts, with features that assists
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Provides functionality to access the help page in the browser.
+
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `help` <br/>
+Keyboard shortcut: `f1` then `enter`
 
 
 ### Adding a person: `add`
@@ -142,6 +144,86 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Tagging displayed persons : `tagall`
+
+Tags all displayed persons in the NetworkUS contacts with the specified tag.
+
+Format: `tagall TAG`
+
+* Tags all displayed persons with the specified `TAG`.
+* Will not add duplicate tags and will run successfully even if all displayed persons already have the tag.
+* The tag **must be alphanumeric without whitespaces** e.g. programmer, CS2103T
+
+Examples:
+* `list` followed by `tagall programmer` tags all persons in the contact list with the tag `programmer`.
+* `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
+
+### Tagging persons : `tag`
+
+Tags the specified persons from the NetworkUS contacts with the specified tag.
+
+Format: `tag INDEXES TAG`
+
+* Tags the persons at the specified `INDEXES`.
+* The index refers to the index number shown in the displayed person list.
+* The indexes **must be unsigned integers** 1, 2, 3, …​
+* Tags must be alphanumeric without spaces.
+* Will tag persons upto an out-of-bounds index or all indexes.
+* Will not add duplicate tags to persons.
+
+Examples:
+* `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
+* `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
+
+### Untag from persons: `untag`
+
+Delete the specified tag from the specified person from the NetworkUS contacts.
+
+Format: `untag INDEXES TAG`
+
+* Deletes the tag from the person at the specified `INDEXES`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be unsigned integer** 1, 2, 3, …​
+* Tags must be alphanumeric without spaces.
+* Will delete tag from persons upto an out-of-bounds index or all indexes.
+
+Example:
+* `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
+* `find John` followed by `untag 1 2 friend` deletes friend tag the 1st and 2nd persons in the results of the `find` command.
+
+### Untag from all displayed entries: `untagall`
+
+Deletes the specified tag from all displayed contacts in NetworkUS.
+
+Format: `untagall TAG`
+
+* Deletes specified `TAG` from all displayed contacts.
+* Tags must be alphanumeric without spaces.
+
+Example:
+* `list` followed by `untagall CS2040` deletes CS2040 tag from all contact list.
+    
+
+### Replace tag from all entries: `replacetag`
+
+Replaces the specified tag from all displayed contacts in NetworkUS with a new tag.
+
+Format: `replacetag TAG1 TAG2`
+
+* Replaces `TAG1` with `TAG2` for all contacts.
+* `TAG1` is the tag to be replaced.
+* `TAG2` is the new tag to replace `TAG1`.
+* Tags must be alphanumeric without spaces.
+
+Example:
+* `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
+
+### Showing tags : `showtags`
+
+Shows all tags that are used in NetworkUS contacts.
+
+Format: `showtags`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
@@ -186,5 +268,12 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**List** | `list`
+**Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
+**Show tags** | `showtags`
+**Tag** | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
+**Tag all** | `tagall TAG` <br> e.g., `tagall programmer`
+**Untag** | `untag INDEXES TAG`<br> e.g., `untag 1 2 friend`
+**Untag all** | `untagall TAG`<br> e.g., `untagall friend`
+
