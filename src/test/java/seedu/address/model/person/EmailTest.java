@@ -65,4 +65,36 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
     }
+
+    @Test
+    public void isEmptyTest() {
+        assertTrue(Email.getEmptyEmail().isEmpty());
+        assertFalse(new Email("PeterJack_1190@example.com").isEmpty());
+    }
+
+    @Test
+    public void isSameEmailTest() {
+        Email emptyEmail = Email.getEmptyEmail();
+        Email otherEmptyEmail = Email.getEmptyEmail();
+        Email firstEmail = new Email("PeterJack_1190@example.com");
+        Email similarFirstEmail = new Email("PeterJack_1190@example.com");
+        Email secondEmail = new Email("if.you.dream.it_you.can.do.it@example.com");
+
+        // null email
+        assertFalse(firstEmail.isSameEmail(null));
+
+        // empty email -  not the same as any email
+        assertFalse(emptyEmail.isSameEmail(firstEmail));
+        assertFalse(emptyEmail.isSameEmail(emptyEmail));
+        assertFalse(emptyEmail.isSameEmail(otherEmptyEmail));
+        assertFalse(otherEmptyEmail.isSameEmail(emptyEmail));
+
+        // different email
+        assertFalse(firstEmail.isSameEmail(secondEmail));
+        assertFalse(firstEmail.isSameEmail(emptyEmail));
+
+        // similar email
+        assertTrue(firstEmail.isSameEmail(firstEmail));
+        assertTrue(firstEmail.isSameEmail(similarFirstEmail));
+    }
 }

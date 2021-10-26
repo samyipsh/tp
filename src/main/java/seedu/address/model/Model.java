@@ -60,6 +60,12 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same identity as {@code person}
+     * exists in the address book excluding the one at {@code index}.
+     */
+    boolean hasPersonExcludingIndex(Person person, int index);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

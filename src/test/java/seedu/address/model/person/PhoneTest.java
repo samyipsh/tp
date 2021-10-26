@@ -37,4 +37,36 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
     }
+
+    @Test
+    public void isEmptyTest() {
+        assertTrue(Phone.getEmptyPhone().isEmpty());
+        assertFalse(new Phone("911").isEmpty());
+    }
+
+    @Test
+    public void isSamePhoneTest() {
+        Phone emptyPhone = Phone.getEmptyPhone();
+        Phone otherEmptyPhone = Phone.getEmptyPhone();
+        Phone firstPhone = new Phone("999");
+        Phone secondPhone = new Phone("911");
+        Phone sameFirstPhone = new Phone("999");
+
+        // null phone number
+        assertFalse(firstPhone.isSamePhone(null));
+
+        // empty phone number - not the same as any phone number
+        assertFalse(emptyPhone.isSamePhone(firstPhone));
+        assertFalse(emptyPhone.isSamePhone(emptyPhone));
+        assertFalse(emptyPhone.isSamePhone(otherEmptyPhone));
+        assertFalse(otherEmptyPhone.isSamePhone(emptyPhone));
+
+        // different phone number
+        assertFalse(firstPhone.isSamePhone(secondPhone));
+        assertFalse(firstPhone.isSamePhone(emptyPhone));
+
+        // similar phone number
+        assertTrue(firstPhone.isSamePhone(firstPhone));
+        assertTrue(firstPhone.isSamePhone(sameFirstPhone));
+    }
 }

@@ -3,6 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINKEDIN_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -75,6 +79,55 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void hasPerson_personWithNoSameIdentityFieldsInAddressBook_returnsFalse() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_AMY)
+                .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY).withEmail(VALID_EMAIL_AMY).build();
+        assertFalse(addressBook.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void hasPersonExcludingIndex_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPersonExcludingIndex(null, 0));
+    }
+
+    @Test
+    public void hasPersonExcludingIndex_personInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        assertTrue(addressBook.hasPersonExcludingIndex(ALICE, 1));
+    }
+
+    @Test
+    public void hasPersonExcludingIndex_personInAddressBook_returnsFalse() {
+        addressBook.addPerson(ALICE);
+        assertFalse(addressBook.hasPersonExcludingIndex(ALICE, 0));
+    }
+
+    @Test
+    public void hasPersonExcludingIndex_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertTrue(addressBook.hasPersonExcludingIndex(editedAlice, 1));
+    }
+
+    @Test
+    public void hasPersonExcludingIndex_personWithSameIdentityFieldsInAddressBook_returnsFalse() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertFalse(addressBook.hasPersonExcludingIndex(editedAlice, 0));
+    }
+
+    @Test
+    public void hasPersonExcludingIndex_personWithNoSameIdentityFieldsInAddressBook_returnsFalse() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_AMY)
+                .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY).withEmail(VALID_EMAIL_AMY).build();
+        assertFalse(addressBook.hasPersonExcludingIndex(editedAlice, 1));
     }
 
     @Test
