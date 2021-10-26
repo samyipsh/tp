@@ -34,6 +34,7 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagAllCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ModelManager;
 import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TagsPresentPredicate;
@@ -44,7 +45,7 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final AddressBookParser parser = new AddressBookParser(new ModelManager());
 
     @Test
     public void parseCommand_add() throws Exception {
