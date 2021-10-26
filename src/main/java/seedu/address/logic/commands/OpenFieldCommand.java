@@ -5,6 +5,7 @@ import static seedu.address.commons.core.UserBrowser.openUrl;
 
 import java.util.List;
 
+import seedu.address.commons.core.UserBrowser;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -63,10 +64,9 @@ public class OpenFieldCommand extends Command {
         int listSize = lastShownList.size();
 
         requireNonEmptyList(listSize);
+        requireIndexesWithinListBounds(targetIndexes, listSize);
 
         for (Index index: targetIndexes) {
-            requireIndexWithinListBounds(index, listSize);
-
             Person person = lastShownList.get(index.getZeroBased());
             openField(person);
         }
@@ -74,12 +74,16 @@ public class OpenFieldCommand extends Command {
 
     /**
      * Opens the specified field of a Person.
-     * Only accepts valid fields of OpenField class.
+     * Only accepts valid fields of OpenField class
      *
      * @param person Person object whose field is to be opened in the browser
      * @throws CommandException
      */
     private void openField(Person person) throws CommandException {
+        if (!UserBrowser.isDesktopAndBrowseCompatible()) {
+            return;
+        }
+
         switch (field) {
 
         case "github":
@@ -106,6 +110,12 @@ public class OpenFieldCommand extends Command {
         default:
             throw new CommandException(String.format(MESSAGE_UNSUPPORTED_FIELD, field));
 
+        }
+    }
+
+    private void requireIndexesWithinListBounds(List<Index> indexes, int listSize) throws CommandException {
+        for (Index i : indexes) {
+            requireIndexWithinListBounds(i, listSize);
         }
     }
 

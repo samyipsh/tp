@@ -11,17 +11,43 @@ public class UserBrowser {
 
     /**
      * Open URL inside User's Desktop Browser.
-     * No validity checks
+     * Assume running platform supports desktop. Use {@link #isDesktopAndBrowseCompatible()} to check.
+     * No validity checks of valid url.
+     *
      * @param url
      */
     public static void openUrl(String url) {
+        if (!isDesktopAndBrowseCompatible()) {
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
         logger.info("Opening URL in user browser: " + url + "...");
+
         try {
-            Desktop desktop = Desktop.getDesktop();
             desktop.browse(new URI(url));
         } catch (URISyntaxException | IOException e) {
             logger.severe("Unable to open URL in user browser" + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Checks if platform running code supports Desktop and Desktop.Action.BROWSE.
+     * Helper function used to verify platform compatibility before calls to {@link #openUrl(String)}
+     */
+    public static boolean isDesktopAndBrowseCompatible() {
+        if (!Desktop.isDesktopSupported()) {
+            logger.warning("Platform does not support desktop");
+            return false;
+        }
+
+        Desktop d = Desktop.getDesktop();
+        if (!d.isSupported(Desktop.Action.BROWSE)) {
+            logger.warning("Platform does not support browsing in desktop");
+            return false;
+        }
+
+        return true;
     }
 }
