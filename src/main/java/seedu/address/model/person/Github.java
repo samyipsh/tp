@@ -64,6 +64,35 @@ public class Github {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns if this Github is an empty Github.
+     */
+    public boolean isEmpty() {
+        return equals(EMPTY_GITHUB);
+    }
+
+    /**
+     * Returns false if either Github object is an empty Github.
+     * Returns true if both Github objects have the same username.
+     *
+     * @param otherGithub The Github to compare this one to.
+     * @return Whether the Github objects are the same.
+     */
+    public boolean isSameGithub(Github otherGithub) {
+        if (otherGithub == null) {
+            return false;
+        }
+
+        if (this.isEmpty() || otherGithub.isEmpty()) {
+            return false;
+        }
+
+        if (otherGithub == this) {
+            return true;
+        }
+
+        return githubUsername.equals(otherGithub.githubUsername);
+    }
 
     @Override
     public String toString() {

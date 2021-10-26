@@ -47,4 +47,36 @@ public class GithubTest {
         assertTrue(Github.isValidGithub("Alice-io")); // mixture of alphanumeric and hyphen
         assertTrue(Github.isValidGithub("samyipshsamyipshsamyipshsamyipshsamyips")); // long username of 39 char
     }
+
+    @Test
+    public void isEmptyTest() {
+        assertTrue(Github.getEmptyGithub().isEmpty());
+        assertFalse(new Github("alicio").isEmpty());
+    }
+
+    @Test
+    public void isSameGithubTest() {
+        Github emptyGithub = Github.getEmptyGithub();
+        Github otherEmptyGithub = Github.getEmptyGithub();
+        Github firstGithub = new Github("alicio");
+        Github similarFirstGithub = new Github("alicio");
+        Github secondGithub = new Github("samyipshsamyipshsamyipshsamyipshsamyips");
+
+        // null github username
+        assertFalse(firstGithub.isSameGithub(null));
+
+        // empty github username - not the same as any github username
+        assertFalse(emptyGithub.isSameGithub(firstGithub));
+        assertFalse(emptyGithub.isSameGithub(otherEmptyGithub));
+        assertFalse(emptyGithub.isSameGithub(emptyGithub));
+        assertFalse(otherEmptyGithub.isSameGithub(emptyGithub));
+
+        // different github username
+        assertFalse(firstGithub.isSameGithub(secondGithub));
+        assertFalse(firstGithub.isSameGithub(emptyGithub));
+
+        // similar github username
+        assertTrue(firstGithub.isSameGithub(firstGithub));
+        assertTrue(firstGithub.isSameGithub(similarFirstGithub));
+    }
 }

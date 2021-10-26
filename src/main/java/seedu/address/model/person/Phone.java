@@ -45,6 +45,36 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns if this Phone is an empty Phone.
+     */
+    public boolean isEmpty() {
+        return equals(EMPTY_PHONE);
+    }
+
+    /**
+     * Returns false if either Phone object is an empty Phone.
+     * Returns true if both Phone objects have the same number.
+     *
+     * @param otherPhone The Phone to compare this one to.
+     * @return Whether the Phone objects are the same.
+     */
+    public boolean isSamePhone(Phone otherPhone) {
+        if (otherPhone == null) {
+            return false;
+        }
+
+        if (this.isEmpty() || otherPhone.isEmpty()) {
+            return false;
+        }
+
+        if (otherPhone == this) {
+            return true;
+        }
+
+        return value.equals(otherPhone.value);
+    }
+
     @Override
     public String toString() {
         return value;

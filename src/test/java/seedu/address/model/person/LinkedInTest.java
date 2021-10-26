@@ -37,4 +37,35 @@ public class LinkedInTest {
         assertTrue(LinkedIn.isValidLinkedIn("https://linkedin.com/in/winston-cahya/"));
     }
 
+    @Test
+    public void isEmptyTest() {
+        assertTrue(LinkedIn.getEmptyLinkedin().isEmpty());
+        assertFalse(new LinkedIn("https://ca.linkedin.com/in/winston-cahya/").isEmpty());
+    }
+
+    @Test
+    public void isSameLinkedInTest() {
+        LinkedIn emptyLinkedIn = LinkedIn.getEmptyLinkedin();
+        LinkedIn otherEmptyLinkedIn = LinkedIn.getEmptyLinkedin();
+        LinkedIn firstLinkedIn = new LinkedIn("https://ca.linkedin.com/in/winston-cahya/");
+        LinkedIn similarFirstLinkedIn = new LinkedIn("https://ca.linkedin.com/in/winston-cahya/");
+        LinkedIn secondLinkedIn = new LinkedIn("https://www.linkedin.com/in/winston");
+
+        // null LinkedIn
+        assertFalse(firstLinkedIn.isSameLinkedIn(null));
+
+        // empty LinkedIn - not the same as any LinkedIn
+        assertFalse(emptyLinkedIn.isSameLinkedIn(firstLinkedIn));
+        assertFalse(emptyLinkedIn.isSameLinkedIn(otherEmptyLinkedIn));
+        assertFalse(emptyLinkedIn.isSameLinkedIn(emptyLinkedIn));
+        assertFalse(otherEmptyLinkedIn.isSameLinkedIn(emptyLinkedIn));
+
+        // different LinkedIn
+        assertFalse(firstLinkedIn.isSameLinkedIn(secondLinkedIn));
+        assertFalse(firstLinkedIn.isSameLinkedIn(emptyLinkedIn));
+
+        // similar LinkedIn
+        assertTrue(firstLinkedIn.isSameLinkedIn(firstLinkedIn));
+        assertTrue(firstLinkedIn.isSameLinkedIn(similarFirstLinkedIn));
+    }
 }
