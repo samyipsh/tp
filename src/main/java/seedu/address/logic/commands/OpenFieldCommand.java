@@ -16,11 +16,12 @@ import seedu.address.model.person.Person;
 public class OpenFieldCommand extends Command {
 
     public static final String COMMAND_WORD = "open";
+    public static final String COMMAND_EXAMPLE = "Example: " + COMMAND_WORD + " 2 linkedin";
     public static final String MESSAGE_PARAMS = "Parameters: INDEXES (must be non-zero unsigned integers) "
             + "FIELD\n"
-            + "Example: " + COMMAND_WORD + " 1 2 programmer";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens contacts's field information.\n"
-            + "Example: " + COMMAND_WORD + " 2 linkedin";
+            + COMMAND_EXAMPLE;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens contacts' field information.\n"
+            + COMMAND_EXAMPLE;
     public static final String MESSAGE_NO_DISPLAYED_PERSONS = "No persons displayed to open fields from.";
     public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "%1$d is an out-of-bounds index.\n"
             + "Indexes up to %2$d are valid.";
@@ -89,22 +90,18 @@ public class OpenFieldCommand extends Command {
         case "github":
             Github github = person.getGithub();
 
-            if (github.isEmptyGithub()) {
-                return;
+            if (!github.isEmptyGithub()) {
+                openUrl(github.getUrl());
             }
-
-            openUrl(github.getUrl());
-            return;
+            break;
 
         case "linkedin":
             LinkedIn linkedIn = person.getLinkedin();
 
-            if (linkedIn.isEmptyLinkedIn()) {
-                return;
+            if (!linkedIn.isEmptyLinkedIn()) {
+                openUrl(linkedIn.getUrl());
             }
-
-            openUrl(linkedIn.getUrl());
-            return;
+            break;
 
         //throw exception if supported fields are not present
         default:

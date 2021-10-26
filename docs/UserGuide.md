@@ -136,7 +136,6 @@ Opens the LinkedIn/Github page from details of field specified of a particular p
 
 Format: `open INDEXES FIELD`
 
-* Deletes the person at the specified `INDEX`.
 * The index contained in indexes refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The Field must be "github" or "linkedin"

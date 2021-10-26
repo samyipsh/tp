@@ -27,7 +27,7 @@ public class OpenFieldCommandParser implements Parser<OpenFieldCommand> {
 
         String trimmedArgs = args.trim();
 
-        String[] arguments = trimmedArgs.split("\\s");
+        String[] arguments = trimmedArgs.split("\\s+");
         requireAtLeastTwoArgs(arguments);
 
         String field = arguments[arguments.length - 1].toLowerCase();
