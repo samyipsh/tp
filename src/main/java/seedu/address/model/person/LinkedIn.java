@@ -41,10 +41,21 @@ public class LinkedIn {
     }
 
     /**
+     * Checks if LinkedIn field is empty
+     */
+    public boolean isEmptyLinkedIn() {
+        return value.equals("-");
+    }
+
+    /**
      * Returns if a given string is a valid linkedin
      */
     public static boolean isValidLinkedIn(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getUrl() {
+        return value;
     }
 
     /**
@@ -93,5 +104,4 @@ public class LinkedIn {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
