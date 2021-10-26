@@ -187,9 +187,9 @@ From the filtered list of `person`, each `person` is replaced with a new `person
 
 How the specified tag is filtered:
 * Alternative 1 (Current choice): Using `TagPresentPredicate` to filter the list of `person`
-    * Pros: Easy to implement 
+    * Pros: Easy to implement
     * Cons: Inefficient (need to search through the list of `person`)
-    
+
 * Alternative 2 : Unique Tag list
     * Pros: Easier to search for the specified tag
     * Cons: Required change of implementation of `Tag` which could affect the rest of the command
@@ -215,7 +215,6 @@ How the URL is opened:
     * Pros: Allows for same interface of desktop application and similar stylings
     * Cons: Required `javafx-web` which increases Jar space by nearly 7 folds
     * Cons: Slower loading time
-    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -289,10 +288,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 * 1a. The given name and details are duplicated.
-    * 1a1. NetworkUS shows an error message. 
-      
-      Use case resumes at step 1.
+    * 1a1. NetworkUS shows an error message.
 
+      Use case resumes at step 1.
 
 **Use case: UC02 Delete a person**
 
@@ -347,7 +345,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. NetworkUS shows an error message.
 
       Use case resumes at step 2.
-    
 
 **Use case: UC05 View list of contact**
 
@@ -370,15 +367,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to show help
 2.  NetworkUs directs user to user guide
-3.  User follows directions and views user guide
-   
+3.  User follows directions and views user guide 
+
     Use case ends.
 
 **Extensions**
 
-* 2a. User decides not to view user guide
-  
-  Use case ends.
+* 2a. User decides not to view user guide  
+
+    Use case ends.
   
 **Use case: UC07 clear**
 
@@ -395,8 +392,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
   
 * 3a. The user says no during the confirmation
-   
-  NetworkUs aborts deletion
+
+    NetworkUs aborts deletion
                             
 **Use case: UC08 exit**
                             
@@ -404,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User is finished with tasks and requests to exit application
 2. NetworkUs close after several seconds
    
-   Use case ends.
+    Use case ends.
 
 **Use Case: UC09 showtags**
 
@@ -412,7 +409,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User request to show all tags in the address book
 2. NetworkUS returns unique tags to the user
 
-   Use case ends.
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -470,7 +467,3 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-   
-
-
