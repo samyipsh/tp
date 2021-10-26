@@ -17,13 +17,16 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final Integer indexToShow;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Integer indexToShow) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.indexToShow = indexToShow;
     }
 
     /**
@@ -31,11 +34,15 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, null);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public Integer getIndexToShow() {
+        return indexToShow;
     }
 
     public boolean isShowHelp() {
@@ -44,6 +51,9 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+    public boolean isShowPerson() {
+        return indexToShow != null;
     }
 
     @Override

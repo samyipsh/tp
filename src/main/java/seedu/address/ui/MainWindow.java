@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -61,6 +62,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -176,6 +178,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -185,12 +188,21 @@ public class MainWindow extends UiPart<Stage> {
                     logic.getAddressBook());
             statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowPerson()) {
+                Integer indexToShow = commandResult.getIndexToShow();
+                Stage stage = new Stage();
+                DetailedPersonWindow showPerson = new DetailedPersonWindow(
+                        logic.getAddressBook().getPersonList().get(indexToShow), 1, stage);
+                showPerson.show();
             }
 
             return commandResult;
