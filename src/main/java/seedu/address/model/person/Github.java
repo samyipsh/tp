@@ -28,6 +28,7 @@ public class Github {
             "(?i)^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
 
     private static final Github EMPTY_GITHUB = new Github();
+    private static final String GITHUB_URL = "https://github.com/";
     public final String githubUsername;
 
     /**
@@ -58,12 +59,53 @@ public class Github {
     }
 
     /**
+     * Checks if Github field is empty
+     */
+    public boolean isEmptyGithub() {
+        return githubUsername.equals("-");
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidGithub(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+
+    public String getUrl() {
+        return GITHUB_URL + githubUsername;
+    }
+
+    /**
+     * Returns if this Github is an empty Github.
+     */
+    public boolean isEmpty() {
+        return equals(EMPTY_GITHUB);
+    }
+
+    /**
+     * Returns false if either Github object is an empty Github.
+     * Returns true if both Github objects have the same username.
+     *
+     * @param otherGithub The Github to compare this one to.
+     * @return Whether the Github objects are the same.
+     */
+    public boolean isSameGithub(Github otherGithub) {
+        if (otherGithub == null) {
+            return false;
+        }
+
+        if (this.isEmpty() || otherGithub.isEmpty()) {
+            return false;
+        }
+
+        if (otherGithub == this) {
+            return true;
+        }
+
+        return githubUsername.equals(otherGithub.githubUsername);
+    }
 
     @Override
     public String toString() {

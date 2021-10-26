@@ -91,6 +91,7 @@ public class TagCommand extends Command {
     private void tagPersons(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        Set<Person> personsToTag = new HashSet<>();
 
         if (lastShownList.size() == 0) {
             throw new CommandException(MESSAGE_NO_DISPLAYED_PERSONS);
@@ -99,12 +100,14 @@ public class TagCommand extends Command {
         for (Index index: targetIndexes) {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(String.format(MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED,
-                        index.getOneBased(), lastShownList.size()));
+                        index.getOneBased() , lastShownList.size()));
             }
 
-            Person personToTag = lastShownList.get(index.getZeroBased());
-            Person taggedPerson = addTag(personToTag);
+            personsToTag.add(lastShownList.get(index.getZeroBased()));
+        }
 
+        for (Person personToTag : personsToTag) {
+            Person taggedPerson = addTag(personToTag);
             model.setPerson(personToTag, taggedPerson);
         }
     }

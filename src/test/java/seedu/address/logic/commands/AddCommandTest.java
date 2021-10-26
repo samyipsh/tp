@@ -158,6 +158,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPersonExcludingIndex(Person person, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }

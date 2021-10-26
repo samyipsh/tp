@@ -41,10 +41,51 @@ public class LinkedIn {
     }
 
     /**
+     * Checks if LinkedIn field is empty
+     */
+    public boolean isEmptyLinkedIn() {
+        return value.equals("-");
+    }
+
+    /**
      * Returns if a given string is a valid linkedin
      */
     public static boolean isValidLinkedIn(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getUrl() {
+        return value;
+    }
+
+    /**
+     * Returns if this linkedin is an empty linkedin.
+     */
+    public boolean isEmpty() {
+        return equals(EMPTY_LINKEDIN);
+    }
+
+    /**
+     * Returns false if either LinkedIn object is an empty LinkedIn.
+     * Returns true if both LinkedIn objects have the same LinkedIn URL.
+     *
+     * @param otherLinkedIn The LinkedIn to compare this one to.
+     * @return Whether the LinkedIn objects are the same.
+     */
+    public boolean isSameLinkedIn(LinkedIn otherLinkedIn) {
+        if (otherLinkedIn == null) {
+            return false;
+        }
+
+        if (this.isEmpty() || otherLinkedIn.isEmpty()) {
+            return false;
+        }
+
+        if (otherLinkedIn == this) {
+            return true;
+        }
+
+        return value.equals(otherLinkedIn.value);
     }
 
     @Override
@@ -63,5 +104,4 @@ public class LinkedIn {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

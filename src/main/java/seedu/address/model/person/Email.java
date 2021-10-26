@@ -69,6 +69,36 @@ public class Email {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns if this Email is an empty Email.
+     */
+    public boolean isEmpty() {
+        return equals(EMPTY_EMAIL);
+    }
+
+    /**
+     * Returns false if either Email object is an empty Email.
+     * Returns true if both Email objects have the same value.
+     *
+     * @param otherEmail The Email to compare this one to.
+     * @return Whether the Email objects are the same.
+     */
+    public boolean isSameEmail(Email otherEmail) {
+        if (otherEmail == null) {
+            return false;
+        }
+
+        if (this.isEmpty() || otherEmail.isEmpty()) {
+            return false;
+        }
+
+        if (otherEmail == this) {
+            return true;
+        }
+
+        return value.equals(otherEmail.value);
+    }
+
     @Override
     public String toString() {
         return value;
