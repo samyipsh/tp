@@ -30,12 +30,15 @@ public class AliasCommand extends Command {
         requireNonNull(alias);
         requireNonNull(command);
 
+        assert Command.isExistingCommand(command);
+
         this.alias = alias;
         this.command = command;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        model.addAlias(alias, command);
         return new CommandResult(String.format(MESSAGE_SUCCESS, alias, command));
     }
 
