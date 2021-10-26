@@ -1,6 +1,7 @@
 package seedu.address.commons.core;
 
 import java.awt.Desktop;
+import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,13 +12,13 @@ public class UserBrowser {
 
     /**
      * Open URL inside User's Desktop Browser.
-     * Assume running platform supports desktop. Use {@link #isDesktopAndBrowseCompatible()} to check.
+     * Assume running platform supports desktop. Use {@link #isDisplayAndBrowseCompatible()} to check.
      * No validity checks of valid url.
      *
      * @param url
      */
     public static void openUrl(String url) {
-        if (!isDesktopAndBrowseCompatible()) {
+        if (!isDisplayAndBrowseCompatible()) {
             return;
         }
 
@@ -36,9 +37,9 @@ public class UserBrowser {
      * Checks if platform running code supports Desktop and Desktop.Action.BROWSE.
      * Helper function used to verify platform compatibility before calls to {@link #openUrl(String)}
      */
-    public static boolean isDesktopAndBrowseCompatible() {
-        if (!Desktop.isDesktopSupported()) {
-            logger.warning("Platform does not support desktop");
+    public static boolean isDisplayAndBrowseCompatible() {
+        if (GraphicsEnvironment.isHeadless()) {
+            logger.warning("Platform does not support display.\n GraphicsEnviornment.isHeadless()");
             return false;
         }
 

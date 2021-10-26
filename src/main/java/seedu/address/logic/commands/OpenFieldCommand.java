@@ -81,7 +81,7 @@ public class OpenFieldCommand extends Command {
      * @throws CommandException
      */
     private void openField(Person person) throws CommandException {
-        if (!UserBrowser.isDesktopAndBrowseCompatible()) {
+        if (!UserBrowser.isDisplayAndBrowseCompatible()) {
             return;
         }
 
