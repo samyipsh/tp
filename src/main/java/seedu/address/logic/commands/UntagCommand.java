@@ -35,8 +35,8 @@ public class UntagCommand extends Command {
 
     public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Deleted %s Tag";
     public static final String MESSAGE_NO_DISPLAYED_PERSONS = "No persons displayed to tag.";
-    public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "%1$d is an out-of-bounds index.\n"
-            + "Indexes up to %2$d are valid.";
+    public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "All indexes are out-of-bounds.\n"
+            + "Indexes up to %1$d are valid.";
 
     private final List<Index> targetIndexes;
     private final Tag tagToDelete;
@@ -81,6 +81,7 @@ public class UntagCommand extends Command {
     private void untagPerson(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        Set<Person> personsToUntag = new HashSet<>();
 
         if (lastShownList.size() == 0) {
             throw new CommandException(MESSAGE_NO_DISPLAYED_PERSONS);
@@ -88,14 +89,21 @@ public class UntagCommand extends Command {
 
         for (Index index: targetIndexes) {
             if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(String.format(MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED,
-                        index.getOneBased(), lastShownList.size()));
+                continue;
             }
 
-            Person personToTag = lastShownList.get(index.getZeroBased());
-            Person taggedPerson = untag(personToTag);
+            Person person = lastShownList.get(index.getZeroBased());
+            personsToUntag.add(person);
 
-            model.setPerson(personToTag, taggedPerson);
+        }
+
+        if (personsToUntag.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, lastShownList.size()));
+        }
+
+        for (Person personToUntag: personsToUntag) {
+            Person untaggedPerson = untag(personToUntag);
+            model.setPerson(personToUntag, untaggedPerson);
         }
 
     }

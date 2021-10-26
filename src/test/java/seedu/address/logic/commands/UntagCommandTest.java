@@ -93,7 +93,7 @@ class UntagCommandTest {
         UntagCommand untagCommand = new UntagCommand(invalidIndex, tag);
 
         assertCommandFailure(untagCommand, model,
-                String.format(UntagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize + 1, modelSize));
+                String.format(UntagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize));
     }
 
     @Test
@@ -109,7 +109,7 @@ class UntagCommandTest {
         UntagCommand untagCommand = new UntagCommand(invalidIndex, tag);
 
         assertCommandFailure(untagCommand, model,
-                String.format(UntagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 2, 1));
+                String.format(UntagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 1));
     }
 
     @Test
