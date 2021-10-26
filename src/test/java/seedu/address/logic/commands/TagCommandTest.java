@@ -89,7 +89,7 @@ public class TagCommandTest {
         TagCommand tagCommand = new TagCommand(invalidIndex, tag);
 
         assertCommandFailure(tagCommand, model,
-                String.format(TagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize));
+                String.format(TagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, modelSize + 1, modelSize));
     }
 
     @Test
@@ -105,7 +105,7 @@ public class TagCommandTest {
         TagCommand tagCommand = new TagCommand(invalidIndex, tag);
 
         assertCommandFailure(tagCommand, model,
-                String.format(TagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 1));
+                String.format(TagCommand.MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, 2, 1));
     }
 
     @Test

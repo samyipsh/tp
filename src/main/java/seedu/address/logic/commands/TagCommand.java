@@ -31,8 +31,8 @@ public class TagCommand extends Command {
             + "by the index numbers used in the displayed person list. "
             + "Will not add a duplicate existing tag.\n" + MESSAGE_PARAMS;
     public static final String MESSAGE_NO_DISPLAYED_PERSONS = "No persons displayed to tag.";
-    public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "All indexes are out-of-bounds indexes.\n"
-            + "Indexes up to %1$d are valid.";
+    public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "%1$d is an out-of-bounds index.\n"
+            + "Indexes up to %2$d are valid.";
     public static final String MESSAGE_TAG_PERSON_SUCCESS = "Persons tagged.";
     private final List<Index> targetIndexes;
     private final Tag tagToAdd;
@@ -99,14 +99,11 @@ public class TagCommand extends Command {
 
         for (Index index: targetIndexes) {
             if (index.getZeroBased() >= lastShownList.size()) {
-                continue;
+                throw new CommandException(String.format(MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED,
+                        index.getOneBased() , lastShownList.size()));
             }
 
             personsToTag.add(lastShownList.get(index.getZeroBased()));
-        }
-
-        if (personsToTag.size() == 0) {
-            throw new CommandException(String.format(MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED, lastShownList.size()));
         }
 
         for (Person personToTag : personsToTag) {
