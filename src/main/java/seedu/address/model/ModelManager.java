@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.ObservableSet;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.alias.AliasTable;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -65,6 +67,35 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public AliasTable getAliasTable() {
+        return userPrefs.getAliasTable();
+    }
+
+    @Override
+    public void setAliasTable(AliasTable aliasTable) {
+        requireNonNull(aliasTable);
+        userPrefs.setAliasTable(aliasTable);
+    }
+
+    @Override
+    public void addAlias(String alias, String command) {
+        requireNonNull(alias);
+        requireNonNull(command);
+        userPrefs.addAlias(alias, command);
+    }
+
+    @Override
+    public Set<String> getExistingAlias() {
+        return userPrefs.getExistingAliases();
+    }
+
+    @Override
+    public String getCorrespondingCommand(String alias) {
+        requireNonNull(alias);
+        return userPrefs.getCorrespondingCommand(alias);
     }
 
     @Override

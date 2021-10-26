@@ -5,8 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.AliasTable;
 
 /**
  * Represents User's preferences.
@@ -14,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
+    private AliasTable aliasTable = new AliasTable();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
 
     /**
@@ -35,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
+        setAliasTable(newUserPrefs.getAliasTable());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
     }
 
@@ -45,6 +49,39 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
+    }
+
+    public AliasTable getAliasTable() {
+        return aliasTable;
+    }
+
+    public void setAliasTable(AliasTable aliasTable) {
+        requireNonNull(aliasTable);
+        this.aliasTable = aliasTable;
+    }
+
+    /**
+     * Adds alias-command pair to the alias table.
+     */
+    public void addAlias(String alias, String command) {
+        requireNonNull(alias);
+        requireNonNull(command);
+        aliasTable.addAlias(alias, command);
+    }
+
+    /**
+     * Gets the existing aliases.
+     */
+    public Set<String> getExistingAliases() {
+        return aliasTable.getExistingAliases();
+    }
+
+    /**
+     * Gets the corresponding command for certain alias.
+     */
+    public String getCorrespondingCommand(String alias) {
+        requireNonNull(alias);
+        return aliasTable.getCorrespondingCommand(alias);
     }
 
     public Path getAddressBookFilePath() {
@@ -68,18 +105,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
+                && aliasTable.equals(o.aliasTable)
                 && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, aliasTable, addressBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
+        sb.append("\nAlias table : " + aliasTable);
         sb.append("\nLocal data file location : " + addressBookFilePath);
         return sb.toString();
     }

@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.alias.AliasTable;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -35,6 +37,32 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' alias table.
+     */
+    AliasTable getAliasTable();
+
+    /**
+     * Sets the user prefs' alias table.
+     */
+    void setAliasTable(AliasTable aliasTable);
+
+    /**
+     * Adds the given alias for a command.
+     * {@code command} must be an existing command.
+     */
+    void addAlias(String alias, String command);
+
+    /**
+     * Returns a set of existing aliases.
+     */
+    Set<String> getExistingAlias();
+
+    /**
+     * Returns what command does {@code alias} represent.
+     */
+    String getCorrespondingCommand(String alias);
 
     /**
      * Returns the user prefs' address book file path.
