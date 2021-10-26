@@ -4,8 +4,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -58,6 +60,12 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same identity as {@code person}
+     * exists in the address book excluding the one at {@code index}.
+     */
+    boolean hasPersonExcludingIndex(Person person, int index);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -84,4 +92,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Gets the unmodifiable unique tag list of all persons in the address book */
+    ObservableSet<Tag> getUniqueTagList();
 }

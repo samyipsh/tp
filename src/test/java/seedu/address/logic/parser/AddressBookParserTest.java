@@ -4,15 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -23,9 +27,17 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.ReplaceTagCommand;
+import seedu.address.logic.commands.ShowTagsCommand;
+import seedu.address.logic.commands.TagAllCommand;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UntagAllCommand;
+import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TagsPresentPredicate;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -78,6 +90,50 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addTag() throws Exception {
+        List<Index> firstIndex = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        String validTagName = "programmer";
+        Tag tag = ParserUtil.parseTag(validTagName);
+        TagCommand command = (TagCommand) parser.parseCommand(
+                TagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_SECOND_PERSON.getOneBased() + " " + validTagName);
+        assertEquals(new TagCommand(firstIndex, tag), command);
+    }
+
+    @Test
+    public void parseCommand_untag() throws Exception {
+        List<Index> firstIndex = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        String validTagName = "programmer";
+        Tag tag = ParserUtil.parseTag(validTagName);
+        UntagCommand command = (UntagCommand) parser.parseCommand(
+                UntagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_SECOND_PERSON.getOneBased() + " " + validTagName);
+        assertEquals(new UntagCommand(firstIndex, tag), command);
+    }
+
+    @Test
+    public void parseCommand_untagAll() throws Exception {
+        String validTagName = "programmer";
+        Tag tag = ParserUtil.parseTag(validTagName);
+        TagsPresentPredicate predicate = new TagsPresentPredicate(Collections.singletonList(validTagName));
+        UntagAllCommand command = (UntagAllCommand) parser.parseCommand(
+                UntagAllCommand.COMMAND_WORD + " " + validTagName);
+        assertEquals(new UntagAllCommand(tag, predicate), command);
+    }
+
+    @Test
+    public void parseCommand_replaceTag() throws Exception {
+        String validDeleteTagName = "noob";
+        String validAddTagName = "programmer";
+        Tag deleteTag = ParserUtil.parseTag(validDeleteTagName);
+        Tag addTag = ParserUtil.parseTag(validAddTagName);
+        TagsPresentPredicate predicate = new TagsPresentPredicate(Collections.singletonList(validDeleteTagName));
+        ReplaceTagCommand command = (ReplaceTagCommand) parser.parseCommand(
+                ReplaceTagCommand.COMMAND_WORD + " " + validDeleteTagName + " " + validAddTagName);
+        assertEquals(new ReplaceTagCommand(deleteTag, addTag, predicate), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -93,6 +149,19 @@ public class AddressBookParserTest {
         ShowCommand command = (ShowCommand) parser.parseCommand(
                 ShowCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new ShowCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_addAllTag() throws Exception {
+        TagAllCommand command = (TagAllCommand) parser.parseCommand(
+                TagAllCommand.COMMAND_WORD + " " + VALID_TAG_HUSBAND);
+        assertEquals(new TagAllCommand(ParserUtil.parseTag(VALID_TAG_HUSBAND)), command);
+    }
+
+    @Test
+    public void parseCommand_showtags() throws Exception {
+        assertTrue(parser.parseCommand(ShowTagsCommand.COMMAND_WORD) instanceof ShowTagsCommand);
+        assertTrue(parser.parseCommand(ShowTagsCommand.COMMAND_WORD + " 3") instanceof ShowTagsCommand);
     }
 
     @Test

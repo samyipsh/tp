@@ -3,10 +3,15 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Wraps all data at the address-book level
@@ -67,6 +72,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists
+     * in the address book excluding the one found at {@code index}.
+     */
+    public boolean hasPersonExcludingIndex(Person person, int index) {
+        requireNonNull(person);
+        requireNonNull(index);
+
+        return persons.containsExcludingIndex(person, index);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -91,6 +107,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Returns the unmodifiable unique tags that exist in the address book.
+     */
+    public ObservableSet<Tag> getUniqueTagList() {
+        Set<Tag> tags = persons.asUnmodifiableObservableList()
+                .stream()
+                .flatMap(p -> p.getTags().stream())
+                .collect(Collectors.toSet());
+
+        ObservableSet<Tag> observableTags = FXCollections.observableSet(tags);
+        return FXCollections.unmodifiableObservableSet(observableTags);
     }
 
     //// util methods

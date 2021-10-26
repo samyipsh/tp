@@ -37,4 +37,30 @@ public class NameTest {
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
+
+    @Test
+    public void isSameNameTest() {
+        Name firstName = new Name("peter jack");
+        Name similarFirstName = new Name("peter jack");
+        Name spacedFirstName = new Name("peter   jack   ");
+        Name cappedFirstName = new Name ("Peter Jack");
+        Name spacedCappedFirstName = new Name("Peter    Jack  ");
+        Name secondName = new Name("peter the 2nd");
+
+        // null name
+        assertFalse(firstName.isSameName(null));
+
+        // different name
+        assertFalse(firstName.isSameName(secondName));
+
+        // similar name
+        assertTrue(firstName.isSameName(firstName));
+        assertTrue(firstName.isSameName(similarFirstName));
+        assertTrue(firstName.isSameName(spacedFirstName));
+        assertTrue(spacedFirstName.isSameName(firstName));
+        assertTrue(firstName.isSameName(cappedFirstName));
+        assertTrue(cappedFirstName.isSameName(firstName));
+        assertTrue(firstName.isSameName(spacedCappedFirstName));
+        assertTrue(spacedCappedFirstName.isSameName(firstName));
+    }
 }

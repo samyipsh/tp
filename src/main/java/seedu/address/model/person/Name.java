@@ -38,6 +38,28 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if both Name objects have the same name
+     * without whitespace.
+     *
+     * @param otherName The Name to compare this one to.
+     * @return Whether the Name objects are the same.
+     */
+    public boolean isSameName(Name otherName) {
+        if (otherName == this) {
+            return true;
+        }
+
+        if (otherName == null) {
+            return false;
+        }
+
+        String thisStrippedName = this.fullName.replaceAll("\\s", "");
+        String otherStrippedName = otherName.fullName.replaceAll("\\s", "");
+
+        return thisStrippedName.equalsIgnoreCase(otherStrippedName);
+    }
+
 
     @Override
     public String toString() {
