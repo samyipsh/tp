@@ -251,6 +251,12 @@ Shows all tags that are used in NetworkUS contacts.
 
 Format: `showtags`
 
+### Aliasing commands : `alias`
+
+Creates an alias for existing NetworkUS command.
+
+Format: `alias EXISTING_COMMAND`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
