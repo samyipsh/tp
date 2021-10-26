@@ -56,10 +56,16 @@ public class OpenFieldCommand extends Command {
 
     /**
      * Open fields of specified persons as determined by OpenFieldCommand object
+     * Runs if {@link UserBrowser#isDisplayAndBrowseCompatible()}
+     *
      * @param model
      * @throws CommandException
      */
     public void openFields(Model model) throws CommandException {
+        if (!UserBrowser.isDisplayAndBrowseCompatible()) {
+            return;
+        }
+
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
         int listSize = lastShownList.size();
@@ -76,14 +82,12 @@ public class OpenFieldCommand extends Command {
     /**
      * Opens the specified field of a Person.
      * Only accepts valid fields of OpenField class
+     * Assumes {@link UserBrowser#isDisplayAndBrowseCompatible()}
      *
      * @param person Person object whose field is to be opened in the browser
      * @throws CommandException
      */
     private void openField(Person person) throws CommandException {
-        if (!UserBrowser.isDisplayAndBrowseCompatible()) {
-            return;
-        }
 
         switch (field) {
 
