@@ -75,7 +75,8 @@ public class Github {
 
     public String getUrl() {
         return GITHUB_URL + githubUsername;
-      
+    }
+
     /**
      * Returns if this Github is an empty Github.
      */

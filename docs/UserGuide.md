@@ -216,7 +216,6 @@ Format: `untagall TAG`
 
 Example:
 * `list` followed by `untagall CS2040` deletes CS2040 tag from all contact list.
-    
 
 ### Replace tag from all entries: `replacetag`
 

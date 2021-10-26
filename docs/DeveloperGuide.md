@@ -358,8 +358,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User has no stored contacts
-  
-  Use case ends.
+
+    Use case ends.
 
 **Use case: UC06 help**
 
@@ -367,16 +367,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to show help
 2.  NetworkUs directs user to user guide
-3.  User follows directions and views user guide 
+3.  User follows directions and views user guide
 
     Use case ends.
 
 **Extensions**
 
-* 2a. User decides not to view user guide  
+* 2a. User decides not to view user guide
 
     Use case ends.
-  
+
 **Use case: UC07 clear**
 
 **MSS**
@@ -388,19 +388,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-
 **Extensions**
   
 * 3a. The user says no during the confirmation
 
     NetworkUs aborts deletion
-                            
+
 **Use case: UC08 exit**
-                            
+
 **MSS**
 1. User is finished with tasks and requests to exit application
-2. NetworkUs close after several seconds
-   
+2. NetworkUs close after several seconds 
+
     Use case ends.
 
 **Use Case: UC09 showtags**
