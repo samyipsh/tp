@@ -37,6 +37,11 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException;
 
+    public static List<String> getExistingCommandWords() {
+        // List.copyOf returns an unmodifiable list.
+        return List.copyOf(COMMAND_WORDS);
+    }
+
     public static boolean isExistingCommand(String commandWord) {
         return COMMAND_WORDS.stream().anyMatch(existingCommandWord -> existingCommandWord.equals(commandWord));
     }
