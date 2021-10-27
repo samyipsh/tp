@@ -8,9 +8,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AliasCommandParser implements Parser<AliasCommand> {
 
-    public static final String MESSAGE_INVALID_COMMAND_ALIAS = "%1$s is not our existing command word";
+    public static final String MESSAGE_INVALID_COMMAND_ALIAS = "%1$s is not an existing command word";
 
-    public static final String MESSAGE_INVALID_ALIAS = "%1$s is our existing command word. "
+    public static final String MESSAGE_INVALID_ALIAS = "%1$s is an existing command word. "
             + "It cannot be used as an alias";
 
     @Override
