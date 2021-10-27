@@ -131,6 +131,6 @@ public class AddressBookParser {
 
         return longestMatchingAlias == null
                 ? userInput
-                : userInput.replace(longestMatchingAlias, model.getCorrespondingCommand(longestMatchingAlias));
+                : userInput.replaceFirst(longestMatchingAlias, model.getCorrespondingCommand(longestMatchingAlias));
     }
 }
