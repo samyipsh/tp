@@ -16,7 +16,12 @@ This user guide is for users who want to use NetworkUS for their daily use or de
 
 ## How to use the guide
 
-TODO: 
+1. Most of the Commands in NetworkUs acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently displayed contacts list.<br>
+![Original](images/originalList.png)
+Here `delete 3` will delete "Charlotte Oliviero"<br>
+![filtered](images/findList.png)
+   Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
+   
 
 ## Quick start
 
@@ -166,7 +171,16 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+### Showing Person : `show`
 
+Shows the specified person's full contact information in a separate window
+
+Format: `show Index`
+
+*Index must be the index that is in the currently visible list.
+
+Examples:
+*`show 1` will show the full details of the person with the specified index.
 ## Tagging features
 
 TODO: Elaborate on use cases of tagging features. Add tips for each command.
@@ -265,12 +279,17 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 * NetworkUS only replace your input with corresponding commands if the alias matches the prefix of your input.
 * NetworkUS will check the **longest matching alias** in your input and change it with the corresponding command.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
-</div>
+### Dealiasing commands : `deleteAlias`
+
+Deletes an existing alias.
+
+Format: `deleteAlias YOUR_ALIAS`
+
+* Deletes the specified alias.
+* `YOUR_ALIAS` must be an existing alias in NetworkUS.
 
 Example:
-* `alias` followed by `tagall tag -A` will create alias `tag -A` for the command `tagall`.
+* `deleteAlias` followed by `tag -A` will remove the alias.
 
 ### Clearing all entries : `clear`
 
