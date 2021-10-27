@@ -3,10 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -23,6 +25,7 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagAllCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 
 /**
  * Parses user input.
@@ -34,6 +37,12 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    private Model model;
+
+    public AddressBookParser(Model model) {
+        this.model = model;
+    }
+
     /**
      * Parses user input into command for execution.
      *
@@ -42,7 +51,8 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        String unaliasedUserInput = replaceAlias(userInput);
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(unaliasedUserInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -96,9 +106,31 @@ public class AddressBookParser {
         case ShowTagsCommand.COMMAND_WORD:
             return new ShowTagsCommand();
 
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
+    private String replaceAlias(String userInput) {
+        Set<String> aliases = model.getExistingAlias();
+
+        String longestMatchingAlias = null;
+
+        for (String alias: aliases) {
+            if (userInput.indexOf(alias) != 0) {
+                continue;
+            }
+
+            if (longestMatchingAlias == null || longestMatchingAlias.length() < alias.length()) {
+                longestMatchingAlias = alias;
+            }
+        }
+
+        return longestMatchingAlias == null
+                ? userInput
+                : userInput.replace(longestMatchingAlias, model.getCorrespondingCommand(longestMatchingAlias));
+    }
 }

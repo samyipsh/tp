@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.alias.AliasTable;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -97,6 +99,31 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AliasTable getAliasTable() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAliasTable(AliasTable aliasTable) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(String alias, String command) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<String> getExistingAlias() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getCorrespondingCommand(String alias) {
             throw new AssertionError("This method should not be called.");
         }
 

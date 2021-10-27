@@ -215,6 +215,25 @@ How the URL is opened:
     * Pros: Allows for same interface of desktop application and similar stylings
     * Cons: Required `javafx-web` which increases Jar space by nearly 7 folds
     * Cons: Slower loading time
+
+### Alias feature
+
+#### Implementation
+
+The alias feature is facilitated by `AliasTable` which stores the key-value pairs of aliases and commands. It is stored in the `Model` package which manages the user preferences setting. All added aliases will be stored in json file and will be loaded every time NetworkUS boots up.<br>
+The alias command will take in the alias and the command to be aliased. The aliased command must be a valid command. The alias must not be the existing command.<br>
+When the `AliasCommand` executed, it simply adds a new entry to the `AliasTable` via `Model` interface. It displays the result of the command's execution.
+
+#### Design consideration
+
+How aliases should be managed:
+* Alternative 1 (Current choice): We put constraint on the alias to not take existing command
+    * Pros: It is safer for user to use alias
+    * Cons: Constraint is not rigorous enough to cover all other cases that can mess up with the app
+* Alternative 2: We don't put any constraint on the alias command
+    * Pros: Easier to implement
+    * Cons: More dangerous to use the alias command
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -257,8 +276,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add new contacts                                     |                                                                        |
 | `* * *`  | user                                       | delete my existing contacts                          | remove contacts that I no longer need                                  |
 | `* * *`  | user                                       | find a person by name                                | locate contacts without having to go through the entire list |
-| `* * *`  | user                                       | find people by a tag / group name                                | locate contacts by the category indicated by the tag without having to go through the entire list |
+| `* * *`  | user                                       | find people by a tag / group name                    | locate contacts by the category indicated by the tag without having to go through the entire list |
 | `* * *`  | user                                       | see all the contacts I have                          |                                                                        |
+| `* * *`  | experienced user                           | creates custom alias for specific commands           | work efficiently                                                       |
 | `* *`    | longstanding user                          | update details of previously added contacts          | keep them up-to-date                                                   |
 | `* *`    | user                                       | add their LinkedIn username                          | professionally network with them through their LinkedIn                                       |
 | `* *`    | user                                       | add their GitHub username                            | view their github projects and see which areas they are experienced in                                        |
@@ -405,10 +425,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use Case: UC09 showtags**
 
 **MSS**
-1. User request to show all tags in the address book
+1. User request to show all tags in NetworkUS
 2. NetworkUS returns unique tags to the user
 
     Use case ends.
+
+
+**Use Case: UC10 alias**
+
+**MSS**
+1. User creates alias for a certain command
+2. NetworkUS saves and stores the alias for the certain command
+
+   Use case ends.
 
 ### Non-Functional Requirements
 

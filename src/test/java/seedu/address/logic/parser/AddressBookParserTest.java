@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -33,6 +34,7 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagAllCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ModelManager;
 import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TagsPresentPredicate;
@@ -43,7 +45,7 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final AddressBookParser parser = new AddressBookParser(new ModelManager());
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -155,6 +157,15 @@ public class AddressBookParserTest {
     public void parseCommand_showtags() throws Exception {
         assertTrue(parser.parseCommand(ShowTagsCommand.COMMAND_WORD) instanceof ShowTagsCommand);
         assertTrue(parser.parseCommand(ShowTagsCommand.COMMAND_WORD + " 3") instanceof ShowTagsCommand);
+    }
+
+    @Test
+    public void parseCommand_alias() throws Exception {
+        String alias = "tag -A";
+        String command = TagAllCommand.COMMAND_WORD;
+
+        assertEquals(parser.parseCommand(AliasCommand.COMMAND_WORD + " " + command + " " + alias),
+                new AliasCommand(alias, command));
     }
 
     @Test
