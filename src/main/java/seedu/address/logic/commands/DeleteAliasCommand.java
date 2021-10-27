@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-public class DeleteAliasCommand extends Command{
+public class DeleteAliasCommand extends Command {
     public static final String COMMAND_WORD = "deleteAlias";
 
     public static final String MESSAGE_PARAMS = "Parameters: YOUR_ALIAS";
@@ -29,7 +29,7 @@ public class DeleteAliasCommand extends Command{
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if(!model.containsAlias(alias)) {
+        if (!model.containsAlias(alias)) {
             throw new CommandException(String.format(MESSAGE_NON_EXISTING, alias));
         }
         String command = model.getCorrespondingCommand(alias);
