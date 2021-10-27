@@ -69,11 +69,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         aliasTable.addAlias(alias, command);
     }
 
+    public void deleteAlias(String alias) {
+        requireNonNull(alias);
+        aliasTable.deleteAlias(alias);
+    }
+
     /**
      * Gets the existing aliases.
      */
     public Set<String> getExistingAliases() {
         return aliasTable.getExistingAliases();
+    }
+
+    public boolean containsAlias(String alias) {
+        return aliasTable.containsAlias(alias);
     }
 
     /**
