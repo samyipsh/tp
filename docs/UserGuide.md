@@ -258,7 +258,7 @@ Creates an alias for existing NetworkUS command.
 Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 
 * Creates an alias `YOUR_ALIAS` for command `EXISTING_COMMAND`.
-* `YOUR_ALIAS` can contains spaces, but cannot be empty.
+* `YOUR_ALIAS` can contain spaces, but cannot be empty.
 * `EXISTING_COMMANDS` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
 * `EXISTING_COMMANDS` and `YOUR_ALIAS` must be separated by a space.
 * Aliases that you create will be saved.
@@ -269,9 +269,15 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
 </div>
 
-Example:
-* `alias` followed by `tagall tag -A` will create alias `tag -A` for the command `tagall`.
+### Showing Saved Aliases : `showalias`
 
+Shows all aliases stored in the user preferences in a new window.
+
+Format: `showalias`
+Keyboard Shortcut: `F2`
+
+Example:
+* `showalias` will show the aliases in a new window.
 ### Clearing all entries : `clear`
 
 Clears all entries from the contact list.
