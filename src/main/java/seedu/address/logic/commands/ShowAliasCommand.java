@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 public class ShowAliasCommand extends Command {
-    public static final String COMMAND_WORD = "showAlias";
+    public static final String COMMAND_WORD = "showalias";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows Registered Aliases.\n"
             + "Example: " + COMMAND_WORD;
