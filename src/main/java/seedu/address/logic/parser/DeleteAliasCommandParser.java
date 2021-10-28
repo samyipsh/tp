@@ -17,7 +17,6 @@ public class DeleteAliasCommandParser implements Parser<DeleteAliasCommand> {
         if (arg.equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAliasCommand.MESSAGE_USAGE));
         }
-        
         return new DeleteAliasCommand(arg);
     }
 
