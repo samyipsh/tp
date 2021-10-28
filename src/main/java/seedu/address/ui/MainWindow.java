@@ -198,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
                 Integer indexToShow = commandResult.getIndexToShow();
                 Stage stage = new Stage();
                 DetailedPersonWindow showPerson = new DetailedPersonWindow(
-                        logic.getAddressBook().getPersonList().get(indexToShow), 1, stage);
+                        logic.getFilteredPersonList().get(indexToShow), stage);
                 showPerson.show();
             }
 
