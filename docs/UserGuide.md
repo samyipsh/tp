@@ -276,6 +276,13 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 * NetworkUS only replace your input with corresponding commands if the alias matches the prefix of your input.
 * NetworkUS will check the **longest matching alias** in your input and change it with the corresponding command.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
+</div>
+
+Example:
+* `alias` followed by `tagall tag -A` will create alias `tag -A` for the command `tagall`.
+
 ### Dealiasing commands : `deletealias`
 
 Deletes an existing alias.
