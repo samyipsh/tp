@@ -181,6 +181,18 @@ Format: `show INDEX`
 
 Examples:
 *`show 1` will show the full details of the person with the specified index.
+
+### Clearing all entries : `clear`
+
+Clears all entries from the contact list.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 ## Tagging features
 
 TODO: Elaborate on use cases of tagging features. Add tips for each command.
@@ -262,6 +274,8 @@ Shows all tags that are used in NetworkUS contacts.
 
 Format: `showtags`
 
+## Alias Features
+
 ### Aliasing commands : `alias`
 
 Creates an alias for existing NetworkUS command.
@@ -295,17 +309,6 @@ Format: `deletealias YOUR_ALIAS`
 Example:
 * `deletealias` followed by `tag -A` will remove the alias.
 
-### Clearing all entries : `clear`
-
-Clears all entries from the contact list.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ## Data Storage
 
