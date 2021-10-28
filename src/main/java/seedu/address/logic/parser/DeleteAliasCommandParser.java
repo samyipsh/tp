@@ -12,13 +12,13 @@ public class DeleteAliasCommandParser implements Parser<DeleteAliasCommand> {
     public DeleteAliasCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
 
-        String args = userInput.trim();
+        String arg = userInput.trim();
 
-        if (args.equals("")) {
+        if (arg.equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAliasCommand.MESSAGE_USAGE));
         }
-
-        return new DeleteAliasCommand(args);
+        
+        return new DeleteAliasCommand(arg);
     }
 
 }
