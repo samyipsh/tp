@@ -193,7 +193,7 @@ Format: `tagall TAG`
 
 * Tags all displayed persons with the specified `TAG`.
 * Will not add duplicate tags and will run successfully even if all displayed persons already have the tag.
-* The tag **must be alphanumeric without whitespaces** e.g. programmer, CS2103T
+* The tag **must consist of letters and numbers without whitespaces** e.g. programmer, CS2103T
 
 Examples:
 * `list` followed by `tagall programmer` tags all persons in the contact list with the tag `programmer`.
@@ -208,10 +208,8 @@ Format: `tag INDEXES TAG`
 * Tags the persons at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The indexes **must be positive integers** 1, 2, 3, …​
-* Tags must be alphanumeric without spaces.
-* Will tag persons up to an out-of-bounds index or all indexes.
+* Tags must consist of letters and numbers without spaces.
 * Will not add duplicate tags to persons.
-* Refer to [Multi-index section](#multi-index).
 
 Examples:
 * `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
@@ -224,7 +222,7 @@ Deletes the specified tag from all displayed contacts in NetworkUS.
 Format: `untagall TAG`
 
 * Deletes specified `TAG` from all displayed contacts.
-* Tags must be alphanumeric without spaces.
+* Tags must consist of letters and numbers without spaces.
 
 Example:
 * `list` followed by `untagall CS2040` deletes CS2040 tag from all contact list.
@@ -238,8 +236,7 @@ Format: `untag INDEXES TAG`
 * Deletes the tag from the person at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The indexes **must be positive integers** 1, 2, 3, …​
-* Tags must be alphanumeric without spaces.
-* Will delete tag from persons upto an out-of-bounds index or all indexes.
+* Tags must consist of letters and numbers without spaces.
 
 Example:
 * `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
@@ -254,7 +251,7 @@ Format: `replacetag TAG1 TAG2`
 * Replaces `TAG1` with `TAG2` for all contacts.
 * `TAG1` is the tag to be replaced.
 * `TAG2` is the new tag to replace `TAG1`.
-* Tags must be alphanumeric without spaces.
+* Tags must consist of letters and numbers without spaces.
 
 Example:
 * `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
@@ -335,14 +332,6 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 An index is valid if it is a **positive** integer.<br>
 Example of valid indexes: `1`, `2`, `3`, ...<br>
 Example of invalid indexes: `-1`, `0`, `*`, `+1`, ...
-
-### Multi-index
-
-Any multi-index commands will execute the first valid indexes. It will stop executing once it encounters out-of-bound index.
-Example:
-- There are currently 5 displayed users
-- User parses in indexes `2 3 7 5`
-- Index `7` and `5` is not executed since it is out of bound.
 
 --------------------------------------------------------------------------------------------------------------------
 
