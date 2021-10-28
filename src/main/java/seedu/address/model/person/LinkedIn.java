@@ -7,7 +7,8 @@ public class LinkedIn {
     //Regex copied from https://stackoverflow.com/questions/
     // 30256969/how-to-validate-linkedin-public-profile-url-regular-expression-in-python/30257327
 
-    public static final String MESSAGE_CONSTRAINTS = "Not a valid linkedIn URL";
+    public static final String MESSAGE_CONSTRAINTS = "Not a valid linkedIn URL\n"
+            + "Example: https://www.linkedin.com/in/winston-cahya/";
     private static final String VALIDATION_REGEX =
             "^(http(s?)://)?([\\w\\d\\-\\_]*\\.)?linkedin.com/[^.\\s]*$";
     private static final LinkedIn EMPTY_LINKEDIN = new LinkedIn();

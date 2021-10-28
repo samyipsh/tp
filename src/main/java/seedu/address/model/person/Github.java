@@ -13,10 +13,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Github {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Github username should only contain alphanumeric characters and hyphens"
-                    + ", it cannot have multiple consecutive hyphens"
-                    + ", cannot start or end with a hyphen"
-                    + ", and has maximum 39 char";
+            "Github username should only contain letters, numbers and hyphens.\n"
+                    + "It cannot start or end with a hyphen or have multiple consecutive hyphens.\n"
+                    + "It has a maximum length of 39 characters.";
     /* reused from https://github.com/shinnn/github-username-regex
      *
      * Github username may only contain alphanumeric characters or hyphens.
