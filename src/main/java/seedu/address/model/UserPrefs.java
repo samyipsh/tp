@@ -84,6 +84,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return aliasTable.getExistingAliases();
     }
 
+    /**
+     *
+     * Returns whether an alias exists
+     */
     public boolean containsAlias(String alias) {
         return aliasTable.containsAlias(alias);
     }

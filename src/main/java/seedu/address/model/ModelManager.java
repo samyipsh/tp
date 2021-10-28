@@ -97,11 +97,13 @@ public class ModelManager implements Model {
         requireNonNull(alias);
         return userPrefs.getCorrespondingCommand(alias);
     }
+
     @Override
     public boolean containsAlias(String alias) {
         requireNonNull(alias);
         return userPrefs.containsAlias(alias);
     }
+
     @Override
     public void deleteAlias(String alias) {
         requireNonNull(alias);

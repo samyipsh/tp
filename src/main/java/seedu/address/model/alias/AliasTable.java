@@ -17,6 +17,7 @@ public class AliasTable {
     public void deleteAlias(String alias) {
         aliasTable.remove(alias);
     }
+
     public boolean containsAlias(String alias) {
         return aliasTable.containsKey(alias);
     }

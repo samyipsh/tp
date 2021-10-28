@@ -131,6 +131,7 @@ public class AddCommandTest {
         public void deleteAlias(String alias) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public String getCorrespondingCommand(String alias) {
             throw new AssertionError("This method should not be called.");
