@@ -30,6 +30,7 @@ public interface Logic {
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
+
     /**
      * Returns saved aliases.
      */
