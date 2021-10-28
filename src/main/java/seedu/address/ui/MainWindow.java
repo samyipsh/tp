@@ -62,6 +62,7 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
@@ -191,6 +192,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowPerson()) {
+                Integer indexToShow = commandResult.getIndexToShow();
+                Stage stage = new Stage();
+                DetailedPersonWindow showPerson = new DetailedPersonWindow(
+                        logic.getAddressBook().getPersonList().get(indexToShow), 1, stage);
+                showPerson.show();
             }
 
             return commandResult;

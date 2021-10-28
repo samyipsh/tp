@@ -19,6 +19,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OpenFieldCommand;
 import seedu.address.logic.commands.ReplaceTagCommand;
+import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.ShowTagsCommand;
 import seedu.address.logic.commands.TagAllCommand;
 import seedu.address.logic.commands.TagCommand;
@@ -60,6 +61,9 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case ShowCommand.COMMAND_WORD:
+            return new ShowCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
