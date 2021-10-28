@@ -175,7 +175,7 @@ Examples:
 
 Shows the specified person's full contact information in a separate window
 
-Format: `show Index`
+Format: `show INDEX`
 
 *Index must be the index that is in the currently visible list.
 
@@ -276,17 +276,24 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 * NetworkUS only replace your input with corresponding commands if the alias matches the prefix of your input.
 * NetworkUS will check the **longest matching alias** in your input and change it with the corresponding command.
 
-### Dealiasing commands : `deleteAlias`
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
+</div>
+
+Example:
+* `alias` followed by `tagall tag -A` will create alias `tag -A` for the command `tagall`.
+
+### Dealiasing commands : `deletealias`
 
 Deletes an existing alias.
 
-Format: `deleteAlias YOUR_ALIAS`
+Format: `deletealias YOUR_ALIAS`
 
 * Deletes the specified alias.
 * `YOUR_ALIAS` must be an existing alias in NetworkUS.
 
 Example:
-* `deleteAlias` followed by `tag -A` will remove the alias.
+* `deletealias` followed by `tag -A` will remove the alias.
 
 ### Clearing all entries : `clear`
 
@@ -360,6 +367,7 @@ Action | Format, Examples
 **Alias** | `alias EXISTING_COMMAND YOUR_ALIAS`<br> e.g., `alias tagall tag -A`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete alias** | `deletealias YOUR_ALIAS`<br> e.g., `deletealias tag -A`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Help** | `help`
