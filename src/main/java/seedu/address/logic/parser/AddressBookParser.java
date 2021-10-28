@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OpenFieldCommand;
 import seedu.address.logic.commands.ReplaceTagCommand;
+import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.ShowTagsCommand;
 import seedu.address.logic.commands.TagAllCommand;
 import seedu.address.logic.commands.TagCommand;
@@ -60,6 +62,9 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case ShowCommand.COMMAND_WORD:
+            return new ShowCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -109,6 +114,9 @@ public class AddressBookParser {
         case AliasCommand.COMMAND_WORD:
             return new AliasCommandParser().parse(arguments);
 
+        case DeleteAliasCommand.COMMAND_WORD:
+            return new DeleteAliasCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -131,6 +139,6 @@ public class AddressBookParser {
 
         return longestMatchingAlias == null
                 ? userInput
-                : userInput.replace(longestMatchingAlias, model.getCorrespondingCommand(longestMatchingAlias));
+                : userInput.replaceFirst(longestMatchingAlias, model.getCorrespondingCommand(longestMatchingAlias));
     }
 }

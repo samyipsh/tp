@@ -17,6 +17,14 @@ public class AliasTable {
         aliasTable.put(alias, command);
     }
 
+    public void deleteAlias(String alias) {
+        aliasTable.remove(alias);
+    }
+
+    public boolean containsAlias(String alias) {
+        return aliasTable.containsKey(alias);
+    }
+
     public Set<String> getExistingAliases() {
         return aliasTable.keySet();
     }

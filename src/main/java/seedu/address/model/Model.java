@@ -64,6 +64,10 @@ public interface Model {
      */
     String getCorrespondingCommand(String alias);
 
+    boolean containsAlias(String alias);
+
+    void deleteAlias(String alias);
+
     /**
      * Returns the user prefs' address book file path.
      */

@@ -59,10 +59,10 @@ public class Github {
     }
 
     /**
-     * Checks if Github field is empty
+     * Returns whether it is an empty github
      */
     public boolean isEmptyGithub() {
-        return githubUsername.equals("-");
+        return this.githubUsername.equals("-");
     }
 
     /**
