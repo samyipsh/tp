@@ -13,7 +13,7 @@ public class ShowCommandParserTest {
     private ShowCommandParser parser = new ShowCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsShowCommand() {
         assertParseSuccess(parser, "1", new ShowCommand(INDEX_FIRST_PERSON));
     }
 

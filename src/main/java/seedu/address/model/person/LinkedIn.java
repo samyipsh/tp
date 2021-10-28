@@ -41,9 +41,8 @@ public class LinkedIn {
     }
 
     /**
-     * Check whether it is an empty LinkedIn
+     * Returns whether it is an empty LinkedIn
      *
-     * @return boolean
      */
     public boolean isEmptyLinkedIn() {
         return this.value.equals("-");

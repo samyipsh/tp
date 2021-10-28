@@ -36,7 +36,6 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -178,7 +177,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -187,7 +185,6 @@ public class MainWindow extends UiPart<Stage> {
             StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath(),
                     logic.getAddressBook());
             statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Shows a person with their full details
+ */
 public class ShowCommand extends Command {
     public static final String COMMAND_WORD = "show";
 
@@ -18,7 +21,7 @@ public class ShowCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SHOW_PERSON_SUCCESS = "Shown Person with index %1$s";
+    public static final String MESSAGE_SUCCESS = "Shown Person with index %1$s";
 
     private final Index targetIndex;
 
@@ -35,7 +38,7 @@ public class ShowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_SHOW_PERSON_SUCCESS, targetIndex.getOneBased()),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()),
                 false, false, targetIndex.getZeroBased());
     }
 
