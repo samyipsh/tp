@@ -3,15 +3,12 @@ package seedu.address.model.alias;
 import java.util.HashMap;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
-
 /**
  * Stores the alias-command pairs.
  */
 public class AliasTable {
 
-    private ObservableMap<String, String> aliasTable = FXCollections.observableHashMap();
+    private final HashMap<String, String> aliasTable = new HashMap<>();
 
     public void addAlias(String alias, String command) {
         aliasTable.put(alias, command);
@@ -32,6 +29,10 @@ public class AliasTable {
     public String getCorrespondingCommand(String alias) {
         // Possible enhancement by creating custom exception when {@code alias} does not exist in the table
         return aliasTable.get(alias);
+    }
+
+    public HashMap<String, String> getAliasTable() {
+        return this.aliasTable;
     }
 
     @Override
