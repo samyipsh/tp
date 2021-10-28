@@ -41,14 +41,6 @@ public class LinkedIn {
         return EMPTY_LINKEDIN;
     }
 
-    /**
-     * Returns whether it is an empty LinkedIn
-     *
-     */
-    public boolean isEmptyLinkedIn() {
-        return this.value.equals("-");
-    }
-
 
     /**
      * Returns if a given string is a valid linkedin

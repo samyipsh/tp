@@ -58,13 +58,6 @@ public class Github {
     }
 
     /**
-     * Returns whether it is an empty github
-     */
-    public boolean isEmptyGithub() {
-        return this.githubUsername.equals("-");
-    }
-
-    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidGithub(String test) {
