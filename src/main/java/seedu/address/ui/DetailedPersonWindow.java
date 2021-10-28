@@ -31,8 +31,6 @@ public class DetailedPersonWindow extends UiPart<Stage> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label phone;
     @FXML
     private Label email;
@@ -81,8 +79,7 @@ public class DetailedPersonWindow extends UiPart<Stage> {
 
         // state check
         DetailedPersonWindow card = (DetailedPersonWindow) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+        return person.equals(card.person);
     }
 }
 
