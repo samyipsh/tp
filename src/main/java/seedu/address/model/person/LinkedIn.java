@@ -56,6 +56,10 @@ public class LinkedIn {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getUrl() {
+        return value;
+    }
+
     /**
      * Returns if this linkedin is an empty linkedin.
      */
@@ -102,5 +106,4 @@ public class LinkedIn {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

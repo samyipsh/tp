@@ -81,6 +81,7 @@ public class UntagCommand extends Command {
     private void untagPerson(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        Set<Person> personsToUntag = new HashSet<>();
 
         if (lastShownList.size() == 0) {
             throw new CommandException(MESSAGE_NO_DISPLAYED_PERSONS);
@@ -92,10 +93,15 @@ public class UntagCommand extends Command {
                         index.getOneBased(), lastShownList.size()));
             }
 
-            Person personToTag = lastShownList.get(index.getZeroBased());
-            Person taggedPerson = untag(personToTag);
+            Person person = lastShownList.get(index.getZeroBased());
+            personsToUntag.add(person);
 
-            model.setPerson(personToTag, taggedPerson);
+        }
+
+
+        for (Person personToUntag: personsToUntag) {
+            Person untaggedPerson = untag(personToUntag);
+            model.setPerson(personToUntag, untaggedPerson);
         }
 
     }

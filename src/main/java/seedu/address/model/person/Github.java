@@ -28,6 +28,7 @@ public class Github {
             "(?i)^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
 
     private static final Github EMPTY_GITHUB = new Github();
+    private static final String GITHUB_URL = "https://github.com/";
     public final String githubUsername;
 
     /**
@@ -69,6 +70,11 @@ public class Github {
      */
     public static boolean isValidGithub(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+
+    public String getUrl() {
+        return GITHUB_URL + githubUsername;
     }
 
     /**

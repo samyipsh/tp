@@ -3,12 +3,20 @@ layout: page
 title: User Guide
 ---
 
-NetworkUs is a desktop app for organizing contacts. Its features assists in group management, allowing for quick searches of contacts with desired trailts (i.e specialization) and hence project group formation. It is catered for Computer Science Students. The app is optimized for the Command Line Interface (CLI) to allow swift access for keyboard users. The app is also complemented with Graphical User Interface (GUI) to display the program.
+NetworkUS is a desktop app for organizing contacts. It features seamless **group management**, allowing for **quick searches of contacts with desired traits** (i.e specialization) and hence **project group formation**. It is catered for **Computer Science Students**. The app is optimized for the **Command Line Interface (CLI)** to allow swift access for keyboard users. The app is also complemented with **Graphical User Interface (GUI)** to display the program.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Before you read
+
+This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to project. This user guide will guide you on how to use NetworkUS to manage your contacts and groups.
+
+## How to use the guide
+
+TODO: 
 
 ## Quick start
 
@@ -18,7 +26,7 @@ NetworkUs is a desktop app for organizing contacts. Its features assists in grou
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetworkUS app.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -38,6 +46,10 @@ NetworkUs is a desktop app for organizing contacts. Its features assists in grou
 
 --------------------------------------------------------------------------------------------------------------------
 
+## User Interface
+
+TODO: add labeled UI
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -53,16 +65,14 @@ NetworkUs is a desktop app for organizing contacts. Its features assists in grou
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+* Parameters with **prefixes** can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Additional parameters for commands that do not take in parameters will be ignored. (such as `help`, `list`, `exit` and `clear`)<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* The detail field will be truncated if the content is too long to fit in the window.
 
 </div>
 
@@ -106,9 +116,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will not be removed i.e adding of tags is cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it. The same applies for description `d/`.
+* When editing tags, the existing tags of the person will be replaced.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -130,6 +139,20 @@ Examples:
 * `find jonas aaron silva` will return `jonas`, `Aaron john` and `Ann Silva`
 * `find friends` will return anyone whose names or tags have the word `friends` in them
 
+### Opening a field of a person : `open`
+
+Opens the LinkedIn/Github page from details of field specified of a particular person from the NetworkUS contacts.
+
+Format: `open INDEXES FIELD`
+
+* The index contained in indexes refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The Field must be "github" or "linkedin"
+
+Examples:
+* `list` followed by `open 2 3 4 github` opens the github page of the 2nd, 3rd, and 4th person of the contact list.
+* `find Betsy` followed by `open 1 linkedin` opens the github page of the 1st person in the results of the `find` command
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the NetworkUS contacts.
@@ -143,6 +166,10 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+## Tagging features
+
+TODO: Elaborate on use cases of tagging features. Add tips for each command.
 
 ### Tagging displayed persons : `tagall`
 
@@ -166,32 +193,17 @@ Format: `tag INDEXES TAG`
 
 * Tags the persons at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
-* The indexes **must be unsigned integers** 1, 2, 3, …​
+* The indexes **must be positive integers** 1, 2, 3, …​
 * Tags must be alphanumeric without spaces.
-* Will tag persons upto an out-of-bounds index or all indexes.
+* Will tag persons up to an out-of-bounds index or all indexes.
 * Will not add duplicate tags to persons.
+* Refer to [Multi-index section](#multi-index).
 
 Examples:
 * `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
 * `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
 
-### Untag from persons: `untag`
-
-Delete the specified tag from the specified person from the NetworkUS contacts.
-
-Format: `untag INDEXES TAG`
-
-* Deletes the tag from the person at the specified `INDEXES`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be unsigned integer** 1, 2, 3, …​
-* Tags must be alphanumeric without spaces.
-* Will delete tag from persons upto an out-of-bounds index or all indexes.
-
-Example:
-* `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
-* `find John` followed by `untag 1 2 friend` deletes friend tag the 1st and 2nd persons in the results of the `find` command.
-
-### Untag from all displayed entries: `untagall`
+### Untagging displayed persons: `untagall`
 
 Deletes the specified tag from all displayed contacts in NetworkUS.
 
@@ -202,7 +214,22 @@ Format: `untagall TAG`
 
 Example:
 * `list` followed by `untagall CS2040` deletes CS2040 tag from all contact list.
-    
+
+### Untagging persons: `untag`
+
+Delete the specified tag from the specified person from the NetworkUS contacts.
+
+Format: `untag INDEXES TAG`
+
+* Deletes the tag from the person at the specified `INDEXES`.
+* The index refers to the index number shown in the displayed person list.
+* The indexes **must be positive integers** 1, 2, 3, …​
+* Tags must be alphanumeric without spaces.
+* Will delete tag from persons upto an out-of-bounds index or all indexes.
+
+Example:
+* `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
+* `find John` followed by `untag 1 2 friend` deletes friend tag the 1st and 2nd persons in the results of the `find` command.
 
 ### Replace tag from all entries: `replacetag`
 
@@ -236,6 +263,8 @@ Exits the program.
 
 Format: `exit`
 
+## Data Storage
+
 ### Saving the data
 
 Contact list data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -256,6 +285,41 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Misc
+
+### Valid index
+
+An index is valid if it is a **positive** integer.<br>
+Example of valid indexes: `1`, `2`, `3`, ...<br>
+Example of invalid indexes: `-1`, `0`, `*`, `+1`, ...
+
+### Multi-index
+
+Any multi-index commands will execute the first valid indexes. It will stop executing once it encounters out-of-bound index.
+Example:
+- There are currently 5 displayed users
+- User parses in indexes `2 3 7 5`
+- Index `7` and `5` is not executed since it is out of bound.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+### Displayed contacts
+
+All contacts **displayed** in NetworkUS application.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Most NetworkUS commands will execute on displayed contacts.
+</div>
+
+### Global contacts
+
+All contacts that are **stored** in the NetworkUS.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
