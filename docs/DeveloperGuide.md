@@ -233,7 +233,34 @@ How aliases should be managed:
 * Alternative 2: We don't put any constraint on the alias command
     * Pros: Easier to implement
     * Cons: More dangerous to use the alias command
+    
+#### Show Feature
+Shows a contact with the specified Index in a new window. It gets the index from the `modelManager` class that contains the `ReadOnlyAddressBook` and gets the contact with the specified index.
 
+#### Design consideration
+
+How the specified contact should be shown:
+* Alternative 1 (Current choice): Shows the specified user in a new window
+    * Pros: Much more customizable in the future, Does not clutter the main list view
+    * Cons: User might be overwhelmed by the number of windows
+* Alternative 2: Overwrite the current view to show the specified person
+    * Pros: Not many windows are opened
+    * Cons: Hard to see current list of contacts and executes the command (User needs to go back to the previous view)
+
+#### ShowAlias Feature
+
+Shows the mapping of aliases in a window similar to help.
+
+#### Design consideration
+
+How the GUI gets the data:
+* Alternative 1 (Current choice): Refreshes everytime the user calls the function
+    * Pros: Easier to implement, Does not require a specialized ObservableMap Serializer for the JSON.
+    * Cons: Might be a bit slow, but there can't be too many mappings.
+* Alternative 2: Use an ObservableMap
+    * Pros: The map is only accessed once, remaining changes are automatically updated
+    * Cons: Hard to implement
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

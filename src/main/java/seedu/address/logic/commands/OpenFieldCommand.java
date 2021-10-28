@@ -94,7 +94,7 @@ public class OpenFieldCommand extends Command {
         case "github":
             Github github = person.getGithub();
 
-            if (!github.isEmptyGithub()) {
+            if (!github.isEmpty()) {
                 openUrl(github.getUrl());
             }
             break;
@@ -102,7 +102,7 @@ public class OpenFieldCommand extends Command {
         case "linkedin":
             LinkedIn linkedIn = person.getLinkedin();
 
-            if (!linkedIn.isEmptyLinkedIn()) {
+            if (!linkedIn.isEmpty()) {
                 openUrl(linkedIn.getUrl());
             }
             break;

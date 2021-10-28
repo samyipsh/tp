@@ -31,8 +31,6 @@ public class DetailedPersonWindow extends UiPart<Stage> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label phone;
     @FXML
     private Label email;
@@ -49,10 +47,9 @@ public class DetailedPersonWindow extends UiPart<Stage> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DetailedPersonWindow(Person person, int displayedIndex, Stage secondaryStage) {
+    public DetailedPersonWindow(Person person, Stage secondaryStage) {
         super(FXML, secondaryStage);
         this.person = person;
-        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText("Phone: " + person.getPhone().value);
         email.setText("Email: " + person.getEmail().value);
@@ -61,7 +58,7 @@ public class DetailedPersonWindow extends UiPart<Stage> {
         detail.setText("Details: " + person.getDetail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new Label(tag + " ")));
         this.secondaryStage = secondaryStage;
     }
     void show() {
@@ -82,8 +79,7 @@ public class DetailedPersonWindow extends UiPart<Stage> {
 
         // state check
         DetailedPersonWindow card = (DetailedPersonWindow) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+        return person.equals(card.person);
     }
 }
 
