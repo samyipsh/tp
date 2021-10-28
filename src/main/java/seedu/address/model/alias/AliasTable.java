@@ -8,7 +8,7 @@ import java.util.Set;
  */
 public class AliasTable {
 
-    private HashMap<String, String> aliasTable = new HashMap<>();
+    private final HashMap<String, String> aliasTable = new HashMap<>();
 
     public void addAlias(String alias, String command) {
         aliasTable.put(alias, command);
@@ -29,6 +29,10 @@ public class AliasTable {
     public String getCorrespondingCommand(String alias) {
         // Possible enhancement by creating custom exception when {@code alias} does not exist in the table
         return aliasTable.get(alias);
+    }
+
+    public HashMap<String, String> getAliasTable() {
+        return this.aliasTable;
     }
 
     @Override
