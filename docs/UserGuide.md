@@ -383,6 +383,7 @@ Action | Format, Examples
 **Help** | `help`
 **List** | `list`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
+**Show Alias** | `showalias`
 **Show tags** | `showtags`
 **Tag** | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
 **Tag all** | `tagall TAG` <br> e.g., `tagall programmer`
