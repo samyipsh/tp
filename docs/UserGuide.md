@@ -253,7 +253,7 @@ Format: `untag INDEXES TAG`
 
 Example:
 * `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
-* `find John` followed by `untag 1 2 friend` deletes friend tag the 1st and 2nd persons in the results of the `find` command.
+* `find John` followed by `untag 1 2 friend` deletes friend tag from the 1st and 2nd persons in the results of the `find` command.
 
 ### Replace tag from all entries: `replacetag`
 
