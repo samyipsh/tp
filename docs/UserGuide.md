@@ -171,16 +171,17 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-### Showing Person : `show`
+
+### Showing person : `show`
 
 Shows the specified person's full contact information in a separate window
 
 Format: `show INDEX`
 
-*Index must be the index that is in the currently visible list.
+* Index must be the index that is in the currently visible list.
 
-Examples:
-*`show 1` will show the full details of the person with the specified index.
+Example:
+* `show 1` will show the full details of the person with the specified index.
 
 ### Clearing all entries : `clear`
 
@@ -205,7 +206,7 @@ Format: `tagall TAG`
 
 * Tags all displayed persons with the specified `TAG`.
 * Will not add duplicate tags and will run successfully even if all displayed persons already have the tag.
-* The tag **must consist of letters and numbers without whitespaces** e.g. programmer, CS2103T
+* The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
 
 Examples:
 * `list` followed by `tagall programmer` tags all persons in the contact list with the tag `programmer`.
@@ -220,7 +221,7 @@ Format: `tag INDEXES TAG`
 * Tags the persons at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The indexes **must be positive integers** 1, 2, 3, …​
-* Tags must consist of letters and numbers without spaces.
+* Tag **must consist of letters and/or numbers without spaces**.
 * Will not add duplicate tags to persons.
 
 Examples:
@@ -234,7 +235,7 @@ Deletes the specified tag from all displayed contacts in NetworkUS.
 Format: `untagall TAG`
 
 * Deletes specified `TAG` from all displayed contacts.
-* Tags must consist of letters and numbers without spaces.
+* Tag **must consist of letters and/or numbers without spaces**.
 
 Example:
 * `list` followed by `untagall CS2040` deletes CS2040 tag from all contact list.
@@ -248,7 +249,7 @@ Format: `untag INDEXES TAG`
 * Deletes the tag from the person at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The indexes **must be positive integers** 1, 2, 3, …​
-* Tags must consist of letters and numbers without spaces.
+* Tag **must consist of letters and/or numbers without spaces**.
 
 Example:
 * `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
@@ -263,7 +264,7 @@ Format: `replacetag TAG1 TAG2`
 * Replaces `TAG1` with `TAG2` for all contacts.
 * `TAG1` is the tag to be replaced.
 * `TAG2` is the new tag to replace `TAG1`.
-* Tags must consist of letters and numbers without spaces.
+* Tags **must consist of letters and/or numbers without spaces**.
 
 Example:
 * `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
@@ -290,6 +291,9 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 * NetworkUS only replace your input with corresponding commands if the alias matches the prefix of your input.
 * NetworkUS will check the **longest matching alias** in your input and change it with the corresponding command.
 
+Example:
+* `alias tagall tag -A` will create an alias `tag -A` for the `tagall` command, allowing `tag -A` to represent `tagall`.
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
 </div>
@@ -314,7 +318,7 @@ Format: `deletealias YOUR_ALIAS`
 * `YOUR_ALIAS` must be an existing alias in NetworkUS.
 
 Example:
-* `deletealias` followed by `tag -A` will remove the alias.
+* `deletealias tag -A` will remove the alias `tag -A`.
 
 
 ## Data Storage
@@ -383,7 +387,7 @@ Action | Format, Examples
 **Help** | `help`
 **List** | `list`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
-**Show Alias** | `showalias`
+**Show alias** | `showalias`
 **Show tags** | `showtags`
 **Tag** | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
 **Tag all** | `tagall TAG` <br> e.g., `tagall programmer`
