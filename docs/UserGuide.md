@@ -298,7 +298,7 @@ Example:
 Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
 </div>
 
-### Showing Saved Aliases : `showalias`
+### Showing saved aliases : `showalias`
 
 Shows all aliases stored in the user preferences in a new window.
 
