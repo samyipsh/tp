@@ -364,7 +364,7 @@ Below are the requirements for what constitutes as valid for the fields in Netwo
 
 Field | Format, Examples
 --------|------------------
-**Name** | Only letters and spaces <br> e.g., `Sam Yeo`
+**Name** | Only letters and/or numbers and spaces <br> e.g., `Sam Yeo`
 **Tag** | Letters and/or numbers without spaces <br> e.g., `CS2103T` , `programmer`
 **Phone** |  Only numbers at least 3 digits long <br> e.g., `999` , `62353535`
 **Email** | `local-part` + @ + `domain-name` <br> `local-part` contains letters, numbers and special characters excluding `+` `-` `_` `.`, cannot start or end with special characters <br> `domain-name` consists of `domain labels` seperated by periods <br> `domain labels` consist of at least 2 letters and/or numbers <br> `domain labels` excluding the last `domain label` can have non-consecutive hyphens but cannot start or end with a hyphen <br> e.g., `berniceyu@example.com`
