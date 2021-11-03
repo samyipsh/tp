@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.Image?>
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+         title="NetworkUs" width = "400" height = "400" minWidth="300" minHeight="300">
+    <icons>
+        <Image url="@/images/networkUS_icon.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <TableView fx:id="aliasTableView" GridPane.columnIndex="0" GridPane.rowIndex="1">
+
+            </TableView>
+        </Scene>
+    </scene>
+
+</fx:root>

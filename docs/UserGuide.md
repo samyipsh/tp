@@ -16,7 +16,12 @@ This user guide is for users who want to use NetworkUS for their daily use or de
 
 ## How to use the guide
 
-TODO: 
+1. Most of the Commands in NetworkUs acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently displayed contacts list.<br>
+![Original](images/originalList.png)
+Here `delete 3` will delete "Charlotte Oliviero"<br>
+![filtered](images/findList.png)
+   Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
+   
 
 ## Quick start
 
@@ -166,7 +171,28 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+### Showing Person : `show`
 
+Shows the specified person's full contact information in a separate window
+
+Format: `show INDEX`
+
+*Index must be the index that is in the currently visible list.
+
+Examples:
+*`show 1` will show the full details of the person with the specified index.
+
+### Clearing all entries : `clear`
+
+Clears all entries from the contact list.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 ## Tagging features
 
 TODO: Elaborate on use cases of tagging features. Add tips for each command.
@@ -179,7 +205,7 @@ Format: `tagall TAG`
 
 * Tags all displayed persons with the specified `TAG`.
 * Will not add duplicate tags and will run successfully even if all displayed persons already have the tag.
-* The tag **must be alphanumeric without whitespaces** e.g. programmer, CS2103T
+* The tag **must consist of letters and numbers without whitespaces** e.g. programmer, CS2103T
 
 Examples:
 * `list` followed by `tagall programmer` tags all persons in the contact list with the tag `programmer`.
@@ -194,10 +220,8 @@ Format: `tag INDEXES TAG`
 * Tags the persons at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The indexes **must be positive integers** 1, 2, 3, …​
-* Tags must be alphanumeric without spaces.
-* Will tag persons up to an out-of-bounds index or all indexes.
+* Tags must consist of letters and numbers without spaces.
 * Will not add duplicate tags to persons.
-* Refer to [Multi-index section](#multi-index).
 
 Examples:
 * `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the contact list with a programmer tag.
@@ -210,7 +234,7 @@ Deletes the specified tag from all displayed contacts in NetworkUS.
 Format: `untagall TAG`
 
 * Deletes specified `TAG` from all displayed contacts.
-* Tags must be alphanumeric without spaces.
+* Tags must consist of letters and numbers without spaces.
 
 Example:
 * `list` followed by `untagall CS2040` deletes CS2040 tag from all contact list.
@@ -224,8 +248,7 @@ Format: `untag INDEXES TAG`
 * Deletes the tag from the person at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The indexes **must be positive integers** 1, 2, 3, …​
-* Tags must be alphanumeric without spaces.
-* Will delete tag from persons upto an out-of-bounds index or all indexes.
+* Tags must consist of letters and numbers without spaces.
 
 Example:
 * `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
@@ -240,7 +263,7 @@ Format: `replacetag TAG1 TAG2`
 * Replaces `TAG1` with `TAG2` for all contacts.
 * `TAG1` is the tag to be replaced.
 * `TAG2` is the new tag to replace `TAG1`.
-* Tags must be alphanumeric without spaces.
+* Tags must consist of letters and numbers without spaces.
 
 Example:
 * `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
@@ -251,6 +274,8 @@ Shows all tags that are used in NetworkUS contacts.
 
 Format: `showtags`
 
+## Alias Features
+
 ### Aliasing commands : `alias`
 
 Creates an alias for existing NetworkUS command.
@@ -258,7 +283,7 @@ Creates an alias for existing NetworkUS command.
 Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 
 * Creates an alias `YOUR_ALIAS` for command `EXISTING_COMMAND`.
-* `YOUR_ALIAS` can contains spaces, but cannot be empty.
+* `YOUR_ALIAS` can contain spaces, but cannot be empty.
 * `EXISTING_COMMANDS` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
 * `EXISTING_COMMANDS` and `YOUR_ALIAS` must be separated by a space.
 * Aliases that you create will be saved.
@@ -269,20 +294,28 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
 </div>
 
+### Showing Saved Aliases : `showalias`
+
+Shows all aliases stored in the user preferences in a new window.
+
+Format: `showalias`
+Keyboard Shortcut: `F2`
+
 Example:
-* `alias` followed by `tagall tag -A` will create alias `tag -A` for the command `tagall`.
+* `showalias` will show the aliases in a new window.
 
-### Clearing all entries : `clear`
+### Dealiasing commands : `deletealias`
 
-Clears all entries from the contact list.
+Deletes an existing alias.
 
-Format: `clear`
+Format: `deletealias YOUR_ALIAS`
 
-### Exiting the program : `exit`
+* Deletes the specified alias.
+* `YOUR_ALIAS` must be an existing alias in NetworkUS.
 
-Exits the program.
+Example:
+* `deletealias` followed by `tag -A` will remove the alias.
 
-Format: `exit`
 
 ## Data Storage
 
@@ -317,14 +350,6 @@ An index is valid if it is a **positive** integer.<br>
 Example of valid indexes: `1`, `2`, `3`, ...<br>
 Example of invalid indexes: `-1`, `0`, `*`, `+1`, ...
 
-### Multi-index
-
-Any multi-index commands will execute the first valid indexes. It will stop executing once it encounters out-of-bound index.
-Example:
-- There are currently 5 displayed users
-- User parses in indexes `2 3 7 5`
-- Index `7` and `5` is not executed since it is out of bound.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
@@ -352,11 +377,13 @@ Action | Format, Examples
 **Alias** | `alias EXISTING_COMMAND YOUR_ALIAS`<br> e.g., `alias tagall tag -A`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete alias** | `deletealias YOUR_ALIAS`<br> e.g., `deletealias tag -A`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Help** | `help`
 **List** | `list`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
+**Show Alias** | `showalias`
 **Show tags** | `showtags`
 **Tag** | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
 **Tag all** | `tagall TAG` <br> e.g., `tagall programmer`

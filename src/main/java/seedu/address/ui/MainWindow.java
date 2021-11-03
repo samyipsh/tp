@@ -35,12 +35,15 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private AliasTableDisplayWindow aliasWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+    @FXML
+    private MenuItem showAliasMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -69,6 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -77,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(showAliasMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -115,6 +120,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -166,6 +172,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleShowAlias() {
+        aliasWindow = new AliasTableDisplayWindow(logic.getAliasTable().getAliasTable());
+        aliasWindow.show();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -198,8 +210,12 @@ public class MainWindow extends UiPart<Stage> {
                 Integer indexToShow = commandResult.getIndexToShow();
                 Stage stage = new Stage();
                 DetailedPersonWindow showPerson = new DetailedPersonWindow(
-                        logic.getAddressBook().getPersonList().get(indexToShow), 1, stage);
+                        logic.getFilteredPersonList().get(indexToShow), stage);
                 showPerson.show();
+            }
+
+            if (commandResult.isShowAlias()) {
+                handleShowAlias();
             }
 
             return commandResult;

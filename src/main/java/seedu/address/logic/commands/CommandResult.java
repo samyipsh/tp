@@ -19,6 +19,8 @@ public class CommandResult {
 
     private final Integer indexToShow;
 
+    private final boolean showAlias;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -27,6 +29,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.indexToShow = indexToShow;
+        this.showAlias = false;
     }
 
     /**
@@ -37,7 +40,20 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.indexToShow = null;
+        this.showAlias = false;
     }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showAlias) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.indexToShow = null;
+        this.showAlias = showAlias;
+    }
+
 
 
     /**
@@ -58,6 +74,10 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isShowAlias() {
+        return showAlias;
     }
 
     public boolean isExit() {
