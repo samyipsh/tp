@@ -48,11 +48,4 @@ public abstract class Command {
     public static boolean isExistingCommand(String s) {
         return COMMAND_WORDS.stream().anyMatch(existingCommandWord -> s.equals(existingCommandWord));
     }
-
-    /**
-     * Checks whether the the given string contains an existing command word.
-     */
-    public static boolean isContainingExistingCommand(String s) {
-        return COMMAND_WORDS.stream().anyMatch(existingCommandWord -> s.contains(existingCommandWord));
-    }
 }

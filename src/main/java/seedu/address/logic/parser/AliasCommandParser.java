@@ -10,7 +10,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
 
     public static final String MESSAGE_INVALID_COMMAND_ALIAS = "%1$s is not an existing command word";
 
-    public static final String MESSAGE_INVALID_ALIAS = "%1$s contains an existing command word. "
+    public static final String MESSAGE_INVALID_ALIAS = "%1$s is an existing command word. "
             + "It cannot be used as an alias";
 
     @Override
@@ -28,7 +28,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_ALIAS, command));
         }
 
-        if (Command.isContainingExistingCommand(alias)) {
+        if (Command.isExistingCommand(alias)) {
             throw new ParseException(String.format(MESSAGE_INVALID_ALIAS, alias));
         }
 
