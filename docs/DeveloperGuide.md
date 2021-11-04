@@ -164,6 +164,10 @@ It implements the following operation:
 
 The predicate is then used by `Model#updateFilteredPersonList(Predicate<Person>)`  to change the _filtered_ list in the `Model` component exposed as and observed by the UI component as an unmodifiable `ObservableList<Person>` to display to the user.
 
+The following sequence diagram shows how the find tag operation works:
+
+![Interactions Inside the Logic Component for the `find programmer` Command](images/FindTagSequenceDiagram.png)
+
 #### Design considerations:
 
 How find matches tags and keywords:
