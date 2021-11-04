@@ -62,7 +62,7 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
 
-        if (phone.equals("-")) {
+        if (phone.equals("")) {
             return Phone.getEmptyPhone();
         }
 
@@ -82,7 +82,7 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
 
-        if (email.equals("-")) {
+        if (email.equals("")) {
             return Email.getEmptyEmail();
         }
 
@@ -101,7 +101,7 @@ public class ParserUtil {
     public static Github parseGithub(String githubUname) throws ParseException {
         requireNonNull(githubUname);
         String trimmedGithubUname = githubUname.trim();
-        if (githubUname.equals("-")) {
+        if (githubUname.equals("")) {
             return Github.getEmptyGithub();
         }
         if (!Github.isValidGithub(trimmedGithubUname)) {
@@ -116,7 +116,7 @@ public class ParserUtil {
     public static LinkedIn parseLinkedIn(String linkedinUrl) throws ParseException {
         requireNonNull(linkedinUrl);
         String trimmedLinkedInUrl = linkedinUrl.trim();
-        if (linkedinUrl.equals("-")) {
+        if (linkedinUrl.equals("")) {
             return LinkedIn.getEmptyLinkedin();
         }
         if (!LinkedIn.isValidLinkedIn(trimmedLinkedInUrl)) {
