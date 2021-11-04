@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The find tag mechanism is facilitated by `NameAndTagsContainKeywordsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
+The find tag mechanism builds on the find name feature and is facilitated by `NameAndTagsContainKeywordsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
 It implements the following operation:
 * `NameAndTagsContainKeywordsPredicate#test(Person person)` - tests whether the input `Person` object has a name or tag which matches any of the keywords.
 
@@ -177,6 +177,42 @@ How find matches tags and keywords:
 * Alternative 2 : Substring match
     * Pros: More flexibility for valid user inputs
     * Cons: May have performance issues for speed
+
+### Tag person feature
+
+#### Implementation
+
+The tag person mechanism is facilitated by `ParserUtil#parseTag(String tag)` and `ParserUtil#parseIndex(String oneBasedIndex)`. <br>
+`ParserUtil#parseTag(String tag)` checks whether the input conforms to the restrictions of a `Tag` and if so returns a `Tag` with the input as its value. <br>
+`ParserUtil#parseIndex(String oneBasedIndex)` checks whether the input can be an unsigned non-zero integer and if so returns an `Index` with the integer as the value. <br>
+
+The `Tag` and multiple `Index` are used to find multiple `Person` objects from `filteredPersons`. <br> 
+They are then replaced with `Person` objects with the `Tag` using `model#setPerson(Person target, Person editedPerson)`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("tag 1 2 programmer")` API call.
+
+![Interactions Inside the Logic Component for the `tag 1 2 programmer` Command](images/TagSequenceDiagram.png)
+
+#### Design consideration
+
+What the specified indexes refer to:
+* Alternative 1 (Current choice): Using `filteredList` to specify what `Index` refers to.
+    * Pros: Ability to tag visible persons
+    * Cons: Inability to tag not visible persons
+
+* Alternative 2 : Using list of all persons to specify what `Index` refers to.
+    * Pros: Ability to tag persons regardless of filter
+    * Cons: Requires knowledge of person's unfiltered list index to tag accurately 
+
+Whether invalid indexes should be addressed:
+* Alternative 1 (Current choice): Invalid indexes are pointed out.
+    * Pros: Ability to know when incorrect indexes are used
+    * Cons: More restrictive and unable to progress due to a potentially inconsequential mistake
+
+* Alternative 2 : Invalid indexes are ignored.
+    * Pros: Ability to tag persons flexibly
+    * Cons: May result in users believing the function behaves differently than it actually does
+
 
 ### Replace Tag feature
 

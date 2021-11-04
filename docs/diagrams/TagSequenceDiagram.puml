@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "t:TagCommand" as TagCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tag 1 2 programmer")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("tag 1 2 programmer")
+activate AddressBookParser
+
+create TagCommandParser
+AddressBookParser -> TagCommandParser : TagCommandParser()
+activate TagCommandParser
+
+TagCommandParser --> AddressBookParser
+deactivate TagCommandParser
+
+AddressBookParser -> TagCommandParser : parse("1 2 programmer")
+activate TagCommandParser
+
+loop number of indexes
+TagCommandParser -> ParserUtil : parseIndex()
+activate ParserUtil
+
+ParserUtil --> TagCommandParser
+deactivate ParserUtil
+end
+
+TagCommandParser -> ParserUtil : parseTag("programmer")
+activate ParserUtil
+
+ParserUtil --> TagCommandParser
+deactivate ParserUtil
+
+create TagCommand
+TagCommandParser -> TagCommand : TagCommand()
+activate TagCommand
+
+TagCommand --> TagCommandParser : t
+deactivate TagCommand
+
+TagCommandParser --> AddressBookParser : t
+deactivate TagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagCommandParser -[hidden]-> AddressBookParser
+destroy TagCommandParser
+
+AddressBookParser --> LogicManager : t
+deactivate AddressBookParser
+
+LogicManager -> TagCommand : execute()
+activate TagCommand
+
+loop number of indexes
+TagCommand -> Model : setPerson()
+activate Model
+
+Model --> TagCommand
+deactivate Model
+end
+
+create CommandResult
+TagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagCommand : result
+deactivate CommandResult
+
+TagCommand --> LogicManager : result
+deactivate TagCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+destroy TagCommand
+@enduml
