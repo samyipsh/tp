@@ -375,10 +375,6 @@ Field | Format, Examples
 **LinkedIn** | Any valid LinkedIn URL <br> e.g., `https://www.linkedin.com/in/benson/`
 **Details** | Anything you can type in <br> e.g., `Quite literally anything you can type in.`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Fields excluding Names, Tags and Details can be cleared by inputting a hyphen. 
-</div>
-
 ### Valid index
 
 An index is valid if it is a **positive** integer.<br>
