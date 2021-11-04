@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should consist of letters and numbers only";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should consist of letters and/or"
+            + " numbers only without spaces";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
