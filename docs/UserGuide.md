@@ -350,12 +350,15 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 
 ### Duplicate detection
 
+**Checked fields**: `Phone`, `Email`, `Github` and `Linkedin`
+
 A person is considered a duplicate if:
-* There is no way to differentiate between said person and someone else in the list.
-* They have the same name and at least one identical field to someone else in the list.
+* There is no way to differentiate between said person and someone else in the list via their **Checked fields**.
+* They have the same name and at least one identical **Checked field** to someone else in the list.
+
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Capitalization and spaces do not count towards differentiation between persons' names.
+Capitalization and spaces do not count towards differentiation between persons' names. <br> Empty fields do not count towards differentiation unless all checked fields are empty.
 </div>
 
 ### Valid Fields
@@ -370,7 +373,7 @@ Field | Format, Examples
 **Email** | `local-part` + @ + `domain-name` <br> `local-part` contains letters, numbers and special characters excluding `+` `-` `_` `.`, cannot start or end with special characters <br> `domain-name` consists of `domain labels` seperated by periods <br> `domain labels` consist of at least 2 letters and/or numbers <br> `domain labels` excluding the last `domain label` can have non-consecutive hyphens but cannot start or end with a hyphen <br> e.g., `berniceyu@example.com`
 **Github** | Only letters, numbers and hyphens <br> Cannot start or end with a hyphen or have multiple consecutive hyphens <br> Has a maximum length of 39 characters <br> e.g., `Alexio`
 **LinkedIn** | Any valid LinkedIn URL <br> e.g., `https://www.linkedin.com/in/benson/`
-**Details** | Anything <br> e.g., `Quite literally anything.`
+**Details** | Anything you can type in <br> e.g., `Quite literally anything you can type in.`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Fields excluding Names, Tags and Details can be cleared by inputting a hyphen. 
