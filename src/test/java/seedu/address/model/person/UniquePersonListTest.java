@@ -102,6 +102,14 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void containsExcludingPerson_anotherPersonWithSameIdentityFieldsInList_returnsTrue() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BENSON);
+
+        assertTrue(uniquePersonList.containsExcludingPerson(BENSON, ALICE));
+    }
+
+    @Test
     public void add_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
     }

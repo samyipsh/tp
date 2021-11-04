@@ -133,6 +133,14 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasPersonExcludingOtherPerson_anotherPersonWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addPerson(ALICE);
+        addressBook.addPerson(BENSON);
+
+        assertTrue(addressBook.hasPersonExcludingOtherPerson(BENSON, ALICE));
+    }
+
+    @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
