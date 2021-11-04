@@ -14,13 +14,17 @@ public abstract class Command {
             AddCommand.COMMAND_WORD,
             AliasCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
+            DeleteAliasCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
+            OpenFieldCommand.COMMAND_WORD,
             ReplaceTagCommand.COMMAND_WORD,
+            ShowAliasCommand.COMMAND_WORD,
+            ShowCommand.COMMAND_WORD,
             ShowTagsCommand.COMMAND_WORD,
             TagAllCommand.COMMAND_WORD,
             TagCommand.COMMAND_WORD,
@@ -42,7 +46,10 @@ public abstract class Command {
         return List.copyOf(COMMAND_WORDS);
     }
 
-    public static boolean isExistingCommand(String commandWord) {
-        return COMMAND_WORDS.stream().anyMatch(existingCommandWord -> existingCommandWord.equals(commandWord));
+    /**
+     * Checks whether the given string is an existing command word.
+     */
+    public static boolean isExistingCommand(String s) {
+        return COMMAND_WORDS.stream().anyMatch(existingCommandWord -> s.equals(existingCommandWord));
     }
 }
