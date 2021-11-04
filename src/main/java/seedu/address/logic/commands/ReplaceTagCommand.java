@@ -32,7 +32,8 @@ public class ReplaceTagCommand extends Command {
 
     public static final String MESSAGE_REPLACE_ALL_TAG_SUCCESS = "This tag has been replaced "
             + "from %s to %s for all displayed contacts";
-    public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist: %s";
+    public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist: %s \n"
+            + "Use 'showtags' to view all tags available to replace.";
 
     private final Tag tagToDelete;
     private final Tag tagToAdd;
