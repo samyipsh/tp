@@ -73,13 +73,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if a person with the same identity as {@code person} exists
-     * in the address book excluding the one found at {@code index}.
+     * in the address book excluding the one found at {@code personToExclude}.
      */
-    public boolean hasPersonExcludingIndex(Person person, int index) {
+    public boolean hasPersonExcludingOtherPerson(Person person, Person personToExclude) {
         requireNonNull(person);
-        requireNonNull(index);
+        requireNonNull(personToExclude);
 
-        return persons.containsExcludingIndex(person, index);
+        return persons.containsExcludingPerson(person, personToExclude);
     }
 
     /**

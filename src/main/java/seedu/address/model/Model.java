@@ -93,9 +93,9 @@ public interface Model {
 
     /**
      * Returns true if a person with the same identity as {@code person}
-     * exists in the address book excluding the one at {@code index}.
+     * exists in the address book excluding the one at {@code personToExclude} once.
      */
-    boolean hasPersonExcludingIndex(Person person, int index);
+    boolean hasPersonExcludingOtherPerson(Person person, Person personToExclude);
 
     /**
      * Deletes the given person.

@@ -89,20 +89,21 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPersonExcludingIndex_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPersonExcludingIndex(null, 0));
+    public void hasPersonExcludingOtherPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPersonExcludingOtherPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> modelManager.hasPersonExcludingOtherPerson(ALICE, null));
     }
 
     @Test
-    public void hasPersonExcludingIndex_personInAddressBook_returnsTrue() {
+    public void hasPersonExcludingOtherPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPersonExcludingIndex(ALICE, 1));
+        assertTrue(modelManager.hasPersonExcludingOtherPerson(ALICE, BENSON));
     }
 
     @Test
-    public void hasPersonExcludingIndex_personInAddressBook_returnsFalse() {
+    public void hasPersonExcludingOtherPerson_personInAddressBook_returnsFalse() {
         modelManager.addPerson(ALICE);
-        assertFalse(modelManager.hasPersonExcludingIndex(ALICE, 0));
+        assertFalse(modelManager.hasPersonExcludingOtherPerson(ALICE, ALICE));
     }
 
     @Test

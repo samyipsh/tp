@@ -140,11 +140,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPersonExcludingIndex(Person person, int index) {
+    public boolean hasPersonExcludingOtherPerson(Person person, Person personToExclude) {
         requireNonNull(person);
-        requireNonNull(index);
+        requireNonNull(personToExclude);
 
-        return addressBook.hasPersonExcludingIndex(person, index);
+        return addressBook.hasPersonExcludingOtherPerson(person, personToExclude);
     }
 
     @Override
