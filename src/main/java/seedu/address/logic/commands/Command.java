@@ -46,7 +46,10 @@ public abstract class Command {
         return List.copyOf(COMMAND_WORDS);
     }
 
-    public static boolean isExistingCommand(String commandWord) {
-        return COMMAND_WORDS.stream().anyMatch(existingCommandWord -> existingCommandWord.equals(commandWord));
+    /**
+     * Checks whether the given string is an existing command word.
+     */
+    public static boolean isExistingCommand(String s) {
+        return COMMAND_WORDS.stream().anyMatch(existingCommandWord -> s.equals(existingCommandWord));
     }
 }
