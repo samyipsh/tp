@@ -41,19 +41,21 @@ public class UniquePersonList implements Iterable<Person> {
      * excluding the person found at the index.
      *
      * @param toCheck Person to check if similar.
-     * @param index Index of person to be excluded from checking.
+     * @param personToExclude Person to be excluded from checking.
      * @return Whether there is a Person similar to the Person argument excluding the index.
      */
-    public boolean containsExcludingIndex(Person toCheck, int index) {
+    public boolean containsExcludingPerson(Person toCheck, Person personToExclude) {
         requireNonNull(toCheck);
-        requireNonNull(index);
+        requireNonNull(personToExclude);
 
         for (int i = 0; i < internalList.size(); i++) {
-            if (i == index) {
+            Person person = internalList.get(i);
+
+            if (person.equals(personToExclude)) {
                 continue;
             }
 
-            if (internalList.get(i).isSamePerson(toCheck)) {
+            if (person.isSamePerson(toCheck)) {
                 return true;
             }
         }

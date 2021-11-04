@@ -168,7 +168,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPersonExcludingIndex(Person person, int index) {
+        public boolean hasPersonExcludingOtherPerson(Person person, Person personToExclude) {
             throw new AssertionError("This method should not be called.");
         }
 

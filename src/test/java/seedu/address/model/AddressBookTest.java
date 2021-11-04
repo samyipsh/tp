@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -90,44 +91,45 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPersonExcludingIndex_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPersonExcludingIndex(null, 0));
+    public void hasPersonExcludingOtherPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPersonExcludingOtherPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> addressBook.hasPersonExcludingOtherPerson(ALICE, null));
     }
 
     @Test
-    public void hasPersonExcludingIndex_personInAddressBook_returnsTrue() {
+    public void hasPersonExcludingOtherPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPersonExcludingIndex(ALICE, 1));
+        assertTrue(addressBook.hasPersonExcludingOtherPerson(ALICE, BENSON));
     }
 
     @Test
-    public void hasPersonExcludingIndex_personInAddressBook_returnsFalse() {
+    public void hasPersonExcludingOtherPerson_personInAddressBook_returnsFalse() {
         addressBook.addPerson(ALICE);
-        assertFalse(addressBook.hasPersonExcludingIndex(ALICE, 0));
+        assertFalse(addressBook.hasPersonExcludingOtherPerson(ALICE, ALICE));
     }
 
     @Test
-    public void hasPersonExcludingIndex_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(addressBook.hasPersonExcludingIndex(editedAlice, 1));
-    }
-
-    @Test
-    public void hasPersonExcludingIndex_personWithSameIdentityFieldsInAddressBook_returnsFalse() {
+    public void hasPersonExcludingOtherPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertFalse(addressBook.hasPersonExcludingIndex(editedAlice, 0));
+        assertTrue(addressBook.hasPersonExcludingOtherPerson(editedAlice, BENSON));
     }
 
     @Test
-    public void hasPersonExcludingIndex_personWithNoSameIdentityFieldsInAddressBook_returnsFalse() {
+    public void hasPersonExcludingOtherPerson_personWithSameIdentityFieldsInAddressBook_returnsFalse() {
+        addressBook.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertFalse(addressBook.hasPersonExcludingOtherPerson(editedAlice, ALICE));
+    }
+
+    @Test
+    public void hasPersonExcludingOtherPerson_personWithNoSameIdentityFieldsInAddressBook_returnsFalse() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_AMY)
                 .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY).withEmail(VALID_EMAIL_AMY).build();
-        assertFalse(addressBook.hasPersonExcludingIndex(editedAlice, 1));
+        assertFalse(addressBook.hasPersonExcludingOtherPerson(editedAlice, ALICE));
     }
 
     @Test

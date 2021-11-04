@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
@@ -59,44 +60,45 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void containsExcludingIndex_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.containsExcludingIndex(null, 0));
+    public void containsExcludingPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.containsExcludingPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.containsExcludingPerson(ALICE, null));
     }
 
     @Test
-    public void containsExcludingIndex_personInList_returnsTrue() {
+    public void containsExcludingPerson_personInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.containsExcludingIndex(ALICE, 1));
+        assertTrue(uniquePersonList.containsExcludingPerson(ALICE, BENSON));
     }
 
     @Test
-    public void containsExcludingIndex_personInList_returnsFalse() {
+    public void containsExcludingPerson_personInList_returnsFalse() {
         uniquePersonList.add(ALICE);
-        assertFalse(uniquePersonList.containsExcludingIndex(ALICE, 0));
+        assertFalse(uniquePersonList.containsExcludingPerson(ALICE, ALICE));
     }
 
     @Test
-    public void containsExcludingIndex_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(uniquePersonList.containsExcludingIndex(editedAlice, 1));
-    }
-
-    @Test
-    public void containsExcludingIndex_personWithSameIdentityFieldsInList_returnsFalse() {
+    public void containsExcludingPerson_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertFalse(uniquePersonList.containsExcludingIndex(editedAlice, 0));
+        assertTrue(uniquePersonList.containsExcludingPerson(editedAlice, BENSON));
     }
 
     @Test
-    public void containsExcludingIndex_personWithNoSameIdentityFieldsInList_returnsFalse() {
+    public void containsExcludingPerson_personWithSameIdentityFieldsInList_returnsFalse() {
+        uniquePersonList.add(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertFalse(uniquePersonList.containsExcludingPerson(editedAlice, ALICE));
+    }
+
+    @Test
+    public void containsExcludingPerson_personWithNoSameIdentityFieldsInList_returnsFalse() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_AMY).withLinkedIn(VALID_LINKEDIN_AMY)
                 .withGithub(VALID_GITHUB_AMY).withPhone(VALID_PHONE_AMY).build();
-        assertFalse(uniquePersonList.containsExcludingIndex(editedAlice, 1));
+        assertFalse(uniquePersonList.containsExcludingPerson(editedAlice, ALICE));
     }
 
     @Test
