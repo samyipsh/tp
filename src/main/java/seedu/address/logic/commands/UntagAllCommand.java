@@ -31,8 +31,7 @@ public class UntagAllCommand extends Command {
 
     public static final String MESSAGE_UNTAG_ALL_SUCCESS = "This tag has been deleted for all "
             + "displayed contacts: %s";
-    public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist: %s \n"
-            + "Use 'showtags' to view all tags available to untag.";
+    public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist: %s";
 
     private final Tag tagToDelete;
     private final TagsPresentPredicate predicate;
