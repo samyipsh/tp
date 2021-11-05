@@ -29,7 +29,7 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getContactBook()
      */
-    ReadOnlyContactBook getAddressBook();
+    ReadOnlyContactBook getContactBook();
 
     /**
      * Returns saved aliases.
@@ -42,7 +42,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getContactBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

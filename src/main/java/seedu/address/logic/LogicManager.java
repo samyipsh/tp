@@ -61,7 +61,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyContactBook getAddressBook() {
+    public ReadOnlyContactBook getContactBook() {
         return model.getContactBook();
     }
 
@@ -71,7 +71,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getContactBookFilePath() {
         return model.getAddressBookFilePath();
     }
 
