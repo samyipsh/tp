@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.alias.AliasTable;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -72,6 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        aliasWindow = new AliasTableDisplayWindow(logic.getAliasTable().getAliasTable());
 
     }
 
@@ -174,7 +177,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleShowAlias() {
-        aliasWindow = new AliasTableDisplayWindow(logic.getAliasTable().getAliasTable());
+        if(aliasWindow.isShowing()) {
+            aliasWindow.refresh();
+        }
         aliasWindow.show();
     }
 
@@ -214,7 +219,7 @@ public class MainWindow extends UiPart<Stage> {
                 showPerson.show();
             }
 
-            if (commandResult.isShowAlias()) {
+            if (commandResult.isShowAlias() || aliasWindow.isShowing()) {
                 handleShowAlias();
             }
 
