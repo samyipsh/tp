@@ -176,7 +176,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleShowAlias() {
-        if(aliasWindow.isShowing()) {
+        if (aliasWindow.isShowing()) {
             aliasWindow.refresh();
         }
         aliasWindow.show();

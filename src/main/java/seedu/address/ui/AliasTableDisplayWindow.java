@@ -58,20 +58,17 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
         getRoot().show();
         getRoot().centerOnScreen();
     }
-    /**
-     * Hides the help window.
-     */
-    public void hide() {
-        getRoot().hide();
-    }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the alias window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
+    /**
+     * Reloads the alias window component
+     */
     public void refresh() {
         aliasTableView.getColumns().clear();
         aliasTableView.getItems().clear();
