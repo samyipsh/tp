@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.OpenFieldCommand.MESSAGE_UNSUPPORTED_
 import static seedu.address.testutil.TypicalIndexes.INDEX_EMPTY_FIELD_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalContactBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +14,14 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ContactBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 
 public class OpenFieldCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactBook(), new UserPrefs());
     private final Predicate<Person> predicateNoPersons = unused -> false;
 
     private final String githubOpenFieldSuccess = String.format(OpenFieldCommand.MESSAGE_OPEN_FIELD_SUCCESS, "github");
@@ -35,7 +35,7 @@ public class OpenFieldCommandTest {
 
         secondIndex.add(INDEX_SECOND_PERSON); //has both linkedin and github field
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactBook(model.getContactBook()), new UserPrefs());
         OpenFieldCommand openGithubFieldCommand = new OpenFieldCommand(secondIndex, "github");
         OpenFieldCommand openLinkedInFieldCommand = new OpenFieldCommand(secondIndex, "linkedin");
 
@@ -51,7 +51,7 @@ public class OpenFieldCommandTest {
         firstAndSecondIndex.add(INDEX_FIRST_PERSON);
         firstAndSecondIndex.add(INDEX_SECOND_PERSON);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactBook(model.getContactBook()), new UserPrefs());
         OpenFieldCommand openGithubFieldCommand = new OpenFieldCommand(firstAndSecondIndex, "github");
         OpenFieldCommand openLinkedInFieldCommand = new OpenFieldCommand(firstAndSecondIndex, "linkedin");
 
@@ -66,7 +66,7 @@ public class OpenFieldCommandTest {
         //missing LinkedIn field
         index.add(INDEX_EMPTY_FIELD_PERSON);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactBook(model.getContactBook()), new UserPrefs());
         OpenFieldCommand openGithubFieldCommand = new OpenFieldCommand(index, "github");
         OpenFieldCommand openLinkedInFieldCommand = new OpenFieldCommand(index, "linkedin");
 
@@ -81,7 +81,7 @@ public class OpenFieldCommandTest {
 
         secondIndex.add(INDEX_SECOND_PERSON); //has both linkedin and github field
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactBook(model.getContactBook()), new UserPrefs());
         OpenFieldCommand openGithubFieldCommand = new OpenFieldCommand(secondIndex, "someField");
 
         //MODIFY when new list data from james is filled

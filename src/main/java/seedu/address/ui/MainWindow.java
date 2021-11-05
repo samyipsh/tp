@@ -16,7 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyContactBook;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-        ReadOnlyAddressBook addressBook = logic.getAddressBook();
+        ReadOnlyContactBook addressBook = logic.getAddressBook();
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath(), addressBook);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
