@@ -93,7 +93,7 @@ public class OpenFieldCommandTest {
         //        model.updateFilteredPersonList(predicateNoPersons);
         //        Index firstIndex = INDEX_FIRST_PERSON;
         //        // ensures that outOfBoundIndex is still in bounds of address book list
-        //        assertTrue(firstIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        //        assertTrue(firstIndex.getZeroBased() < model.getContactBook().getPersonList().size());
         //
         //        List<Index> invalidIndex = new ArrayList<>();
         //        invalidIndex.add(firstIndex);

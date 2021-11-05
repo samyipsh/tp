@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        ContactBookStorage contactBookStorage = new JsonContactBookStorage(userPrefs.getAddressBookFilePath());
+        ContactBookStorage contactBookStorage = new JsonContactBookStorage(userPrefs.getContactBookFilePath());
         storage = new StorageManager(contactBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -69,19 +69,19 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s contact book and {@code userPrefs}. <br>
+     * The data from the sample contact book will be used instead if {@code storage}'s contact book is not found,
+     * or an empty contact book will be used instead if errors occur when reading {@code storage}'s contact book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyContactBook> addressBookOptional;
+        Optional<ReadOnlyContactBook> contactBookOptional;
         ReadOnlyContactBook initialData;
         try {
-            addressBookOptional = storage.readContactBook();
-            if (!addressBookOptional.isPresent()) {
+            contactBookOptional = storage.readContactBook();
+            if (!contactBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ContactBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = contactBookOptional.orElseGet(SampleDataUtil::getSampleContactBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ContactBook");
             initialData = new ContactBook();
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Contact Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

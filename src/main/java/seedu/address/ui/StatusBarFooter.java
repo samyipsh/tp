@@ -24,10 +24,10 @@ public class StatusBarFooter extends UiPart<Region> {
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
-    public StatusBarFooter(Path saveLocation, ReadOnlyContactBook addressBook) {
+    public StatusBarFooter(Path saveLocation, ReadOnlyContactBook contactBook) {
         super(FXML);
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
-        totalContacts.setText("Number of Contact: " + addressBook.getPersonList().size());
+        totalContacts.setText("Number of Contact: " + contactBook.getPersonList().size());
     }
 
 }

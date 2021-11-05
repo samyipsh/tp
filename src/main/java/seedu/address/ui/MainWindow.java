@@ -124,8 +124,8 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-        ReadOnlyContactBook addressBook = logic.getContactBook();
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getContactBookFilePath(), addressBook);
+        ReadOnlyContactBook contactBook = logic.getContactBook();
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getContactBookFilePath(), contactBook);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

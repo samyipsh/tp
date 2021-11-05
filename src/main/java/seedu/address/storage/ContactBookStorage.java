@@ -16,7 +16,7 @@ public interface ContactBookStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getContactBookFilePath();
 
     /**
      * Returns ContactBook data as a {@link ReadOnlyContactBook}.
@@ -27,20 +27,20 @@ public interface ContactBookStorage {
     Optional<ReadOnlyContactBook> readContactBook() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getContactBookFilePath()
      */
     Optional<ReadOnlyContactBook> readContactBook(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyContactBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param contactBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveContactBook(ReadOnlyContactBook addressBook) throws IOException;
+    void saveContactBook(ReadOnlyContactBook contactBook) throws IOException;
 
     /**
      * @see #saveContactBook(ReadOnlyContactBook)
      */
-    void saveContactBook(ReadOnlyContactBook addressBook, Path filePath) throws IOException;
+    void saveContactBook(ReadOnlyContactBook contactBook, Path filePath) throws IOException;
 
 }

@@ -27,7 +27,7 @@ public class JsonContactBookStorage implements ContactBookStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getContactBookFilePath() {
         return filePath;
     }
 
@@ -45,14 +45,14 @@ public class JsonContactBookStorage implements ContactBookStorage {
     public Optional<ReadOnlyContactBook> readContactBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableContactBook> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableContactBook> jsonContactBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableContactBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonContactBook.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonContactBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,8 +60,8 @@ public class JsonContactBookStorage implements ContactBookStorage {
     }
 
     @Override
-    public void saveContactBook(ReadOnlyContactBook addressBook) throws IOException {
-        saveContactBook(addressBook, filePath);
+    public void saveContactBook(ReadOnlyContactBook contactBook) throws IOException {
+        saveContactBook(contactBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonContactBookStorage implements ContactBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveContactBook(ReadOnlyContactBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveContactBook(ReadOnlyContactBook contactBook, Path filePath) throws IOException {
+        requireNonNull(contactBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableContactBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableContactBook(contactBook), filePath);
     }
 
 }

@@ -50,13 +50,13 @@ public class StorageManager implements Storage {
     // ================ ContactBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return contactBookStorage.getAddressBookFilePath();
+    public Path getContactBookFilePath() {
+        return contactBookStorage.getContactBookFilePath();
     }
 
     @Override
     public Optional<ReadOnlyContactBook> readContactBook() throws DataConversionException, IOException {
-        return readContactBook(contactBookStorage.getAddressBookFilePath());
+        return readContactBook(contactBookStorage.getContactBookFilePath());
     }
 
     @Override
@@ -66,14 +66,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveContactBook(ReadOnlyContactBook addressBook) throws IOException {
-        saveContactBook(addressBook, contactBookStorage.getAddressBookFilePath());
+    public void saveContactBook(ReadOnlyContactBook contactBook) throws IOException {
+        saveContactBook(contactBook, contactBookStorage.getContactBookFilePath());
     }
 
     @Override
-    public void saveContactBook(ReadOnlyContactBook addressBook, Path filePath) throws IOException {
+    public void saveContactBook(ReadOnlyContactBook contactBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        contactBookStorage.saveContactBook(addressBook, filePath);
+        contactBookStorage.saveContactBook(contactBook, filePath);
     }
 
 }

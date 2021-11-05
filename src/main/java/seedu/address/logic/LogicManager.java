@@ -27,7 +27,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final ContactBookParser addressBookParser;
+    private final ContactBookParser addressContactParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,7 +35,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new ContactBookParser(model);
+        addressContactParser = new ContactBookParser(model);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressContactParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -72,7 +72,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getContactBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getContactBookFilePath();
     }
 
     @Override

@@ -28,7 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given contactBook and userPrefs.
      */
     public ModelManager(ReadOnlyContactBook contactBook, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -111,14 +111,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getContactBookFilePath() {
+        return userPrefs.getContactBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setContactBookFilePath(Path contactBookFilePath) {
+        requireNonNull(contactBookFilePath);
+        userPrefs.setContactBookFilePath(contactBookFilePath);
     }
 
     //=========== ContactBook ================================================================================
@@ -169,7 +169,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedContactBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
