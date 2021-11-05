@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalContactBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 
 public class ShowCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -51,7 +51,7 @@ public class ShowCommandTest {
         String expectedMessage = String.format(ShowCommand.MESSAGE_SUCCESS,
                 INDEX_FIRST_PERSON.getOneBased());
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactBook(), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
         assertCommandSuccess(showCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class ShowCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getContactBook().getPersonList().size());
 
         ShowCommand showCommand = new ShowCommand(outOfBoundIndex);
 

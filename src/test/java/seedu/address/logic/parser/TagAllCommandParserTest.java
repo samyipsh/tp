@@ -23,11 +23,11 @@ class TagAllCommandParserTest {
     public void parse_invalidTag_failure() {
         // non-alphanumeric
         assertParseFailure(parser, "#hashtag",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAllCommand.MESSAGE_USAGE));
+                Tag.MESSAGE_CONSTRAINTS);
 
         // whitespace
         assertParseFailure(parser, "good guy",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAllCommand.MESSAGE_USAGE));
+                Tag.MESSAGE_CONSTRAINTS);
     }
 
     @Test

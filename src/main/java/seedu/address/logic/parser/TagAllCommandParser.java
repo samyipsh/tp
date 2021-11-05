@@ -17,12 +17,17 @@ public class TagAllCommandParser implements Parser<TagAllCommand> {
     public TagAllCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
+        if (args.equals("")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAllCommand.MESSAGE_USAGE));
+        }
+
         try {
             Tag tagToAdd = ParserUtil.parseTag(args);
             return new TagAllCommand(tagToAdd);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAllCommand.MESSAGE_USAGE), pe);
+                    pe.getMessage(), pe);
         }
 
 

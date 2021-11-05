@@ -35,6 +35,7 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagAllCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -44,9 +45,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ContactBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser(new ModelManager());
+    private final ContactBookParser parser = new ContactBookParser(new ModelManager());
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -184,5 +185,26 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void replaceAlias() {
+        Model model = new ModelManager();
+        model.addAlias("h", "help");
+        model.addAlias("ta", "tagall");
+
+        ContactBookParser parser = new ContactBookParser(model);
+
+        // EP: no-param commands
+        assertEquals("help", parser.replaceAlias("h"));
+
+        // EP: param commands
+        assertEquals("tagall os", parser.replaceAlias("ta os"));
+
+        // EP: matching substring (not whole string) that matches at index 0
+        assertEquals("taga", parser.replaceAlias("taga"));
+
+        // EP: matching word whose matching index != 0
+        assertEquals("tagall ta", parser.replaceAlias("tagall ta"));
     }
 }

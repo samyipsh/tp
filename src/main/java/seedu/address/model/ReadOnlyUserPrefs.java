@@ -14,6 +14,6 @@ public interface ReadOnlyUserPrefs {
 
     AliasTable getAliasTable();
 
-    Path getAddressBookFilePath();
+    Path getContactBookFilePath();
 
 }

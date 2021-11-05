@@ -39,10 +39,10 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
-    private static final String EMPTY_PHONE = "-";
-    private static final String EMPTY_EMAIL = "-";
-    private static final String EMPTY_GITHUB = "-";
-    private static final String EMPTY_LINKEDIN = "-";
+    private static final String EMPTY_PHONE = "";
+    private static final String EMPTY_EMAIL = "";
+    private static final String EMPTY_GITHUB = "";
+    private static final String EMPTY_LINKEDIN = "";
 
     private static final String WHITESPACE = " \t\r\n";
 
