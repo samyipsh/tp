@@ -17,7 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private AliasTable aliasTable = new AliasTable();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path contactBookFilePath = Paths.get("data" , "contactbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -39,7 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAliasTable(newUserPrefs.getAliasTable());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setContactBookFilePath(newUserPrefs.getContactBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -100,13 +100,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return aliasTable.getCorrespondingCommand(alias);
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getContactBookFilePath() {
+        return contactBookFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setContactBookFilePath(Path contactBookFilePath) {
+        requireNonNull(contactBookFilePath);
+        this.contactBookFilePath = contactBookFilePath;
     }
 
     @Override
@@ -122,12 +122,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && aliasTable.equals(o.aliasTable)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && contactBookFilePath.equals(o.contactBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, aliasTable, addressBookFilePath);
+        return Objects.hash(guiSettings, aliasTable, contactBookFilePath);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nAlias table : " + aliasTable);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + contactBookFilePath);
         return sb.toString();
     }
 

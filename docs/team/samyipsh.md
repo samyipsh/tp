@@ -3,44 +3,48 @@ layout: page
 title: Samuel Yip's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: NetworkUS
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+NetworkUS is an address book application that helps Computer Science students maintain a list of contacts of people they meet in school. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-Given below are my contributions to the project.
+Given below are my contributions to the project:
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the Open Field command. Provides the ability to open in the browser the github or linkedin pages of a contact or multiple contacts at once. (Pull requests [\#93](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/93))
+  * What it does: Opens the LinkedIn/Github page from details of field specified of a particular person(s) from the NetworkUS contacts.
+  * Justification: This feature is necessary because it increases the convenience of the app by giving users a means to open the stored github and linkedin profile information of their contacts instead of copying them one by one and pasting them in. This would be especially useful for group formation when a user would like to compare the suitability of multiple contacts at once through looking at their profile pages.
+  * Highlights:
+    * This enhancement uses a reusable function to open url in user's default browser. This new reusable function can be easily used by other commands or extended to open other fields.
+    * Specific url was generated from contacts' github username or linkedin url depending on field indicated to be open. (Pull Request [\#77](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/77))
+  
+<<INSERT OPEN FIELD SEQ DIAG>>
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+<<INSERT OPEN FIELD CLASS DIAG>>
 
-* **Code contributed**: [RepoSense link]()
+* **New Field**: Added a Github field for a person. User can update this field in generic add/edit commands.
+  * Credits: use of this github validation regex *https://github.com/shinnn/github-username-regex*
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Project admin: `v1.1` - `v1.4` (3 releases) on GitHub
+  * Finalized Project version release workflow (along with [dystoriax](https://ay2122s1-cs2103t-t10-3.github.io/tp/team/dystoriax.html))
+  *
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Designed current project icon / logo (Pull requests [\#66](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/66/files))
+
+![Ui](images/networkUS_icon.png)
+
+  * GUI addition of field names for clarity (Pull request [\#63](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/63/files))
 
 * **Documentation**:
-    * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-    * Developer Guide:
-        * Added implementation details of the `delete` feature.
+  * User Guide:
+    * Added documentation for the features `open` command
+  * Developer Guide:
+    * Added implementation details of the `open` command.
+  * General reformatting and organisation (Pull Request [\#85](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/85/files))
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): [\#84](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/84)
+  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
+  * Reported bugs and suggestions for other teams in the class (15 bugs reported in PE-D)

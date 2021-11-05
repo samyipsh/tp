@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalContactBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ContactBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,7 +27,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class TagCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactBook(), new UserPrefs());
     private Tag tag = new Tag("tag");
     private final Predicate<Person> predicateNoPersons = unused -> false;
 
@@ -45,7 +45,7 @@ public class TagCommandTest {
 
         TagCommand tagCommand = new TagCommand(thirdIndex, tagToAdd);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactBook(model.getContactBook()), new UserPrefs());
         expectedModel.setPerson(thirdPerson, taggedPerson);
 
         String expectedMessage = TagCommand.MESSAGE_TAG_PERSON_SUCCESS;
@@ -69,7 +69,7 @@ public class TagCommandTest {
 
         TagCommand tagCommand = new TagCommand(firstIndex, tagToAdd);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactBook(model.getContactBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, taggedPerson);
         showPersonAtIndex(expectedModel, indexLastPerson);
 
@@ -97,7 +97,7 @@ public class TagCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getContactBook().getPersonList().size());
 
         List<Index> invalidIndex = new ArrayList<>();
         invalidIndex.add(outOfBoundIndex);
@@ -113,7 +113,7 @@ public class TagCommandTest {
         model.updateFilteredPersonList(predicateNoPersons);
         Index outOfBoundIndex = INDEX_FIRST_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getContactBook().getPersonList().size());
 
         List<Index> invalidIndex = new ArrayList<>();
         invalidIndex.add(outOfBoundIndex);

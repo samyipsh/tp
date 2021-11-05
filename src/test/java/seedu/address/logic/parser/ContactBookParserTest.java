@@ -45,9 +45,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ContactBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser(new ModelManager());
+    private final ContactBookParser parser = new ContactBookParser(new ModelManager());
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -193,7 +193,7 @@ public class AddressBookParserTest {
         model.addAlias("h", "help");
         model.addAlias("ta", "tagall");
 
-        AddressBookParser parser = new AddressBookParser(model);
+        ContactBookParser parser = new ContactBookParser(model);
 
         // EP: no-param commands
         assertEquals("help", parser.replaceAlias("h"));

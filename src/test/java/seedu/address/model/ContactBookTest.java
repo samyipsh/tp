@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalContactBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,25 +26,25 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class ContactBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ContactBook contactBook = new ContactBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), contactBook.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> contactBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyContactBook_replacesData() {
+        ContactBook newData = getTypicalContactBook();
+        contactBook.resetData(newData);
+        assertEquals(newData, contactBook);
     }
 
     @Test
@@ -53,105 +53,105 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        ContactBookStub newData = new ContactBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> contactBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> contactBook.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPerson_personNotInContactBook_returnsFalse() {
+        assertFalse(contactBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPerson_personInContactBook_returnsTrue() {
+        contactBook.addPerson(ALICE);
+        assertTrue(contactBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_personWithSameIdentityFieldsInContactBook_returnsTrue() {
+        contactBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(contactBook.hasPerson(editedAlice));
     }
 
     @Test
-    public void hasPerson_personWithNoSameIdentityFieldsInAddressBook_returnsFalse() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_personWithNoSameIdentityFieldsInContactBook_returnsFalse() {
+        contactBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_AMY)
                 .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY).withEmail(VALID_EMAIL_AMY).build();
-        assertFalse(addressBook.hasPerson(editedAlice));
+        assertFalse(contactBook.hasPerson(editedAlice));
     }
 
     @Test
     public void hasPersonExcludingOtherPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPersonExcludingOtherPerson(null, ALICE));
-        assertThrows(NullPointerException.class, () -> addressBook.hasPersonExcludingOtherPerson(ALICE, null));
+        assertThrows(NullPointerException.class, () -> contactBook.hasPersonExcludingOtherPerson(null, ALICE));
+        assertThrows(NullPointerException.class, () -> contactBook.hasPersonExcludingOtherPerson(ALICE, null));
     }
 
     @Test
-    public void hasPersonExcludingOtherPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPersonExcludingOtherPerson(ALICE, BENSON));
+    public void hasPersonExcludingOtherPerson_personInContactBook_returnsTrue() {
+        contactBook.addPerson(ALICE);
+        assertTrue(contactBook.hasPersonExcludingOtherPerson(ALICE, BENSON));
     }
 
     @Test
-    public void hasPersonExcludingOtherPerson_personInAddressBook_returnsFalse() {
-        addressBook.addPerson(ALICE);
-        assertFalse(addressBook.hasPersonExcludingOtherPerson(ALICE, ALICE));
+    public void hasPersonExcludingOtherPerson_personInContactBook_returnsFalse() {
+        contactBook.addPerson(ALICE);
+        assertFalse(contactBook.hasPersonExcludingOtherPerson(ALICE, ALICE));
     }
 
     @Test
-    public void hasPersonExcludingOtherPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPersonExcludingOtherPerson_personWithSameIdentityFieldsInContactBook_returnsTrue() {
+        contactBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPersonExcludingOtherPerson(editedAlice, BENSON));
+        assertTrue(contactBook.hasPersonExcludingOtherPerson(editedAlice, BENSON));
     }
 
     @Test
-    public void hasPersonExcludingOtherPerson_personWithSameIdentityFieldsInAddressBook_returnsFalse() {
-        addressBook.addPerson(ALICE);
+    public void hasPersonExcludingOtherPerson_personWithSameIdentityFieldsInContactBook_returnsFalse() {
+        contactBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertFalse(addressBook.hasPersonExcludingOtherPerson(editedAlice, ALICE));
+        assertFalse(contactBook.hasPersonExcludingOtherPerson(editedAlice, ALICE));
     }
 
     @Test
     public void hasPersonExcludingOtherPerson_personWithNoSameIdentityFieldsInAddressBook_returnsFalse() {
-        addressBook.addPerson(ALICE);
+        contactBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_AMY)
                 .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY).withEmail(VALID_EMAIL_AMY).build();
-        assertFalse(addressBook.hasPersonExcludingOtherPerson(editedAlice, ALICE));
+        assertFalse(contactBook.hasPersonExcludingOtherPerson(editedAlice, ALICE));
     }
 
     @Test
     public void hasPersonExcludingOtherPerson_anotherPersonWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        addressBook.addPerson(BENSON);
+        contactBook.addPerson(ALICE);
+        contactBook.addPerson(BENSON);
 
-        assertTrue(addressBook.hasPersonExcludingOtherPerson(BENSON, ALICE));
+        assertTrue(contactBook.hasPersonExcludingOtherPerson(BENSON, ALICE));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> contactBook.getPersonList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyContactBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ContactBookStub implements ReadOnlyContactBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        ContactBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 
