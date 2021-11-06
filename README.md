@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-NetworkUs is an address book application that helps **Computer Science students** maintain a list of contacts of people they meet in school.
+NetworkUs is an contact book application that helps **Computer Science students** maintain a list of contacts of people they meet in school.
 NetworkUs allows students to store their friends' Github and LinkedIn account so that they can collaborate on project in future.
 
 Features:

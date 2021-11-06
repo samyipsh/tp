@@ -33,7 +33,7 @@ import seedu.address.model.Model;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ContactBookParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -42,7 +42,7 @@ public class AddressBookParser {
 
     private Model model;
 
-    public AddressBookParser(Model model) {
+    public ContactBookParser(Model model) {
         this.model = model;
     }
 
