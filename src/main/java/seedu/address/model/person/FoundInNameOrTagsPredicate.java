@@ -9,12 +9,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Name} and Tags matches any of the keywords given.
  */
-public class NameAndTagsContainKeywordsPredicate implements Predicate<Person> {
+public class FoundInNameOrTagsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public NameAndTagsContainKeywordsPredicate(List<String> keywords) {
+    public FoundInNameOrTagsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -39,8 +39,8 @@ public class NameAndTagsContainKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameAndTagsContainKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameAndTagsContainKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof FoundInNameOrTagsPredicate // instanceof handles nulls
+                && keywords.equals(((FoundInNameOrTagsPredicate) other).keywords)); // state check
     }
 
 }

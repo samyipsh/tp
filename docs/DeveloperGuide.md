@@ -163,9 +163,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The find tag mechanism builds on the find name feature and is facilitated by `NameAndTagsContainKeywordsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
+The find tag mechanism builds on the find name feature and is facilitated by `FoundInNameOrTagsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
 It implements the following operation:
-* `NameAndTagsContainKeywordsPredicate#test(Person person)` - tests whether the input `Person` object has a name or tag which matches any of the keywords.
+* `FoundInNameOrTagsPredicate#test(Person person)` - tests whether the input `Person` object has a name or tag which matches any of the keywords.
 
 The predicate is then used by `Model#updateFilteredPersonList(Predicate<Person>)`  to change the _filtered_ list in the `Model` component exposed as and observed by the UI component as an unmodifiable `ObservableList<Person>` to display to the user.
 
@@ -476,6 +476,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 3b. The given name and details are duplicated.
+    * 3b1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: UC05 View list of contact**
 
 **MSS**
@@ -491,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC06 help**
+**Use case: UC06 Display help window**
 
 **MSS**
 
@@ -507,14 +512,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC07 clear**
+**Use case: UC07 Clear all contacts**
 
 **MSS**
 
 1.  User requests to clear contacts list
-2.  NetworkUs sends confirmation to user
-3.  User says yes to the confirmation
-4.  NetworkUs deletes all the user's contacts
+2.  NetworkUS deletes all the user's contacts
 
     Use case ends.
 
@@ -522,17 +525,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The user says no during the confirmation
 
-    NetworkUs aborts deletion
+    NetworkUS aborts deletion
 
-**Use case: UC08 exit**
+**Use case: UC08 Exit from application**
 
 **MSS**
 1. User is finished with tasks and requests to exit application
-2. NetworkUs close after several seconds
+2. NetworkUS close after several seconds
 
     Use case ends.
 
-**Use Case: UC09 showtags**
+**Use Case: UC09 Show all tags used**
 
 **MSS**
 1. User request to show all tags in NetworkUS
@@ -541,13 +544,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use Case: UC10 alias**
+**Use Case: UC10 Alias a command**
 
 **MSS**
 1. User creates alias for a certain command
 2. NetworkUS saves and stores the alias for the certain command
 
    Use case ends.
+
+* 2a. The given alias is invalid.
+    * 2a1. NetworkUS shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC11 Tag persons**
 

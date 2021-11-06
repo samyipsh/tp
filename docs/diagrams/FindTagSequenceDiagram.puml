@@ -10,9 +10,10 @@ participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "p:NameAndTagsContainKeywordsPredicate" as NameAndTagsContainKeywordsPredicate MODEL_COLOR
+participant "p:FoundInNameOrTagsPredicate" as FoundInNameOrTagsPredicate MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
+
 
 [-> LogicManager : execute("find programmer")
 activate LogicManager
@@ -30,12 +31,12 @@ deactivate FindCommandParser
 ContactBookParser -> FindCommandParser : parse("programmer")
 activate FindCommandParser
 
-create NameAndTagsContainKeywordsPredicate
-FindCommandParser -> NameAndTagsContainKeywordsPredicate : NameAndTagsContainKeywordsPredicate("programmer")
-activate NameAndTagsContainKeywordsPredicate
+create FoundInNameOrTagsPredicate
+FindCommandParser -> FoundInNameOrTagsPredicate : FoundInNameOrTagsPredicate("programmer")
+activate FoundInNameOrTagsPredicate
 
-NameAndTagsContainKeywordsPredicate --> FindCommandParser : p
-deactivate NameAndTagsContainKeywordsPredicate
+FoundInNameOrTagsPredicate --> FindCommandParser : p
+deactivate FoundInNameOrTagsPredicate
 
 create FindCommand
 FindCommandParser -> FindCommand : FindCommand(p)
@@ -76,5 +77,5 @@ deactivate FindCommand
 deactivate LogicManager
 
 destroy FindCommand
-destroy NameAndTagsContainKeywordsPredicate
+destroy FoundInNameOrTagsPredicate
 @enduml
