@@ -26,7 +26,7 @@ Here `delete 3` will show an error message as 3 is not shown (Even though it is 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp).
+1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp/releases/download/v1.3/networkus.jar).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetworkUS app.
 
@@ -52,7 +52,14 @@ Here `delete 3` will show an error message as 3 is not shown (Even though it is 
 
 ## User Interface
 
-TODO: add labeled UI
+![User Interface](images/UIDetails.png)
+
+The image above shows the UI Components : 
+1. Menu Bar : shows the 'Help' and 'Show Alias' option.
+1. Command Bar : location for entering commands.
+1. Result Display : Shows result feedback from commands.
+1. Contact List : shows the current contacts.
+1. Footer : shows file path of the storage file and the total number of contacts.
 
 ## Features
 
@@ -175,7 +182,7 @@ Examples:
 
 ### Showing person : `show`
 
-Shows the specified person's full contact information in a separate window
+Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long.
 
 Format: `show INDEX`
 
@@ -189,6 +196,11 @@ Example:
 Clears all entries from the contact list.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This will clear all contacts data in NetworkUs !
+</div>
+
 
 ### Exiting the program : `exit`
 

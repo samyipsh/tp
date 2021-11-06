@@ -26,12 +26,12 @@
                         <padding>
                             <Insets top="5" right="5" bottom="5" left="15" />
                         </padding>
-                        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-                        <FlowPane fx:id="tags" />
-                        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-                        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-                        <Label fx:id="github" styleClass="cell_small_label" text="\$github" />
-                        <Label fx:id="linkedin" styleClass="cell_small_label" text="\$linkedin" />
+                        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
+                        <FlowPane fx:id="tags" prefWidth="500"/>
+                        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+                        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true"/>
+                        <Label fx:id="github" styleClass="cell_small_label" text="\$github" wrapText="true" />
+                        <Label fx:id="linkedin" styleClass="cell_small_label" text="\$linkedin" wrapText="true"/>
                         <Label fx:id="detail" styleClass="cell_small_label" text="\$detail" wrapText="true"/>
                     </VBox>
                 </GridPane>

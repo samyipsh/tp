@@ -43,12 +43,12 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 ContactBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
-Person *--> "*" Phone
-Person *--> "*" Email
-Person *--> "*" Github
-Person *--> "*" LinkedIn
-Person *--> "*" Tag
-Person *--> "*" Detail
+Person *--> Phone
+Person *--> Email
+Person *--> Github
+Person *--> LinkedIn
+Person *--> Tag
+Person *--> Detail
 
 Name -[hidden]right-> Phone
 Email -[hidden]right-> Tag
