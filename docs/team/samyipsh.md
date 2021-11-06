@@ -43,6 +43,8 @@ Given below are my contributions to the project:
     * Added documentation for the features `open` command
   * Developer Guide:
     * Added implementation details of the `open` command.
+    * Added UML Sequence Diagram of `open` command.
+    * Added UML Activtiy Diagram of `open` command.
   * General reformatting and organisation (Pull Request [\#85](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/85/files))
 
 
