@@ -23,7 +23,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-T10-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -102,7 +103,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -126,7 +129,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Network List, which `Person` references. This allows the Network List to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Network List, which `Person` references. This allows the Network List to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -135,7 +140,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/AY2122S1-CS2103T-T10-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-T10-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -158,11 +163,15 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The find tag mechanism is facilitated by `NameAndTagsContainKeywordsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
+The find tag mechanism builds on the find name feature and is facilitated by `NameAndTagsContainKeywordsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
 It implements the following operation:
 * `NameAndTagsContainKeywordsPredicate#test(Person person)` - tests whether the input `Person` object has a name or tag which matches any of the keywords.
 
 The predicate is then used by `Model#updateFilteredPersonList(Predicate<Person>)`  to change the _filtered_ list in the `Model` component exposed as and observed by the UI component as an unmodifiable `ObservableList<Person>` to display to the user.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("find programmer")` API call.
+
+![Interactions Inside the Logic Component for the `find programmer` Command](images/FindTagSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -173,6 +182,46 @@ How find matches tags and keywords:
 * Alternative 2 : Substring match
     * Pros: More flexibility for valid user inputs
     * Cons: May have performance issues for speed
+
+### Tag person feature
+
+#### Implementation
+
+The tag person mechanism is facilitated by `ParserUtil#parseTag(String tag)` and `ParserUtil#parseIndex(String oneBasedIndex)`. <br>
+`ParserUtil#parseTag(String tag)` checks whether the input conforms to the restrictions of a `Tag` and if so returns a `Tag` with the input as its value. <br>
+`ParserUtil#parseIndex(String oneBasedIndex)` checks whether the input can be an unsigned non-zero integer and if so returns an `Index` with the integer as the value. <br>
+
+The `Tag` and multiple `Index` are used to find multiple `Person` objects from `filteredPersons`. <br> 
+They are then replaced with `Person` objects with the `Tag` using `model#setPerson(Person target, Person editedPerson)`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("tag 1 2 programmer")` API call.
+
+![Interactions Inside the Logic Component for the `tag 1 2 programmer` Command](images/TagSequenceDiagram.png)
+
+The Activity Diagram below summarizes what happens when the user executes a Tag command. 
+
+![TagActivityDiagram](images/TagActivityDiagram.png)
+
+#### Design consideration
+
+What the specified indexes refer to:
+* Alternative 1 (Current choice): Using `filteredList` to specify what `Index` refers to.
+    * Pros: Ability to tag visible persons
+    * Cons: Inability to tag not visible persons
+
+* Alternative 2 : Using list of all persons to specify what `Index` refers to.
+    * Pros: Ability to tag persons regardless of filter
+    * Cons: Requires knowledge of person's unfiltered list index to tag accurately 
+
+Whether invalid indexes should be addressed:
+* Alternative 1 (Current choice): Invalid indexes are pointed out.
+    * Pros: Ability to know when incorrect indexes are used
+    * Cons: More restrictive and unable to progress due to a potentially inconsequential mistake
+
+* Alternative 2 : Invalid indexes are ignored.
+    * Pros: Ability to tag persons flexibly
+    * Cons: May result in users believing the function behaves differently than it actually does
+
 
 ### Replace Tag feature
 
@@ -466,6 +515,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: UC11 Tag persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to tag specific persons in the list with a specific tag
+4.  NetworkUS tags the specified persons with the specified tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. A given index or the tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC12 Tag all displayed persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to tag all persons in the list with a specified tag
+4.  NetworkUS tags all persons in the list with the specified tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -488,6 +581,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 </div>
