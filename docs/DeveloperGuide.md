@@ -193,6 +193,10 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `tag 1 2 programmer` Command](images/TagSequenceDiagram.png)
 
+The Activity Diagram below summarizes what happens when the user executes a Tag command. 
+
+![TagActivityDiagram](images/TagActivityDiagram.png)
+
 #### Design consideration
 
 What the specified indexes refer to:

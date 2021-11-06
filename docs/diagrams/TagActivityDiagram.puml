@@ -1,0 +1,29 @@
+@startuml
+start
+
+:User executes command;
+if() then ([indexes are invalid])
+    :Send valid index
+    format to user;
+    stop
+else([else])
+if() then ([tag format is invalid])
+    :Send valid tag
+    format to user;
+    stop
+else([else])
+if() then ([empty displayed list])
+    :Send message on lack of
+    persons in list to tag to user;
+    stop
+else([else])
+    :Valid Tag command;
+    repeat
+    :Tag person at index
+    of displayed list;
+    repeat while () is ([else])
+    ->[all indexes cycled through];
+    :return success
+    message to user;
+stop
+@enduml
