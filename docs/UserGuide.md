@@ -53,7 +53,14 @@ Here `delete 3` will delete "Charlotte Oliviero"<br>
 
 ## User Interface
 
-TODO: add labeled UI
+![User Interface](images/UIDetails.png)
+
+The image above shows the UI Components : 
+1. Menu Bar : shows the 'Help' and 'Show Alias' option.
+1. Command Bar : location for entering commands.
+1. Result Display : Shows result feedback from commands.
+1. Contact List : shows the current contacts.
+1. Footer : shows file path of the storage file and the total number of contacts.
 
 ## Features
 
