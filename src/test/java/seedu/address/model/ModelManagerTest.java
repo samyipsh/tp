@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameAndTagsContainKeywordsPredicate;
+import seedu.address.model.person.FoundInNameOrTagsPredicate;
 import seedu.address.testutil.ContactBookBuilder;
 
 public class ModelManagerTest {
@@ -136,7 +136,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameAndTagsContainKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new FoundInNameOrTagsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(contactBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

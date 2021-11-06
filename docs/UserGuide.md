@@ -16,7 +16,7 @@ This user guide is for users who want to use NetworkUS for their daily use or de
 
 ## How to use the guide
 
-1. Most of the Commands in NetworkUs acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently displayed contacts list.<br>
+1. Most of the Commands in NetworkUS acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently displayed contacts list.<br>
 ![Original](images/originalList.png)
 Here `delete 3` will delete "Charlotte Oliviero"<br>
 ![filtered](images/findList.png)
@@ -198,7 +198,7 @@ Clears all entries from the contact list.
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-This will clear all contacts data in NetworkUs !
+This will clear all contacts data in NetworkUS !
 </div>
 
 
