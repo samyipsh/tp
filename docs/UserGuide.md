@@ -207,9 +207,10 @@ This will clear all contacts data in NetworkUS !
 Exits the program.
 
 Format: `exit`
+
 ## Tagging features
 
-TODO: Elaborate on use cases of tagging features. Add tips for each command.
+You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This helps a lot when you want to find suitable project mate. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
 ### Tagging displayed persons : `tagall`
 
@@ -290,6 +291,12 @@ Format: `showtags`
 
 ## Alias Features
 
+Alias helps you create more customized commands. You can shorten the existing commands, or even completely rename it with other names. Here are example use cases of alias:
+* Create `tag -A` as an alias for `tagall` command
+* Create `tag -D` as an alias for `untag` command
+
+The following are details of the alias-related commands
+
 ### Aliasing commands : `alias`
 
 Creates an alias for existing NetworkUS command.
@@ -301,14 +308,25 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 * `EXISTING_COMMANDS` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
 * `EXISTING_COMMANDS` and `YOUR_ALIAS` must be separated by a space.
 * Aliases that you create will be saved.
-* NetworkUS only replace your input with corresponding commands if the alias matches the prefix of your input.
+* NetworkUS only replace your input with corresponding commands if the alias matches the **prefix word(s)** of your input.
+  * A **word** is defined as contiguous characters whose character that comes after (if any) and before (if any) the word is a space.
+  * For example: the alias `tag -A` will match the command `tag -A parameter`, but `tag -AD parameter` **will not be matched** even though `tag -A` matches the prefix of words `tag -AD`.
 * NetworkUS will check the **longest matching alias** in your input and change it with the corresponding command.
 
 Example:
 * `alias tagall tag -A` will create an alias `tag -A` for the `tagall` command, allowing `tag -A` to represent `tagall`.
+* `alias tagall tag` will throw an error as `tag` is an existing NetworkUS command. **You cannot create existing command name as alias**.
+* `alias notACommand tag -A` will throw an error as `notACommand` is not an existing NetworkUS command. **You only able to create alias for existing commands**.
+* `alias tag add n/Your Name` will create alias `add n/Your Name` for the `tag` command. Note that this kind of alias is not recommended. See the **caution** section.
+
+Example of how alias replacement works:
+* Suppose that you have created two aliases (in any order):
+  * `tag -A` as command `tagall`
+  * `tag -A -D` as command `untagall`
+* The command `tag -A -D OS` will be replaced as `untagall OS` regardless of the order of you create the aliases because the longest matching alias that matches the prefix word is `tag -A -D`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
+Use it carefully. You are encouraged to create appropriate aliases. Refrain from create alias that resembles existing command syntax, such as create alias `add n/Your Name` as any `tag` or `add` or any other commands. **NetworkUS will not handle these cases for you.**
 </div>
 
 ### Showing saved aliases : `showalias`
