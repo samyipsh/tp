@@ -121,22 +121,12 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
 * stores the user's contacts i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Network List, which `Person` references. This allows the Network List to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -151,7 +141,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.contactbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -601,6 +591,137 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: UC13 Untag persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to untag a specific tag from the specific persons in the list
+4.  NetworkUS untags a specific tag from the specific persons in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. A given index or the tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+    
+**Use case: UC14 Untag all displayed persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to untag a specified tag from all persons in the list
+4.  NetworkUS untags a specified tag from all persons in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given tag is not present.
+    * 3b1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC15 replace tag for all displayed persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to replace a specified tag from all persons in the list with a new tag
+4.  NetworkUS replaces a specified tag from all persons in the list with a new tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The specified tag to be replaced or new tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The specified tag to be replaced is not present.
+    * 3b1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC16 View Github/LinkedIn page of the person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to view the Github/LinkedIn page of the person in the list
+4.  NetworkUS show the Github/LinkedIn page of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. Github/LinkedIn of the person is emptied
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC17 View list of created aliases**
+
+**MSS**
+
+1.  User requests to view the list of created aliases
+2.  NetworkUS shows the list of created aliases
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User has no created any alias.
+
+  Use case ends.
+
+**Use case: UC18 Delete an alias**
+
+**MSS**
+
+1.  User requests to display list of aliases
+2.  NetworkUS shows a list of aliases
+3.  User requests to delete a specific alias
+4.  NetworkUS deletes the alias
+
+    Use case ends.
+
+* 3a. The given alias is invalid or not present.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 3.
+
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -615,6 +736,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Late user**: User who have used the product for more than a month
+* **Field**: A field is specific information of a person in contact list like phone number
+* **JavaScript Object Notation (JSON)**: The file format that NetworkUS used to store the contacts
+* **Graphical User Interface (GUI)**: A GUI is an interface that uses visual indicator to interact with the system
+* **Command Line Interface (CLI)**: A CLI is a text-based interface that uses text input to interact with the system
+* **Main Success Scenario (MSS)**: A MSS describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
+* **Command**: A command is an instruction that user can use in NetworkUS to perform certain task
+* **Prefix**: Prefixes are unique identifiers in front of paramenters that is used by NetworkUS to identify which fields the value belong to
+* **Alias**: Aliases are alternative words that you can use to represent the standard commands that NetworkUS used
 
 --------------------------------------------------------------------------------------------------------------------
 
