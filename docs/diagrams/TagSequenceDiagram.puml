@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ContactBookParser" as ContactBookParser LOGIC_COLOR
 participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "t:TagCommand" as TagCommand LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("tag 1 2 programmer")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("tag 1 2 programmer")
-activate AddressBookParser
+LogicManager -> ContactBookParser : parseCommand("tag 1 2 programmer")
+activate ContactBookParser
 
 create TagCommandParser
-AddressBookParser -> TagCommandParser : TagCommandParser()
+ContactBookParser -> TagCommandParser : TagCommandParser()
 activate TagCommandParser
 
-TagCommandParser --> AddressBookParser
+TagCommandParser --> ContactBookParser
 deactivate TagCommandParser
 
-AddressBookParser -> TagCommandParser : parse("1 2 programmer")
+ContactBookParser -> TagCommandParser : parse("1 2 programmer")
 activate TagCommandParser
 
 loop number of indexes
@@ -51,14 +51,14 @@ activate TagCommand
 TagCommand --> TagCommandParser : t
 deactivate TagCommand
 
-TagCommandParser --> AddressBookParser : t
+TagCommandParser --> ContactBookParser : t
 deactivate TagCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-TagCommandParser -[hidden]-> AddressBookParser
+TagCommandParser -[hidden]-> ContactBookParser
 destroy TagCommandParser
 
-AddressBookParser --> LogicManager : t
-deactivate AddressBookParser
+ContactBookParser --> LogicManager : t
+deactivate ContactBookParser
 
 LogicManager -> TagCommand : execute()
 activate TagCommand
