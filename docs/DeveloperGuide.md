@@ -23,7 +23,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103T-T10-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -102,7 +103,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -126,7 +129,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Network List, which `Person` references. This allows the Network List to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Network List, which `Person` references. This allows the Network List to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -135,7 +140,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/AY2122S1-CS2103T-T10-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-T10-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -158,11 +163,15 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The find tag mechanism is facilitated by `NameAndTagsContainKeywordsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
+The find tag mechanism builds on the find name feature and is facilitated by `FoundInNameOrTagsPredicate` which implements `Predicate<Person>` and is created when `FindCommandParser` inputs the userinput keywords into its constructor as a `List<String>`. <br>
 It implements the following operation:
-* `NameAndTagsContainKeywordsPredicate#test(Person person)` - tests whether the input `Person` object has a name or tag which matches any of the keywords.
+* `FoundInNameOrTagsPredicate#test(Person person)` - tests whether the input `Person` object has a name or tag which matches any of the keywords.
 
 The predicate is then used by `Model#updateFilteredPersonList(Predicate<Person>)`  to change the _filtered_ list in the `Model` component exposed as and observed by the UI component as an unmodifiable `ObservableList<Person>` to display to the user.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("find programmer")` API call.
+
+![Interactions Inside the Logic Component for the `find programmer` Command](images/FindTagSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -174,6 +183,46 @@ How find matches tags and keywords:
     * Pros: More flexibility for valid user inputs
     * Cons: May have performance issues for speed
 
+### Tag person feature
+
+#### Implementation
+
+The tag person mechanism is facilitated by `ParserUtil#parseTag(String tag)` and `ParserUtil#parseIndex(String oneBasedIndex)`. <br>
+`ParserUtil#parseTag(String tag)` checks whether the input conforms to the restrictions of a `Tag` and if so returns a `Tag` with the input as its value. <br>
+`ParserUtil#parseIndex(String oneBasedIndex)` checks whether the input can be an unsigned non-zero integer and if so returns an `Index` with the integer as the value. <br>
+
+The `Tag` and multiple `Index` are used to find multiple `Person` objects from `filteredPersons`. <br> 
+They are then replaced with `Person` objects with the `Tag` using `model#setPerson(Person target, Person editedPerson)`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("tag 1 2 programmer")` API call.
+
+![Interactions Inside the Logic Component for the `tag 1 2 programmer` Command](images/TagSequenceDiagram.png)
+
+The Activity Diagram below summarizes what happens when the user executes a Tag command. 
+
+![TagActivityDiagram](images/TagActivityDiagram.png)
+
+#### Design consideration
+
+What the specified indexes refer to:
+* Alternative 1 (Current choice): Using `filteredList` to specify what `Index` refers to.
+    * Pros: Ability to tag visible persons
+    * Cons: Inability to tag not visible persons
+
+* Alternative 2 : Using list of all persons to specify what `Index` refers to.
+    * Pros: Ability to tag persons regardless of filter
+    * Cons: Requires knowledge of person's unfiltered list index to tag accurately 
+
+Whether invalid indexes should be addressed:
+* Alternative 1 (Current choice): Invalid indexes are pointed out.
+    * Pros: Ability to know when incorrect indexes are used
+    * Cons: More restrictive and unable to progress due to a potentially inconsequential mistake
+
+* Alternative 2 : Invalid indexes are ignored.
+    * Pros: Ability to tag persons flexibly
+    * Cons: May result in users believing the function behaves differently than it actually does
+
+
 ### Replace Tag feature
 
 #### Implementation
@@ -181,7 +230,12 @@ How find matches tags and keywords:
 The replace tag mechanism is facilitated by `TagPresentPredicate` which implements `Predicate<Person>` and is created
 when arguments is pass to `ReplaceTagCommandParser`. <br>
 `TagPresentPredicate` checks whether person has `Tag` to be replaced and is used to filter the list of `person` in `Model`.
-From the filtered list of `person`, each `person` is replaced with a new `person` with the new replaced `tag`
+From the filtered list of `person`, each `person` is replaced with a new `person` with the new replaced `tag`.
+
+#### Implementation Rationale
+
+ReplaceTag command is one of the few commands added to allow easier and quicker tag manipulation. Replace Tag allows user to
+ update their tag without having to enter each index. This will become especially useful when contact's size is large.
 
 #### Design consideration
 
@@ -192,8 +246,37 @@ How the specified tag is filtered:
 
 * Alternative 2 : Unique Tag list
     * Pros: Easier to search for the specified tag
-    * Cons: Required change of implementation of `Tag` which could affect the rest of the command
+    * Cons: Required change of implementation of `Tag` which could affect the rest of the commands
 
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("replacetag friend enemy") API call.
+![Interactions Inside the Logic Component for the `replacetag friend enemy` Command](images/ReplaceTagSequenceDiagram.png)
+
+The following activity diagrams summarise what happens when a user executes Replace Tag command:
+![Activity Diagram for ReplaceTagCommand](images/ReplaceTagCommandActivityDiagram.png)
+
+### Empty Field
+
+#### Implementation
+
+The `Phone`, `Email`, `Github` and `LinkedIn` fields for `person` are optional. The empty field mechanism is facilitated
+by `ParserUtil`. `ParserUtil` is modified to check whether input is an empty string which it would then return an empty
+object for the respective field. `AddCommandParser#parse(String args)` is also modified to only check whether prefix name is present.
+
+#### Implementation Rationale
+
+Empty field provides more flexibility in what user add in contact. User may not have all the information required to
+save in contacts. This may discourage user from saving contacts whom they are not close with.
+
+#### Design consideration
+
+How empty field is represented:
+* Alternative 1 (Current choice): Instantiate a static object as default empty object
+    * Pros: Avoid confusion on whether a certain field is empty
+    * Cons: Longer implementation
+
+* Alternative 2: Using empty string to represent value in respective field
+    * Pros: Easy to implement
+    * Cons: Create possible confusion on whether a certain field is empty
 
 ### Open Field feature
 
@@ -216,6 +299,12 @@ How the URL is opened:
     * Cons: Required `javafx-web` which increases Jar space by nearly 7 folds
     * Cons: Slower loading time
 
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("open 1 2 github") API call.
+![Interactions Inside the Logic Component for the `open 1 2 github` Command](images/OpenFieldSequenceDiagram.png)
+
+The following activity diagrams summarise what happens when a user executes an Open Field command:
+![Activity Diagram for OpenFieldCommand](images/OpenFieldCommandActivityDiagram.png)
+
 ### Alias feature
 
 #### Implementation
@@ -233,9 +322,9 @@ How aliases should be managed:
 * Alternative 2: We don't put any constraint on the alias command
     * Pros: Easier to implement
     * Cons: More dangerous to use the alias command
-    
-#### Show Feature
-Shows a contact with the specified Index in a new window. It gets the index from the `modelManager` class that contains the `ReadOnlyContactBook` and gets the contact with the specified index.
+
+### Show Feature
+Shows a contact with the specified Index in a new window. It gets the index from the `modelManager` class that contains the `ReadOnlyAddressBook` and gets the contact with the specified index.
 
 #### Design consideration
 
@@ -247,7 +336,7 @@ How the specified contact should be shown:
     * Pros: Not many windows are opened
     * Cons: Hard to see current list of contacts and executes the command (User needs to go back to the previous view)
 
-#### ShowAlias Feature
+### ShowAlias Feature
 
 Shows the mapping of aliases in a window similar to help.
 
@@ -260,7 +349,7 @@ How the GUI gets the data:
 * Alternative 2: Use an ObservableMap
     * Pros: The map is only accessed once, remaining changes are automatically updated
     * Cons: Hard to implement
-    
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -393,6 +482,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 3b. The given name and details are duplicated.
+    * 3b1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: UC05 View list of contact**
 
 **MSS**
@@ -408,7 +502,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC06 help**
+**Use case: UC06 Display help window**
 
 **MSS**
 
@@ -424,32 +518,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC07 clear**
+**Use case: UC07 Clear all contacts**
 
 **MSS**
 
 1.  User requests to clear contacts list
-2.  NetworkUs sends confirmation to user
-3.  User says yes to the confirmation
-4.  NetworkUs deletes all the user's contacts
+2.  NetworkUS deletes all the user's contacts
 
     Use case ends.
 
 **Extensions**
-  
+
 * 3a. The user says no during the confirmation
 
-    NetworkUs aborts deletion
+    NetworkUS aborts deletion
 
-**Use case: UC08 exit**
+**Use case: UC08 Exit from application**
 
 **MSS**
 1. User is finished with tasks and requests to exit application
-2. NetworkUs close after several seconds 
+2. NetworkUS close after several seconds
 
     Use case ends.
 
-**Use Case: UC09 showtags**
+**Use Case: UC09 Show all tags used**
 
 **MSS**
 1. User request to show all tags in NetworkUS
@@ -458,13 +550,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-**Use Case: UC10 alias**
+**Use Case: UC10 Alias a command**
 
 **MSS**
 1. User creates alias for a certain command
 2. NetworkUS saves and stores the alias for the certain command
 
    Use case ends.
+
+* 2a. The given alias is invalid.
+    * 2a1. NetworkUS shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC11 Tag persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to tag specific persons in the list with a specific tag
+4.  NetworkUS tags the specified persons with the specified tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. A given index or the tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC12 Tag all displayed persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to tag all persons in the list with a specified tag
+4.  NetworkUS tags all persons in the list with the specified tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -488,6 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 </div>

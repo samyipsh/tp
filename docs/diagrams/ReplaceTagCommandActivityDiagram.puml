@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid argument])
+    :Search for person with specified tag in displayed list;
+    if () then ([person found])
+        : Replace person's specified tag with new tag;
+    else ([else])
+        : Display error message;
+    endif
+else ([else])
+    : Display error message;
+endif
+stop
+@enduml

@@ -16,18 +16,17 @@ This user guide is for users who want to use NetworkUS for their daily use or de
 
 ## How to use the guide
 
-1. Most of the Commands in NetworkUs acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently displayed contacts list.<br>
+1. Most of the Commands in NetworkUS acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently displayed contacts list.<br>
 ![Original](images/originalList.png)
 Here `delete 3` will delete "Charlotte Oliviero"<br>
 ![filtered](images/findList.png)
-   Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
-   
+Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp).
+1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp/releases/download/v1.3/networkus.jar).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetworkUS app.
 
@@ -53,7 +52,14 @@ Here `delete 3` will delete "Charlotte Oliviero"<br>
 
 ## User Interface
 
-TODO: add labeled UI
+![User Interface](images/UIDetails.png)
+
+The image above shows the UI Components : 
+1. Menu Bar : shows the 'Help' and 'Show Alias' option.
+1. Command Bar : location for entering commands.
+1. Result Display : Shows result feedback from commands.
+1. Contact List : shows the current contacts.
+1. Footer : shows file path of the storage file and the total number of contacts.
 
 ## Features
 
@@ -73,7 +79,7 @@ TODO: add labeled UI
 * Parameters with **prefixes** can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter with **prefix** is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Additional parameters for commands that do not take in parameters will be ignored. (such as `help`, `list`, `exit` and `clear`)<br>
@@ -176,7 +182,7 @@ Examples:
 
 ### Showing person : `show`
 
-Shows the specified person's full contact information in a separate window
+Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long.
 
 Format: `show INDEX`
 
@@ -190,6 +196,11 @@ Example:
 Clears all entries from the contact list.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This will clear all contacts data in NetworkUS !
+</div>
+
 
 ### Exiting the program : `exit`
 
