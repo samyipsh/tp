@@ -20,8 +20,7 @@ This user guide is for users who want to use NetworkUS for their daily use or de
 ![Original](images/originalList.png)
 Here `delete 3` will delete "Charlotte Oliviero"<br>
 ![filtered](images/findList.png)
-   Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
-   
+Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
 
 ## Quick start
 
@@ -80,7 +79,7 @@ The image above shows the UI Components :
 * Parameters with **prefixes** can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter with **prefix** is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Additional parameters for commands that do not take in parameters will be ignored. (such as `help`, `list`, `exit` and `clear`)<br>
