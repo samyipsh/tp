@@ -16,7 +16,6 @@ Given below are my contributions to the project.
 * **New Feature**: Added `alias` command (PR [\#99](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/99))
   * What it does: Creates an alias for existing command.
   * Justification: This feature is necessary as our target users prefer to use CLI than GUI. Hence, speed is one of their top priority. Creating alias can help them to work more efficiently by customizing the existing command to suit their own needs.
-  * Highlights:
   * Credits:
     * [CommanderW324](https://ay2122s1-cs2103t-t10-3.github.io/tp/team/commanderw324.html), who helped implement other supporting alias command, such as `showalias` and `deletealias`.
     * [e0543403](https://ay2122s1-cs2103t-t10-3.github.io/tp/team/e0543403.html), who suggested extremely simple bug fix. (PR [\#163](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/163))
