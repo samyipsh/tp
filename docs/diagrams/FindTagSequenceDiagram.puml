@@ -31,7 +31,7 @@ ContactBookParser -> FindCommandParser : parse("programmer")
 activate FindCommandParser
 
 create NameAndTagsContainKeywordsPredicate
-FindCommandParser -> NameAndTagsContainKeywordsPredicate : NameAndTagsContainKeywordsPredicate("programmer")
+FindCommandParser -> NameAndTagsContainKeywordsPredicate : "programmer"
 activate NameAndTagsContainKeywordsPredicate
 
 NameAndTagsContainKeywordsPredicate --> FindCommandParser : p
