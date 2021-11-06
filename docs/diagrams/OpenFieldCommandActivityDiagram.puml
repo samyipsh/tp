@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid command])
+    : Check for correct command syntax;
+        if() then ([valid indexes])
+            : Valid OpenField command;
+            repeat
+                :Open field content of specified person in browser;
+                repeat while () is ([hasNextIndex])
+                ->[else];
+                : Return success message;
+        else([else])
+            : Display invalid index error ;
+        endif
+else ([else])
+    : Display unknown command error;
+endif
+stop
+@enduml
+

@@ -299,6 +299,12 @@ How the URL is opened:
     * Cons: Required `javafx-web` which increases Jar space by nearly 7 folds
     * Cons: Slower loading time
 
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("open 1 2 github") API call.
+![Interactions Inside the Logic Component for the `open 1 2 github` Command](images/OpenFieldSequenceDiagram.png)
+
+The following activity diagrams summarise what happens when a user executes an Open Field command:
+![Activity Diagram for OpenFieldCommand](images/OpenFieldCommandActivityDiagram.png)
+
 ### Alias feature
 
 #### Implementation
