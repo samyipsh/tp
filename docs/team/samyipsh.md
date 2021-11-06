@@ -46,5 +46,4 @@ Given below are my contributions to the project:
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#84](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/84)
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
   * Reported bugs and suggestions for other teams in the class (15 bugs reported in PE-D)
