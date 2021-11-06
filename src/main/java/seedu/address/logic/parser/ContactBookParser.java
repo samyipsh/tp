@@ -33,7 +33,7 @@ import seedu.address.model.Model;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ContactBookParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -42,7 +42,7 @@ public class AddressBookParser {
 
     private Model model;
 
-    public AddressBookParser(Model model) {
+    public ContactBookParser(Model model) {
         this.model = model;
     }
 
@@ -126,13 +126,20 @@ public class AddressBookParser {
         }
     }
 
-    private String replaceAlias(String userInput) {
+    /**
+     * Replaces alias with the aliased command.
+     */
+    public String replaceAlias(String userInput) {
         Set<String> aliases = model.getExistingAlias();
 
         String longestMatchingAlias = null;
 
+        // userInput with trailing space, as we want to replace the word, not a substring of a word
+        // This quick fix works for one word input as well
+        String userInputTrailingSpace = userInput + " ";
+
         for (String alias: aliases) {
-            if (userInput.indexOf(alias) != 0) {
+            if (userInputTrailingSpace.indexOf(alias + " ") != 0) {
                 continue;
             }
 

@@ -5,17 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ReplaceTagCommand.MESSAGE_REPLACE_ALL_TAG_SUCCESS;
-import static seedu.address.logic.commands.UntagAllCommand.MESSAGE_TAG_NOT_EXIST;
+import static seedu.address.logic.commands.ReplaceTagCommand.MESSAGE_TAG_NOT_EXIST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalContactBook;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ContactBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 class ReplaceTagCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactBook(), new UserPrefs());
 
     @Test
     void execute_tagPresent_success() {
@@ -56,7 +56,7 @@ class ReplaceTagCommandTest {
 
         ReplaceTagCommand replaceTagCommand = new ReplaceTagCommand(friendTag, enemyTag, friendTagPredicate);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ContactBook(model.getContactBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, firstDeletedTagPerson);
         expectedModel.setPerson(secondPerson, secondDeletedTagPerson);
         expectedModel.setPerson(forthPerson, forthDeletedTagPerson);

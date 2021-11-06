@@ -40,10 +40,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         checkAllPrefixes(argMultimap);
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse("-"));
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse("-"));
-        Github github = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElse("-"));
-        LinkedIn linkedin = ParserUtil.parseLinkedIn(argMultimap.getValue(PREFIX_LINKEDIN).orElse("-"));
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Github github = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElse(""));
+        LinkedIn linkedin = ParserUtil.parseLinkedIn(argMultimap.getValue(PREFIX_LINKEDIN).orElse(""));
         Detail detail = ParserUtil.parseDetail(argMultimap.getValue(PREFIX_DETAIL).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

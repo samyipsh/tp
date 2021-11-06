@@ -121,12 +121,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* You can remove specified fields by typing the field's prefix only. This applied for all fields except Name
 * When editing tags, the existing tags of the person will be replaced.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 p/ g/` Removes the phone number and github user of the 2nd person.
 
 ### Finding persons: `find`
 
@@ -171,16 +173,17 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contact list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-### Showing Person : `show`
+
+### Showing person : `show`
 
 Shows the specified person's full contact information in a separate window
 
 Format: `show INDEX`
 
-*Index must be the index that is in the currently visible list.
+* Index must be the index that is in the currently visible list.
 
-Examples:
-*`show 1` will show the full details of the person with the specified index.
+Example:
+* `show 1` will show the full details of the person with the specified index.
 
 ### Clearing all entries : `clear`
 
@@ -205,7 +208,7 @@ Format: `tagall TAG`
 
 * Tags all displayed persons with the specified `TAG`.
 * Will not add duplicate tags and will run successfully even if all displayed persons already have the tag.
-* The tag **must consist of letters and numbers without whitespaces** e.g. programmer, CS2103T
+* The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
 
 Examples:
 * `list` followed by `tagall programmer` tags all persons in the contact list with the tag `programmer`.
@@ -220,7 +223,7 @@ Format: `tag INDEXES TAG`
 * Tags the persons at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The indexes **must be positive integers** 1, 2, 3, …​
-* Tags must consist of letters and numbers without spaces.
+* Tag **must consist of letters and/or numbers without spaces**.
 * Will not add duplicate tags to persons.
 
 Examples:
@@ -234,7 +237,7 @@ Deletes the specified tag from all displayed contacts in NetworkUS.
 Format: `untagall TAG`
 
 * Deletes specified `TAG` from all displayed contacts.
-* Tags must consist of letters and numbers without spaces.
+* Tag **must consist of letters and/or numbers without spaces**.
 
 Example:
 * `list` followed by `untagall CS2040` deletes CS2040 tag from all contact list.
@@ -248,11 +251,11 @@ Format: `untag INDEXES TAG`
 * Deletes the tag from the person at the specified `INDEXES`.
 * The index refers to the index number shown in the displayed person list.
 * The indexes **must be positive integers** 1, 2, 3, …​
-* Tags must consist of letters and numbers without spaces.
+* Tag **must consist of letters and/or numbers without spaces**.
 
 Example:
 * `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the contact list.
-* `find John` followed by `untag 1 2 friend` deletes friend tag the 1st and 2nd persons in the results of the `find` command.
+* `find John` followed by `untag 1 2 friend` deletes friend tag from the 1st and 2nd persons in the results of the `find` command.
 
 ### Replace tag from all entries: `replacetag`
 
@@ -263,7 +266,7 @@ Format: `replacetag TAG1 TAG2`
 * Replaces `TAG1` with `TAG2` for all contacts.
 * `TAG1` is the tag to be replaced.
 * `TAG2` is the new tag to replace `TAG1`.
-* Tags must consist of letters and numbers without spaces.
+* Tags **must consist of letters and/or numbers without spaces**.
 
 Example:
 * `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all contact list.
@@ -290,11 +293,14 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 * NetworkUS only replace your input with corresponding commands if the alias matches the prefix of your input.
 * NetworkUS will check the **longest matching alias** in your input and change it with the corresponding command.
 
+Example:
+* `alias tagall tag -A` will create an alias `tag -A` for the `tagall` command, allowing `tag -A` to represent `tagall`.
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Use it carefully. You may only create necessary aliases. Avoid using alias that is the prefix of any existing command. It may cause some command to be hindered by your alias.
 </div>
 
-### Showing Saved Aliases : `showalias`
+### Showing saved aliases : `showalias`
 
 Shows all aliases stored in the user preferences in a new window.
 
@@ -314,7 +320,7 @@ Format: `deletealias YOUR_ALIAS`
 * `YOUR_ALIAS` must be an existing alias in NetworkUS.
 
 Example:
-* `deletealias` followed by `tag -A` will remove the alias.
+* `deletealias tag -A` will remove the alias `tag -A`.
 
 
 ## Data Storage
@@ -338,11 +344,38 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Misc
+
+### Duplicate detection
+
+**Checked fields**: `Phone`, `Email`, `Github` and `Linkedin`
+
+A person is considered a duplicate if:
+* There is no way to differentiate between said person and someone else in the list via their **Checked fields**.
+* They have the same name and at least one identical **Checked field** to someone else in the list.
+
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Capitalization and spaces do not count towards differentiation between persons' names. <br> Empty fields do not count towards differentiation unless all checked fields are empty.
+</div>
+
+### Valid Fields
+
+Below are the requirements for what constitutes as valid for the fields in NetworkUS.
+
+Field | Format, Examples
+--------|------------------
+**Name** | Only letters and/or numbers and spaces <br> e.g., `Sam Yeo`
+**Tag** | Letters and/or numbers without spaces <br> e.g., `CS2103T` , `programmer`
+**Phone** |  Only numbers at least 3 digits long <br> e.g., `999` , `62353535`
+**Email** | `local-part` + @ + `domain-name` <br> `local-part` contains letters, numbers and special characters excluding `+` `-` `_` `.`, cannot start or end with special characters <br> `domain-name` consists of `domain labels` seperated by periods <br> `domain labels` consist of at least 2 letters and/or numbers <br> `domain labels` excluding the last `domain label` can have non-consecutive hyphens but cannot start or end with a hyphen <br> e.g., `berniceyu@example.com`
+**Github** | Only letters, numbers and hyphens <br> Cannot start or end with a hyphen or have multiple consecutive hyphens <br> Has a maximum length of 39 characters <br> e.g., `Alexio`
+**LinkedIn** | Any valid LinkedIn URL <br> e.g., `https://www.linkedin.com/in/benson/`
+**Details** | Anything you can type in <br> e.g., `Quite literally anything you can type in.`
 
 ### Valid index
 
@@ -383,7 +416,7 @@ Action | Format, Examples
 **Help** | `help`
 **List** | `list`
 **Replace tag** | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
-**Show Alias** | `showalias`
+**Show alias** | `showalias`
 **Show tags** | `showtags`
 **Tag** | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
 **Tag all** | `tagall TAG` <br> e.g., `tagall programmer`
