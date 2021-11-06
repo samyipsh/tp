@@ -5,12 +5,12 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ContactBookParser" as ContactBookParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
-participant "p:NameAndTagsContainKeywordsPredicate" as NameAndTagsContainKeywordsPredicate LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant "p:NameAndTagsContainKeywordsPredicate" as NameAndTagsContainKeywordsPredicate MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
@@ -31,7 +31,7 @@ ContactBookParser -> FindCommandParser : parse("programmer")
 activate FindCommandParser
 
 create NameAndTagsContainKeywordsPredicate
-FindCommandParser -> NameAndTagsContainKeywordsPredicate : "programmer"
+FindCommandParser -> NameAndTagsContainKeywordsPredicate : NameAndTagsContainKeywordsPredicate("programmer")
 activate NameAndTagsContainKeywordsPredicate
 
 NameAndTagsContainKeywordsPredicate --> FindCommandParser : p
