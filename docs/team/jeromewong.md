@@ -10,10 +10,10 @@ NetworkUs is a desktop address book application used for storing personal detail
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to delete tag
-    * What it does: allows the user to untag specified tag from person 
-    * Justification: 
-    * Highlights: 
-    * Credits: 
+    * What it does: allows the user to untag specified tag from person
+    * Justification:
+    * Highlights:
+    * Credits:
 
 * **New Feature**: Added the ability to replace tag
     * What it does: allows the user to untag specified tag from person

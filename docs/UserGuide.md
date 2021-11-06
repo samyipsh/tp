@@ -20,8 +20,7 @@ This user guide is for users who want to use NetworkUS for their daily use or de
 ![Original](images/originalList.png)
 Here `delete 3` will delete "Charlotte Oliviero"<br>
 ![filtered](images/findList.png)
-   Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
-   
+Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
 
 ## Quick start
 

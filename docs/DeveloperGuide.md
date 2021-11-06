@@ -181,12 +181,12 @@ How find matches tags and keywords:
 The replace tag mechanism is facilitated by `TagPresentPredicate` which implements `Predicate<Person>` and is created
 when arguments is pass to `ReplaceTagCommandParser`. <br>
 `TagPresentPredicate` checks whether person has `Tag` to be replaced and is used to filter the list of `person` in `Model`.
-From the filtered list of `person`, each `person` is replaced with a new `person` with the new replaced `tag`
+From the filtered list of `person`, each `person` is replaced with a new `person` with the new replaced `tag`.
 
 #### Implementation Rationale
 
-ReplaceTag command is one of the few commands added to allow easier and quicker tag manipulation. Replace Tag allows user to 
-update their tag without having to enter each index. This will become especially useful when contact's size is large. 
+ReplaceTag command is one of the few commands added to allow easier and quicker tag manipulation. Replace Tag allows user to
+ update their tag without having to enter each index. This will become especially useful when contact's size is large.
 
 #### Design consideration
 
@@ -223,12 +223,12 @@ save in contacts. This may discourage user from saving contacts whom they are no
 How empty field is represented:
 * Alternative 1 (Current choice): Instantiate a static object as default empty object
     * Pros: Avoid confusion on whether a certain field is empty
-    * Cons: Longer implementation 
-    
+    * Cons: Longer implementation
+
 * Alternative 2: Using empty string to represent value in respective field
     * Pros: Easy to implement
     * Cons: Create possible confusion on whether a certain field is empty
-    
+
 ### Open Field feature
 
 #### Implementation
@@ -267,7 +267,7 @@ How aliases should be managed:
 * Alternative 2: We don't put any constraint on the alias command
     * Pros: Easier to implement
     * Cons: More dangerous to use the alias command
-    
+
 ### Show Feature
 Shows a contact with the specified Index in a new window. It gets the index from the `modelManager` class that contains the `ReadOnlyAddressBook` and gets the contact with the specified index.
 
@@ -294,7 +294,7 @@ How the GUI gets the data:
 * Alternative 2: Use an ObservableMap
     * Pros: The map is only accessed once, remaining changes are automatically updated
     * Cons: Hard to implement
-    
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -470,7 +470,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-  
+
 * 3a. The user says no during the confirmation
 
     NetworkUs aborts deletion
@@ -479,7 +479,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User is finished with tasks and requests to exit application
-2. NetworkUs close after several seconds 
+2. NetworkUs close after several seconds
 
     Use case ends.
 

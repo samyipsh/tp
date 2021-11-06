@@ -15,7 +15,7 @@ Given below are my contributions to the project:
   * Highlights:
     * This enhancement uses a reusable function to open url in user's default browser. This new reusable function can be easily used by other commands or extended to open other fields.
     * Specific url was generated from contacts' github username or linkedin url depending on field indicated to be open. (Pull Request [\#77](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/77))
-  
+
 <<INSERT OPEN FIELD SEQ DIAG>>
 
 <<INSERT OPEN FIELD CLASS DIAG>>
