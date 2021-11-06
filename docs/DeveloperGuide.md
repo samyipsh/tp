@@ -183,6 +183,11 @@ when arguments is pass to `ReplaceTagCommandParser`. <br>
 `TagPresentPredicate` checks whether person has `Tag` to be replaced and is used to filter the list of `person` in `Model`.
 From the filtered list of `person`, each `person` is replaced with a new `person` with the new replaced `tag`
 
+#### Implementation Rationale
+
+ReplaceTag command is one of the few commands added to allow easier and quicker tag manipulation. Replace Tag allows user to 
+update their tag without having to enter each index. This will become especially useful when contact's size is large. 
+
 #### Design consideration
 
 How the specified tag is filtered:
@@ -192,9 +197,38 @@ How the specified tag is filtered:
 
 * Alternative 2 : Unique Tag list
     * Pros: Easier to search for the specified tag
-    * Cons: Required change of implementation of `Tag` which could affect the rest of the command
+    * Cons: Required change of implementation of `Tag` which could affect the rest of the commands
 
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("replacetag friend enemy") API call.
+![Interactions Inside the Logic Component for the `replacetag friend enemy` Command](images/ReplaceTagSequenceDiagram.png)
 
+The following activity diagrams summarise what happens when a user executes Replace Tag command:
+![Activity Diagram for ReplaceTagCommand](images/ReplaceTagCommandActivityDiagram.png)
+
+### Empty Field
+
+#### Implementation
+
+The `Phone`, `Email`, `Github` and `LinkedIn` fields for `person` are optional. The empty field mechanism is facilitated
+by `ParserUtil`. `ParserUtil` is modified to check whether input is an empty string which it would then return an empty
+object for the respective field. `AddCommandParser#parse(String args)` is also modified to only check whether prefix name is present.
+
+#### Implementation Rationale
+
+Empty field provides more flexibility in what user add in contact. User may not have all the information required to
+save in contacts. This may discourage user from saving contacts whom they are not close with.
+
+#### Design consideration
+
+How empty field is represented:
+* Alternative 1 (Current choice): Instantiate a static object as default empty object
+    * Pros: Avoid confusion on whether a certain field is empty
+    * Cons: Longer implementation 
+    
+* Alternative 2: Using empty string to represent value in respective field
+    * Pros: Easy to implement
+    * Cons: Create possible confusion on whether a certain field is empty
+    
 ### Open Field feature
 
 #### Implementation
@@ -234,7 +268,7 @@ How aliases should be managed:
     * Pros: Easier to implement
     * Cons: More dangerous to use the alias command
     
-#### Show Feature
+### Show Feature
 Shows a contact with the specified Index in a new window. It gets the index from the `modelManager` class that contains the `ReadOnlyAddressBook` and gets the contact with the specified index.
 
 #### Design consideration
@@ -247,7 +281,7 @@ How the specified contact should be shown:
     * Pros: Not many windows are opened
     * Cons: Hard to see current list of contacts and executes the command (User needs to go back to the previous view)
 
-#### ShowAlias Feature
+### ShowAlias Feature
 
 Shows the mapping of aliases in a window similar to help.
 
