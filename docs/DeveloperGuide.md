@@ -380,6 +380,7 @@ How the GUI gets the data:
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a need to store CS specific fields for contacts like Github
 
 
 **Value proposition**: manage potential network opportunities for a NUS CS student
