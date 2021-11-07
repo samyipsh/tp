@@ -12,7 +12,7 @@ NetworkUS is a desktop app for organizing contacts. It features seamless **group
 
 ## Before you read
 
-This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to project. This user guide will guide you on how to use NetworkUS to manage your contacts and groups.
+This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to project. This user guide will guide you on how to use NetworkUS to manage your contacts.
 
 ## How to use the guide
 
@@ -394,7 +394,7 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Misc
+## Miscellaneous
 
 ### Duplicate detection
 
