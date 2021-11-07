@@ -326,7 +326,7 @@ Example of how alias replacement works:
 * The command `tag -A -D OS` will be replaced as `untagall OS` regardless of the order of you create the aliases because the longest matching alias that matches the prefix word is `tag -A -D`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Use it carefully. You are encouraged to create appropriate aliases. Refrain from create alias that resembles existing command syntax, such as create alias `add n/Your Name` as any `tag` or `add` or any other commands. **NetworkUS will not handle these cases for you.**
+Use it carefully. You are encouraged to create appropriate aliases. Refrain from creating alias that resembles existing command syntax, such as create alias `add n/Your Name` as any `tag` or `add` or any other commands. **NetworkUS will not handle these cases for you.**
 </div>
 
 ### Showing saved aliases : `showalias`
