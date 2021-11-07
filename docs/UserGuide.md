@@ -410,7 +410,7 @@ A person is considered a duplicate in any of the below cases:
 * That person has the same name as another contact, and also at least one identical non-empty **Checked field**. 
 
 
-<div markdown="span" class="alert alert-primary">:exclamation: **Note**
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 The equality check for the names of 2 contacts disregards capitalization and spaces in the names being compared. 
 </div>
 
