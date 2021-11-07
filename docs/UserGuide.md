@@ -103,7 +103,7 @@ Keyboard shortcut: `f1` then `enter`
 
 ### Adding a person: `add`
 
-Adds a person to the list of contacts.
+Adds a person to the list of contacts. You cannot add duplicate person in the contact book.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
@@ -135,6 +135,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be replaced.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
+* Edited person should not resulting in duplicate person in the contact book.
 
 [What is considered a duplicate person.](#duplicate-detection) <br>
 [List of what constitutes valid fields.](#valid-fields)
@@ -325,8 +326,8 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 
 * Creates an alias `YOUR_ALIAS` for command `EXISTING_COMMAND`.
 * `YOUR_ALIAS` can contain spaces, but cannot be empty.
-* `EXISTING_COMMANDS` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
-* `EXISTING_COMMANDS` and `YOUR_ALIAS` must be separated by a space.
+* `EXISTING_COMMAND` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
+* `EXISTING_COMMAND` and `YOUR_ALIAS` must be separated by a space.
 * Aliases that you create will be saved.
 * NetworkUS only replace your input with corresponding commands if the alias matches the **prefix word(s)** of your input.
   * A **word** is defined as contiguous characters whose character that comes after (if any) and before (if any) the word is a space.
