@@ -19,7 +19,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a tag to a person in the address book.
+ * Adds a tag to a person in the contact book.
  */
 public class TagCommand extends Command {
 

@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
 /**
- * Shows all tags that is in the address book.
+ * Shows all tags that is in the contact book.
  */
 public class ShowTagsCommand extends Command {
 
