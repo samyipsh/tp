@@ -57,7 +57,7 @@ Here `delete 3` will show an error message as 3 is not shown (Even though it is 
 The image above shows the UI Components : 
 1. Menu Bar : shows the 'Help' and 'Show Alias' option.
 1. Command Bar : location for entering commands.
-1. Result Display : Shows result feedback from commands.
+1. Result Display : shows result feedback from commands.
 1. Contact List : shows the current contacts.
 1. Footer : shows file path of the storage file and the total number of contacts.
 
@@ -84,6 +84,9 @@ The image above shows the UI Components :
 
 * Additional parameters for commands that do not take in parameters will be ignored. (such as `help`, `list`, `exit` and `clear`)<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* INDEXES allows multiple INDEX to be entered with each INDEX being separated with a space.<br>
+  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third persons in the displayed list.
 
 </div>
 
@@ -130,7 +133,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the [displayed person](#displayed-contacts) list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* You can remove specified fields by typing the field's prefix only. This applied for all fields except Name
 * When editing tags, the existing tags of the person will be replaced.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
 
@@ -141,6 +143,10 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 *  `edit 2 p/ g/` Removes the phone number and github user of the 2nd person.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove specified fields by typing the field's prefix only. This applied for all fields except Name.
+</div>
 
 ### Finding persons: `find`
 
