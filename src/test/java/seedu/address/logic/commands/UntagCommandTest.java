@@ -129,6 +129,19 @@ class UntagCommandTest {
     }
 
     @Test
+    public void execute_tagNotFound_failure() {
+        Index indexSecondPerson = Index.fromOneBased(2);
+        List<Index> secondIndex = new ArrayList<>();
+        secondIndex.add(INDEX_SECOND_PERSON);
+
+        UntagCommand untagCommand = new UntagCommand(secondIndex, tag);
+        assertCommandFailure(untagCommand, model,
+                String.format(UntagCommand.MESSAGE_TAG_NOT_EXIST, tag));
+
+
+    }
+
+    @Test
     void testEquals() {
         List<Index> firstIndex = new ArrayList<>();
         List<Index> secondIndex = new ArrayList<>();

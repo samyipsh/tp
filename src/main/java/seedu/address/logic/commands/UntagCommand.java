@@ -34,12 +34,14 @@ public class UntagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + "friend";
 
     public static final String MESSAGE_UNTAG_PERSON_SUCCESS = "Deleted %s Tag";
-    public static final String MESSAGE_NO_DISPLAYED_PERSONS = "No persons displayed to tag.";
+    public static final String MESSAGE_NO_DISPLAYED_PERSONS = "No persons displayed to untag.";
     public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "%1$d is an out-of-bounds index.\n"
             + "Indexes up to %2$d are valid.";
+    public static final String MESSAGE_TAG_NOT_EXIST = "None of the selected persons contain the tag: %s";
 
     private final List<Index> targetIndexes;
     private final Tag tagToDelete;
+    private boolean isTagPresent;
 
     /**
      * Creates an UntagCommand to delete the specified {@code Tag} from the person
@@ -51,6 +53,7 @@ public class UntagCommand extends Command {
 
         this.targetIndexes = targetIndexes;
         this.tagToDelete = tagToDelete;
+        this.isTagPresent = false;
     }
 
     @Override
@@ -73,7 +76,10 @@ public class UntagCommand extends Command {
         Set<Tag> existingTags = personToDeleteTag.getTags();
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(existingTags);
-        updatedTags.remove(tagToDelete);
+        if (updatedTags.remove(tagToDelete)) {
+            isTagPresent = true;
+        }
+
         return new Person(name, phone, email, github, linkedIn, detail, updatedTags);
 
     }
@@ -98,10 +104,13 @@ public class UntagCommand extends Command {
 
         }
 
-
         for (Person personToUntag: personsToUntag) {
             Person untaggedPerson = untag(personToUntag);
             model.setPerson(personToUntag, untaggedPerson);
+        }
+
+        if (!isTagPresent) {
+            throw new CommandException(String.format(MESSAGE_TAG_NOT_EXIST, tagToDelete));
         }
 
     }
