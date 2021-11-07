@@ -8,7 +8,7 @@ title: NetworkUS
 
 ![Ui](images/Ui.png)
 
-NetworkUS is an address book application that helps **Computer Science students** maintain a list of contacts of people they meet in school. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+NetworkUS is a contact book application that helps **Computer Science students** maintain a list of contacts of people they meet in school. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using NetworkUS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing NetworkUS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
@@ -16,4 +16,5 @@ NetworkUS is an address book application that helps **Computer Science students*
 
 **Acknowledgements**
 
+* This project is based on the AddressBook Level 3 project created by the [SE-EDU initiative](https://se-education.org).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
