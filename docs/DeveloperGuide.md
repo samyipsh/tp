@@ -375,19 +375,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add new contacts                                     |                                                                        |
 | `* * *`  | user                                       | delete my existing contacts                          | remove contacts that I no longer need                                  |
-| `* * *`  | user                                       | find a person by name                                | locate contacts without having to go through the entire list |
+| `* * *`  | user                                       | find a person by name                                | locate contacts without having to go through the entire list           |
 | `* * *`  | user                                       | find people by a tag / group name                    | locate contacts by the category indicated by the tag without having to go through the entire list |
 | `* * *`  | user                                       | see all the contacts I have                          |                                                                        |
 | `* * *`  | experienced user                           | creates custom alias for specific commands           | work efficiently                                                       |
+| `* *`    | experienced user                           | see all the custom alias I have created              | work efficiently                                                       |
+| `* *`    | experienced user                           | delete alias that I no longer used                   | avoid mistyping command                                                |
 | `* *`    | longstanding user                          | update details of previously added contacts          | keep them up-to-date                                                   |
-| `* *`    | user                                       | add their LinkedIn username                          | professionally network with them through their LinkedIn                                       |
-| `* *`    | user                                       | add their GitHub username                            | view their github projects and see which areas they are experienced in                                        |
+| `* *`    | user                                       | add their LinkedIn username                          | professionally network with them through their LinkedIn                |
+| `* *`    | user                                       | add their GitHub username                            | view their github projects and see which areas they are experienced in |
+| `* *`    | user                                       | rename the tag                                       | keep the tag up-to-date                                                |
+| `* *`    | user with a long contacts                  | tag a group of people                                | work efficiently                                                       |
+| `* *`    | user with a long contacts                  | remove a tag from a group of people                  | work efficiently                                                       |
 | `* *`    | new user                                   | see some mock contacts                               | test the commands                                                      |
 | `* *`    | new user                                   | be able to clear all mock contacts                   | start creating a fresh contact list                                    |
 | `* *`    | user                                       | categorize my contacts based on their specialization | find people with a particular area of expertise                        |
 | `* *`    | user                                       | find a person by specialization                      | find a person of a particular area of expertise                        |
 | `*`      | user                                       | see the number of friends I have                     | gain a sense of confidence                                             |
-| `*`      | user with many persons in the contact list | sort persons by name                                 | locate a person easily                                                 |
+
 
 
 ### Use cases
@@ -525,27 +530,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC09 Show all tags used**
+**Use case: UC09 View Github/LinkedIn page of the person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to view the Github/LinkedIn page of the person in the list
+4.  NetworkUS show the Github/LinkedIn page of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. Github/LinkedIn of the person is emptied
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use Case: UC10 Show all tags used**
 
 **MSS**
 1. User request to show all tags in NetworkUS
 2. NetworkUS returns unique tags to the user
 
     Use case ends.
-
-
-**Use Case: UC10 Alias a command**
-
-**MSS**
-1. User creates alias for a certain command
-2. NetworkUS saves and stores the alias for the certain command
-
-   Use case ends.
-
-* 2a. The given alias is invalid.
-    * 2a1. NetworkUS shows an error message.
-
-      Use case resumes at step 1.
 
 **Use case: UC11 Tag persons**
 
@@ -612,7 +626,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. NetworkUS shows an error message.
 
       Use case resumes at step 2.
-    
+
 **Use case: UC14 Untag all displayed persons**
 
 **MSS**
@@ -668,44 +682,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: UC16 View Github/LinkedIn page of the person**
+**Use Case: UC16 Alias a command**
 
 **MSS**
+1. User creates alias for a certain command
+2. NetworkUS saves and stores the alias for the certain command
 
-1.  User requests to list persons
-2.  NetworkUS shows a list of persons
-3.  User requests to view the Github/LinkedIn page of the person in the list
-4.  NetworkUS show the Github/LinkedIn page of the person
+   Use case ends.
 
-    Use case ends.
+* 2a. The given alias is invalid.
+    * 2a1. NetworkUS shows an error message.
 
-**Extensions**
+      Use case resumes at step 1.
 
-* 2a. The list is empty.
 
-  Use case ends.
-
-* 3a. Github/LinkedIn of the person is emptied
-    * 3a1. NetworkUS shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: UC17 View list of created aliases**
-
-**MSS**
-
-1.  User requests to view the list of created aliases
-2.  NetworkUS shows the list of created aliases
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. User has no created any alias.
-
-  Use case ends.
-
-**Use case: UC18 Delete an alias**
+**Use case: UC17 Delete an alias**
 
 **MSS**
 
@@ -720,6 +711,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. NetworkUS shows an error message.
 
       Use case resumes at step 3.
+
+**Use case: UC18 View list of created aliases**
+
+**MSS**
+
+1.  User requests to view the list of created aliases
+2.  NetworkUS shows the list of created aliases
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User has no created any alias.
+
+  Use case ends.
 
 
 ### Non-Functional Requirements
