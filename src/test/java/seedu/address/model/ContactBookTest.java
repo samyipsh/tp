@@ -125,7 +125,7 @@ public class ContactBookTest {
     }
 
     @Test
-    public void hasPersonExcludingOtherPerson_personWithNoSameIdentityFieldsInAddressBook_returnsFalse() {
+    public void hasPersonExcludingOtherPerson_personWithNoSameIdentityFieldsInContactBook_returnsFalse() {
         contactBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_AMY)
                 .withGithub(VALID_GITHUB_AMY).withLinkedIn(VALID_LINKEDIN_AMY).withEmail(VALID_EMAIL_AMY).build();
@@ -133,7 +133,7 @@ public class ContactBookTest {
     }
 
     @Test
-    public void hasPersonExcludingOtherPerson_anotherPersonWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPersonExcludingOtherPerson_anotherPersonWithSameIdentityFieldsInContactBook_returnsTrue() {
         contactBook.addPerson(ALICE);
         contactBook.addPerson(BENSON);
 

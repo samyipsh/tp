@@ -31,7 +31,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the contact book.
  */
 public class EditCommand extends Command {
 
@@ -54,7 +54,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Identical person detected in stored contacts.\n"
+            + "Contact may have already been added.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
