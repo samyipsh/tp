@@ -18,31 +18,15 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
     private static final String FXML = "AliasTableDisplayWindow.fxml";
     @FXML
     private TableView<Map.Entry<String, String>> aliasTableView;
+    private HashMap<String, String> aliasTable;
 
     /**
      * Constructor for the controller of Alias Mapping Display Window
      */
     public AliasTableDisplayWindow(HashMap<String, String> aliasTable) {
         super(FXML, new Stage());
-
-        TableColumn<Map.Entry<String, String>, String> col1 = new TableColumn<> ("Alias");
-
-        col1.setCellValueFactory((
-            TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) -> new SimpleStringProperty(
-                p.getValue().getKey()));
-
-        TableColumn<Map.Entry<String, String>, String> col2 = new TableColumn<>("Command");
-
-        col2.setCellValueFactory((
-            TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) -> new SimpleStringProperty(
-                p.getValue().getValue()));
-
-        ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(aliasTable.entrySet());
-
-        aliasTableView.setItems(items);
-        aliasTableView.getColumns().add(col1);
-        aliasTableView.getColumns().add(col2);
-
+        this.aliasTable = aliasTable;
+        this.fillTable(aliasTable);
     }
 
     /**
@@ -51,6 +35,45 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
     public void show() {
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Hides the alias window
+     */
+    public void hide() {
+        getRoot().hide();
+    }
+
+    /**
+     * Fill the table with given hashmap
+     */
+    public void fillTable(HashMap<String, String> aliasTable) {
+        TableColumn<Map.Entry<String, String>, String> col1 = new TableColumn<> ("Alias");
+
+        col1.setCellValueFactory((
+                TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) -> new SimpleStringProperty(
+                p.getValue().getKey()));
+
+        TableColumn<Map.Entry<String, String>, String> col2 = new TableColumn<>("Command");
+
+        col2.setCellValueFactory((
+                TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) -> new SimpleStringProperty(
+                p.getValue().getValue()));
+
+        ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(aliasTable.entrySet());
+
+        aliasTableView.setItems(items);
+        aliasTableView.getColumns().add(col1);
+        aliasTableView.getColumns().add(col2);
+    }
+
+    /**
+     * Refreshes the alias table display window
+     */
+    public void refresh(HashMap<String, String> aliasTable) {
+        aliasTableView.getColumns().clear();
+        aliasTableView.getItems().clear();
+        fillTable(aliasTable);
     }
 
 }
