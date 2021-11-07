@@ -18,8 +18,10 @@ Class ReadOnlyUserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
+Class Detail
 Class Email
+Class Github
+Class LinkedIn
 Class Name
 Class Phone
 Class Tag
@@ -40,15 +42,19 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 ContactBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "1" Github
+Person *--> "1" LinkedIn
 Person *--> "*" Tag
+Person *--> "1" Detail
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Email -[hidden]right-> Tag
+Github -[hidden]right-> Tag
+LinkedIn -[hidden]right-> Tag
+Tag -[hidden]right-> Detail
 
 ModelManager -->"~* filtered" Person
 @enduml

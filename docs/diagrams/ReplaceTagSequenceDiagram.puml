@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ContactBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ReplaceTagCommandParser" as ReplaceTagCommandParser LOGIC_COLOR
+participant "r:ReplaceTagCommand" as ReplaceTagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":TagsPresentPredicate" as TagsPresentPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("replacetag friend enemy")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("replacetag friend enemy")
+activate AddressBookParser
+
+create ReplaceTagCommandParser
+AddressBookParser -> ReplaceTagCommandParser
+activate ReplaceTagCommandParser
+
+create TagsPresentPredicate
+ReplaceTagCommandParser -> TagsPresentPredicate
+activate TagsPresentPredicate
+
+TagsPresentPredicate --> ReplaceTagCommandParser
+deactivate TagsPresentPredicate
+
+ReplaceTagCommandParser --> AddressBookParser
+deactivate ReplaceTagCommandParser
+
+AddressBookParser -> ReplaceTagCommandParser : parse("friend enemy")
+activate ReplaceTagCommandParser
+
+create ReplaceTagCommand
+ReplaceTagCommandParser -> ReplaceTagCommand
+activate ReplaceTagCommand
+
+ReplaceTagCommand --> ReplaceTagCommandParser : r
+deactivate ReplaceTagCommand
+
+ReplaceTagCommandParser --> AddressBookParser : r
+deactivate ReplaceTagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ReplaceTagCommandParser -[hidden]-> AddressBookParser
+destroy ReplaceTagCommandParser
+
+AddressBookParser --> LogicManager : r
+deactivate AddressBookParser
+
+LogicManager -> ReplaceTagCommand : execute()
+activate ReplaceTagCommand
+
+ReplaceTagCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> ReplaceTagCommand
+deactivate Model
+
+create CommandResult
+ReplaceTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ReplaceTagCommand
+deactivate CommandResult
+
+destroy TagsPresentPredicate
+
+ReplaceTagCommand --> LogicManager : result
+deactivate ReplaceTagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

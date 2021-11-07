@@ -76,4 +76,10 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
         fillTable(aliasTable);
     }
 
+    /**
+     * Returns true if the alias window is currently being shown.
+     */
+    public boolean isShowing() {
+        return getRoot().isShowing();
+    }
 }

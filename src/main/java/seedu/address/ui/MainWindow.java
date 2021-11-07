@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyContactBook;
 
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -221,7 +222,7 @@ public class MainWindow extends UiPart<Stage> {
                 showPerson.show();
             }
 
-            if (commandResult.isShowAlias()) {
+            if (commandResult.isShowAlias() || aliasWindow.isShowing()) {
                 handleShowAlias();
             } else {
                 aliasWindow.refresh(logic.getAliasTable().getAliasTable());
