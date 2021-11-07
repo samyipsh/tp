@@ -315,8 +315,8 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 
 Example:
 * `alias tagall tag -A` will create an alias `tag -A` for the `tagall` command, allowing `tag -A` to represent `tagall`.
-* `alias tagall tag` will throw an error as `tag` is an existing NetworkUS command. **You cannot create existing command name as alias**.
-* `alias notACommand tag -A` will throw an error as `notACommand` is not an existing NetworkUS command. **You only able to create alias for existing commands**.
+* `alias tagall tag` will throw an error as `tag` is an existing NetworkUS command. **You cannot create alias as an existing command name**.
+* `alias notACommand tag -A` will throw an error as `notACommand` is not an existing NetworkUS command. **You are only able to create an alias for existing commands**.
 * `alias tag add n/Your Name` will create alias `add n/Your Name` for the `tag` command. Note that this kind of alias is not recommended. See the **caution** section.
 
 Example of how alias replacement works:
