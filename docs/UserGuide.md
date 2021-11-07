@@ -103,7 +103,7 @@ Keyboard shortcut: `f1` then `enter`
 
 ### Adding a person: `add`
 
-Adds a person to the list of contacts. You cannot add duplicate person in the contact book.
+Adds a person to the list of contacts. You cannot add duplicate persons in the contact book.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
@@ -135,7 +135,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be replaced.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
-* Edited person should not resulting in duplicate person in the contact book.
+* Edited person should not result in duplicate persons in the contact book.
 
 [What is considered a duplicate person.](#duplicate-detection) <br>
 [List of what constitutes valid fields.](#valid-fields)
