@@ -755,7 +755,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Main Success Scenario (MSS)**: A MSS describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 * **Command**: A command is an instruction that user can use in NetworkUS to perform certain task
 * **Prefix**: Prefixes are unique identifiers in front of paramenters that is used by NetworkUS to identify which fields the value belong to
-* **Alias**: Aliases are alternative words that you can use to represent the standard commands that NetworkUS used
+* **Alias**: Aliases are alternative words that user can use to represent the standard commands that NetworkUS used
 
 --------------------------------------------------------------------------------------------------------------------
 
