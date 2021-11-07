@@ -17,7 +17,7 @@ This user guide is for users who want to use NetworkUS for their daily use or de
 ## How to use the guide
 
 1. Most of the Commands in NetworkUS acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently [displayed contacts](#displayed-contacts) list.<br>
-![Original](images/originalList.png)
+![Original](images/Ui.png)
 Here `delete 3` will delete "Charlotte Oliviero"<br>
 ![filtered](images/findList.png)
 Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
@@ -33,7 +33,7 @@ Here `delete 3` will show an error message as 3 is not shown (Even though it is 
 1. Double-click the file to start the app. The GUI below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press `enter` to execute it. e.g. typing **`help`** and pressing `enter` will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -98,7 +98,7 @@ Provides functionality to access the help page in the browser.
 ![help message](images/helpMessage.png)
 
 Format: `help` <br/>
-Keyboard shortcut: `f1` then `enter`
+Keyboard shortcut alternative: `f1` then press `enter`
 
 
 ### Adding a person: `add`
@@ -404,13 +404,13 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 
 **Checked fields**: `Phone`, `Email`, `Github` and `Linkedin`
 
-A person is considered a duplicate if:
-* All their **Checked fields** are empty and there is someone else with the same name with all their **Checked fields** also empty.
-* They have the same name and at least one identical **Checked field** to someone else in the list.
+A person is considered a duplicate in any of the below cases:
+* All of that person's **Checked fields** are empty, and there is another contact with the same name and also having all their **Checked fields** empty.
+* That person has the same name as another contact, and also at least one identical non-empty **Checked field**. 
 
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Capitalization and spaces do not count towards differentiation between persons' names. <br> Empty fields do not count towards differentiation unless all checked fields are empty.
+<div markdown="span" class="alert alert-primary">:exclamation: **Note**
+The equality check for the names of 2 contacts disregards capitalization and spaces in the names being compared. 
 </div>
 
 ### Valid Fields
