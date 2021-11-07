@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ContactBookParser" as ContactBookParser LOGIC_COLOR
+participant ":OpenFieldCommandParser" as OpenFieldCommandParser LOGIC_COLOR
+participant "o:OpenFieldCommand" as OpenFieldCommand LOGIC_COLOR
+participant "res:CommandResult" as CommandResult LOGIC_COLOR
+participant "UserBrowser" as UserBrowser LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("open 1 2 github")
+activate LogicManager
+
+LogicManager -> ContactBookParser : parseCommand("open 1 2 github")
+activate ContactBookParser
+
+create OpenFieldCommandParser
+ContactBookParser -> OpenFieldCommandParser
+activate OpenFieldCommandParser
+
+OpenFieldCommandParser --> ContactBookParser
+deactivate OpenFieldCommandParser
+
+ContactBookParser -> OpenFieldCommandParser : parse("open 1 2 github)
+activate OpenFieldCommandParser
+
+
+create OpenFieldCommand
+OpenFieldCommandParser -> OpenFieldCommand :
+activate OpenFieldCommand
+
+OpenFieldCommand --> OpenFieldCommandParser : o
+deactivate OpenFieldCommand
+
+OpenFieldCommandParser --> ContactBookParser : o
+deactivate OpenFieldCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+OpenFieldCommandParser -[hidden]-> ContactBookParser
+destroy OpenFieldCommandParser
+
+ContactBookParser --> LogicManager : o
+deactivate ContactBookParser
+
+LogicManager -> OpenFieldCommand : execute()
+activate OpenFieldCommand
+
+loop number of indexes
+OpenFieldCommand -> UserBrowser : openUrl()
+activate UserBrowser
+
+UserBrowser --> OpenFieldCommand
+deactivate UserBrowser
+end
+
+create CommandResult
+OpenFieldCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> OpenFieldCommand : res
+deactivate CommandResult
+
+OpenFieldCommand --> LogicManager : res
+deactivate OpenFieldCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+destroy OpenFieldCommand
+@enduml

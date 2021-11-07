@@ -28,7 +28,7 @@ create TagsPresentPredicate
 ReplaceTagCommandParser -> TagsPresentPredicate
 activate TagsPresentPredicate
 
-TagsPresentPredicate -> ReplaceTagCommandParser
+TagsPresentPredicate --> ReplaceTagCommandParser
 deactivate TagsPresentPredicate
 
 ReplaceTagCommandParser --> AddressBookParser

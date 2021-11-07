@@ -15,34 +15,38 @@ Given below are my contributions to the project:
   * Highlights:
     * This enhancement uses a reusable function to open url in user's default browser. This new reusable function can be easily used by other commands or extended to open other fields.
     * Specific url was generated from contacts' github username or linkedin url depending on field indicated to be open. (Pull Request [\#77](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/77))
+    * UML Activity and UML Sequence diagram created and added to Developer Guide.
 
-<<INSERT OPEN FIELD SEQ DIAG>>
-
-<<INSERT OPEN FIELD CLASS DIAG>>
 
 * **New Field**: Added a Github field for a person. User can update this field in generic add/edit commands.
   * Credits: use of this github validation regex *https://github.com/shinnn/github-username-regex*
 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
+
 
 * **Project management**:
   * Project admin: `v1.1` - `v1.4` (3 releases) on GitHub
   * Finalized Project version release workflow (along with [dystoriax](https://ay2122s1-cs2103t-t10-3.github.io/tp/team/dystoriax.html))
-  *
+
 
 * **Enhancements to existing features**:
-  * Designed current project icon / logo (Pull requests [\#66](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/66/files))
+  * Designed project's vector icon / logo in Inkscape (Pull requests [\#66](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/66/files))
 
-![Ui](images/networkUS_icon.png)
+![Ui](../images/networkUS_icon.png)
 
   * GUI addition of field names for clarity (Pull request [\#63](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/63/files))
+
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `open` command
   * Developer Guide:
     * Added implementation details of the `open` command.
+    * Added UML Sequence Diagram of `open` command.
+    * Added UML Activtiy Diagram of `open` command.
   * General reformatting and organisation (Pull Request [\#85](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/85/files))
+
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#84](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/84)

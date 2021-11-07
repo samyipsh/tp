@@ -121,22 +121,12 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
 * stores the user's contacts i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the Network List, which `Person` references. This allows the Network List to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -151,7 +141,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.contactbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -299,6 +289,12 @@ How the URL is opened:
     * Cons: Required `javafx-web` which increases Jar space by nearly 7 folds
     * Cons: Slower loading time
 
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("open 1 2 github") API call.
+![Interactions Inside the Logic Component for the `open 1 2 github` Command](images/OpenFieldSequenceDiagram.png)
+
+The following activity diagrams summarise what happens when a user executes an Open Field command:
+![Activity Diagram for OpenFieldCommand](images/OpenFieldCommandActivityDiagram.png)
+
 ### Alias feature
 
 #### Implementation
@@ -306,6 +302,20 @@ How the URL is opened:
 The alias feature is facilitated by `AliasTable` which stores the key-value pairs of aliases and commands. It is stored in the `Model` package which manages the user preferences setting. All added aliases will be stored in json file and will be loaded every time NetworkUS boots up.<br>
 The alias command will take in the alias and the command to be aliased. The aliased command must be a valid command. The alias must not be the existing command.<br>
 When the `AliasCommand` executed, it simply adds a new entry to the `AliasTable` via `Model` interface. It displays the result of the command's execution.
+
+Each time the users key in the command for NetworkUS to execute, `ContactBookParser` will attempt to replace the alias that is found in the user's command with the corresponding aliased command by calling `ContactBookParser#replaceAlias(String)`. It will only replace the matching **prefix word(s)**. A word is defined as a substring whose character that comes after (if any) and before (if any) the word is a space. Example: `tag -A` matches the prefix word of the string `tag -A OS`, but it doesn't match the prefix word of the string `tag -AD OS`, even though `tag -A` matches the prefix of the words `tag -AD`. Replacement is done once, and it replaces the longest matching alias.
+
+The following are sequence diagram of how NetworkUS will create `tag -A` as an alias for the command `tagall`. In this diagram, we assume that the user has not created any aliases yet.
+
+![Sequence Diagram for Alias Command](images/AliasSequenceDiagram.png)
+
+The following are sequence diagram of how NetworkUS will replace user's command with their existing aliases. We assume that the user has created the alias `tag -A` for the command `tagall`.
+
+![Sequence Diagram for Working Flow of Replacing User's Command's Alias](images/ReplaceAliasSequenceDiagram.png)
+
+The following are summarized activity diagram of replacing the user's command.
+
+![Activity Diagram for Working Flow of Replacing User's Command's Alias](images/ReplaceAliasActivityDiagram.png)
 
 #### Design consideration
 
@@ -385,19 +395,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add new contacts                                     |                                                                        |
 | `* * *`  | user                                       | delete my existing contacts                          | remove contacts that I no longer need                                  |
-| `* * *`  | user                                       | find a person by name                                | locate contacts without having to go through the entire list |
+| `* * *`  | user                                       | find a person by name                                | locate contacts without having to go through the entire list           |
 | `* * *`  | user                                       | find people by a tag / group name                    | locate contacts by the category indicated by the tag without having to go through the entire list |
 | `* * *`  | user                                       | see all the contacts I have                          |                                                                        |
 | `* * *`  | experienced user                           | creates custom alias for specific commands           | work efficiently                                                       |
+| `* *`    | experienced user                           | see all the custom alias I have created              | work efficiently                                                       |
+| `* *`    | experienced user                           | delete alias that I no longer used                   | avoid mistyping command                                                |
 | `* *`    | longstanding user                          | update details of previously added contacts          | keep them up-to-date                                                   |
-| `* *`    | user                                       | add their LinkedIn username                          | professionally network with them through their LinkedIn                                       |
-| `* *`    | user                                       | add their GitHub username                            | view their github projects and see which areas they are experienced in                                        |
+| `* *`    | user                                       | add their LinkedIn username                          | professionally network with them through their LinkedIn                |
+| `* *`    | user                                       | add their GitHub username                            | view their github projects and see which areas they are experienced in |
+| `* *`    | user                                       | rename the tag                                       | keep the tag up-to-date                                                |
+| `* *`    | user with a long contacts                  | tag a group of people                                | work efficiently                                                       |
+| `* *`    | user with a long contacts                  | remove a tag from a group of people                  | work efficiently                                                       |
 | `* *`    | new user                                   | see some mock contacts                               | test the commands                                                      |
 | `* *`    | new user                                   | be able to clear all mock contacts                   | start creating a fresh contact list                                    |
 | `* *`    | user                                       | categorize my contacts based on their specialization | find people with a particular area of expertise                        |
 | `* *`    | user                                       | find a person by specialization                      | find a person of a particular area of expertise                        |
 | `*`      | user                                       | see the number of friends I have                     | gain a sense of confidence                                             |
-| `*`      | user with many persons in the contact list | sort persons by name                                 | locate a person easily                                                 |
+
 
 
 ### Use cases
@@ -535,27 +550,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use Case: UC09 Show all tags used**
+**Use case: UC09 View Github/LinkedIn page of the person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to view the Github/LinkedIn page of the person in the list
+4.  NetworkUS show the Github/LinkedIn page of the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. Github/LinkedIn of the person is emptied
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use Case: UC10 Show all tags used**
 
 **MSS**
 1. User request to show all tags in NetworkUS
 2. NetworkUS returns unique tags to the user
 
     Use case ends.
-
-
-**Use Case: UC10 Alias a command**
-
-**MSS**
-1. User creates alias for a certain command
-2. NetworkUS saves and stores the alias for the certain command
-
-   Use case ends.
-
-* 2a. The given alias is invalid.
-    * 2a1. NetworkUS shows an error message.
-
-      Use case resumes at step 1.
 
 **Use case: UC11 Tag persons**
 
@@ -601,6 +625,129 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: UC13 Untag persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to untag a specific tag from the specific persons in the list
+4.  NetworkUS untags a specific tag from the specific persons in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. A given index or the tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC14 Untag all displayed persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to untag a specified tag from all persons in the list
+4.  NetworkUS untags a specified tag from all persons in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given tag is not present.
+    * 3b1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC15 replace tag for all displayed persons**
+
+**MSS**
+
+1.  User requests to list persons
+2.  NetworkUS shows a list of persons
+3.  User requests to replace a specified tag from all persons in the list with a new tag
+4.  NetworkUS replaces a specified tag from all persons in the list with a new tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The specified tag to be replaced or new tag is invalid.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The specified tag to be replaced is not present.
+    * 3b1. NetworkUS shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use Case: UC16 Alias a command**
+
+**MSS**
+1. User creates alias for a certain command
+2. NetworkUS saves and stores the alias for the certain command
+
+   Use case ends.
+
+* 2a. The given alias is invalid.
+    * 2a1. NetworkUS shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC17 Delete an alias**
+
+**MSS**
+
+1.  User requests to display list of aliases
+2.  NetworkUS shows a list of aliases
+3.  User requests to delete a specific alias
+4.  NetworkUS deletes the alias
+
+    Use case ends.
+
+* 3a. The given alias is invalid or not present.
+    * 3a1. NetworkUS shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: UC18 View list of created aliases**
+
+**MSS**
+
+1.  User requests to view the list of created aliases
+2.  NetworkUS shows the list of created aliases
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User has no created any alias.
+
+  Use case ends.
+
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -615,6 +762,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Late user**: User who have used the product for more than a month
+* **Field**: A field is specific information of a person in contact list like phone number
+* **JavaScript Object Notation (JSON)**: The file format that NetworkUS used to store the contacts
+* **Graphical User Interface (GUI)**: A GUI is an interface that uses visual indicator to interact with the system
+* **Command Line Interface (CLI)**: A CLI is a text-based interface that uses text input to interact with the system
+* **Main Success Scenario (MSS)**: A MSS describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
+* **Command**: A command is an instruction that user can use in NetworkUS to perform certain task
+* **Prefix**: Prefixes are unique identifiers in front of paramenters that is used by NetworkUS to identify which fields the value belong to
+* **Alias**: Aliases are alternative words that you can use to represent the standard commands that NetworkUS used
 
 --------------------------------------------------------------------------------------------------------------------
 
