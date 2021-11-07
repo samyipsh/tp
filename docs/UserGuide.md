@@ -31,7 +31,7 @@ To jump to any particular section please refer to the table of contents found at
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp/releases/download/v1.3/networkus.jar).
+1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp/releases/download/v1.4/networkus.jar).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetworkUS app.
 
@@ -112,11 +112,13 @@ Adds a person to the list of contacts. You cannot add duplicate persons in the c
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
-[What is considered a duplicate person.](#duplicate-detection) <br>
-[List of what constitutes valid fields.](#valid-fields)
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
 A person can have any number of tags (including 0)
+
+View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. </br>
+
+View the [valid-field](#valid-fields) section to find out what is considered as valid field.
 </div>
 
 Examples:
@@ -142,8 +144,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
 * Edited person should not result in duplicate persons in the contact book.
 
-[What is considered a duplicate person.](#duplicate-detection) <br>
-[List of what constitutes valid fields.](#valid-fields)
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -151,7 +151,13 @@ Examples:
 *  `edit 2 p/ g/` Removes the phone number and github user of the 2nd person.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can remove specified fields by typing the field's prefix only. This applied for all fields except Name.
+
+You can remove specified fields by typing the field's prefix only. This applied for all fields except Name. </br>
+
+View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. </br>
+
+View the [valid-field](#valid-fields) section to find out what is considered as valid field.
+
 </div>
 
 ### Finding persons: `find`
@@ -356,7 +362,8 @@ Example of how alias replacement works:
 * The command `tag -A -D OS` will be replaced as `untagall OS` regardless of the order of you create the aliases because the longest matching alias that matches the prefix word is `tag -A -D`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Use it carefully. You are encouraged to create appropriate aliases. Refrain from creating alias that resembles existing command syntax, such as create alias `add n/Your Name` as any `tag` or `add` or any other commands. **NetworkUS will not handle these cases for you.**
+Use it carefully. You are encouraged to create appropriate aliases. Refrain from creating alias that resembles existing command syntax, such as create alias `add n/Your Name` as any `tag` or `add` or any other commands.</br> 
+**NetworkUS will not handle these cases for you.**
 </div>
 
 ### Showing saved aliases : `showalias`
