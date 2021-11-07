@@ -12,7 +12,7 @@ NetworkUS is a desktop app for organizing contacts. It features seamless **group
 
 ## Before you read
 
-This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to project. This user guide will guide you on how to use NetworkUS to manage your contacts and groups.
+This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to project. This user guide will guide you on how to use NetworkUS to manage your contacts.
 
 ## How to use the guide
 
@@ -86,7 +86,7 @@ The image above shows the UI Components :
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * INDEXES allows multiple INDEX to be entered with each INDEX being separated with a space.<br>
-  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third persons in the displayed list.
+  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third persons in the displayed contact list.
 
 </div>
 
@@ -130,7 +130,7 @@ Edits an existing person in the list of contact.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the [displayed person](#displayed-contacts) list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be replaced.
@@ -172,11 +172,15 @@ Format: `open INDEXES FIELD`
 
 * The index contained in indexes refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The Field must be "github" or "linkedin"
+* The Field must be `github` or `linkedin`
 
 Examples:
 * `list` followed by `open 2 3 4 github` opens the github page of the 2nd, 3rd, and 4th person of the [displayed contacts](#displayed-contacts) list.
-* `find Betsy` followed by `open 1 linkedin` opens the github page of the 1st person in the results of the `find` command
+* `find Betsy` followed by `open 1 linkedin` opens the LinkedIn page of the 1st person in the results of the `find` command
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This will redirect you to a web browser with the requested LinkedIn/Github page.
+</div>
 
 ### Deleting a person : `delete`
 
@@ -226,14 +230,14 @@ Format: `exit`
 
 You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This helps a lot when you want to find suitable project mate. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
-### Tagging displayed persons : `tagall`
+### Tagging displayed contacts : `tagall`
 
-Tags all [displayed persons](#displayed-contacts) in the NetworkUS contacts with the specified tag.
+Tags all [displayed contacts](#displayed-contacts) in the NetworkUS contacts with the specified tag.
 
 Format: `tagall TAG`
 
-* Tags all [displayed persons](#displayed-contacts) with the specified `TAG`.
-* Will not add duplicate tags and will run successfully even if all [displayed persons](#displayed-contacts) already have the tag.
+* Tags all [displayed contacts](#displayed-contacts) with the specified `TAG`.
+* Will not add duplicate tags and will run successfully even if all [displayed contacts](#displayed-contacts) already have the tag.
 * The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
 
 Examples:
@@ -247,7 +251,7 @@ Tags the specified persons from the NetworkUS contacts with the specified tag.
 Format: `tag INDEXES TAG`
 
 * Tags the persons at the specified `INDEXES`.
-* The index refers to the index number shown in the [displayed person](#displayed-contacts) list.
+* The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The indexes **must be positive integers** 1, 2, 3, …​
 * Tag **must consist of letters and/or numbers without spaces**.
 * Will not add duplicate tags to persons.
@@ -256,7 +260,7 @@ Examples:
 * `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the [global contacts](#global-contacts) list with a programmer tag.
 * `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
 
-### Untagging displayed persons: `untagall`
+### Untagging displayed contacts: `untagall`
 
 Deletes the specified tag from all [displayed contacts](#displayed-contacts) in NetworkUS.
 
@@ -275,7 +279,7 @@ Delete the specified tag from the specified person from the NetworkUS contacts.
 Format: `untag INDEXES TAG`
 
 * Deletes the tag from the person at the specified `INDEXES`.
-* The index refers to the index number shown in the [displayed person](#displayed-contacts) list.
+* The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The indexes **must be positive integers** 1, 2, 3, …​
 * Tag **must consist of letters and/or numbers without spaces**.
 
@@ -394,7 +398,7 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Misc
+## Miscellaneous
 
 ### Duplicate detection
 
@@ -445,6 +449,33 @@ Most NetworkUS commands will execute on displayed contacts.
 
 All contacts that are **stored** in the NetworkUS.
 
+### Field
+
+A field is specific information of a person in NetworkUS's contact list like phone number.
+
+### JavaScript Object Notation (JSON)
+
+JSON is the file format that NetworkUS used to store the contacts.
+
+### Graphical User Interface (GUI)
+
+A GUI is an interface that uses visual indicator to interact with the system.
+
+### Command Line Interface (CLI)
+
+A CLI is a text-based interface that uses text input to interact with the system.
+
+### Command
+
+A command is an instruction that you can use in NetworkUS to perform certain task.
+
+### Prefix
+
+Prefixes are unique identifiers in front of paramenters that is used by NetworkUS to identify which fields the value belong to.
+
+### Alias
+
+Aliases are alternative words that you can use to represent the standard commands that NetworkUS used.
 
 --------------------------------------------------------------------------------------------------------------------
 
