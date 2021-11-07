@@ -16,11 +16,16 @@ This user guide is for users who want to use NetworkUS for their daily use or de
 
 ## How to use the guide
 
-1. Most of the Commands in NetworkUS acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently [displayed contacts](#displayed-contacts) list.<br>
-![Original](images/Ui.png)
-Here `delete 3` will delete "Charlotte Oliviero"<br>
-![filtered](images/findList.png)
-Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
+If this is the first time you are using NetworkUS, please refer to the [quick start](#quick-start) section to set up and start using NetworkUS.
+
+If you are looking for a general overview of the commands refer to the [command summary](#command-summary) section. 
+
+If you are unclear of what the command formats mean in the various explanations refer to the [features](#features) section.
+
+If you are unsure of the meaning of any terms within this user guide, please refer to the [glossary](#glossary).
+
+To jump to any particular section please refer to the table of contents found at the top of this guide.
+
 
 ## Quick start
 
@@ -441,6 +446,13 @@ Example of invalid indexes: `-1`, `0`, `*`, `+1`, ...
 ### Displayed contacts
 
 All contacts **displayed** in NetworkUS application.
+
+Most of the commands in NetworkUS act on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it refers to the index of the currently displayed contacts list.<br>
+
+Here `delete 3` will delete "Charlotte Oliviero"<br>
+![Original](images/Ui.png)
+Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
+![filtered](images/findList.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Most NetworkUS commands will execute on displayed contacts.
