@@ -37,7 +37,7 @@ public class UntagCommand extends Command {
     public static final String MESSAGE_NO_DISPLAYED_PERSONS = "No persons displayed to untag.";
     public static final String MESSAGE_OUT_OF_BOUNDS_INDEX_DISPLAYED = "%1$d is an out-of-bounds index.\n"
             + "Indexes up to %2$d are valid.";
-    public static final String MESSAGE_TAG_NOT_EXIST = "This tag does not exist among the selected persons: %s";
+    public static final String MESSAGE_TAG_NOT_EXIST = "None of the selected persons contain the tag: %s";
 
     private final List<Index> targetIndexes;
     private final Tag tagToDelete;
