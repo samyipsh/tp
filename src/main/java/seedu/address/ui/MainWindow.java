@@ -222,7 +222,7 @@ public class MainWindow extends UiPart<Stage> {
                 showPerson.show();
             }
 
-            if (commandResult.isShowAlias() || aliasWindow.isShowing()) {
+            if (commandResult.isShowAlias()) {
                 handleShowAlias();
             } else {
                 aliasWindow.refresh(logic.getAliasTable().getAliasTable());
