@@ -179,10 +179,21 @@ public class MainWindow extends UiPart<Stage> {
         shownPersonWindow.stream().forEach(window -> window.hide());
     }
 
+    /**
+     * Open the show alias mapping window and focuses it on the screen.
+     */
+
     @FXML
     private void handleShowAlias() {
         aliasWindow.refresh(logic.getAliasTable().getAliasTable());
         aliasWindow.show();
+    }
+
+    /**
+     * Reloads the data of the alias window with current alias table.
+     */
+    private void updateAliasWindow() {
+        aliasWindow.refresh(logic.getAliasTable().getAliasTable());
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -222,10 +233,10 @@ public class MainWindow extends UiPart<Stage> {
                 showPerson.show();
             }
 
-            if (commandResult.isShowAlias() || aliasWindow.isShowing()) {
+            if (commandResult.isShowAlias()) {
                 handleShowAlias();
             } else {
-                aliasWindow.refresh(logic.getAliasTable().getAliasTable());
+                updateAliasWindow();
             }
 
             return commandResult;
