@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes command;
+
+:Replaces user's command with by finding
+and replacing matching alias (if any);
+
+if () then ([valid command])
+    :Executes the command;
+else ([else])
+    :Shows error to user;
+endif
+
+stop
+@enduml
