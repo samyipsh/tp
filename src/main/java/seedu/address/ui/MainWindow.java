@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -37,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private AliasTableDisplayWindow aliasWindow;
+    private ArrayList<DetailedPersonWindow> shownPersonWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -73,6 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        shownPersonWindow = new ArrayList<>();
         aliasWindow = new AliasTableDisplayWindow(logic.getAliasTable().getAliasTable());
 
     }
@@ -172,13 +175,13 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        aliasWindow.hide();
+        shownPersonWindow.stream().forEach(window -> window.hide());
     }
 
     @FXML
     private void handleShowAlias() {
-        if (aliasWindow.isShowing()) {
-            aliasWindow.refresh();
-        }
+        aliasWindow.refresh(logic.getAliasTable().getAliasTable());
         aliasWindow.show();
     }
 
@@ -215,11 +218,14 @@ public class MainWindow extends UiPart<Stage> {
                 Stage stage = new Stage();
                 DetailedPersonWindow showPerson = new DetailedPersonWindow(
                         logic.getFilteredPersonList().get(indexToShow), stage);
+                this.shownPersonWindow.add(showPerson);
                 showPerson.show();
             }
 
             if (commandResult.isShowAlias() || aliasWindow.isShowing()) {
                 handleShowAlias();
+            } else {
+                aliasWindow.refresh(logic.getAliasTable().getAliasTable());
             }
 
             return commandResult;

@@ -81,5 +81,12 @@ public class DetailedPersonWindow extends UiPart<Stage> {
         DetailedPersonWindow card = (DetailedPersonWindow) other;
         return person.equals(card.person);
     }
+
+    /**
+     * Hides the alias window
+     */
+    public void hide() {
+        getRoot().hide();
+    }
 }
 
