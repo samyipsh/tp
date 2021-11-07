@@ -104,7 +104,7 @@ Adds a person to the list of contacts.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
-[What is considered a duplicate person.](#duplicate-detection)
+[What is considered a duplicate person.](#duplicate-detection) <br>
 [List of what constitutes valid fields.](#valid-fields)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -134,7 +134,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN
 * When editing tags, the existing tags of the person will be replaced.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
 
-[What is considered a duplicate person.](#duplicate-detection)
+[What is considered a duplicate person.](#duplicate-detection) <br>
 [List of what constitutes valid fields.](#valid-fields)
 
 Examples:
