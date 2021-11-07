@@ -303,6 +303,20 @@ The alias feature is facilitated by `AliasTable` which stores the key-value pair
 The alias command will take in the alias and the command to be aliased. The aliased command must be a valid command. The alias must not be the existing command.<br>
 When the `AliasCommand` executed, it simply adds a new entry to the `AliasTable` via `Model` interface. It displays the result of the command's execution.
 
+Each time the users key in the command for NetworkUS to execute, `ContactBookParser` will attempt to replace the alias that is found in the user's command with the corresponding aliased command by calling `ContactBookParser#replaceAlias(String)`. It will only replace the matching **prefix word(s)**. A word is defined as a substring whose character that comes after (if any) and before (if any) the word is a space. Example: `tag -A` matches the prefix word of the string `tag -A OS`, but it doesn't match the prefix word of the string `tag -AD OS`, even though `tag -A` matches the prefix of the words `tag -AD`. Replacement is done once, and it replaces the longest matching alias.
+
+The following are sequence diagram of how NetworkUS will create `tag -A` as an alias for the command `tagall`. In this diagram, we assume that the user has not created any aliases yet.
+
+![Sequence Diagram for Alias Command](images/AliasSequenceDiagram.png)
+
+The following are sequence diagram of how NetworkUS will replace user's command with their existing aliases. We assume that the user has created the alias `tag -A` for the command `tagall`.
+
+![Sequence Diagram for Working Flow of Replacing User's Command's Alias](images/ReplaceAliasSequenceDiagram.png)
+
+The following are summarized activity diagram of replacing the user's command.
+
+![Activity Diagram for Working Flow of Replacing User's Command's Alias](images/ReplaceAliasActivityDiagram.png)
+
 #### Design consideration
 
 How aliases should be managed:

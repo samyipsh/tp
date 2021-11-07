@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ContactBookParser" as ContactBookParser LOGIC_COLOR
+participant "p:AliasCommandParser" as AliasCommandParser LOGIC_COLOR
+participant "c:AliasCommand" as AliasCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager ++ : execute("alias tagall tag -A")
+LogicManager -> ContactBookParser ++ : parseCommand("alias tagall tag -A")
+ContactBookParser -> ContactBookParser ++ : replaceAlias("alias tagall tag -A")
+ContactBookParser --> ContactBookParser -- : "alias tagall tag -A"
+
+create AliasCommandParser
+ContactBookParser -> AliasCommandParser ++
+AliasCommandParser --> ContactBookParser -- : p
+
+ContactBookParser -> AliasCommandParser ++ : parse("tagall tag -A")
+
+create AliasCommand
+AliasCommandParser -> AliasCommand ++
+AliasCommand --> AliasCommandParser -- : c
+AliasCommandParser --> ContactBookParser -- : c
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AliasCommandParser -[hidden]>
+destroy AliasCommandParser
+ContactBookParser --> LogicManager -- : c
+
+LogicManager -> AliasCommand ++ : execute()
+AliasCommand -> Model ++ : addAlias("tag -A", "tagall")
+Model --> AliasCommand --
+
+create CommandResult
+AliasCommand -> CommandResult ++
+CommandResult --> AliasCommand -- : r
+AliasCommand --> LogicManager -- : r
+LogicManager -->[ : r
+
+@enduml
