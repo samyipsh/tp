@@ -199,7 +199,9 @@ Examples:
 
 ### Showing person : `show`
 
-Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long.
+Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long. </br>
+
+![show window](images/showcommandwindow.png)
 
 Format: `show INDEX`
 
@@ -207,6 +209,8 @@ Format: `show INDEX`
 
 Example:
 * `show 1` will show the full details of the person with the specified index.
+
+
 
 ### Clearing all entries : `clear`
 
@@ -352,13 +356,16 @@ Use it carefully. You are encouraged to create appropriate aliases. Refrain from
 
 ### Showing saved aliases : `showalias`
 
-Shows all aliases stored in the user preferences in a new window.
+Shows all aliases stored in the user preferences in a new window. </br>
+
+![show alias window](images/showaliaswindow.png)
 
 Format: `showalias`
 Keyboard Shortcut: `F2`
 
 Example:
 * `showalias` will show the aliases in a new window.
+
 
 ### Dealiasing commands : `deletealias`
 
