@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -35,6 +33,7 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
     public void show() {
         getRoot().show();
         getRoot().centerOnScreen();
+        getRoot().requestFocus();
     }
 
     /**
@@ -48,6 +47,7 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
      * Fill the table with given hashmap
      */
     public void fillTable(HashMap<String, String> aliasTable) {
+        //Code Reuse from tutorial
         TableColumn<Map.Entry<String, String>, String> col1 = new TableColumn<> ("Alias");
 
         col1.setCellValueFactory((
@@ -59,10 +59,6 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
         col2.setCellValueFactory((
                 TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) -> new SimpleStringProperty(
                 p.getValue().getValue()));
-
-        ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(aliasTable.entrySet());
-
-        aliasTableView.setItems(items);
         aliasTableView.getColumns().add(col1);
         aliasTableView.getColumns().add(col2);
     }
