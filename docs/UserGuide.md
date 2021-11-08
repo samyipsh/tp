@@ -112,7 +112,7 @@ Adds a person to the list of contacts. You cannot add duplicate persons in the c
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 
 * A person can have any number of tags (including 0) <br>
 
@@ -151,9 +151,9 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 *  `edit 2 p/ g/` Removes the phone number and github user of the 2nd person.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 
-* You can remove specified fields by typing the field's prefix only. This applied for all fields except Name. <br>
+* You can remove specified fields by typing the field's prefix only. This applies for all fields except Name. <br>
 
 * View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
 
