@@ -868,17 +868,20 @@ testers are expected to do more *exploratory* testing.
 
 ### Showing a person
 
-1. Deleting a person while all persons are being shown
+1. Shows the specified index
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list (at least 2).
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `show 1`<br>
+       Expected: First contact is shown in a new window. Success message in status bar.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `show 0`<br>
+       Expected: No person is shown. Error details shown in the status message. Status bar remains the same.
+       
+    1. Test case: `show 1` then `show 2` then `exit`<br>
+       Expected: Two window of person 1 and person 2 details should pop up and then everything should close after the `exit` command.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect show commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Tagging persons
@@ -994,28 +997,29 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: Added alias using the following line `alias tag sp`.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `showalias`<br>
+       Expected: The window shows with a successful message shown in status message. The window should contain the alias sp and tag.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `showalias` then `alias tag poke`<br>
+       Expected: The window should pop up and after the second command, the mapping tag and poke will automatically show in the window.
+    
+    1. Test case: `showalias` then `deletealias sp`
+       Expected: The window should pop up as before and the mapping tag and sp should automatically disappear after the second command.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `showalias` then `exit`
+       Expected: The window should pop up as before and should close after the `exit` command.
+       
 
 ### Dealiasing a command
 
 1. Deleting a person while all persons are being shown
-
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Prerequisites: Insert alias using `alias tag sp`.
+       
+    1. Test case: `deletealias hello`<br>
+        Expected: Throw an error message as the alias is not there.
+       
+    1. Test case: `deletealias sp`<br>
+        Expected: Successful message displayed. Alias should not exist when opened in the Show Alias Window.
+       
