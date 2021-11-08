@@ -344,6 +344,17 @@ How the specified contact should be shown:
 
 Shows the mapping of aliases in a window similar to help.
 
+#### Implementation
+The feature is facilitated through `CommandResult` which contains a boolean to show whether the command requests to show the alias window. 
+If the user executes a show alias command, it will utilize the `handleShowAlias` to show the window. Currently, the window is refreshed everytime a Command is being called to update the table values. This allows for user to add an Alias and view them directly on the table. The F2 Key can also be used to access this Feature, though it is not considered a Command but a UI Component.
+
+The Following is a Sequence Diagram encompassing the usage of `showalias` Command.
+
+![Sequence Diagram for ShowAlias Command](images/ShowAliasSequenceDiagram.png)
+
+The Following is a summary of activity diagram of a user utilizing the Show Alias Feature.
+
+![Activity Diagram for Alias Command](images/ShowAliasActivityDiagram.png)
 #### Design consideration
 
 How the GUI gets the data:
@@ -353,6 +364,12 @@ How the GUI gets the data:
 * Alternative 2: Use an ObservableMap
     * Pros: The map is only accessed once, remaining changes are automatically updated
     * Cons: Hard to implement
+
+### DeleteAlias Feature
+
+#### Implementation
+This feature is facilitated by the `AliasTable` class similar to the Alias Feature. 
+The `AliasTable` is stored in the `Model` component and it will utilize the `deleteAlias` method. After the parsing of the alias by the `DeleteAliasCommandParser`, `DeleteAlias` will then be executed and it will check whether the alias specified exists in the `AliasTable`, which will throw a `CommandException` when it does not find it. Otherwise, it will remove the specified alias from the `AliasTable`. This change will only be saved into `preferences.json` upon exit of the program.
 
 --------------------------------------------------------------------------------------------------------------------
 

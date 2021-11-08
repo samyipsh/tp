@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes Show Alias Command;
+
+if () then ([isShowing])
+:Refocuses Alias Window;
+
+else([else])
+:Shows Alias Window;
+endif
+:User executes any other Command;
+:Alias Window Retrieves Data;
+if() then ([isShowing]))
+:Updates Refreshes;
+else ([else])
+endif
+
+stop
+
+@enduml
