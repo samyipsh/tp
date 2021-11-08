@@ -27,18 +27,21 @@ ShowAliasCommand --> ContactBookParser -- : c
 
 ContactBookParser --> LogicManager -- : c
 
+
 LogicManager -> ShowAliasCommand ++ : execute()
+destroy ContactBookParser
 create CommandResult
 ShowAliasCommand -> CommandResult++
-CommandResult --> ShowAliasCommand --
-ShowAliasCommand --> LogicManager --
+CommandResult --> ShowAliasCommand -- : r
+ShowAliasCommand --> LogicManager -- : r
 LogicManager --> MainWindow--
+destroy ShowAliasCommand
 
 MainWindow -> LogicManager ++ : getAliasTable()
-LogicManager -> Model ++
+LogicManager -> Model ++ : getAliasTable()
 Model --> LogicManager--
 LogicManager --> MainWindow --
-MainWindow -> AliasTable ++
+MainWindow -> AliasTable ++ : getAliasTable()
 AliasTable --> MainWindow --
-
+MainWindow --
 @enduml

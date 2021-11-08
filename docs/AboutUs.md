@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/commanderw324.png" width="200px">
 
 [[github](http://github.com/commanderw324)]
-[[portfolio](team/winstonc.md)]
+[[portfolio](team/commanderw324.md)]
 
 * Role: Developer
 * Responsibilities: UI & Model
