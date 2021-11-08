@@ -827,18 +827,18 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding a person
 
-1. Deleting a person while all persons are being shown
+1. Finding a person referencing their tags.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: There is at least one person in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `find friends`<br>
+       Expected: Persons tagged with friends are listed. Detail of how many persons with the tag are shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `find #`<br>
+       Expected: No person is listed as tags cannot have special characters. Details of how 0 persons are shown in the status message. Timestamp in the status bar is updated.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `find`<br>
+       Expected: List is not changed. Error details shown in the status message about `find` command format. Status bar remains the same.
 
 ### Opening a field of a person
 
@@ -872,33 +872,40 @@ testers are expected to do more *exploratory* testing.
 
 ### Tagging persons
 
-1. Deleting a person while all persons are being shown
+1. Tagging multiple persons while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `tag 1 2 programmer`<br>
+       Expected: First contact and second contact in the list are tagged with `programmer`. Success of tagging persons shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `tag 0 programmer`<br>
+       Expected: No person is tagged. Error details shown in the status message about what is considered a valid index. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Other incorrect tag commands to try: `tag x programmer`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous, error details shown now about how the index is out of bounds and what is a valid index.
+        
+    1. Test case: `tag 1 2 #hashtag`<br>
+       Expected: No person is tagged. Error details shown in the status message about what is considered a valid tag. Status bar remains the same.
+
+    1. Other incorrect tag command to try: `tag`<br>
+       Expected: Similar to previous, error details shown now about what is the format of the `tag` command.
+
 
 ### Tagging all displayed persons
 
-1. Deleting a person while all persons are being shown
+1. Tagging all persons shown while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `tagall OS`<br>
+       Expected: All contacts in the list are tagged with `OS`. Success of tagging all displayed persons shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `tagall #`<br>
+       Expected: No person is tagged. Error details shown in the status message about what is a valid tag. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Other incorrect tagall command to try: `tagall`<br>
+       Expected: Similar to previous, error detail shown in status message is now about `tagall` command format.
 
 ### Untagging persons
 
