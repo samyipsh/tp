@@ -18,7 +18,6 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
     private static final String FXML = "AliasTableDisplayWindow.fxml";
     @FXML
     private TableView<Map.Entry<String, String>> aliasTableView;
-
     private HashMap<String, String> aliasTable;
 
     /**
@@ -27,11 +26,30 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
     public AliasTableDisplayWindow(HashMap<String, String> aliasTable) {
         super(FXML, new Stage());
         this.aliasTable = aliasTable;
-        fillAliasTableView(aliasTable);
-
+        this.fillTable(aliasTable);
     }
 
-    private void fillAliasTableView(HashMap<String, String> aliasTable) {
+    /**
+     * Shows the window containing alias mapping
+     */
+    public void show() {
+        getRoot().show();
+        getRoot().centerOnScreen();
+        getRoot().requestFocus();
+    }
+
+    /**
+     * Hides the alias window
+     */
+    public void hide() {
+        getRoot().hide();
+    }
+
+    /**
+     * Fill the table with given hashmap
+     */
+    public void fillTable(HashMap<String, String> aliasTable) {
+        //Code Reuse from tutorial
         TableColumn<Map.Entry<String, String>, String> col1 = new TableColumn<> ("Alias");
 
         col1.setCellValueFactory((
@@ -43,7 +61,6 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
         col2.setCellValueFactory((
                 TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) -> new SimpleStringProperty(
                 p.getValue().getValue()));
-
         ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(aliasTable.entrySet());
 
         aliasTableView.setItems(items);
@@ -52,11 +69,12 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the window containing alias mapping
+     * Refreshes the alias table display window
      */
-    public void show() {
-        getRoot().show();
-        getRoot().centerOnScreen();
+    public void refresh(HashMap<String, String> aliasTable) {
+        aliasTableView.getColumns().clear();
+        aliasTableView.getItems().clear();
+        fillTable(aliasTable);
     }
 
     /**
@@ -65,15 +83,4 @@ public class AliasTableDisplayWindow extends UiPart<Stage> {
     public boolean isShowing() {
         return getRoot().isShowing();
     }
-
-    /**
-     * Reloads the alias window component
-     */
-    public void refresh() {
-        aliasTableView.getColumns().clear();
-        aliasTableView.getItems().clear();
-        fillAliasTableView(aliasTable);
-    }
-
-
 }

@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 //@author samyipsh
 /**
- * Represents a Person's github username in the address book.
+ * Represents a Person's github username in the contact book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGithub(String)}
  */
 public class Github {

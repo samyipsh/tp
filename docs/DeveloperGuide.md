@@ -10,13 +10,13 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* This project is adapted from AB3
+* This project is based on the AddressBook Level 3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+To set up your development environment for NetworkUS, refer to this guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -397,6 +397,7 @@ The `AliasTable` is stored in the `Model` component and it will utilize the `del
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a need to store CS specific fields for contacts like Github
 
 
 **Value proposition**: manage potential network opportunities for a NUS CS student
@@ -553,11 +554,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
-
-* 3a. The user says no during the confirmation
-
-    NetworkUS aborts deletion
 
 **Use case: UC08 Exit from application**
 
@@ -584,8 +580,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. Github/LinkedIn of the person is emptied
-    * 3a1. NetworkUS shows an error message.
+* 3a. Github/LinkedIn of the person is empty
+    * 3a1. NetworkUS does not redirect the user to the web browser
 
       Use case resumes at step 2.
 
@@ -785,8 +781,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Command Line Interface (CLI)**: A CLI is a text-based interface that uses text input to interact with the system
 * **Main Success Scenario (MSS)**: A MSS describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 * **Command**: A command is an instruction that user can use in NetworkUS to perform certain task
-* **Prefix**: Prefixes are unique identifiers in front of paramenters that is used by NetworkUS to identify which fields the value belong to
-* **Alias**: Aliases are alternative words that you can use to represent the standard commands that NetworkUS used
+* **Prefix**: Prefixes are unique identifiers in front of parameters that is used by NetworkUS to identify which fields the value belong to
+* **Alias**: Aliases are alternative words that user can use to represent the standard commands that NetworkUS used
 
 --------------------------------------------------------------------------------------------------------------------
 

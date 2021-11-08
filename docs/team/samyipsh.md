@@ -5,7 +5,7 @@ title: Samuel Yip's Project Portfolio Page
 
 ### Project: NetworkUS
 
-NetworkUS is an address book application that helps Computer Science students maintain a list of contacts of people they meet in school. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+NetworkUS is a desktop app for organizing contacts that features seamless group management, allowing for quick searches of contacts with desired traits (i.e specialization) and hence project group formation. NetworkUS is optimised for CLI users, complemented with GUI to display the results.
 
 Given below are my contributions to the project:
 
@@ -19,7 +19,7 @@ Given below are my contributions to the project:
 
 
 * **New Field**: Added a Github field for a person. User can update this field in generic add/edit commands.
-  * Credits: use of this github validation regex *https://github.com/shinnn/github-username-regex*
+  * Credits: use of this github validation regex [github-username-regex](https://github.com/shinnn/github-username-regex)
 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
@@ -43,8 +43,9 @@ Given below are my contributions to the project:
     * Added documentation for the features `open` command
   * Developer Guide:
     * Added implementation details of the `open` command.
-    * Added UML Sequence Diagram of `open` command.
-    * Added UML Activtiy Diagram of `open` command.
+    * Added UML Sequence Diagram & Activity Diagram of `open` command.
+    * Product Scope
+    * User Stories
   * General reformatting and organisation (Pull Request [\#85](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/85/files))
 
 

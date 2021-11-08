@@ -12,28 +12,33 @@ NetworkUS is a desktop app for organizing contacts. It features seamless **group
 
 ## Before you read
 
-This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to project. This user guide will guide you on how to use NetworkUS to manage your contacts and groups.
+This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to project. This user guide will guide you on how to use NetworkUS to manage your contacts.
 
 ## How to use the guide
 
-1. Most of the Commands in NetworkUS acts on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it means that it is the index in the currently [displayed contacts](#displayed-contacts) list.<br>
-![Original](images/originalList.png)
-Here `delete 3` will delete "Charlotte Oliviero"<br>
-![filtered](images/findList.png)
-Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
+If this is the first time you are using NetworkUS, please refer to the [quick start](#quick-start) section to set up and start using NetworkUS.
+
+If you are looking for a general overview of the commands refer to the [command summary](#command-summary) section. 
+
+If you are unclear of what the command formats mean in the various explanations refer to the [features](#features) section.
+
+If you are unsure of the meaning of any terms within this user guide, please refer to the [glossary](#glossary).
+
+To jump to any particular section please refer to the table of contents found at the top of this guide.
+
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp/releases/download/v1.3/networkus.jar).
+1. Download the latest `networkus.jar` from [here](https://github.com/AY2122S1-CS2103T-T10-3/tp/releases/download/v1.4/networkus.jar).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your NetworkUS app.
 
 1. Double-click the file to start the app. The GUI below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press `enter` to execute it. e.g. typing **`help`** and pressing `enter` will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -86,7 +91,7 @@ The image above shows the UI Components :
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * INDEXES allows multiple INDEX to be entered with each INDEX being separated with a space.<br>
-  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third persons in the displayed list.
+  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third persons in the displayed contact list.
 
 </div>
 
@@ -98,20 +103,22 @@ Provides functionality to access the help page in the browser.
 ![help message](images/helpMessage.png)
 
 Format: `help` <br/>
-Keyboard shortcut: `f1` then `enter`
+Keyboard shortcut alternative: `f1` then press `enter`
 
 
 ### Adding a person: `add`
 
-Adds a person to the list of contacts.
+Adds a person to the list of contacts. You cannot add duplicate persons in the contact book.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
-[What is considered a duplicate person.](#duplicate-detection) <br>
-[List of what constitutes valid fields.](#valid-fields)
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+
+A person can have any number of tags (including 0) <br>
+
+View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
+
+View the [valid-field](#valid-fields) section to find out what is considered as valid field.
 </div>
 
 Examples:
@@ -130,14 +137,13 @@ Edits an existing person in the list of contact.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the [displayed person](#displayed-contacts) list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be replaced.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
+* Edited person should not result in duplicate persons in the contact book.
 
-[What is considered a duplicate person.](#duplicate-detection) <br>
-[List of what constitutes valid fields.](#valid-fields)
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -145,7 +151,13 @@ Examples:
 *  `edit 2 p/ g/` Removes the phone number and github user of the 2nd person.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can remove specified fields by typing the field's prefix only. This applied for all fields except Name.
+
+You can remove specified fields by typing the field's prefix only. This applied for all fields except Name. <br>
+
+View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
+
+View the [valid-field](#valid-fields) section to find out what is considered as valid field.
+
 </div>
 
 ### Finding persons: `find`
@@ -172,11 +184,15 @@ Format: `open INDEXES FIELD`
 
 * The index contained in indexes refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The Field must be "github" or "linkedin"
+* The Field must be `github` or `linkedin`
 
 Examples:
 * `list` followed by `open 2 3 4 github` opens the github page of the 2nd, 3rd, and 4th person of the [displayed contacts](#displayed-contacts) list.
-* `find Betsy` followed by `open 1 linkedin` opens the github page of the 1st person in the results of the `find` command
+* `find Betsy` followed by `open 1 linkedin` opens the LinkedIn page of the 1st person in the results of the `find` command
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This will redirect you to a web browser with the requested LinkedIn/Github page.
+</div>
 
 ### Deleting a person : `delete`
 
@@ -194,7 +210,9 @@ Examples:
 
 ### Showing person : `show`
 
-Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long.
+Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long. </br>
+
+![show window](images/showcommandwindow.png)
 
 Format: `show INDEX`
 
@@ -202,6 +220,8 @@ Format: `show INDEX`
 
 Example:
 * `show 1` will show the full details of the person with the specified index.
+
+
 
 ### Clearing all entries : `clear`
 
@@ -226,14 +246,14 @@ Format: `exit`
 
 You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This helps a lot when you want to find suitable project mate. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
-### Tagging displayed persons : `tagall`
+### Tagging displayed contacts : `tagall`
 
-Tags all [displayed persons](#displayed-contacts) in the NetworkUS contacts with the specified tag.
+Tags all [displayed contacts](#displayed-contacts) in the NetworkUS contacts with the specified tag.
 
 Format: `tagall TAG`
 
-* Tags all [displayed persons](#displayed-contacts) with the specified `TAG`.
-* Will not add duplicate tags and will run successfully even if all [displayed persons](#displayed-contacts) already have the tag.
+* Tags all [displayed contacts](#displayed-contacts) with the specified `TAG`.
+* Will not add duplicate tags and will run successfully even if all [displayed contacts](#displayed-contacts) already have the tag.
 * The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
 
 Examples:
@@ -247,7 +267,7 @@ Tags the specified persons from the NetworkUS contacts with the specified tag.
 Format: `tag INDEXES TAG`
 
 * Tags the persons at the specified `INDEXES`.
-* The index refers to the index number shown in the [displayed person](#displayed-contacts) list.
+* The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The indexes **must be positive integers** 1, 2, 3, …​
 * Tag **must consist of letters and/or numbers without spaces**.
 * Will not add duplicate tags to persons.
@@ -256,7 +276,7 @@ Examples:
 * `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the [global contacts](#global-contacts) list with a programmer tag.
 * `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
 
-### Untagging displayed persons: `untagall`
+### Untagging displayed contacts: `untagall`
 
 Deletes the specified tag from all [displayed contacts](#displayed-contacts) in NetworkUS.
 
@@ -275,7 +295,7 @@ Delete the specified tag from the specified person from the NetworkUS contacts.
 Format: `untag INDEXES TAG`
 
 * Deletes the tag from the person at the specified `INDEXES`.
-* The index refers to the index number shown in the [displayed person](#displayed-contacts) list.
+* The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The indexes **must be positive integers** 1, 2, 3, …​
 * Tag **must consist of letters and/or numbers without spaces**.
 
@@ -321,8 +341,8 @@ Format: `alias EXISTING_COMMAND YOUR_ALIAS`
 
 * Creates an alias `YOUR_ALIAS` for command `EXISTING_COMMAND`.
 * `YOUR_ALIAS` can contain spaces, but cannot be empty.
-* `EXISTING_COMMANDS` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
-* `EXISTING_COMMANDS` and `YOUR_ALIAS` must be separated by a space.
+* `EXISTING_COMMAND` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
+* `EXISTING_COMMAND` and `YOUR_ALIAS` must be separated by a space.
 * Aliases that you create will be saved.
 * NetworkUS only replace your input with corresponding commands if the alias matches the **prefix word(s)** of your input.
   * A **word** is defined as contiguous characters whose character that comes after (if any) and before (if any) the word is a space.
@@ -342,18 +362,22 @@ Example of how alias replacement works:
 * The command `tag -A -D OS` will be replaced as `untagall OS` regardless of the order of you create the aliases because the longest matching alias that matches the prefix word is `tag -A -D`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Use it carefully. You are encouraged to create appropriate aliases. Refrain from creating alias that resembles existing command syntax, such as create alias `add n/Your Name` as any `tag` or `add` or any other commands. **NetworkUS will not handle these cases for you.**
+Use it carefully. You are encouraged to create appropriate aliases. Refrain from creating alias that resembles existing command syntax, such as create alias `add n/Your Name` as any `tag` or `add` or any other commands.<br> 
+**NetworkUS will not handle these cases for you.**
 </div>
 
 ### Showing saved aliases : `showalias`
 
-Shows all aliases stored in the user preferences in a new window.
+Shows all aliases stored in the user preferences in a new window. </br>
+
+![show alias window](images/showaliaswindow.png)
 
 Format: `showalias`
 Keyboard Shortcut: `F2`
 
 Example:
 * `showalias` will show the aliases in a new window.
+
 
 ### Dealiasing commands : `deletealias`
 
@@ -394,19 +418,19 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Misc
+## Miscellaneous
 
 ### Duplicate detection
 
 **Checked fields**: `Phone`, `Email`, `Github` and `Linkedin`
 
-A person is considered a duplicate if:
-* All their **Checked fields** are empty and there is someone else with the same name with all their **Checked fields** also empty.
-* They have the same name and at least one identical **Checked field** to someone else in the list.
+A person is considered a duplicate in any of the below cases:
+* All of that person's **Checked fields** are empty, and there is another contact with the same name and also having all their **Checked fields** empty.
+* That person has the same name as another contact, and also at least one identical non-empty **Checked field**. 
 
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Capitalization and spaces do not count towards differentiation between persons' names. <br> Empty fields do not count towards differentiation unless all checked fields are empty.
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+The equality check for the names of 2 contacts disregards capitalization and spaces in the names being compared. 
 </div>
 
 ### Valid Fields
@@ -437,6 +461,13 @@ Example of invalid indexes: `-1`, `0`, `*`, `+1`, ...
 
 All contacts **displayed** in NetworkUS application.
 
+Most of the commands in NetworkUS act on the currently viewable list. Thus, whenever there are mentions of Index used in Commands it refers to the index of the currently displayed contacts list.<br>
+
+Here `delete 3` will delete "Charlotte Oliviero"<br>
+![Original](images/Ui.png)
+Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
+![filtered](images/findList.png)
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Most NetworkUS commands will execute on displayed contacts.
 </div>
@@ -445,6 +476,33 @@ Most NetworkUS commands will execute on displayed contacts.
 
 All contacts that are **stored** in the NetworkUS.
 
+### Field
+
+A field is specific information of a person in NetworkUS's contact list like phone number.
+
+### JavaScript Object Notation (JSON)
+
+JSON is the file format that NetworkUS used to store the contacts.
+
+### Graphical User Interface (GUI)
+
+A GUI is an interface that uses visual indicator to interact with the system.
+
+### Command Line Interface (CLI)
+
+A CLI is a text-based interface that uses text input to interact with the system.
+
+### Command
+
+A command is an instruction that you can use in NetworkUS to perform certain task.
+
+### Prefix
+
+Prefixes are unique identifiers in front of parameters that is used by NetworkUS to identify which fields the value belong to.
+
+### Alias
+
+Aliases are alternative words that you can use to represent the standard commands that NetworkUS used.
 
 --------------------------------------------------------------------------------------------------------------------
 

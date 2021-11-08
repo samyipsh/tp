@@ -76,7 +76,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Github} of the {@code Person} that we are building.
      */
     public PersonBuilder withGithub(String github) {
         this.github = new Github(github);
@@ -84,7 +84,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Linkedin} of the {@code Person} that we are building.
      */
     public PersonBuilder withLinkedIn(String linkedin) {
         this.linkedin = new LinkedIn(linkedin);
