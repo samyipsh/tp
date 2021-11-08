@@ -13,26 +13,33 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to remove tag from persons more effectively.
     * What it does: allows the user to untag specified tag from multiple persons directly simultaneously.
     * Justification: This feature improves the product significantly because it allows user to remove tags easily.
+      The tagging system is one of the important features of NetworkUS which allows user to categorise their contacts. Removing tag for multiple contacts simultaneously allows user to use the tagging system easier and faster.
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives.
 
 
 * **New Feature**: Added the ability to replace tag from persons more effectively.
     * What it does: allows the user to replace specified tag from persons to a new tag
-    * Justification: This feature improves the product significantly because it allows user to update the tags easily.
+    * Justification: The tagging system is one of the important features of NetworkUS which allows user to categorise their contacts. 
+      Being able to replace tag for multiple contacts allows to user to use the tagging system easier and faster. This encourages user to keep their tags up-to-date.
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives.
 
 
-* **Enhancements to existing features**: Modified Person to allow empty field.
-  * What it does: provide user the options to not add fields they do not want 
-  * Justification: This feature improves the product significantly because it provides flexibility to the user to add only necessary information.
-  * Highlights: This enhancement affects existing commands. It required an in-depth analysis of design alternatives. The implementation was difficult as it required changes to existing commands.
+* **New Feature**: Modified Person to allow empty field.
+   * What it does: provides user the options to not add fields they do not want.
+   * Justification: This feature improves the product significantly because it provides flexibility to the user to add only necessary information.
+   * Highlights: This enhancement affects existing commands. The implementation required changes to the existing commands like `add` and `edit`. It required an in-depth analysis of design alternatives.
 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=T10-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=jeromewjj&tabRepo=AY2122S1-CS2103T-T10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 
 * **Project management**:
-    * Managed releases `v1.2` - `v1.4` (4 releases) on GitHub
+    * Handled the Github issue tracker and added/kept track of issues to be resolved.
+
+
+* **Enhancements to existing features**: 
+    * Modified `add` and `edit` commands to allow NetworkUS to accept empty field.
+    * Remove `address` field from NetworkUS.
 
 
 * **Documentation**:
@@ -44,10 +51,10 @@ Given below are my contributions to the project.
         * Added Sequence diagrams for `replacetag` feature. [\#168](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/168)
         * Added Activity diagram for `replacetag` feature. [\#168](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/168)
 
-Sequence diagram for replace tag feature </br>
+Sequence diagram for replace tag feature <br>
 ![ReplaceTagSequenceDiagram](../images/ReplaceTagSequenceDiagram.png)
 
-Activity diagram for replace tag feature </br>
+Activity diagram for replace tag feature <br>
 ![ReplaceTagActivityDiagram](../images/ReplaceTagCommandActivityDiagram.png)
 
 * **Community**:
