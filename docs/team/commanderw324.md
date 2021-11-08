@@ -35,11 +35,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `show`, `showAlias`, `deleteAlias`.
+        * Added documentation for the features `show`, `showalias`, `deletealias`.
         * Added Description to product.
 
     * Developer Guide:
-        * Added implementation details of the `show` and `showalias` and `deleteAlias` feature.
+        * Added implementation details of the `show` and `showalias` and `deletealias` feature.
         * Added Sequence diagrams for `showalias` feature.
         * Added Activity diagram for `showalias` feature.
         * Added Manual testing sections.
