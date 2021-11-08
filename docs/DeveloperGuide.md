@@ -937,7 +937,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No person is untagged. Error details shown in the status message about what is considered a valid index.
        
     1. Test case: `untag 2 3 4 rich`<br>
-       Expected: `rich` tag is removed from third and forth contacts. Success of untagging shown in the status message.
+       Expected: `rich` tag is removed from third and fourth contacts. Success of untagging shown in the status message.
 
     1. Test case: `untag 2 3 4 nonExistTag`<br>
        Expected: No person is untagged. Error details shown in the status message about `nonExistTag` tag not found.
@@ -952,7 +952,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Populate the contacts with tag using `tag 1 3 4 AI`
 
     1. Test case: `untagall AI`<br>
-       Expected: `AI` tag is removed from first, third and forth contacts. Success of untagging shown in the status message.
+       Expected: `AI` tag is removed from first, third and fourth contacts. Success of untagging shown in the status message.
 
     1. Test case: `untagall nonExistTag`<br>
        Expected: No person is untagged. Error details shown in the status message about `nonExistTag` tag not found.
@@ -969,11 +969,11 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Populate the contacts with tag using `tag 1 3 4 cs2030`
 
-    1. Test case: `replace cs2030 cs2040`<br>
-       Expected: `cs2030` tag is replaced for first, third and forth contacts with `cs2040` tag. Success of tag replacement shown in the status message.
+    1. Test case: `replacetag cs2030 cs2040`<br>
+       Expected: `cs2030` tag is replaced for first, third and fourth contacts with `cs2040` tag. Success of tag replacement shown in the status message.
 
-    1. Test case: `replace cs2040 cs1231 cs2103`<br>
-       Expected: `cs2040` tag is replaced for first, third and forth contacts with `cs1231` tag. Success of tag replacement shown in the status message.
+    1. Test case: `replacetag cs2040 cs1231 cs2103`<br>
+       Expected: `cs2040` tag is replaced for first, third and fourth contacts with `cs1231` tag. Success of tag replacement shown in the status message.
 
     1. Test case: `replacetag cs2030 #`<br>
        Expected: No tag is being replaced. Error details shown in the status message about what is a valid tag.
