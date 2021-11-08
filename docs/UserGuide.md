@@ -12,7 +12,7 @@ NetworkUS is a desktop app for organizing contacts. It features seamless **group
 
 ## Before you read
 
-This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to project. This user guide will guide you on how to use NetworkUS to manage your contacts.
+This user guide is for users who want to use NetworkUS for their daily use or developer who wants to find out what this app does before contributing to the project. This user guide will guide you on how to use NetworkUS to manage your contacts.
 
 ## How to use the guide
 
@@ -114,11 +114,12 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 
-* A person can have any number of tags (including 0) 
+* A person can have any number of tags (including 0) <br>
 
-* View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact.
+* View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
 
 * View the [valid-field](#valid-fields) section to find out what is considered as valid field.
+
 </div>
 
 Examples:
@@ -152,9 +153,9 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 
-* You can remove specified fields by typing the field's prefix only. This applied for all fields except Name.
+* You can remove specified fields by typing the field's prefix only. This applied for all fields except Name. <br>
 
-* View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact.
+* View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
 
 * View the [valid-field](#valid-fields) section to find out what is considered as valid field.
 
@@ -246,20 +247,6 @@ Format: `exit`
 
 You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This helps a lot when you want to find suitable project mate. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
-### Tagging displayed contacts : `tagall`
-
-Tags all [displayed contacts](#displayed-contacts) in the NetworkUS contacts with the specified tag.
-
-Format: `tagall TAG`
-
-* Tags all [displayed contacts](#displayed-contacts) with the specified `TAG`.
-* Will not add duplicate tags and will run successfully even if all [displayed contacts](#displayed-contacts) already have the tag.
-* The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
-
-Examples:
-* `list` followed by `tagall programmer` tags all persons in the [global contacts](#global-contacts) list with the tag `programmer`.
-* `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
-
 ### Tagging persons : `tag`
 
 Tags the specified persons from the NetworkUS contacts with the specified tag.
@@ -276,17 +263,20 @@ Examples:
 * `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the [global contacts](#global-contacts) list with a programmer tag.
 * `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
 
-### Untagging displayed contacts: `untagall`
 
-Deletes the specified tag from all [displayed contacts](#displayed-contacts) in NetworkUS.
+### Tagging displayed contacts : `tagall`
 
-Format: `untagall TAG`
+Tags all [displayed contacts](#displayed-contacts) in the NetworkUS contacts with the specified tag.
 
-* Deletes specified `TAG` from all [displayed contacts](#displayed-contacts).
-* Tag **must consist of letters and/or numbers without spaces**.
+Format: `tagall TAG`
 
-Example:
-* `list` followed by `untagall CS2040` deletes CS2040 tag from all [global contacts](#global-contacts).
+* Tags all [displayed contacts](#displayed-contacts) with the specified `TAG`.
+* Will not add duplicate tags and will run successfully even if all [displayed contacts](#displayed-contacts) already have the tag.
+* The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
+
+Examples:
+* `list` followed by `tagall programmer` tags all persons in the [global contacts](#global-contacts) list with the tag `programmer`.
+* `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
 
 ### Untagging persons: `untag`
 
@@ -302,6 +292,18 @@ Format: `untag INDEXES TAG`
 Example:
 * `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the [global contacts](#global-contacts) list.
 * `find John` followed by `untag 1 2 friend` deletes friend tag from the 1st and 2nd persons in the results of the `find` command.
+
+### Untagging displayed contacts: `untagall`
+
+Deletes the specified tag from all [displayed contacts](#displayed-contacts) in NetworkUS.
+
+Format: `untagall TAG`
+
+* Deletes specified `TAG` from all [displayed contacts](#displayed-contacts).
+* Tag **must consist of letters and/or numbers without spaces**.
+
+Example:
+* `list` followed by `untagall CS2040` deletes CS2040 tag from all [global contacts](#global-contacts).
 
 ### Replace tag from all entries: `replacetag`
 
@@ -393,15 +395,15 @@ Example:
 
 ### Saving the data
 
-Contact list data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Contact list data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 
 ### Editing the data file
 
-Contacts data are saved as a JSON file `[JAR file location]/data/networkus.json`. Advanced users are welcome to update data directly by editing that data file.
+Contact data is saved as a JSON file `[JAR file location]/data/contactbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, NetworkUS will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NetworkUS will discard all data and start with an empty data file the next time its run.
 </div>
 
 
@@ -478,7 +480,7 @@ A field is specific information of a person in NetworkUS's contact list like pho
 
 ### JavaScript Object Notation (JSON)
 
-JSON is the file format that NetworkUS used to store the contacts.
+JSON is the file format that NetworkUS uses to store the contacts.
 
 ### Graphical User Interface (GUI)
 
@@ -490,15 +492,15 @@ A CLI is a text-based interface that uses text input to interact with the system
 
 ### Command
 
-A command is an instruction that you can use in NetworkUS to perform certain task.
+A command is an instruction that you can use in NetworkUS to perform a certain task.
 
 ### Prefix
 
-Prefixes are unique identifiers in front of parameters that is used by NetworkUS to identify which fields the value belong to.
+Prefixes are unique identifiers in front of parameters which are used by NetworkUS to identify which fields the values belong to.
 
 ### Alias
 
-Aliases are alternative words that you can use to represent the standard commands that NetworkUS used.
+Aliases are alternative words that you can use to represent the standard commands that NetworkUS uses.
 
 --------------------------------------------------------------------------------------------------------------------
 
