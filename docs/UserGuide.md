@@ -9,6 +9,7 @@ NetworkUS is a desktop app for organizing contacts. It features seamless **group
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Before you read
 
@@ -65,6 +66,9 @@ The image above shows the UI Components :
 1. Result Display : shows result feedback from commands.
 1. Contact List : shows the current contacts.
 1. Footer : shows file path of the storage file and the total number of contacts.
+
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -243,6 +247,8 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Tagging features
 
 You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This helps a lot when you want to find suitable project mate. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
@@ -327,6 +333,8 @@ Format: `showtags`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Alias Features
 
 Alias helps you create more customized commands. You can shorten the existing commands, or even completely rename it with other names. Here are example use cases of alias:
@@ -391,6 +399,8 @@ Example:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Data Storage
 
 ### Saving the data
@@ -415,6 +425,8 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Miscellaneous
 
@@ -452,6 +464,8 @@ Example of valid indexes: `1`, `2`, `3`, ...<br>
 Example of invalid indexes: `-1`, `0`, `*`, `+1`, ...
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
@@ -503,6 +517,8 @@ Prefixes are unique identifiers in front of parameters which are used by Network
 Aliases are alternative words that you can use to represent the standard commands that NetworkUS uses.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
