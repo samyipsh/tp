@@ -26,7 +26,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**: 
     * Added Field of LinkedIn to the User.
     * Added Total Contacts in the footer.
-    * * **Automated Tests**: Added automated tests for `linkedin`, `show` commands.
+    * Added automated tests for `linkedin`, `show` commands.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=CommanderW324&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=false&tabAuthor=Lemonsr&tabRepo=AY2122S1-CS2103T-T17-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
