@@ -884,7 +884,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `show 1` then `show 2` then `exit`<br>
        Expected: Two window of person 1 and person 2 details should pop up and then everything should close after the `exit` command.
 
-    1. Other incorrect show commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect show commands to try: `show`, `show x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Tagging persons
