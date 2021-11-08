@@ -277,19 +277,6 @@ Examples:
 * `list` followed by `tagall programmer` tags all persons in the [global contacts](#global-contacts) list with the tag `programmer`.
 * `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
 
-
-### Untagging displayed contacts: `untagall`
-
-Deletes the specified tag from all [displayed contacts](#displayed-contacts) in NetworkUS.
-
-Format: `untagall TAG`
-
-* Deletes specified `TAG` from all [displayed contacts](#displayed-contacts).
-* Tag **must consist of letters and/or numbers without spaces**.
-
-Example:
-* `list` followed by `untagall CS2040` deletes CS2040 tag from all [global contacts](#global-contacts).
-
 ### Untagging persons: `untag`
 
 Delete the specified tag from the specified person from the NetworkUS contacts.
@@ -304,6 +291,18 @@ Format: `untag INDEXES TAG`
 Example:
 * `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the [global contacts](#global-contacts) list.
 * `find John` followed by `untag 1 2 friend` deletes friend tag from the 1st and 2nd persons in the results of the `find` command.
+
+### Untagging displayed contacts: `untagall`
+
+Deletes the specified tag from all [displayed contacts](#displayed-contacts) in NetworkUS.
+
+Format: `untagall TAG`
+
+* Deletes specified `TAG` from all [displayed contacts](#displayed-contacts).
+* Tag **must consist of letters and/or numbers without spaces**.
+
+Example:
+* `list` followed by `untagall CS2040` deletes CS2040 tag from all [global contacts](#global-contacts).
 
 ### Replace tag from all entries: `replacetag`
 
