@@ -188,7 +188,7 @@ Format: `open INDEXES FIELD`
 * The Field must be `github` or `linkedin`
 
 Examples:
-* `list` followed by `open 2 3 4 github` opens the github page of the 2nd, 3rd, and 4th person of the [displayed contacts](#displayed-contacts) list.
+* `list` followed by `open 2 3 4 github` opens the Github page of the 2nd, 3rd, and 4th person of the [displayed contacts](#displayed-contacts) list.
 * `find Betsy` followed by `open 1 linkedin` opens the LinkedIn page of the 1st person in the results of the `find` command
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -516,6 +516,7 @@ Action | Format, Examples
 [**Edit**](#editing-a-person--edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 [**Find**](#finding-persons-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 [**Help**](#viewing-help--help) | `help`
+[**Open**](#opening-a-field-of-a-person--open) | `open INDEXES FIELD` <br> e.g., `open 1 linkedin`
 [**List**](#listing-all-persons--list) | `list`
 [**Replace tag**](#replace-tag-from-all-entries-replacetag) | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
 [**Show alias**](#showing-saved-aliases--showalias) | `showalias`
