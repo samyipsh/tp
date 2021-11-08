@@ -56,6 +56,8 @@ To jump to any particular section please refer to the table of contents found at
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## User Interface
 
 ![User Interface](images/UIDetails.png)
@@ -213,9 +215,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the [displayed contacts](#displayed-contacts) list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+<div style="page-break-after: always;"></div>
+
 ### Showing person : `show`
 
-Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long. </br>
+Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long. <br>
 
 ![show window](images/showcommandwindow.png)
 
@@ -374,7 +378,7 @@ Use it carefully. You are encouraged to create appropriate aliases. Refrain from
 
 ### Showing saved aliases : `showalias`
 
-Shows all aliases stored in the user preferences in a new window. </br>
+Shows all aliases stored in the user preferences in a new window. <br>
 
 ![show alias window](images/showaliaswindow.png)
 
