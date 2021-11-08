@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ContactBookParser" as ContactBookParser LOGIC_COLOR
+participant "c:ShowAliasCommand" as ShowAliasCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AliasTable" as AliasTable MODEL_COLOR
+end box
+activate MainWindow
+MainWindow -> LogicManager ++ : execute("showalias")
+LogicManager -> ContactBookParser ++  : parseCommand("showalias")
+
+create ShowAliasCommand
+ContactBookParser -> ShowAliasCommand ++
+ShowAliasCommand --> ContactBookParser -- : c
+
+ContactBookParser --> LogicManager -- : c
+
+LogicManager -> ShowAliasCommand ++ : execute()
+create CommandResult
+ShowAliasCommand -> CommandResult++
+CommandResult --> ShowAliasCommand --
+ShowAliasCommand --> LogicManager --
+LogicManager --> MainWindow--
+
+MainWindow -> LogicManager ++ : getAliasTable()
+LogicManager -> Model ++
+Model --> LogicManager--
+LogicManager --> MainWindow --
+MainWindow -> AliasTable ++
+AliasTable --> MainWindow --
+
+@enduml
