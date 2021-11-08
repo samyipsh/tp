@@ -814,33 +814,27 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a person
 
-1. Deleting a person while all persons are being shown
+1. Adding a person when first launching NetworkUS.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list` command.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `add n/Nicole g/nicolio`<br>
+      Expected: Added a new contact with the name Nicole and github username nicolio.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Test case: `add n/Alex Yeoh g/alexio`<br>
+      Expected: The person will not be added, as there is duplication with existing Alex Yeoh in the contact book. It has the same github field.
 
 ### Editing a person
 
-1. Deleting a person while all persons are being shown
+1. Editing a person when first launching NetworkUS.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `edit 1 n/Alexia Yeoh t/`<br>
+       Expected: First contact's name will be changed to Alexia. The existing tag `friend` will also be cleared.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `edit 1 n/Bernice Yu g/bernio`<br>
+       Expected: The first contact will not be edited, as the resulting person will be duplicate of the person Bernice Yu, as they have the same github field.
 
 ### Finding a person
 
@@ -974,33 +968,27 @@ testers are expected to do more *exploratory* testing.
 
 ### Showing all tags
 
-1. Deleting a person while all persons are being shown
+1. Showing all tags
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: None.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    2. Test case: `showtags`<br>
+       Expected: Shows all available tags in the global contact list.
 
 ### Aliasing a command
 
-1. Deleting a person while all persons are being shown
+1. Creating alias
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: None.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `alias tagall tag -A`<br>
+       Expected: Creates `tag -A` as an alias for `tagall` command.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `alias tagall tag`<br>
+       Expected: Unable to create alias, as `tag` is an existing command.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    4. Test case: `alias nonono tag -A`<br>
+       Expected: Unable to create alias, as `nonono` is not an existing command.
 
 ### Showing saved aliases
 

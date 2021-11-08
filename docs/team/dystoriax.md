@@ -20,7 +20,7 @@ Given below are my contributions to the project.
     * [CommanderW324](https://ay2122s1-cs2103t-t10-3.github.io/tp/team/commanderw324.html), who helped implement other supporting alias command, such as `showalias` and `deletealias`.
     * [e0543403](https://ay2122s1-cs2103t-t10-3.github.io/tp/team/e0543403.html), who suggested extremely simple bug fix. (PR [\#163](https://github.com/AY2122S1-CS2103T-T10-3/tp/pull/163))
 
-* **Code contributed**: [Reposense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/#breakdown=true&search=dystoriax)
+* **Code contributed**: [Reposense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=dystoriax&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=DystoriaX&tabRepo=AY2122S1-CS2103T-T10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project Management**:
   * Finalized Project version release workflow (along with [samyipsh](https://ay2122s1-cs2103t-t10-3.github.io/tp/team/samyipsh.html))

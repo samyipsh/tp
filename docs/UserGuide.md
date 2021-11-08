@@ -337,29 +337,25 @@ The following are details of the alias-related commands
 
 Creates an alias for existing NetworkUS command.
 
-Format: `alias EXISTING_COMMAND YOUR_ALIAS`
+Format: `alias COMMAND ALIAS`
 
-* Creates an alias `YOUR_ALIAS` for command `EXISTING_COMMAND`.
-* `YOUR_ALIAS` can contain spaces, but cannot be empty.
-* `EXISTING_COMMAND` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
-* `EXISTING_COMMAND` and `YOUR_ALIAS` must be separated by a space.
+* Creates an alias `ALIAS` for command `COMMAND`.
+* `ALIAS` can contain spaces, but cannot be empty.
+* `COMMAND` must be an existing command in NetworkUS (e.g. `list`, `tagall`, `untag`, etc.)
 * Aliases that you create will be saved.
 * NetworkUS only replace your input with corresponding commands if the alias matches the **prefix word(s)** of your input.
-  * A **word** is defined as contiguous characters whose character that comes after (if any) and before (if any) the word is a space.
   * For example: the alias `tag -A` will match the command `tag -A parameter`, but `tag -AD parameter` **will not be matched** even though `tag -A` matches the prefix of words `tag -AD`.
 * NetworkUS will check the **longest matching alias** in your input and change it with the corresponding command.
+  * For example: Suppose that you have created two aliases:
+      * `tag -A` as command `tagall`
+      * `tag -A -D` as command `untagall`
+  * The command `tag -A -D OS` will be replaced as `untagall OS` because the longest matching alias that matches the prefix word is `tag -A -D`.
 
 Example:
 * `alias tagall tag -A` will create an alias `tag -A` for the `tagall` command, allowing `tag -A` to represent `tagall`.
 * `alias tagall tag` will throw an error as `tag` is an existing NetworkUS command. **You cannot create alias as an existing command name**.
 * `alias notACommand tag -A` will throw an error as `notACommand` is not an existing NetworkUS command. **You are only able to create an alias for existing commands**.
 * `alias tag add n/Your Name` will create alias `add n/Your Name` for the `tag` command. Note that this kind of alias is not recommended. See the **caution** section.
-
-Example of how alias replacement works:
-* Suppose that you have created two aliases (in any order):
-  * `tag -A` as command `tagall`
-  * `tag -A -D` as command `untagall`
-* The command `tag -A -D OS` will be replaced as `untagall OS` regardless of the order of you create the aliases because the longest matching alias that matches the prefix word is `tag -A -D`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Use it carefully. You are encouraged to create appropriate aliases. Refrain from creating alias that resembles existing command syntax, such as create alias `add n/Your Name` as any `tag` or `add` or any other commands. 
@@ -383,10 +379,10 @@ Example:
 
 Deletes an existing alias.
 
-Format: `deletealias YOUR_ALIAS`
+Format: `deletealias ALIAS`
 
 * Deletes the specified alias.
-* `YOUR_ALIAS` must be an existing alias in NetworkUS.
+* `ALIAS` must be an existing alias in NetworkUS.
 
 Example:
 * `deletealias tag -A` will remove the alias `tag -A`.
@@ -511,10 +507,10 @@ Aliases are alternative words that you can use to represent the standard command
 Action | Format, Examples
 --------|------------------
 [**Add**](#adding-a-person-add) | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
-[**Alias**](#aliasing-commands--alias) | `alias EXISTING_COMMAND YOUR_ALIAS`<br> e.g., `alias tagall tag -A`
+[**Alias**](#aliasing-commands--alias) | `alias COMMAND ALIAS`<br> e.g., `alias tagall tag -A`
 [**Clear**](#clearing-all-entries--clear) | `clear`
 [**Delete**](#deleting-a-person--delete) | `delete INDEX`<br> e.g., `delete 3`
-[**Delete alias**](#dealiasing-commands--deletealias) | `deletealias YOUR_ALIAS`<br> e.g., `deletealias tag -A`
+[**Delete alias**](#dealiasing-commands--deletealias) | `deletealias ALIAS`<br> e.g., `deletealias tag -A`
 [**Edit**](#editing-a-person--edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 [**Find**](#finding-persons-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 [**Help**](#viewing-help--help) | `help`
