@@ -10,13 +10,39 @@ title: Developer Guide
 
 <div style="page-break-after: always;"></div>
 
-## **Acknowledgements**
+## Introduction of guide
+
+This guide aims to provide understanding of the technical details of NetworkUS. It is targeted towards developers as it contains technical documentation. It includes well-documented diagrams, indepth explanation of components and features, and details on NetworkUS specific project workflows (eg. Logging / Testing / Setting Up).
+
+Use this guide if you want to
+* Improve on the specific project by adding to its code base
+* Adapt NetworkUS for your own use
+* Learn from specific implementations of features/components
+
+--------------------------------------------------------------------------------------------------------------------
+
+## How to use this guide
+
+Refer to the **Table of Content** at the start of this guide or ctrl-f keywords to find relevant sections.
+A general grouping and a brief description of sections in this guide are provided below.
+
+* Setting up the development environment for NetworkUS: [quick start](SettingUp.md)
+* Overarching architectural implementation and component relations: [design](#design)
+* Feature specific design and considerations: [implementation](#implementation-of-features)
+* NetworkUS idea conceptualization details (value proposition, NFR, use cases and user stories): [Appendix: Requirements](#appendix-requirements)
+* Instructions for manual testing of NetworkUS: [testing](#appendix-instructions-for-manual-testing)
+* NetworkUS specific workflows and configuration (documentation, logging, testing, developer operations): [workflows and configuration](#documentation-logging-testing-configuration-dev-ops)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Acknowledgements
 
 * This project is based on the AddressBook Level 3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up NetworkUS
 
 To set up your development environment for NetworkUS, refer to this guide [_Setting up and getting started_](SettingUp.md).
 
@@ -151,7 +177,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div style="page-break-after: always;"></div>
 
-## **Implementation**
+## **Implementation of features**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -812,7 +838,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br>
+        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -989,7 +1016,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No tag is being replaced. Error details shown in the status message about what is a valid tag.
 
     1. Test case: `replacetag nonExistTag AI`<br>
-       Expected: No tag is being replaced. Error details shown in the status message about `nonExistTag` not found.
+       Expected: No tag is being replaced. Error details shown in the status message about `nonExistTag` tag not found.
 
     1. Other incorrect replacetag command to try: `replacetag`<br>
        Expected: Error detail shown in status message about `replacetag` command format.
