@@ -481,6 +481,9 @@ Most of the commands in NetworkUS act on the currently viewable list. Thus, when
 
 Here `delete 3` will delete "Charlotte Oliviero"<br>
 ![Original](images/Ui.png)
+
+<div style="page-break-after: always;"></div>
+
 Here `delete 3` will show an error message as 3 is not shown (Even though it is in the original list).
 ![filtered](images/findList.png)
 
@@ -495,6 +498,8 @@ All contacts that are **stored** in the NetworkUS.
 ### Field
 
 A field is specific information of a person in NetworkUS's contact list like phone number.
+
+<div style="page-break-after: always;"></div>
 
 ### JavaScript Object Notation (JSON)
 
