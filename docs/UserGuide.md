@@ -116,9 +116,9 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] 
 
 A person can have any number of tags (including 0) <br>
 
-View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
+* View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
 
-View the [valid-field](#valid-fields) section to find out what is considered as valid field.
+* View the [valid-field](#valid-fields) section to find out what is considered as valid field.
 </div>
 
 Examples:
@@ -154,9 +154,9 @@ Examples:
 
 You can remove specified fields by typing the field's prefix only. This applied for all fields except Name. <br>
 
-View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
+* View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
 
-View the [valid-field](#valid-fields) section to find out what is considered as valid field.
+* View the [valid-field](#valid-fields) section to find out what is considered as valid field.
 
 </div>
 
@@ -246,20 +246,6 @@ Format: `exit`
 
 You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This helps a lot when you want to find suitable project mate. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
-### Tagging displayed contacts : `tagall`
-
-Tags all [displayed contacts](#displayed-contacts) in the NetworkUS contacts with the specified tag.
-
-Format: `tagall TAG`
-
-* Tags all [displayed contacts](#displayed-contacts) with the specified `TAG`.
-* Will not add duplicate tags and will run successfully even if all [displayed contacts](#displayed-contacts) already have the tag.
-* The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
-
-Examples:
-* `list` followed by `tagall programmer` tags all persons in the [global contacts](#global-contacts) list with the tag `programmer`.
-* `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
-
 ### Tagging persons : `tag`
 
 Tags the specified persons from the NetworkUS contacts with the specified tag.
@@ -275,6 +261,22 @@ Format: `tag INDEXES TAG`
 Examples:
 * `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the [global contacts](#global-contacts) list with a programmer tag.
 * `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
+
+
+### Tagging displayed contacts : `tagall`
+
+Tags all [displayed contacts](#displayed-contacts) in the NetworkUS contacts with the specified tag.
+
+Format: `tagall TAG`
+
+* Tags all [displayed contacts](#displayed-contacts) with the specified `TAG`.
+* Will not add duplicate tags and will run successfully even if all [displayed contacts](#displayed-contacts) already have the tag.
+* The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
+
+Examples:
+* `list` followed by `tagall programmer` tags all persons in the [global contacts](#global-contacts) list with the tag `programmer`.
+* `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
+
 
 ### Untagging displayed contacts: `untagall`
 
