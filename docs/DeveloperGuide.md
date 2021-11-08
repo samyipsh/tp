@@ -859,18 +859,21 @@ testers are expected to do more *exploratory* testing.
 
 ### Opening a field of a person
 
-1. Deleting a person while all persons are being shown
+1. View person's Linkedin/Github page
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `open 1 linkedin`<br>
+       Expected: LinkedIn page of the first contact in the list is opened.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `open 2 github`<br>
+       Expected: Github page of the second contact in the list is opened.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `open 0 linkedin`<br>
+       Expected: No LinkedIn page is opened. Error details shown in the status message about what is considered a valid index.
+
+   1. Test case: `open 1 facebook`<br>
+      Expected: No page is opened. Error details shown in the status message about what field is supported.
 
 ### Showing a person
 
@@ -926,51 +929,63 @@ testers are expected to do more *exploratory* testing.
 
 ### Untagging persons
 
-1. Untagging persons while all persons are being shown
+1. Untagging multiple persons while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Populate the contacts with tag using `tag 1 3 4 rich`
 
     1. Test case: `untag 1 rich`<br>
-       Expected: 'rich' tag is removed from first contacts. Success of untagging shown in the status message.
+       Expected: `rich` tag is removed from first contacts. Success of untagging shown in the status message.
 
     1. Test case: `untag 0 rich`<br>
        Expected: No person is untagged. Error details shown in the status message about what is considered a valid index.
        
     1. Test case: `untag 2 3 4 rich`<br>
-       Expected: 'rich' tag is removed from third and forth contacts. Success of untagging shown in the status message.
+       Expected: `rich` tag is removed from third and forth contacts. Success of untagging shown in the status message.
+
+    1. Test case: `untag 2 3 4 nonExistTag`<br>
+       Expected: No person is untagged. Error details shown in the status message about `nonExistTag` tag not found.
 
     1. Other incorrect delete commands to try: `untag`
        Expected: Error details shown in the status message about what is the format of the untag command.
 
 ### Untagging all displayed persons
 
-1. Deleting a person while all persons are being shown
+1. Untagging all persons shown while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Populate the contacts with tag using `tag 1 3 4 AI`
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `untagall AI`<br>
+       Expected: `AI` tag is removed from first, third and forth contacts. Success of untagging shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `untagall nonExistTag`<br>
+       Expected: No person is untagged. Error details shown in the status message about `nonExistTag` tag not found.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `untagall #`<br>
+       Expected: No person is untagged. Error details shown in the status message about what is a valid tag.
+
+    1. Other incorrect untagall command to try: `untagall`<br>
+       Expected: Error detail shown in status message about `untagall` command format.
 
 ### Replace a tag of all displayed persons
 
-1. Deleting a person while all persons are being shown
+1. Replacing tag for all persons shown while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Populate the contacts with tag using `tag 1 3 4 cs2030`
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `replace cs2030 cs2040`<br>
+       Expected: `cs2030` tag is replaced for first, third and forth contacts with `cs2040` tag. Success of tag replacement shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `replace cs2040 cs1231 cs2103`<br>
+       Expected: `cs2040` tag is replaced for first, third and forth contacts with `cs1231` tag. Success of tag replacement shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `replacetag cs2030 #`<br>
+       Expected: No tag is being replaced. Error details shown in the status message about what is a valid tag.
+
+    1. Test case: `replacetag nonExistTag AI`<br>
+       Expected: No tag is being replaced. Error details shown in the status message about `nonExistTag` not found.
+
+    1. Other incorrect replacetag command to try: `replacetag`<br>
+       Expected: Error detail shown in status message about `replacetag` command format.
 
 ### Showing all tags
 
