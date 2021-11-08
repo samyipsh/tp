@@ -5,27 +5,27 @@ title: Jerome Wong's Project Portfolio Page
 
 ### Project: NetworkUS
 
-NetworkUS is a desktop app for organizing contacts. It features seamless **group management**, allowing for **quick searches of contacts with desired traits** (i.e specialization) and hence **project group formation**. It is catered for **Computer Science Students** with fields such as Github and Linkedin.
+NetworkUS is a desktop app for organizing contacts. It features seamless **group management**, by allowing for **quick searches of contacts with desired traits** (i.e specialization) and hence **project group formation**. It is catered for **Computer Science Students** with fields such as Github and Linkedin.
 The app is optimized for the **Command Line Interface (CLI)** to allow swift access for keyboard users. The app is also complemented with **Graphical User Interface (GUI)** to display the program.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to remove tag from persons more effectively.
-    * What it does: allows the user to untag specified tag from multiple persons directly simultaneously.
-    * Justification: This feature improves the product significantly because it allows user to remove tags easily.
-      The tagging system is one of the important features of NetworkUS which allows user to categorise their contacts. Removing tag for multiple contacts simultaneously allows user to use the tagging system easier and faster.
+* **New Feature**: Added the ability to remove a tag from persons more effectively.
+    * What it does: allows the user to remove a specified tag from multiple persons simultaneously.
+    * Justification: This feature improves the product significantly because it allows users to remove tags easily.
+      The tagging system is one of the important features of NetworkUS which allows user to categorise their contacts. Removing tag for multiple contacts simultaneously allows users to use the tagging system easier and faster.
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives.
 
 
-* **New Feature**: Added the ability to replace tag from persons more effectively.
-    * What it does: allows the user to replace specified tag from persons to a new tag
+* **New Feature**: Added the ability to replace a tag from persons more effectively.
+    * What it does: allows the user to replace specified tag from multiple persons with a new tag simultaneously.
     * Justification: The tagging system is one of the important features of NetworkUS which allows user to categorise their contacts. 
-      Being able to replace tag for multiple contacts allows to user to use the tagging system easier and faster. This encourages user to keep their tags up-to-date.
+      Being able to replace a tag for multiple contacts allows user to use the tagging system easier and faster. This encourages users to keep their tags up-to-date.
     * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives.
 
 
 * **New Feature**: Modified Person to allow empty field.
-   * What it does: provides user the options to not add fields they do not want.
+   * What it does: provides user with the options to not add fields they do not want.
    * Justification: This feature improves the product significantly because it provides flexibility to the user to add only necessary information.
    * Highlights: This enhancement affects existing commands. The implementation required changes to the existing commands like `add` and `edit`. It required an in-depth analysis of design alternatives.
 
