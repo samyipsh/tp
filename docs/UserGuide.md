@@ -255,7 +255,7 @@ Format: `exit`
 
 ## Tagging features
 
-You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This helps a lot when you want to find suitable project mate. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
+You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This would help when you want to find suitable teammates for projects, assignments, or hackathons. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
 ### Tagging persons : `tag`
 
