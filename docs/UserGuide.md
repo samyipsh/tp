@@ -426,7 +426,13 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactBook home folder.<br>
+**Q**: How do I import existing contacts to NetworkUS?<br>
+**A**: Unfortunately, NetworkUS does not support importing contact from external sources. You have to put in the contacts one by one.<br>
+**Q**: Any tips on managing my contacts?<br>
+**A**: You can tag your contacts with their fields of expertise, personalities, etc. You can use the `find` command to find out contacts with desired traits.<br>
+**Q**: How can I work faster?<br>
+**A**: You can create alias for our existing commands with a shorter one. Example: `ta` for `tagall` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
