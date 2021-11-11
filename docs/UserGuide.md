@@ -42,15 +42,15 @@ To jump to any particular section please refer to the table of contents found at
 1. Type the command in the command box and press `enter` to execute it. e.g. typing **`help`** and pressing `enter` will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`**: Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the NetworkUS.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com`: Adds a contact named `John Doe` to the NetworkUS.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3`: Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`**: Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+   * **`exit`**: Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -62,12 +62,12 @@ To jump to any particular section please refer to the table of contents found at
 
 ![User Interface](images/UIDetails.png)
 
-The image above shows the UI Components : 
-1. Menu Bar : shows the 'Help' and 'Show Alias' option.
-1. Command Bar : location for entering commands.
-1. Result Display : shows result feedback from commands.
-1. Contact List : shows the current contacts.
-1. Footer : shows file path of the storage file and the total number of contacts.
+The image above shows the UI Components: 
+1. Menu Bar: shows the 'Help' and 'Show Alias' option.
+1. Command Bar: location for entering commands.
+1. Result Display: shows result feedback from commands.
+1. Contact List: shows the current contacts.
+1. Footer: shows file path of the storage file and the total number of contacts.
 
 
 <div style="page-break-after: always;"></div>
@@ -97,11 +97,11 @@ The image above shows the UI Components :
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * INDEXES allows multiple INDEX to be entered with each INDEX being separated with a space.<br>
-  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third contacts in the displayed contact list.
+  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third contacts in the displayed contacts list.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Provides functionality to access the help page in the browser.
 
@@ -132,15 +132,15 @@ Examples:
 * `add n/Johnny Sim p/91234567`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal g/lovelyprisoner`
 
-### Listing all contacts : `list`
+### Listing all contacts: `list`
 
 Shows a list of all contacts in the [global contacts](#global-contacts) and the total number of contacts.
 
 Format: `list`
 
-### Editing a contact : `edit`
+### Editing a contact: `edit`
 
-Edits an existing contact in the list of contact.
+Edits an existing contact in the list of contacts.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
@@ -183,7 +183,7 @@ Examples:
 * `find jonas aaron silva` will return `jonas`, `Aaron john` and `Ann Silva`
 * `find friends` will return anyone whose names or tags have the word `friends` in them
 
-### Opening a field of a contact : `open`
+### Opening a field of a contact: `open`
 
 Opens the LinkedIn/Github page from details of field specified of a particular contact from the NetworkUS contacts.
 
@@ -201,7 +201,7 @@ Examples:
 This will redirect you to a web browser with the requested LinkedIn/Github page.
 </div>
 
-### Deleting a contact : `delete`
+### Deleting a contact: `delete`
 
 Deletes the specified contact from the NetworkUS contacts.
 
@@ -217,7 +217,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-### Showing contact : `show`
+### Showing contact: `show`
 
 Shows the specified contact's full contact information in a separate window. Will show any truncated details or fields that are too long. <br>
 
@@ -232,7 +232,7 @@ Example:
 
 
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the [global contacts](#global-contacts) list.
 
@@ -243,7 +243,7 @@ This will clear all contacts data in NetworkUS !
 </div>
 
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -257,7 +257,7 @@ Format: `exit`
 
 You can use tags to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This would help when you want to find suitable teammate for projects, assignments, or hackathons. For instance, you can tag certain contacts with OS to indicate that the person has a specialization in operating systems. You can then find all contacts that have a specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
-### Tagging contacts : `tag`
+### Tagging contacts: `tag`
 
 Tags the specified contacts from the NetworkUS contacts with the specified tag.
 
@@ -274,7 +274,7 @@ Examples:
 * `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd contacts in the results of the `find` command with a programmer tag.
 
 
-### Tagging displayed contacts : `tagall`
+### Tagging displayed contacts: `tagall`
 
 Tags all [displayed contacts](#displayed-contacts) in the NetworkUS contacts with the specified tag.
 
@@ -329,7 +329,7 @@ Format: `replacetag TAG1 TAG2`
 Example:
 * `list` followed by `replacetag CS2040 CS2030` replaces CS2040 tag to CS2030 tag from all [global contacts](#global-contacts).
 
-### Showing tags : `showtags`
+### Showing tags: `showtags`
 
 Shows all tags that are used in NetworkUS contacts.
 
@@ -347,7 +347,7 @@ Alias helps you create more customized commands. You can shorten the existing co
 
 The following are details of the alias-related commands
 
-### Aliasing commands : `alias`
+### Aliasing commands: `alias`
 
 Creates an alias for existing NetworkUS command.
 
@@ -376,7 +376,7 @@ Use it carefully. You are encouraged to create appropriate aliases. Refrain from
 **NetworkUS will not handle these cases for you.**
 </div>
 
-### Showing saved aliases : `showalias`
+### Showing saved aliases: `showalias`
 
 Shows all aliases stored in the user preferences in a new window. <br>
 
@@ -389,7 +389,7 @@ Example:
 * `showalias` will show the aliases in a new window.
 
 
-### Dealiasing commands : `deletealias`
+### Dealiasing commands: `deletealias`
 
 Deletes an existing alias.
 
@@ -432,10 +432,10 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 **A**: Unfortunately, NetworkUS does not support importing contact from external sources. You have to put in the contacts one by one.<br>
 
 **Q**: Any tips on managing my contacts?<br>
-**A**: You can tag your contacts with their fields of expertise, personalities, etc. You can use the [find](#finding-persons-find) command to find contacts with desired traits.<br>
+**A**: You can tag your contacts with their fields of expertise, personalities, etc. You can use the [find](#finding-contacts-find) command to find contacts with desired traits.<br>
 
 **Q**: How can I work faster?<br>
-**A**: You can [alias](#aliasing-commands--alias) an existing commands with a shorter alias. Example: `ta` for the `tagall` command.<br>
+**A**: You can [alias](#aliasing-commands-alias) an existing commands with a shorter alias. Example: `ta` for the `tagall` command.<br>
 
 **Q**: Can non CS students use this application?<br>
 **A**: Yes. While the fields and functionalities for this release are designed for CS students, anyone can use it to store contacts as a generic contact book management software.<br>
@@ -450,10 +450,10 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 **A**: Try moving the NetworkUS app to a new empty folder and running the jar file again.
 
 **Q**: How do I form a group using the app?<br>
-**A**: You can group contacts together under the same tag by using the [tag](#tagging-persons--tag) function and specifying their indexes.<br>
+**A**: You can group contacts together under the same tag by using the [tag](#tagging-contacts-tag) function and specifying their indexes.<br>
 
 **Q**: Why can't I make an alias using some specific words?<br>
-**A**: Refer to the section on examples under the [alias](#aliasing-commands--alias) command to see what words are not available for use as an alias.<br>
+**A**: Refer to the section on examples under the [alias](#aliasing-commands-alias) command to see what words are not available for use as an alias.<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -560,21 +560,21 @@ Aliases are alternative words that you can use to represent the standard command
 
 Action | Format, Examples
 --------|------------------
-[**Add**](#adding-a-person-add) | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
-[**Alias**](#aliasing-commands--alias) | `alias COMMAND ALIAS`<br> e.g., `alias tagall tag -A`
-[**Clear**](#clearing-all-entries--clear) | `clear`
-[**Delete**](#deleting-a-person--delete) | `delete INDEX`<br> e.g., `delete 3`
-[**Delete alias**](#dealiasing-commands--deletealias) | `deletealias ALIAS`<br> e.g., `deletealias tag -A`
-[**Edit**](#editing-a-person--edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-[**Find**](#finding-persons-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-[**Help**](#viewing-help--help) | `help`
-[**Open**](#opening-a-field-of-a-person--open) | `open INDEXES FIELD` <br> e.g., `open 1 linkedin`
-[**List**](#listing-all-persons--list) | `list`
+[**Add**](#adding-a-contact-add) | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend t/colleague`
+[**Alias**](#aliasing-commands-alias) | `alias COMMAND ALIAS`<br> e.g., `alias tagall tag -A`
+[**Clear**](#clearing-all-entries-clear) | `clear`
+[**Delete**](#deleting-a-contact-delete) | `delete INDEX`<br> e.g., `delete 3`
+[**Delete alias**](#dealiasing-commands-deletealias) | `deletealias ALIAS`<br> e.g., `deletealias tag -A`
+[**Edit**](#editing-a-contact-edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+[**Find**](#finding-contacts-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+[**Help**](#viewing-help-help) | `help`
+[**Open**](#opening-a-field-of-a-contact-open) | `open INDEXES FIELD` <br> e.g., `open 1 linkedin`
+[**List**](#listing-all-contacts-list) | `list`
 [**Replace tag**](#replace-tag-from-all-entries-replacetag) | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
-[**Show alias**](#showing-saved-aliases--showalias) | `showalias`
-[**Show tags**](#showing-tags--showtags) | `showtags`
-[**Tag**](#tagging-persons--tag) | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
-[**Tag all**](#tagging-displayed-contacts--tagall) | `tagall TAG` <br> e.g., `tagall programmer`
-[**Untag**](#untagging-persons-untag) | `untag INDEXES TAG`<br> e.g., `untag 1 2 friend`
+[**Show alias**](#showing-saved-aliases-showalias) | `showalias`
+[**Show tags**](#showing-tags-showtags) | `showtags`
+[**Tag**](#tagging-contacts-tag) | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
+[**Tag all**](#tagging-displayed-contacts-tagall) | `tagall TAG` <br> e.g., `tagall programmer`
+[**Untag**](#untagging-contacts-untag) | `untag INDEXES TAG`<br> e.g., `untag 1 2 friend`
 [**Untag all**](#untagging-displayed-contacts-untagall) | `untagall TAG`<br> e.g., `untagall friend`
 
