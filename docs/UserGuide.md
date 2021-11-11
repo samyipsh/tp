@@ -315,7 +315,7 @@ Format: `untagall TAG`
 Example:
 * `list` followed by `untagall CS2040` deletes CS2040 tag from all [global contacts](#global-contacts).
 
-### Replace tag from all entries: `replacetag`
+### Replace tag from all contacts: `replacetag`
 
 Replaces the specified tag from all [displayed contacts](#displayed-contacts) in NetworkUS with a new tag.
 
@@ -570,7 +570,7 @@ Action | Format, Examples
 [**Help**](#viewing-help-help) | `help`
 [**Open**](#opening-a-field-of-a-contact-open) | `open INDEXES FIELD` <br> e.g., `open 1 linkedin`
 [**List**](#listing-all-contacts-list) | `list`
-[**Replace tag**](#replace-tag-from-all-entries-replacetag) | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
+[**Replace tag**](#replace-tag-from-all-contacts-replacetag) | `replacetag TAG1 TAG2`<br> e.g., `replacetag friend enemy`
 [**Show alias**](#showing-saved-aliases-showalias) | `showalias`
 [**Show tags**](#showing-tags-showtags) | `showtags`
 [**Tag**](#tagging-contacts-tag) | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
