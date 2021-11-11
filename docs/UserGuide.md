@@ -255,7 +255,7 @@ Format: `exit`
 
 ## Tagging features
 
-You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This helps a lot when you want to find suitable project mate. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
+You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This would help when you want to find suitable teammate for projects, assignnments, or hacktahons. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
 ### Tagging persons : `tag`
 
@@ -434,6 +434,15 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 **Q**: How can I work faster?<br>
 **A**: You can create alias for our existing commands with a shorter one. Example: `ta` for `tagall` command.
 
+**Q**: Can non CS students use this application?<br>
+**A**: Yes. While the fields and functionalities for this release are designed for CS students, anyone can use it to store as a generic contact book management software.
+
+**Q**: Why is the data stored offline?<br>
+**A**: Ease of storage accessibility and security reasons.  
+
+**Q**: Can I use NetworkUS on my mobile phone?<br>
+**A**: NetworkUS can only be used on Java-supported mobile phones.  
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -553,7 +562,7 @@ Action | Format, Examples
 [**Show alias**](#showing-saved-aliases--showalias) | `showalias`
 [**Show tags**](#showing-tags--showtags) | `showtags`
 [**Tag**](#tagging-persons--tag) | `tag INDEXES TAG` <br> e.g., `tag 1 2 programmer`
-[**Tag all**](#tagging-displayed-persons--tagall) | `tagall TAG` <br> e.g., `tagall programmer`
+[**Tag all**](#tagging-displayed-contacts--tagall) | `tagall TAG` <br> e.g., `tagall programmer`
 [**Untag**](#untagging-persons-untag) | `untag INDEXES TAG`<br> e.g., `untag 1 2 friend`
-[**Untag all**](#untagging-displayed-persons-untagall) | `untagall TAG`<br> e.g., `untagall friend`
+[**Untag all**](#untagging-displayed-contacts-untagall) | `untagall TAG`<br> e.g., `untagall friend`
 
