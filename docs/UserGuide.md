@@ -97,7 +97,7 @@ The image above shows the UI Components :
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * INDEXES allows multiple INDEX to be entered with each INDEX being separated with a space.<br>
-  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third persons in the displayed contact list.
+  e.g. if you specify `tag 1 2 3 cs2030`, it will tag first, second and third contacts in the displayed contact list.
 
 </div>
 
@@ -112,15 +112,15 @@ Format: `help` <br/>
 Keyboard shortcut alternative: `f1` then press `enter`
 
 
-### Adding a person: `add`
+### Adding a contact: `add`
 
-Adds a person to the list of contacts. You cannot add duplicate persons in the contact book.
+Adds a contact to the list of contacts. You cannot add duplicate contacts in the contact book.
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 
-* A person can have any number of tags (including 0) <br>
+* A contact can have any number of tags (including 0) <br>
 
 * View the [duplicate-detection](#duplicate-detection) section to find out what is considered as a duplicate contact. <br>
 
@@ -132,30 +132,30 @@ Examples:
 * `add n/Johnny Sim p/91234567`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal g/lovelyprisoner`
 
-### Listing all persons : `list`
+### Listing all contacts : `list`
 
-Shows a list of all persons in the [global contacts](#global-contacts) and the total number of contacts.
+Shows a list of all contacts in the [global contacts](#global-contacts) and the total number of contacts.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a contact : `edit`
 
-Edits an existing person in the list of contact.
+Edits an existing contact in the list of contact.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GITHUB_USERNAME] [l/LINKEDIN] [d/DETAIL] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be replaced.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
-* Edited person should not result in duplicate persons in the contact book.
+* When editing tags, the existing tags of the contact will be replaced.
+* You can remove all the contact’s tags by typing `t/` without specifying any tags after it. The same applies for description `d/`.
+* Edited contact should not result in duplicate contacts in the contact book.
 
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 2 p/ g/` Removes the phone number and github user of the 2nd person.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 p/ g/` Removes the phone number and github user of the 2nd contact.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 
@@ -167,15 +167,15 @@ Examples:
 
 </div>
 
-### Finding persons: `find`
+### Finding contacts: `find`
 
-Finds persons whose names or tags contain any of the given keywords from the list of contacts.
+Find contacts whose names or tags contain any of the given keywords from the list of contacts.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The command is not case-sensitive, `find john` will match `John`
 * Currently, only the name and their tags are searched.
-* Persons whose names or tags match at least one keyword will be returned.
+* Contacts whose names or tags match at least one keyword will be returned.
   `find john smith` will return `John Fletcher` and `Smith George`
 
 Examples:
@@ -183,9 +183,9 @@ Examples:
 * `find jonas aaron silva` will return `jonas`, `Aaron john` and `Ann Silva`
 * `find friends` will return anyone whose names or tags have the word `friends` in them
 
-### Opening a field of a person : `open`
+### Opening a field of a contact : `open`
 
-Opens the LinkedIn/Github page from details of field specified of a particular person from the NetworkUS contacts.
+Opens the LinkedIn/Github page from details of field specified of a particular contact from the NetworkUS contacts.
 
 Format: `open INDEXES FIELD`
 
@@ -194,32 +194,32 @@ Format: `open INDEXES FIELD`
 * The Field must be `github` or `linkedin`
 
 Examples:
-* `list` followed by `open 2 3 4 github` opens the Github page of the 2nd, 3rd, and 4th person of the [displayed contacts](#displayed-contacts) list.
-* `find Betsy` followed by `open 1 linkedin` opens the LinkedIn page of the 1st person in the results of the `find` command
+* `list` followed by `open 2 3 4 github` opens the Github page of the 2nd, 3rd, and 4th contact of the [displayed contacts](#displayed-contacts) list.
+* `find Betsy` followed by `open 1 linkedin` opens the LinkedIn page of the 1st contact in the results of the `find` command
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This will redirect you to a web browser with the requested LinkedIn/Github page.
 </div>
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
-Deletes the specified person from the NetworkUS contacts.
+Deletes the specified contact from the NetworkUS contacts.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the [displayed contacts](#displayed-contacts) list.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd contact in the [displayed contacts](#displayed-contacts) list.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 <div style="page-break-after: always;"></div>
 
-### Showing person : `show`
+### Showing contact : `show`
 
-Shows the specified person's full contact information in a separate window. Will show any truncated details or fields that are too long. <br>
+Shows the specified contact's full contact information in a separate window. Will show any truncated details or fields that are too long. <br>
 
 ![show window](images/showcommandwindow.png)
 
@@ -228,7 +228,7 @@ Format: `show INDEX`
 * Index must be the index that is in the currently visible list.
 
 Example:
-* `show 1` will show the full details of the person with the specified index.
+* `show 1` will show the full details of the contact with the specified index.
 
 
 
@@ -257,21 +257,21 @@ Format: `exit`
 
 You can use tags to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This would help when you want to find suitable teammate for projects, assignments, or hackathons. For instance, you can tag certain contacts with OS to indicate that the person has a specialization in operating systems. You can then find all contacts that have a specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
-### Tagging persons : `tag`
+### Tagging contacts : `tag`
 
-Tags the specified persons from the NetworkUS contacts with the specified tag.
+Tags the specified contacts from the NetworkUS contacts with the specified tag.
 
 Format: `tag INDEXES TAG`
 
-* Tags the persons at the specified `INDEXES`.
+* Tags the contacts at the specified `INDEXES`.
 * The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The indexes **must be positive integers** 1, 2, 3, …​
 * Tag **must consist of letters and/or numbers without spaces**.
-* Will not add duplicate tags to persons.
+* Will not add duplicate tags to contacts.
 
 Examples:
-* `list` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the [global contacts](#global-contacts) list with a programmer tag.
-* `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd persons in the results of the `find` command with a programmer tag.
+* `list` followed by `tag 1 2 programmer` tags the 1st and 2nd contacts in the [global contacts](#global-contacts) list with a programmer tag.
+* `find John` followed by `tag 1 2 programmer` tags the 1st and 2nd contacts in the results of the `find` command with a programmer tag.
 
 
 ### Tagging displayed contacts : `tagall`
@@ -285,23 +285,23 @@ Format: `tagall TAG`
 * The tag **must consist of letters and/or numbers without spaces** e.g. programmer, CS2103T
 
 Examples:
-* `list` followed by `tagall programmer` tags all persons in the [global contacts](#global-contacts) list with the tag `programmer`.
-* `find Alex` followed by `tagall CS2103T` tags all persons in the results of the `find` command with the tag `CS2103T`.
+* `list` followed by `tagall programmer` tags all contacts in the [global contacts](#global-contacts) list with the tag `programmer`.
+* `find Alex` followed by `tagall CS2103T` tags all contacts in the results of the `find` command with the tag `CS2103T`.
 
-### Untagging persons: `untag`
+### Untagging contacts: `untag`
 
-Delete the specified tag from the specified person from the NetworkUS contacts.
+Delete the specified tag from the specified contact from the NetworkUS contacts.
 
 Format: `untag INDEXES TAG`
 
-* Deletes the tag from the person at the specified `INDEXES`.
+* Deletes the tag from the contact at the specified `INDEXES`.
 * The index refers to the index number shown in the [displayed contacts](#displayed-contacts) list.
 * The indexes **must be positive integers** 1, 2, 3, …​
 * Tag **must consist of letters and/or numbers without spaces**.
 
 Example:
-* `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd persons in the [global contacts](#global-contacts) list.
-* `find John` followed by `untag 1 2 friend` deletes friend tag from the 1st and 2nd persons in the results of the `find` command.
+* `list` followed by `untag 1 2 friend` deletes friend tag from 1st and 2nd contacts in the [global contacts](#global-contacts) list.
+* `find John` followed by `untag 1 2 friend` deletes friend tag from the 1st and 2nd contacts in the results of the `find` command.
 
 ### Untagging displayed contacts: `untagall`
 
@@ -465,9 +465,9 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 
 **Checked fields**: `Phone`, `Email`, `Github` and `Linkedin`
 
-A person is considered a duplicate in any of the below cases:
-* All of that person's **Checked fields** are empty, and there is another contact with the same name and also having all their **Checked fields** empty.
-* That person has the same name as another contact, and also at least one identical non-empty **Checked field**. 
+A contact is considered a duplicate in any of the below cases:
+* All of that contact's **Checked fields** are empty, and there is another contact with the same name and also having all their **Checked fields** empty.
+* That contact has the same name as another contact, and also at least one identical non-empty **Checked field**. 
 
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
@@ -524,7 +524,7 @@ All contacts that are **stored** in the NetworkUS.
 
 ### Field
 
-A field is specific information of a person in NetworkUS's contact list like phone number.
+A field is specific information of a contact in NetworkUS's contact list like phone number.
 
 <div style="page-break-after: always;"></div>
 
