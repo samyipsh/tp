@@ -433,13 +433,10 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 **A**: You can tag your contacts with their fields of expertise, personalities, etc. You can use the `find` command to find out contacts with desired traits.<br>
 **Q**: How can I work faster?<br>
 **A**: You can create alias for our existing commands with a shorter one. Example: `ta` for `tagall` command.
-
 **Q**: Can non CS students use this application?<br>
-**A**: Yes. While the fields and functionalities for this release are designed for CS students, anyone can use it to store as a generic contact book management software.
-
+**A**: Yes. While the fields and functionalities for this release are designed for CS students, anyone can use it to store as a generic contact book management software.<br>
 **Q**: Why is the data stored offline?<br>
-**A**: Ease of storage accessibility and security reasons.  
-
+**A**: Ease of storage accessibility and security reasons.<br>
 **Q**: Can I use NetworkUS on my mobile phone?<br>
 **A**: NetworkUS can only be used on Java-supported mobile phones.  
 
