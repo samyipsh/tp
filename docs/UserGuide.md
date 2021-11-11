@@ -255,7 +255,7 @@ Format: `exit`
 
 ## Tagging features
 
-You can use tag to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This would help when you want to find suitable teammate for projects, assignnments, or hacktahons. For instance, you can tag certain contacts with OS to indicate that the person has specialization in operating systems. You can find all contacts that have specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
+You can use tags to categorize your contacts as you wish. You can tag them based on their modules taken, field of specialization or personality. This would help when you want to find suitable teammate for projects, assignments, or hackathons. For instance, you can tag certain contacts with OS to indicate that the person has a specialization in operating systems. You can then find all contacts that have a specialization in OS by using the command `find OS`. The following are details of the tagging-related commands.
 
 ### Tagging persons : `tag`
 
@@ -446,13 +446,13 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 **Q**: Can I use NetworkUS on my mobile phone?<br>
 **A**: NetworkUS can only be used on Java-supported mobile phones.<br>
 
-**Q**: Why are my alias preferences empty / not updating ?<br>
+**Q**: Why are my alias preferences empty / not updating?<br>
 **A**: Try moving the NetworkUS app to a new empty folder and running the jar file again.
 
-**Q**: How do I form a group using the app ?<br>
+**Q**: How do I form a group using the app?<br>
 **A**: You can group contacts together under the same tag by using the [tag](#tagging-persons--tag) function and specifying their indexes.<br>
 
-**Q**: Why can't I make an alias using some specific words ?<br>
+**Q**: Why can't I make an alias using some specific words?<br>
 **A**: Refer to the section on examples under the [alias](#aliasing-commands--alias) command to see what words are not available for use as an alias.<br>
 
 --------------------------------------------------------------------------------------------------------------------
