@@ -425,26 +425,35 @@ If your changes to the data file makes its format invalid, NetworkUS will discar
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactBook home folder.<br>
+
 **Q**: How do I import existing contacts to NetworkUS?<br>
 **A**: Unfortunately, NetworkUS does not support importing contact from external sources. You have to put in the contacts one by one.<br>
+
 **Q**: Any tips on managing my contacts?<br>
-**A**: You can tag your contacts with their fields of expertise, personalities, etc. You can use the `find` command to find out contacts with desired traits.<br>
+**A**: You can tag your contacts with their fields of expertise, personalities, etc. You can use the [find](#finding-persons-find) command to find contacts with desired traits.<br>
+
 **Q**: How can I work faster?<br>
-**A**: You can create alias for our existing commands with a shorter one. Example: `ta` for `tagall` command.
+**A**: You can [alias](#aliasing-commands--alias) an existing commands with a shorter alias. Example: `ta` for the `tagall` command.<br>
+
 **Q**: Can non CS students use this application?<br>
-**A**: Yes. While the fields and functionalities for this release are designed for CS students, anyone can use it to store as a generic contact book management software.<br>
+**A**: Yes. While the fields and functionalities for this release are designed for CS students, anyone can use it to store contacts as a generic contact book management software.<br>
+
 **Q**: Why is the data stored offline?<br>
 **A**: Ease of storage accessibility and security reasons.<br>
+
 **Q**: Can I use NetworkUS on my mobile phone?<br>
-**A**: NetworkUS can only be used on Java-supported mobile phones.  
-**Q**: Why is my alias preference empty / not updating ?<br>
-**A**: Try to move the NetworkUS app in a new empty folder and run the jar file again.
+**A**: NetworkUS can only be used on Java-supported mobile phones.<br>
+
+**Q**: Why are my alias preferences empty / not updating ?<br>
+**A**: Try moving the NetworkUS app to a new empty folder and running the jar file again.
+
 **Q**: How do I form a group using the app ?<br>
-**A**: You can group them together under the same tag by using the tag function and specifying multiple indexes.
-**Q**: Why can't I put alias using some specific words ?<br>
-**A**: Refer to our section on examples under the [**Alias**](#aliasing-commands--alias) command to see what words are not available to use as an alias.
+**A**: You can group contacts together under the same tag by using the [tag](#tagging-persons--tag) function and specifying their indexes.<br>
+
+**Q**: Why can't I make an alias using some specific words ?<br>
+**A**: Refer to the section on examples under the [alias](#aliasing-commands--alias) command to see what words are not available for use as an alias.<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
